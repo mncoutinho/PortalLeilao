@@ -3,10 +3,19 @@ const typeDefs = `
 
     type Item {
         id: Int
-        titulo: String
+        name: String
         description: String
+        category: String
+        madefrom:String
+        lances: Int
+        initialbid:Float
+        image: Image
     }
-
+    type Image {
+        id: Int
+        src: String
+        
+    }
     type Query {
         artigos: [Item]
     }

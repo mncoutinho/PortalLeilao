@@ -1,17 +1,10 @@
-<template>
-      <div class="full-container">
-        <AdicionaImagem/>
-      </div>
+<template >
+    <div>
+        <h1>Tela Inicial</h1>
+    </div>
 </template>
 <script>
-import AdicionaImagem from "../item/additem"
 export default {
-  components:{
-    AdicionaImagem,
-  }
     
 }
 </script>
-<style>
-
-</style>

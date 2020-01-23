@@ -14,14 +14,11 @@
                  id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home </a>
+                       <router-link to="/home">Home</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contatos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li>
+                        <router-link to="/adicionarItem">item</router-link>
+                    </li>  
                 </ul>
                 <img class="navbar-nav mr-auto" height="25px" src="../../assets/logo.png">
                 <form class="form-inline mt-2 mt-md-0">

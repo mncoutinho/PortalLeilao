@@ -11,7 +11,7 @@
 <script>
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
-import Home from "./components/pages/home";
+import Home from "./components/pages/adicionarItem";
 import Header from "./components/layout/header"
 import Footer from "./components/layout/footer"
 
