@@ -4,49 +4,49 @@
       <div class="container">
         <br />
         <div class="input-list">
-				<div class="input-group">
-					<input class="form-control" 
-					type="text" 
-          v-model="artigo.name"
-					placeholder="Digite o Título"/>
-				</div>
-				<div class="input-group">
-					<input class="form-control" 
-					type="text" 
-          v-model="artigo.description"
-					placeholder="Digite a Descrição"/>
-				</div>
-				<div class="input-group">
-					<input class="form-control" 
-					type="text"
-          v-model="artigo.image"
-					placeholder="Insira a Imagem"/>
-				</div>
-        <div class="input-group">
-					<input class="form-control" 
-					type="text"
-          v-model="artigo.category"
-					placeholder="Insira a Categoria"/>
-				</div>
-        <div class="input-group">
-					<input class="form-control" 
-					type="text"
-          v-model="artigo.madefrom"
-					placeholder="Insira a Origem"/>
-				</div>
-        <div class="input-group">
-					<input class="form-control" 
-					type="text"
-          v-model="artigo.madeof"
-					placeholder="Insira o Artista"/>
-				</div>
-        <div class="input-group">
-					<input class="form-control" 
-					type="text"
-          v-model="artigo.initialbid"
-          v-money="money"
-					placeholder="Insira o Lance Inicial"/>
-				</div>
+          <div class="input-group">
+            <input class="form-control" 
+            type="text" 
+            v-model="artigo.name"
+            placeholder="Digite o Título"/>
+          </div>
+          <div class="input-group">
+            <input class="form-control" 
+            type="text" 
+            v-model="artigo.description"
+            placeholder="Digite a Descrição"/>
+          </div>
+          <div class="input-group">
+            <input class="form-control" 
+            type="text"
+            v-model="artigo.image"
+            placeholder="Insira a Imagem"/>
+          </div>
+          <div class="input-group">
+            <input class="form-control" 
+            type="text"
+            v-model="artigo.category"
+            placeholder="Insira a Categoria"/>
+          </div>
+          <div class="input-group">
+            <input class="form-control" 
+            type="text"
+            v-model="artigo.madefrom"
+            placeholder="Insira a Origem"/>
+          </div>
+          <div class="input-group">
+            <input class="form-control" 
+            type="text"
+            v-model="artigo.madeof"
+            placeholder="Insira o Artista"/>
+          </div>
+          <div class="input-group">
+            <input class="form-control" 
+            type="text"
+            v-model="artigo.initialbid"
+            v-money="money"
+            placeholder="Insira o Lance Inicial"/>
+          </div>
 					<div class="input-group">
             <button class="btn btn-info" 
 						v-on:click="addartigo(artigo.name, artigo.image, artigo.description, artigo.category, artigo.madefrom, artigo.initialbid, artigo.madeof)"
@@ -165,7 +165,11 @@ Link para youtube na carrossel de imagens
             id
             name
             description
-
+            category
+            madeof
+            madefrom
+            lances
+            initialbid
           }
         }
         `
