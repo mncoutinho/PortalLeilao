@@ -16,6 +16,7 @@
                     <li class="nav-item active">
                        <router-link to="/home">Home</router-link>
                     </li>
+                    nspb
                     <li class="nav-item">
                         <router-link to="/adicionarItem">item</router-link>
                     </li>  
