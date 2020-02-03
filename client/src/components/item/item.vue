@@ -1,60 +1,43 @@
 <template>
-  <div>
-    <div id="main">
-      <div class="container" >
+<v-content>
         <br />
         <addItem
-        v-on:addItem="addartigo"       />
-        <h5>
-          Itens para Visitação
-          <span class="badge badge-info">{{ parseInt(artigos.length) }}</span>
-        </h5>
-        <div class="row">
-          <div class="card" 
+        v-on:addItem="addartigo"/>
+        <v-badge
+          color="primary"
+        >
+          Itens Para Postar
+        </v-badge>
+        <v-row dense>
+          <v-col class="mx-auto" 
           v-for="artigo in artigos" 
           v-bind:key="artigo">
-            <div class="col-sm">
-              <div class="card-header" 
-              v-if="artigo.image">{{artigo.image}}
-              </div>
-              <div class="card-header" v-else>
-                <p>sem imagem</p>
-              </div>
-              <div class="card-body">
-                <div>
-                  <small>Título:</small>
-                  {{artigo.name}}
-                </div>
-                <div>
-                  <small>Descrição:</small>
-                  {{artigo.description}}
-                </div>
-                <div>
-                  <small>Categoria:</small>
-                  {{artigo.category}}
-                </div>
-                <div>
-                  <small>Origem:</small>
-                  {{artigo.madefrom}}
-                </div>
-                <div>
-                  <small>Artista:</small>
-                  {{artigo.madeof}}
-                </div>
-                <div>
-                  <small>Lance Inicial:</small>
-                  {{artigo.initialbid}}
-                </div>
-                <div class="col-md text-center">
-                  <button class="btn btn-info" v-on:click="deleteartigo(artigo)"><span class="fa fa-trash"></span></button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+                <v-card
+    class="mx-auto"
+    max-width="400"
+  >
+    <v-img
+      class="white--text align-end"
+      height="200px"
+      src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+    >
+      <v-card-title>{{artigo.name}}</v-card-title>
+    </v-img>
+    <v-card-text class="text--primary">
+      <div>Descrição:{{artigo.description}}</div>
+      <div>Categoria:{{artigo.category}}</div>
+      <div>Origem:{{artigo.madefrom}}</div>
+      <div>Artista:{{artigo.madeof}}</div>
+      <div>Lance Inicial:{{artigo.initialbid}}</div>
+    </v-card-text>
+
+    <v-card-actions>
+      <v-btn v-on:click="deleteartigo(artigo)"><span class="fa fa-trash"></span></v-btn>
+      </v-card-actions>
+  </v-card>
+          </v-col>
+        </v-row>
+</v-content>
 </template>
 <script>
 import addItem from "./additem"
@@ -62,7 +45,6 @@ import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
 import axios from "axios/dist/axios";
 import {VMoney} from "v-money";
-import foto from "../../assets/logo.png"
 export default {
   name: "app",
   components:{
@@ -79,7 +61,6 @@ export default {
           masked: false
         },
       artigos: [],
-      imagem: foto
       /*
 6 imagens por item
 Link para youtube na carrossel de imagens
@@ -118,7 +99,7 @@ Link para youtube na carrossel de imagens
         }
         `
       }
-    }).then(/*response => */);
+    }).then(/* response => */);
   }
 };
 </script>
