@@ -13,11 +13,11 @@
             <div class="collapse navbar-collapse" 
                  id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                       <router-link to="/home">Home</router-link>
+                    <li class="nav-item mr-sm-2">
+                       <router-link to="/">Home</router-link>
                     </li>
-                    nspb
-                    <li class="nav-item">
+                    
+                    <li class="nav-item mr-sm-2">
                         <router-link to="/adicionarItem">item</router-link>
                     </li>  
                 </ul>

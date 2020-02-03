@@ -62,6 +62,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
 import axios from "axios/dist/axios";
 import {VMoney} from "v-money";
+import foto from "../../assets/logo.png"
 export default {
   name: "app",
   components:{
@@ -78,7 +79,7 @@ export default {
           masked: false
         },
       artigos: [],
-
+      imagem: foto
       /*
 6 imagens por item
 Link para youtube na carrossel de imagens

@@ -76,7 +76,7 @@ export default {
           masked: false
         },
       artigo:{
-        image:"",
+        image:[],
         name:"",
         description:"",
         category:"",
