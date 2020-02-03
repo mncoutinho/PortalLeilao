@@ -1,8 +1,8 @@
 import Vue from "vue";
 import App from "./App.vue";
 import VueRouter from "vue-router"
-import adicionarItem from "./components/pages/adicionarItem"
-import Home from "./components/pages/home"
+import adicionarItem from "./pages/adicionarItem"
+import Home from "./pages/home"
 Vue.use(VueRouter);
 
 const router = new VueRouter({

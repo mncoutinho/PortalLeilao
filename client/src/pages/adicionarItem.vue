@@ -4,7 +4,7 @@
       </div>
 </template>
 <script>
-import AdicionaImagem from "../item/item"
+import AdicionaImagem from "../components/item/item"
 export default {
   components:{
     AdicionaImagem,

@@ -2,7 +2,7 @@
 	<div>
       <Header/>
 		<div id="main">
-			<Home></Home>
+			<router-view/>
 		</div>
        <Footer/>
 	</div>
@@ -11,7 +11,6 @@
 <script>
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
-import Home from "./components/pages/adicionarItem";
 import Header from "./components/layout/header"
 import Footer from "./components/layout/footer"
 
@@ -20,8 +19,7 @@ export default {
 	components: {
     Header,
     Footer,
-    Home,
-    
+  
 	}
 };
 </script>
