@@ -53,11 +53,9 @@
 </template>
 
 <script>
-import Header from "./components/layout/header"
 export default {
   name: 'App',
   component:{
-    Header,
   },
   data: () => ({
       drawer: null,

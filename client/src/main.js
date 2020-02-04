@@ -4,6 +4,7 @@ import VueRouter from "vue-router"
 import adicionarItem from "./pages/adicionarItem"
 import Home from "./pages/home"
 import vuetify from './plugins/vuetify';
+import store from './store'
 Vue.use(VueRouter);
 
 const router = new VueRouter({
@@ -25,5 +26,6 @@ Vue.config.productionTip = false;
 new Vue({
     router,
     vuetify,
+    store,
     render: h => h(App)
 }).$mount("#app");
