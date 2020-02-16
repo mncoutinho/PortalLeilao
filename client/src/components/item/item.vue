@@ -1,40 +1,37 @@
 <template>
 <v-content>
-        <br />
         <addItem
         v-on:addItem="addartigo"/>
+        <v-row dense>
         <v-badge
-          color="primary"
-        >
+          color="primary">
           Itens Para Postar
         </v-badge>
-        <v-row dense>
           <v-col class="mx-auto" 
           v-for="artigo in artigos" 
           v-bind:key="artigo">
-                <v-card
-    class="mx-auto"
-    max-width="400"
-  >
-    <v-img
-      class="white--text align-end"
-      height="200px"
-      src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-    >
-      <v-card-title>{{artigo.name}}</v-card-title>
-    </v-img>
-    <v-card-text class="text--primary">
-      <div>Descrição:{{artigo.description}}</div>
-      <div>Categoria:{{artigo.category}}</div>
-      <div>Origem:{{artigo.madefrom}}</div>
-      <div>Artista:{{artigo.madeof}}</div>
-      <div>Lance Inicial:{{artigo.initialbid}}</div>
-    </v-card-text>
-
-    <v-card-actions>
-      <v-btn v-on:click="deleteartigo(artigo)"><span class="fa fa-trash"></span></v-btn>
-      </v-card-actions>
-  </v-card>
+              <v-card
+            class="mx-auto"
+            max-width="400"
+              >
+                <v-img
+                  class="white--text align-end"
+                  height="200px"
+                  src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                >
+                  <v-card-title>{{artigo.name}}</v-card-title>
+                </v-img>
+                <v-card-text class="text--primary">
+                  <div>Descrição:{{artigo.description}}</div>
+                  <div>Categoria:{{artigo.category}}</div>
+                  <div>Origem:{{artigo.madefrom}}</div>
+                  <div>Artista:{{artigo.madeof}}</div>
+                  <div>Lance Inicial:{{artigo.initialbid}}</div>
+                </v-card-text>
+                <v-card-actions>
+                  <v-btn v-on:click="deleteartigo(artigo)"><span class="fa fa-trash"></span></v-btn>
+                </v-card-actions>
+            </v-card>
           </v-col>
         </v-row>
 </v-content>
