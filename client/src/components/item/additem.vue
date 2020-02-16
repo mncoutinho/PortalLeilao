@@ -80,6 +80,6 @@ export default {
     }
 }
 </script>
-<style type:"text/css" scoped>
-v-content: width = 80%;
+<style scoped>
+v-content{width:80%;}
 </style>

@@ -1,28 +1,38 @@
 <template>
 	<v-container class="container">			
 		<v-card>
-			<clock></clock>
-			<v-text class="form-control text-center">
+			<v-card-text justify="center">
 				lances sobre o artigo <span class="badge badge-info">{{ lances.length }}</span>
-			</v-text>	
+			</v-card-text>	
 			<v-list>
 				<v-list-item 
 				v-for="lance in lances" 
-				v-bind:key="lance">
-					{{lance}}
+				:key="lance">
+				<v-row>
+					<v-col>
+						<v-list-item-text v-text="lance.lance"/>
+					</v-col>
+					<v-col>
+					<v-list-item-time v-text="lance.time"/>
+					</v-col>
+				</v-row>
 				</v-list-item>
 			</v-list>		
 			<v-text-field v-model="lance" 
 				v-on:keyup.enter="AddLance(lance)" 
 				v-money="money" 
 				label="Faca seu lance" />
-			<v-btn v-on:click="AddLance(lance)">Fazer Lance</v-btn>
+			<v-btn color="success"
+			v-on:click="AddLance(lance)"
+			>
+			Faça seu Lance
+			</v-btn>
 		</v-card>
 	</v-container>
 </template>
 
 <script>
-import clock from "./clock";
+
 import {VMoney} from "v-money";
 export default {
 	data(){
@@ -34,19 +44,18 @@ export default {
 				suffix: ' ',
 				precision: 2,
 				masked: false
-	},
+			},
 			lance: "",
 			lances: [],
-			
+			time:"",	
 		};
-	},
-	component:{
-		clock
 	},
 	directives: {money: VMoney},
 	methods: {
-		AddLance(lance) {		
-			this.lances.push(lance);
+		AddLance(lance) {
+			const time = new Date();
+			const lanceConfirmado = {lance, time};		
+			this.lances.push(lanceConfirmado);
 		}, 
 		DeleteLance(lance){
 			this.lances.splice(this.lances.indexOf(lance), 1);
