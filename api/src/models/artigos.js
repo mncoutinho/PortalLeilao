@@ -34,7 +34,8 @@ const schema = new Schema({
     },
     images: [{
             type:String,
-            required: true
+            required: true,
+            trim: true
         }],
     leilao: [{
         type:mongoose.Schema.Types.ObjectId,

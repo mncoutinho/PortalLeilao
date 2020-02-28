@@ -13,7 +13,8 @@
     "express": "^4.17.1",
     "http": "0.0.0",
     "md5": "^2.2.1",
-    "mongoose": "^5.9.2"
+    "mongoose": "^5.9.2",
+    "sendgrid": "^5.2.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"

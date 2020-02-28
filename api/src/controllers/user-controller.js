@@ -1,5 +1,6 @@
 'use strict';
 const repository = require('../repositories/user-repository');
+const emailService = require('../services/email-service');
 const md5 = require('md5');
 exports.get = async(req, res, next) => {
     try{
@@ -39,6 +40,7 @@ exports.post = async(req, res, next) => {
             password: md5(req.body.password + global.SALT_KEY),
             cpf: req.body.cpf
         });
+        emailService.send(req.body.email, 'Bem Vindo ao Portal Leilão, ', global.EMAIL_TMPL.replace('{0}', req.body.name))
             res.status(200).send({ 
                 message: 'Artigo cadastrado com sucesso'
             });
