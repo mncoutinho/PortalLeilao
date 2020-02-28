@@ -3,10 +3,10 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/artigo-controller');
-router.get('/', controller.get);
-router.get('/:id', controller.getbyId);
-router.post('/', controller.post);
-router.put('/',controller.put);
-router.delete('/', controller.delete);
+router.get('/artigo/', controller.get);
+router.get('/artigo/:id', controller.getbyId);
+router.post('/artigo/', controller.post);
+router.put('/artigo/',controller.put);
+router.delete('/artigo/', controller.delete);
 
 module.exports = router;

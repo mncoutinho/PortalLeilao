@@ -1,9 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const config = require('./config')
 const app = express();
 //Conecta ao Banco
-mongoose.connect('mongodb+srv://admin:admin@portalleilao-kbzso.gcp.mongodb.net/test?retryWrites=true&w=majority');
+mongoose.connect(config.connectionString);
 
 //Carrega os Models
 const Artigos = require('./models/artigos')

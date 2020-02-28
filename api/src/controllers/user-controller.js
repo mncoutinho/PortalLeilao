@@ -1,6 +1,6 @@
 'use strict';
 const repository = require('../repositories/user-repository');
-
+const md5 = require('md5');
 exports.get = async(req, res, next) => {
     try{
         const data = await repository.get();
@@ -33,7 +33,12 @@ exports.getByLeilao = async(req, res, next) => {
 };
 exports.post = async(req, res, next) => {
     try{
-        await repository.create(req.body);
+        await repository.create({
+            name: req.body.name,
+            email:req.body.email,
+            password: md5(req.body.password + global.SALT_KEY),
+            cpf: req.body.cpf
+        });
             res.status(200).send({ 
                 message: 'Artigo cadastrado com sucesso'
             });
