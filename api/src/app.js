@@ -1,11 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const config = require('./config')
+const firebase = require('firebase/app');
+const authentication = require('firebase/auth');
+const firestone = require('firebase/firestore');
+const realtime = require('firebase/database');
+const firebaseConfig = require('./firebaseconfig');
+const config = require('./config');
 const app = express();
 //Conecta ao Banco
 mongoose.connect(config.connectionString);
-
+firebase.initializeApp(firebaseConfig);
+const users = firebase.initializeApp(firebaseConfig.userFirebaseConfig, 'users');
 //Carrega os Models
 const Artigos = require('./models/artigos')
 const Users = require('./models/users');
