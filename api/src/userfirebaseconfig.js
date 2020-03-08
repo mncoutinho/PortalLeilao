@@ -1,4 +1,4 @@
-const userFirebasefirebaseConfigConfig = {
+const firebaseConfig = {
     apiKey: "AIzaSyCrRIL8L-LMYON6GdC-WSuTuZe9vsEBeTY",
     authDomain: "portalleilaousers.firebaseapp.com",
     databaseURL: "https://portalleilaousers.firebaseio.com",
