@@ -38,8 +38,6 @@
 </template>
 <script>
 import addItem from "./additem"
-import "bootstrap/dist/css/bootstrap.css";
-import "font-awesome/css/font-awesome.css";
 import axios from "axios/dist/axios";
 import {VMoney} from "v-money";
 export default {
