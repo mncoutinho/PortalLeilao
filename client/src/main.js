@@ -8,6 +8,7 @@ import store from './store';
 import adicionarItem from "./pages/adicionarItem";
 import Home from "./pages/home";
 import Leilao from "./pages/leilao";
+import Login from "./pages/login";
 Vue.use(VueRouter);
 
 const router = new VueRouter({
@@ -18,6 +19,10 @@ const router = new VueRouter({
 		{
 			path:"/adicionarItem",
 			component:adicionarItem
+		},
+		{
+			path:"/login",
+			component:Login
 		},
 		{
 			path:"/",

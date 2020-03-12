@@ -74,7 +74,7 @@
       </v-btn>
     </div>
     <div>
-      <v-btn to="/"  color="white indigo--text">Login</v-btn>
+      <v-btn to="/login"  color="white indigo--text">Login</v-btn>
     </div>
      
 
