@@ -1,14 +1,18 @@
 import Vue from "vue";
 import App from "./App.vue";
-import VueRouter from "vue-router"
-import adicionarItem from "./pages/adicionarItem"
-import Home from "./pages/home"
-import Leilao from "./pages/leilao"
+import VueRouter from "vue-router";
 import vuetify from './plugins/vuetify';
-import store from './store'
+//Dependencia do Vuex
+import store from './store';
+//Import de páginas
+import adicionarItem from "./pages/adicionarItem";
+import Home from "./pages/home";
+import Leilao from "./pages/leilao";
 Vue.use(VueRouter);
 
 const router = new VueRouter({
+// rotas
+// precisa importar a página que vai ser referida a rota
 
 	routes:[
 		{
