@@ -69,7 +69,7 @@
 <v-spacer/>
 <!--BUTÃO-->
     <div class="mr-2">
-      <v-btn :elevation="0" to="/criar"  color="indigo white--text">
+      <v-btn :elevation="0" to="/criar"  text>
       Crie Sua conta
       </v-btn>
     </div>
