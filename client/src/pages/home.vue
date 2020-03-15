@@ -65,44 +65,68 @@
                                 height="230"
                                 width="350"
                                 :elevetion= "n-5"
-                                color= "red"
+                                color= "indigo lighten-3"
                                 
                                 >
-                                <span class=" display-3 ">
-                                        LIVE
-                                    </span>
+                                <v-row 
+                                class="fill-height"
+                                align="center"
+                                justify="center"
+                                >
+                                    <span class="display-4 white--text" >LIVE</span>
+                                </v-row>
                                 </v-card>
                             </v-row>
                         </v-col>
                     </v-row>
     <!--ANUNCIO-->
-                <v-row>
+                <v-row class="mt-6">
                     <v-col justify="center" align="center">
                         <v-card
                             width=900
                             height=150 
-                            color="blue"
+                            color="deep-purple darken-3"
                             :elevetion= "n-5"
+                            
                         >
-
-
+                        
+                            <span class="display-3 white--text" >ANUNCIO</span>
+                        
                         </v-card>
                     </v-col>
                 </v-row>    
 <!--PRODUTO-->
-                <v-row class="mt-12">
+                <v-row class="mt-6 mb-6" :elevation="12">
                         <v-col 
-                        v-for="n in 4"
+                        v-for="n in 16"
                         :key="n"
                         justify="center"
                         align="center"
+                        
                         >
+                            
                             <v-card
-                            height="200"
-                            width="300"
-                            :elevetion= "n-5"
-                            color= "red">
-
+                            height="300"
+                            width="310"
+                            color= "indigo accent-2"
+                            v-model="accordion"
+                            :elevation="15"
+                            >
+                                <!--IMAGEN-->
+                                <v-img
+                                height="220px"
+                                width="310px"
+                                color="indigo lighten-5"
+                                
+                                src="#"
+                                >
+                                    <p class="display-2 white--text">FOTO</p>
+                                </v-img>
+                                <!--INFORMAÇOES-->
+                                <div align="start">                               
+                                   <p class="white--text text-uppercase headline mt-1" >Nome Do Produto</p>
+                                   <p class="white--text lowercase font-weight-light	">informaçoes do produto</p>
+                                </div>
                             </v-card>
                         </v-col>
                     </v-row>
