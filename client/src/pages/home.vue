@@ -52,17 +52,86 @@
                         </v-btn >
                     </v-bottom-navigation>
                     <!-- BOX-->
-                    <v-card class="d-inline-block ">
-                        <v-container>
-                            <v-col>
-                                <v-img height="200" width="200" src="#"></v-img>
-                            </v-col> 
-                            <v-col
-                                cols="auto"
-                                class="text-center pl-0"
-                            ></v-col>
-                        </v-container>
-                    </v-card>
+                    <v-row class="mt-12 ">
+                        <v-col 
+                        v-for="n in 3"
+                        :key="n"
+                        >
+                            <v-row 
+                            justify="center"
+                            align="center"
+                            >
+                                <v-card
+                                height="230"
+                                width="350"
+                                :elevetion= "n-5"
+                                color= "indigo lighten-3"
+                                
+                                >
+                                <v-row 
+                                class="fill-height"
+                                align="center"
+                                justify="center"
+                                >
+                                    <span class="display-4 white--text" >LIVE</span>
+                                </v-row>
+                                </v-card>
+                            </v-row>
+                        </v-col>
+                    </v-row>
+    <!--ANUNCIO-->
+                <v-row class="mt-6">
+                    <v-col justify="center" align="center">
+                        <v-card
+                            width=900
+                            height=150 
+                            color="deep-purple darken-3"
+                            :elevetion= "n-5"
+                            
+                        >
+                        
+                            <span class="display-3 white--text" >ANUNCIO</span>
+                        
+                        </v-card>
+                    </v-col>
+                </v-row>    
+<!--PRODUTO-->
+                <v-row class="mt-6 mb-6" :elevation="12">
+                        <v-col 
+                        v-for="n in 16"
+                        :key="n"
+                        justify="center"
+                        align="center"
+                        
+                        >
+                            
+                            <v-card
+                            height="300"
+                            width="310"
+                            color= "indigo accent-2"
+                            v-model="accordion"
+                            :elevation="15"
+                            >
+                                <!--IMAGEN-->
+                                <v-img
+                                height="220px"
+                                width="310px"
+                                color="indigo lighten-5"
+                                
+                                src="#"
+                                >
+                                    <p class="display-2 white--text">FOTO</p>
+                                </v-img>
+                                <!--INFORMAÇOES-->
+                                <div align="start">                               
+                                   <p class="white--text text-uppercase headline mt-1" >Nome Do Produto</p>
+                                   <p class="white--text lowercase font-weight-light	">informaçoes do produto</p>
+                                </div>
+                            </v-card>
+                        </v-col>
+                    </v-row>
+
+
                 </v-app>   
             </v-app>
         </div>

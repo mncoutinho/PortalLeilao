@@ -1,39 +1,60 @@
 <template>
   <v-container justify="center">
      <v-form
-      ref="form">
-        <v-text-field 
-        v-model="artigo.name"
-        label="Digite o Título"/>
-        <v-text-field  
-        v-model="artigo.description"
-        label="Digite a Descrição"/>
-        <v-file-input
-        multiple
-        show-size
-        counter
-        prepend-icon="mdi-camera"
-        v-model="artigo.image"
-        label="Insira a Imagem"/>
-        <v-text-field
-        v-model="artigo.category"
-        label="Insira a Categoria"/>
-        <v-text-field
-        v-model="artigo.madefrom"
-        label="Insira a Origem"/>
-        <v-text-field 
-        v-model="artigo.madeof"
-        label="Insira o Artista"/>
-        <v-text-field
-        v-model="artigo.initialbid"
-        v-money="money"
-        label="Insira o Lance Inicial"/>
-        <button class="btn btn-info" 
-        v-on:click="addartigo(artigo.name, artigo.image, artigo.description, artigo.category, artigo.madefrom, artigo.initialbid, artigo.madeof)"
-        >
-          <span class="fa fa-plus">
-          </span>
-        </button>
+      ref="form"
+      
+      >
+      <!--CRIAÇAO DE ITEN-->
+      <v-card  
+      class="mx-auto "
+      max-width="500"
+      
+      >
+          <v-col cols="12"
+          class="grey lighten-5 pt-12 pl-12 pr-12 "
+          
+          >  
+                <v-text-field 
+                v-model="artigo.name"
+                label="Digite o Título"
+              />  
+                  
+                <v-text-field  
+                v-model="artigo.description"
+                label="Digite a Descrição"/>
+                <v-file-input
+                multiple
+                show-size
+                counter
+                prepend-icon="mdi-camera"
+                v-model="artigo.image"
+                label="Insira a Imagem"/>
+                <v-text-field
+                v-model="artigo.category"
+                label="Insira a Categoria"/>
+                <v-text-field
+                v-model="artigo.madefrom"
+                label="Insira a Origem"/>
+                <v-text-field 
+                v-model="artigo.madeof"
+                label="Insira o Artista"/>
+                <v-text-field
+                v-model="artigo.initialbid"
+                v-money="money"
+                label="Insira o Lance Inicial"/>
+
+            <v-col align="end" class="mt-4">
+              <button class="btn btn-info" 
+                  v-on:click="addartigo(artigo.name, artigo.image, artigo.description, artigo.category, artigo.madefrom, artigo.initialbid, artigo.madeof)"
+                  >
+                  <div class="my-1">
+          <v-btn depressed small color="primary" >+</v-btn>
+        </div>
+              </button>
+            </v-col>
+
+          </v-col>         
+        </v-card>
       </v-form>
   </v-container>
 </template>
