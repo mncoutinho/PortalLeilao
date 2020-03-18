@@ -30,23 +30,23 @@
                         v-model="bottomNav"
                         :value="activeBtn"
                         color="indigo lighten-1">
-                        <v-btn value="Carros" >
+                        <v-btn value="Carros" to="./Produtos">
                             <span>Carros</span>
                             <v-icon>mdi-car</v-icon>
                         </v-btn>
-                        <v-btn value="Imoveis">
+                        <v-btn value="Imoveis" to="./Produtos">
                                 <span>Imoveis</span>
                                 <v-icon>mdi-home</v-icon>
                         </v-btn>
-                        <v-btn value="Antiguidades">
+                        <v-btn value="Antiguidades" to="./Produtos">
                             <span>Antiguidades</span>
                             <v-icon>mdi-crown-outline</v-icon>
                         </v-btn>
-                        <v-btn value="Eletronicos">
+                        <v-btn value="Eletronicos" to="./Produtos">
                             <span>Eletronicos</span>
                             <v-icon>mdi-desktop-tower-monitor</v-icon>
                         </v-btn>
-                        <v-btn  value="Embarcação">
+                        <v-btn  value="Embarcação" to="./Produtos">
                             <span >Embarcação</span>
                             <v-icon>mdi-ship-wheel</v-icon>
                         </v-btn >
@@ -98,7 +98,7 @@
 <!--PRODUTO-->
                 <v-row class="mt-6 mb-6" :elevation="12">
                         <v-col 
-                        v-for="n in 16"
+                        v-for="n in 12"
                         :key="n"
                         justify="center"
                         align="center"

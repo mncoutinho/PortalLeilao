@@ -5,17 +5,19 @@
                <v-flex class="d-flex ">
                 <v-card
                 width="250px"
-                height="500px"
+                height="530px"
                 color="blue"
                  
                 >
 
                 </v-card >
                     <v-card 
-                    width="450px"
-                    height="500px"
+                    width="100%"
+                    height="530px"
                     color="white"
                     >
+                        <div class="col-md-12">
+                            
                         <v-text-title
                         class="blue--text "
                         >
@@ -29,7 +31,7 @@
                                 :rules="[() => !!nome || 'Este campo é necessario']"
                                 :error-messages="errorMessages"
                                 label="Nome Completo"
-                                placeholder="Ricardo Milos dos Santos"
+                                placeholder="Antonio Luiz da Silva"
                                 required
                                 
                             >
@@ -40,27 +42,30 @@
                                 v-model="email"
                                 :rules="[
                                     () => !!email || 'Este campo é necessario',
-                                    () => !!email && email.length <= 25 || 'Endereço de e-mail prescisa de no maximo 25 caracter',
+                                    
                                     addressCheck
                                 ]"
                                 label="E-mail"
-                                placeholder="Ricardo@Milos.com"
-                                counter="25"
+                                placeholder="exemplo@gmail.com"
+                                
                                 required
                                 >
                             </v-text-field>
                             <!--CPF-->
-                            <v-text-field
+                            
+                            <v-text-field  
+                            
                                 ref="CPF"
                                 v-model="CPF"
-                                :rules="[() => !!CPF || 'Este campo é necessario',
-                                () => !!CPF && CPF.length === 11 || 'DIGITE 11 CARACTERES',
-                                addressCheck]"
-                                :error-messages="errorMessages"
+                                maxlength="11"
                                 label="CPF"
                                 placeholder="123-456-789-10"
+                                class="cpf"
                                 required
+                                
+
                             >
+                            
                             </v-text-field>
                             <!--SENHA-->    
                             <v-text-field
@@ -89,13 +94,13 @@
                                 ]"
                                 :error-messages="errorMessages"
                                 :type="'password'"
-                                label="Comfirme a sua senha"
+                                label="Confirme a sua senha"
                                 placeholder="**********"
                                 required
                             >
                             </v-text-field>
                             
-                                <v-checkbox
+                                <v-checkbox 
                                 label="aceitar os termos de acesso"
                                 >
 
@@ -113,13 +118,17 @@
                                 <v-btn color="primary"  @click="submit">ENVIAR</v-btn>
                             </v-flex>
                         </v-card-text>
+
+                        </div>
                     </v-card>
                </v-flex>     
             </v-card> 
         </v-row>
     </v-content>
 </template>
+
 <script>
+
 export default {
     
 }
