@@ -10,6 +10,9 @@ import Home from "./pages/home";
 import Leilao from "./pages/leilao";
 import Login from "./pages/login";
 import Criar from "./pages/criar";
+import Produtos from "./pages/Produtos";
+import tutorial from "./pages/tutorial";
+
 Vue.use(VueRouter);
 
 const router = new VueRouter({
@@ -34,8 +37,16 @@ const router = new VueRouter({
 			component:Home
 		},
 		{
+			path:"/Produtos",
+			component:Produtos
+		},
+		{
 			path:"/leilao",
 			component:Leilao
+		},
+		{
+			path:"/tutorial",
+			component:tutorial
 		}
 	]
 })
