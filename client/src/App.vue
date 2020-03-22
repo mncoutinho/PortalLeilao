@@ -1,9 +1,11 @@
-<template>
-  <v-app id="inspire">
+<template >
+  <v-app id="inspire" >
 <!--MENU-->
     <v-navigation-drawer
       v-model="drawer"
-      app>
+      app
+      temporary
+      >
       <v-list dense>
         <router-link to="/" style="text-decoration:none;">
         <v-list-item link>
@@ -45,9 +47,11 @@
     <v-app-bar
       app
       color="indigo lighten-1"
-      dark>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"/>
+      dark
+      clipped-left
       
+      >
+      <v-app-bar-nav-icon @click="drawer = !drawer"/>
       <v-toolbar-title> 
         <router-link  class="white--text" to="/" style="text-decoration:none;">
             Portal Leilão
@@ -133,6 +137,8 @@ export default {
     }),
 };
 </script>
+
+
 
 
 
