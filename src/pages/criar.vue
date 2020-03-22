@@ -1,28 +1,36 @@
 <template>
     <v-content>
         <v-row justify="center">
-           <v-card color="grey" max-width="800" class="mb-12"  :elevation="10">
+           <v-card color="grey" max-width="1000" class="mb-12"  :elevation="10" width="800px">
                <v-flex class="d-flex ">
+                <!--CADASTRO POR API-->   
                 <v-card
-                width="250px"
+                width="50%"
                 height="530px"
                 color="blue"
                  
                 >
+                <br>
+                <br>
+                <br>
+                <p class="white--text headline text-center col-md-12">
+                    CRIE SUA CONTA, FÁCIL...
+                </p>
+                <v-row justify="center fill-height"  class="col-md-12">
+                    <v-icon size="50px" color="white" class="mr-5">mdi-facebook</v-icon>
+                    <v-icon size="50px" color="white" class="mr-5">mdi-google</v-icon>
+                    <v-icon size="50px" color="white">mdi-linkedin</v-icon>
+                </v-row>
 
                 </v-card >
                     <v-card 
-                    width="100%"
+                    width="50%"
                     height="530px"
                     color="white"
                     >
-                        <div class="col-md-12">
+                        <div class="">
                             
-                        <v-text-title
-                        class="blue--text "
-                        >
-                            CRIE JÁ A SUA CONTA
-                        </v-text-title>
+                       
                         <v-card-text>
                             <!--NOME COMPLETO-->
                             <v-text-field
@@ -33,7 +41,6 @@
                                 label="Nome Completo"
                                 placeholder="Antonio Luiz da Silva"
                                 required
-                                
                             >
                             </v-text-field>
                             <!--EMAIL-->
@@ -42,19 +49,16 @@
                                 v-model="email"
                                 :rules="[
                                     () => !!email || 'Este campo é necessario',
-                                    
                                     addressCheck
                                 ]"
                                 label="E-mail"
                                 placeholder="exemplo@gmail.com"
-                                
                                 required
                                 >
                             </v-text-field>
                             <!--CPF-->
                             
                             <v-text-field  
-                            
                                 ref="CPF"
                                 v-model="CPF"
                                 maxlength="11"
@@ -62,8 +66,6 @@
                                 placeholder="123-456-789-10"
                                 class="cpf"
                                 required
-                                
-
                             >
                             
                             </v-text-field>

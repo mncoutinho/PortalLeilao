@@ -10,7 +10,6 @@
             color="indigo"
             height="450px"
             width="400px"
-            
             >
               
               <v-row class="fill-height ">
@@ -30,17 +29,17 @@
             color="white "
             height="450px"
             width="400px"
+            
             >
-             
+            <v-row class="mt-10">
+                <v-card-title class="display-3 blue--text">Login</v-card-title>
+            </v-row>
 
-              <v-card-text class="col-md-11">
-
-                <v-card-title>Login</v-card-title>
-                <v-form>
+              <v-card-text class="col-md-11 mr--12" >
+                <v-form color="blue">
                   <v-text-field
                     label="E-mail"
                     name="login"
-                    
                     type="text"
                   ></v-text-field>
 
@@ -48,12 +47,15 @@
                     id="password"
                     label="Senha"
                     name="password"
-        
                     type="password"
                   ></v-text-field>
                 </v-form>
-
               </v-card-text>
+
+            <v-row class="ml-3">  
+              <v-checkbox></v-checkbox>
+              <p class="mt-5">Mantenha-se online</p>
+            </v-row>
 
               <v-card-actions>
                 <v-spacer/>
