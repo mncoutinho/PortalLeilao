@@ -10,7 +10,8 @@
                 show-arrows-on-hover>
                     <v-carousel-item
                         v-for="(slide, i) in slides"
-                        :key="i">
+                        :key="i"
+                        >
                         <v-sheet
                         :color="colors[i]"
                         height="100%">
@@ -26,31 +27,39 @@
                 </v-carousel>
                 <!--ICONES-->
                 <v-app id="inspire" >
-                    <v-bottom-navigation
-                        v-model="bottomNav"
-                        :value="activeBtn"
-                        color="indigo lighten-1">
-                        <v-btn value="Carros" to="./Produtos">
-                            <span>Carros</span>
-                            <v-icon>mdi-car</v-icon>
+                    <v-row align="center" justify="center" class="mt-10">
+                        <v-btn style="text-decoration:none;" to="./Produtos" class="ma-4 mr-12 pa-12" outlined x-large fab color="indigo">
+                            <v-col >
+                                <v-icon>mdi-car</v-icon>                            
+                                <p>Carros</p>
+                            </v-col>
                         </v-btn>
-                        <v-btn value="Imoveis" to="./Produtos">
-                                <span>Imoveis</span>
-                                <v-icon>mdi-home</v-icon>
+                        <v-btn style="text-decoration:none;" to="./Produtos" class="ma-4 mr-12 pa-12" outlined x-large fab color="indigo">
+                            
+                            <v-col >
+                                <v-icon>mdi-car</v-icon>                            
+                                <p>Carros</p>
+                            </v-col>
                         </v-btn>
-                        <v-btn value="Antiguidades" to="./Produtos">
-                            <span>Antiguidades</span>
-                            <v-icon>mdi-crown-outline</v-icon>
+                        <v-btn style="text-decoration:none;" to="./Produtos" class="ma-4 mr-12 pa-12" outlined x-large fab color="indigo">
+                            <v-col >
+                                <v-icon>mdi-car</v-icon>                            
+                                <p>Carros</p>
+                            </v-col>
                         </v-btn>
-                        <v-btn value="Eletronicos" to="./Produtos">
-                            <span>Eletronicos</span>
-                            <v-icon>mdi-desktop-tower-monitor</v-icon>
+                        <v-btn style="text-decoration:none;" to="./Produtos" class="ma-4 mr-12 pa-12" outlined x-large fab color="indigo">
+                            <v-col >
+                                <v-icon>mdi-car</v-icon>                            
+                                <p>Carros</p>
+                            </v-col>
                         </v-btn>
-                        <v-btn  value="Embarcação" to="./Produtos">
-                            <span >Embarcação</span>
-                            <v-icon>mdi-ship-wheel</v-icon>
-                        </v-btn >
-                    </v-bottom-navigation>
+                        <v-btn style="text-decoration:none;" to="./Produtos" class="ma-4 mr-12 pa-12" outlined x-large fab color="indigo">
+                            <v-col >
+                                <v-icon>mdi-car</v-icon>                            
+                                <p>Carros</p>
+                            </v-col>
+                        </v-btn>
+                    </v-row>
                     <!-- BOX-->
                     <v-row class="mt-12 ">
                         <v-col 
@@ -94,11 +103,39 @@
                         
                         </v-card>
                     </v-col>
-                </v-row>    
-<!--PRODUTO-->
+                </v-row>
+            <!--LIVES FUTURAS-->
+            <v-row class="mt-12 ">
+                        <v-col 
+                        v-for="n in 3"
+                        :key="n"
+                        >
+                            <v-row 
+                            justify="center"
+                            align="center"
+                            >
+                                <v-card
+                                height="230"
+                                width="350"
+                                :elevetion= "n-5"
+                                color= "yellow accent-3"
+                                
+                                >
+                                <v-row 
+                                class="fill-height"
+                                align="center"
+                                justify="center"
+                                >
+                                    <span class="display-4 white--text" >LIVE</span>
+                                </v-row>
+                                </v-card>
+                            </v-row>
+                        </v-col>
+                    </v-row>    
+            <!--PRODUTO-->
                 <v-row class="mt-6 mb-6" :elevation="12">
                         <v-col 
-                        v-for="n in 12"
+                        v-for="n in 8"
                         :key="n"
                         justify="center"
                         align="center"
