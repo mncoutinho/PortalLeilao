@@ -92,7 +92,8 @@
 <!--RODAPÉ-->
     <v-footer
       dark
-      padless>
+      padless
+      class="mt-10">
       <v-card
         flat
         tile
