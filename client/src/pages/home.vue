@@ -27,113 +27,125 @@
                 </v-carousel>
                 <!--ICONES-->
                 <v-app id="inspire" >
-                    <v-row align="center" justify="center" class="mt-10">
-                        <v-btn style="text-decoration:none;" to="./Produtos" class="ma-4 mr-12 pa-12" outlined x-large fab color="indigo">
-                            <v-col >
-                                <v-icon>mdi-car</v-icon>                            
-                                <p>Carros</p>
+                    <v-row class="mt-8 mx-auto">
+                        <v-btn style="text-decoration:none;" to="./Produtos" class="ma-4  mr-12" outlined x-large fab color="indigo" width="150px" height="150px">
+                            <v-col align="center">
+                                <v-icon size="50px" class="mt-4">mdi-car</v-icon>                            
+                                <p class="mt-2 font-weight-regular">Carros</p>
                             </v-col>
                         </v-btn>
-                        <v-btn style="text-decoration:none;" to="./Produtos" class="ma-4 mr-12 pa-12" outlined x-large fab color="indigo">
-                            
-                            <v-col >
-                                <v-icon>mdi-car</v-icon>                            
-                                <p>Carros</p>
+
+                        <v-btn style="text-decoration:none;" to="./Produtos" class="ma-4  mr-12" outlined x-large fab color="red" width="150px" height="150px">
+                            <v-col align="center">
+                                <v-icon size="50px" class="mt-4">mdi-home</v-icon>                            
+                                <p class="mt-2 font-weight-regular">Imoveis</p>
                             </v-col>
                         </v-btn>
-                        <v-btn style="text-decoration:none;" to="./Produtos" class="ma-4 mr-12 pa-12" outlined x-large fab color="indigo">
-                            <v-col >
-                                <v-icon>mdi-car</v-icon>                            
-                                <p>Carros</p>
+
+                        <v-btn style="text-decoration:none;" to="./Produtos" class="ma-4  mr-12" outlined x-large fab color="orange" width="150px" height="150px">
+                            <v-col align="center">
+                                <v-icon size="50px" class="mt-4">mdi-crown-outline</v-icon>                            
+                                <p class="mt-2 font-weight-regular">Antiguidades</p>
                             </v-col>
                         </v-btn>
-                        <v-btn style="text-decoration:none;" to="./Produtos" class="ma-4 mr-12 pa-12" outlined x-large fab color="indigo">
-                            <v-col >
-                                <v-icon>mdi-car</v-icon>                            
-                                <p>Carros</p>
+                        
+                        <v-btn style="text-decoration:none;" to="./Produtos" class="ma-4  mr-12" outlined x-large fab color="black" width="150px" height="150px">
+                            <v-col align="center">
+                                <v-icon size="50px" class="mt-4">mdi-desktop-tower-monitor</v-icon>                            
+                                <p class="mt-2 font-weight-regular">Eletronicos</p>
                             </v-col>
                         </v-btn>
-                        <v-btn style="text-decoration:none;" to="./Produtos" class="ma-4 mr-12 pa-12" outlined x-large fab color="indigo">
-                            <v-col >
-                                <v-icon>mdi-car</v-icon>                            
-                                <p>Carros</p>
+
+                        <v-btn style="text-decoration:none;" to="./Produtos" class="ma-4  mr-12" outlined x-large fab color="grey" width="150px" height="150px">
+                            <v-col align="center">
+                                <v-icon size="50px" class="mt-4">mdi-ship-wheel</v-icon>                            
+                                <p class="mt-2 font-weight-regular">Embarcação</p>
                             </v-col>
                         </v-btn>
+                        
                     </v-row>
                     <!-- BOX-->
-                    <v-row class="mt-12 ">
-                        <v-col 
-                        v-for="n in 3"
+                    <v-slide-group
+                        v-model="model"
+                        class="pa-5"
+                        active-class="success"
+                        show-arrows
+                    >
+                        <v-slide-item
+                        v-for="n in 9"
                         :key="n"
+                        v-slot:default="{ active, toggle }"
                         >
-                            <v-row 
-                            justify="center"
+                        <v-card
+                            :color="active ? undefined : 'green'"
+                            class="ma-12"
+                            height="230"
+                            width="300"
+                            @click="toggle"
+                        >
+                            <v-row
+                            class="fill-height"
                             align="center"
+                            justify="center"
                             >
-                                <v-card
-                                height="230"
-                                width="350"
-                                :elevetion= "n-5"
-                                color= "indigo lighten-3"
-                                
-                                >
-                                <v-row 
-                                class="fill-height"
-                                align="center"
-                                justify="center"
-                                >
-                                    <span class="display-4 white--text" >LIVE</span>
-                                </v-row>
-                                </v-card>
+                                <p class="display-3 white--text">LIVE</p>
                             </v-row>
-                        </v-col>
-                    </v-row>
-    <!--ANUNCIO-->
-                <v-row class="mt-6">
+                        </v-card>
+                        </v-slide-item>
+                    </v-slide-group>
+                    <!--ANUNCIO-->
+                <v-row class="mt-5">
                     <v-col justify="center" align="center">
                         <v-card
                             width=900
                             height=150 
-                            color="deep-purple darken-3"
-                            :elevetion= "n-5"
-                            
+                            color="purple darken-3"
+                            :elevetion= "n-5"  
                         >
-                        
-                            <span class="display-3 white--text" >ANUNCIO</span>
-                        
+                            <span class="display-3 white--text" >ANUNCIO</span>                        
                         </v-card>
                     </v-col>
                 </v-row>
             <!--LIVES FUTURAS-->
-            <v-row class="mt-12 ">
-                        <v-col 
-                        v-for="n in 3"
+            <v-slide-group
+                        v-model="model"
+                        class="pa-4"
+                        active-class="success"
+                        show-arrows
+                    >
+                        <v-slide-item
+                        v-for="n in 9"
                         :key="n"
+                        v-slot:default="{ active, toggle }"
                         >
-                            <v-row 
-                            justify="center"
+                        <v-card
+                            :color="active ? undefined : 'orange'"
+                            class="ma-12"
+                            height="230"
+                            width="300"
+                            @click="toggle"
+                        >
+                            <v-row
+                            class="fill-height"
                             align="center"
+                            justify="center"
                             >
-                                <v-card
-                                height="230"
-                                width="350"
-                                :elevetion= "n-5"
-                                color= "yellow accent-3"
-                                
-                                >
-                                <v-row 
-                                class="fill-height"
-                                align="center"
-                                justify="center"
-                                >
-                                    <span class="display-4 white--text" >LIVE</span>
-                                </v-row>
-                                </v-card>
+                            <p class="display-2 white--text"> PROXIMAS</p>
+                            <p class="display-2 white--text"> LIVES</p>
+                            <v-scale-transition>
+                                <v-icon
+                                v-if="active"
+                                color="white"
+                                size="48"
+                                v-text="'mdi-close-circle-outline'"
+                                ></v-icon>
+                            </v-scale-transition>
                             </v-row>
-                        </v-col>
-                    </v-row>    
+                        </v-card>
+                        </v-slide-item>
+                    </v-slide-group>   
             <!--PRODUTO-->
-                <v-row class="mt-6 mb-6" :elevation="12">
+                <v-row class="mt-6 mb-12 " :elevation="12">
                         <v-col 
                         v-for="n in 8"
                         :key="n"
@@ -167,8 +179,6 @@
                             </v-card>
                         </v-col>
                     </v-row>
-
-
                 </v-app>   
             </v-app>
         </div>
