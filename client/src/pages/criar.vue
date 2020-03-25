@@ -10,13 +10,10 @@
                 color="blue"
                  
                 >
-                <br>
-                <br>
-                <br>
-                <p class="white--text headline text-center col-md-12">
+                <p class="white--text headline text-center ">
                     CRIE SUA CONTA, FÁCIL...
                 </p>
-                <v-row justify="center fill-height"  class="col-md-12">
+                <v-row justify="center fill-height" >
                     <v-icon size="50px" color="white" class="mr-5">mdi-facebook</v-icon>
                     <v-icon size="50px" color="white" class="mr-5">mdi-google</v-icon>
                     <v-icon size="50px" color="white">mdi-linkedin</v-icon>
@@ -28,9 +25,13 @@
                     height="530px"
                     color="white"
                     >
-                        <div class="">
+                        <div class="col-md-12">
                             
-                       
+                        <v-text-title
+                        class="blue--text headline"
+                        >
+                            OU...
+                        </v-text-title>
                         <v-card-text>
                             <!--NOME COMPLETO-->
                             <v-text-field
