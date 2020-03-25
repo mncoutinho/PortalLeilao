@@ -1,9 +1,11 @@
-<template>
-  <v-app id="inspire">
+<template >
+  <v-app id="inspire" >
 <!--MENU-->
     <v-navigation-drawer
       v-model="drawer"
-      app>
+      app
+      temporary
+      >
       <v-list dense>
         <router-link to="/" style="text-decoration:none;">
         <v-list-item link>
@@ -38,17 +40,6 @@
         </v-list-item>
         </router-link>
 
-        <router-link to="/tutorial" style="text-decoration:none;">
-         <v-list-item link>
-          <v-list-item-action>
-            <v-icon>mdi-contact-mail</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title><router-link to="/tutorial">COMO USAR</router-link></v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        </router-link>
-
       </v-list>
     </v-navigation-drawer>
 
@@ -56,9 +47,11 @@
     <v-app-bar
       app
       color="indigo lighten-1"
-      dark>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"/>
+      dark
+      clipped-left
       
+      >
+      <v-app-bar-nav-icon @click="drawer = !drawer"/>
       <v-toolbar-title> 
         <router-link  class="white--text" to="/" style="text-decoration:none;">
             Portal Leilão
@@ -99,7 +92,8 @@
 <!--RODAPÉ-->
     <v-footer
       dark
-      padless>
+      padless
+      class="mt-10">
       <v-card
         flat
         tile
@@ -116,11 +110,11 @@
         <v-card-text class="white--text pt-0">
           Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum. Praesent ut risus eget metus luctus accumsan id ultrices nunc. Sed at orci sed massa consectetur dignissim a sit amet dui. Duis commodo vitae velit et faucibus. Morbi vehicula lacinia malesuada. Nulla placerat augue vel ipsum ultrices, cursus iaculis dui sollicitudin. Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
         </v-card-text>
-          <a href="#" style="text-decoration:none;"><v-icon size="40px">mdi-facebook</v-icon></a>
-          <a href="#" style="text-decoration:none;"><v-icon size="40px">mdi-instagram</v-icon></a>
-          <a href="#" style="text-decoration:none;"><v-icon size="40px">mdi-linkedin</v-icon></a>
-          <a href="#" style="text-decoration:none;"><v-icon size="40px">mdi-twitter</v-icon></a>
-          <a href="#" style="text-decoration:none;"><v-icon size="40px">mdi-whatsapp</v-icon></a>
+          <a href="#" style="text-decoration:none;"><v-icon size="50px" class="mr-5">mdi-facebook</v-icon></a>
+          <a href="#" style="text-decoration:none;"><v-icon size="50px" class="mr-5">mdi-instagram</v-icon></a>
+          <a href="#" style="text-decoration:none;"><v-icon size="50px" class="mr-5">mdi-linkedin</v-icon></a>
+          <a href="#" style="text-decoration:none;"><v-icon size="50px" class="mr-5">mdi-twitter</v-icon></a>
+          <a href="#" style="text-decoration:none;"><v-icon size="50px" >mdi-whatsapp</v-icon></a>
         <v-divider/>
         <v-card-text class="white--text">
           {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
@@ -144,6 +138,8 @@ export default {
     }),
 };
 </script>
+
+
 
 
 
