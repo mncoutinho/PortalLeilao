@@ -100,10 +100,11 @@
 </template>
 
 <script>
+import homeVue from './home.vue'
 export default {
     data(){
         return {
-                page: 1,
+                page: homeVue,
         }
     }
 }
@@ -119,7 +120,7 @@ export default {
         Produtos: ['Carro', 'quadro', 'jarro'],
         Marca: 'navigate_before',
         Marcas: ['Coca-cola', 'Dolly', 'Fanta'],
-        page:  1,
+        page:  homeVue,
         Min: 100,
         Max: 100,
         }

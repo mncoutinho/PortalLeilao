@@ -1,4 +1,5 @@
 <template >
+
   <v-app id="inspire" >
 <!--MENU-->
     <v-navigation-drawer
@@ -242,19 +243,12 @@ export default {
   },
   data: () => ({
       drawer: false,
+      dialog: false,
 
     }),
 };
 </script>
-<script>
-  export default {
-    data () {
-      return {
-        dialog: false,
-      }
-    },
-  }
-</script>
+
 
 
 
