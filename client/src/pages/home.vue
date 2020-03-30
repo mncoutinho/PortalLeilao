@@ -18,13 +18,13 @@
                      transition="fade-transition"
                      
                      
-    ></v-carousel-item>
-  </v-carousel>
+                 ></v-carousel-item>
+                </v-carousel>
                
    
                 <!--ICONES-->
                 <v-app id="inspire" >
-                    <v-row class="mt-8 mx-auto">
+                  <!--  <v-row class="mt-8 mx-auto">
                         <v-btn style="text-decoration:none;" to="./Produtos" class="ma-4  mr-12" outlined x-large fab color="indigo" width="150px" height="150px">
                             <v-col align="center">
                                 <v-icon size="50px" class="mt-4">mdi-car</v-icon>                            
@@ -60,7 +60,7 @@
                             </v-col>
                         </v-btn>
                         
-                    </v-row>
+                    </v-row> -->
                     <!-- BOX-->
                     <v-slide-group
                         v-model="model"
@@ -84,8 +84,10 @@
                             class="fill-height"
                             align="center"
                             justify="center"
-                            >
-                                <p class="display-3 white--text">LIVE</p>
+                            ><iframe width="300" height="230" src="https://www.youtube.com/embed/nwIZH_VVhwI" 
+                            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                                <p class="title green--text">AO VIVO</p>
                             </v-row>
                         </v-card>
                         </v-slide-item>
@@ -116,7 +118,6 @@
                         v-slot:default="{ active, toggle }"
                         >
                         <v-card
-                            :color="active ? undefined : 'orange'"
                             class="ma-12"
                             height="230"
                             width="300"
@@ -127,8 +128,11 @@
                             align="center"
                             justify="center"
                             >
-                            <p class="display-2 white--text"> PROXIMAS</p>
-                            <p class="display-2 white--text"> LIVES</p>
+                            <iframe width="300" height="230" src="https://www.youtube.com/embed/nwIZH_VVhwI" 
+                            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+
+                            <p class="title red--text">EM BREVE</p>
                             <v-scale-transition>
                                 <v-icon
                                 v-if="active"
@@ -144,36 +148,89 @@
             <!--PRODUTO-->
                 <v-row class="mt-6 mb-12 " :elevation="12">
                         <v-col 
-                        v-for="n in 8"
-                        :key="n"
+                        v-for="artigo in produtos"
+                         v-bind:key="artigo"
                         justify="center"
                         align="center"
-                        
+                         
+         
                         >
-                            
-                            <v-card
-                            height="300"
-                            width="310"
-                            color= "indigo accent-2"
-                            v-model="accordion"
-                            :elevation="15"
+                         <v-card
+                            :loading="loading"
+                            class="mx-auto my-1"
+                            max-width="350"
+                        >
+                         <div class="my-1 subtitle-2 white--text" style="background:#3f51b5">
+                          Aberto
+                            </div>
+
+                            <v-img
+                            height="200"
+                            src="https://i.imgur.com/EaowRPb.jpg"
                             >
-                                <!--IMAGEN-->
-                                <v-img
-                                height="220px"
-                                width="310px"
-                                color="indigo lighten-5"
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                          
+                            
+                            <v-row
+                                align="center"
+                                class="mx-0"
                                 
-                                src="#"
-                                >
-                                    <p class="display-2 white--text">FOTO</p>
-                                </v-img>
-                                <!--INFORMAÇOES-->
-                                <div align="start">                               
-                                   <p class="white--text text-uppercase headline mt-1" >Nome Do Produto</p>
-                                   <p class="white--text lowercase font-weight-light	">informaçoes do produto</p>
-                                </div>
-                            </v-card>
+                            >
+                                <v-rating
+                                :value="4.5"
+                                color="amber"
+                                dense
+                                half-increments
+                                readonly
+                                size="14"
+                                float="bottom"
+                                ></v-rating>
+
+                                <div class="white--text ml-4">4.5 (Nota do vendedor)</div>
+                            </v-row>
+                            </v-img>
+                             
+
+
+                            <v-card-title>{{artigo.name}}</v-card-title>
+
+                            <v-card-text>
+                           
+                                <br>
+                            <div>
+                                {{artigo.description}}
+                            </div>
+                            </v-card-text>
+
+                            <v-divider class="mx-4"></v-divider>
+                                <v-card-title class="subtitle-2 " >
+                            Abertura:  <data style="margin:0px 1% 0px 1%"> {{artigo.date}}</data> 
+                            </v-card-title> 
+
+                            <v-card-title class="subtitle-2 " >
+                            Lance Inicial:  <data style="margin:0px 1% 0px 1%"> {{artigo.initialbid}}</data> 
+                            </v-card-title> 
+
+                            
+                        <v-card-actions>
+                            <v-btn class="col-12 white--text"
+                                color="light-green lighten-1 "
+                                @click="Lance"
+                               
+                            >
+                             ABERTO PARA LANCES
+                            </v-btn>
+                            </v-card-actions>
+                        </v-card>
+
+
+                         
                         </v-col>
                     </v-row>
                 </v-app>   
@@ -189,7 +246,7 @@
       return {
         items: [
           {
-            src: 'https://i.imgur.com/uCho6fi.jpg',
+            src: 'https://i.imgur.com/fbi8Blo.jpg',
           },
           {
             src: 'https://i.imgur.com/rcZuuj0.png',
@@ -203,34 +260,6 @@
     },
   }
 </script>
-
-
-
-
-<!--<script id="CARROCEL">
-export default {
-    data () {
-    return {
-      colors: [
-        {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
-          },
-        'warning',
-        'pink darken-2',
-        'red lighten-1',
-        'deep-purple accent-4',
-      ],
-      slides: [
-        
-        'Second',
-        'Third',
-        'Fourth',
-        'Fifth',
-      ],
-    }
-  },
-}
-</script> -->
 
 
 

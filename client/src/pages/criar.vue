@@ -10,6 +10,10 @@
                 color="blue"
                  
                 >
+                <br>
+                <br>
+                <br>
+                
                 <p class="white--text headline text-center ">
                     CRIE SUA CONTA, FÁCIL...
                 </p>
@@ -18,7 +22,7 @@
                     <v-icon size="50px" color="white" class="mr-5">mdi-google</v-icon>
                     <v-icon size="50px" color="white">mdi-linkedin</v-icon>
                 </v-row>
-
+                    
                 </v-card >
                     <v-card 
                     width="50%"
@@ -30,7 +34,7 @@
                         <v-text-title
                         class="blue--text headline"
                         >
-                            OU...
+                            
                         </v-text-title>
                         <v-card-text>
                             <!--NOME COMPLETO-->

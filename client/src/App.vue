@@ -1,4 +1,5 @@
 <template >
+
   <v-app id="inspire" >
 <!--MENU-->
     <v-navigation-drawer
@@ -60,7 +61,7 @@
 
 <!--BARRA DE PESQUISA-->
  <v-spacer/>
-      <v-col cols="6" sm="5" class="ml-12">  
+      <v-col cols="6" sm="3" class="ml-8">  
         <v-text-field
           v-model="Pesquisar"
           append-icon="mdi-magnify"
@@ -242,19 +243,12 @@ export default {
   },
   data: () => ({
       drawer: false,
-
+      dialog: false,
+      picker: new Date().toISOString().substr(0, 10),
     }),
 };
 </script>
-<script>
-  export default {
-    data () {
-      return {
-        dialog: false,
-      }
-    },
-  }
-</script>
+
 
 
 

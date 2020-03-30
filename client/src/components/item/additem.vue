@@ -16,39 +16,42 @@
           >  
                 <v-text-field 
                 v-model="artigo.name"
-                label="Digite o Título"
+                label="Digite o nome do produto"
               />  
                   
                 <v-text-field  
                 v-model="artigo.description"
                 label="Digite a Descrição"/>
+
                 <v-file-input
                 multiple
                 show-size
                 counter
+                @click="onUpload"
                 prepend-icon="mdi-camera"
                 v-model="artigo.image"
                 label="Insira a Imagem"/>
-                <v-text-field
-                v-model="artigo.category"
-                label="Insira a Categoria"/>
-                <v-text-field
-                v-model="artigo.madefrom"
-                label="Insira a Origem"/>
-                <v-text-field 
-                v-model="artigo.madeof"
-                label="Insira o Artista"/>
+                 <br>
+                <span>
+                Data inicial para lance
+                </span>
+                <br> <br> 
+                <v-date-picker style="color:"
+                v-model="artigo.date"   
+                   
+                />    
+                <br><br>           
                 <v-text-field
                 v-model="artigo.initialbid"
                 v-money="money"
                 label="Insira o Lance Inicial"/>
 
-            <v-col align="end" class="mt-4">
-              <button class="btn btn-info" 
-                  v-on:click="addartigo(artigo.name, artigo.image, artigo.description, artigo.category, artigo.madefrom, artigo.initialbid, artigo.madeof)"
+            <v-col align="" class="mt-12">
+              <button class="btn col-12" 
+                  v-on:click="addartigo(artigo.name, artigo.image, artigo.description, artigo.date, artigo.initialbid)"
                   >
-                  <div class="my-1">
-          <v-btn depressed small color="primary" >+</v-btn>
+                  <div >
+          <v-btn class="col-12"  color="primary" >Confirmar</v-btn>
         </div>
               </button>
             </v-col>
@@ -60,11 +63,13 @@
 </template>
 
 <script>
+import axios from 'axios';
 import {VMoney} from "v-money";
 export default {
   name: "app",
   data() {
     return {
+      
       money: {
           decimal: ',',
           thousands: '.',
@@ -77,30 +82,40 @@ export default {
         image:[],
         name:"",
         description:"",
-        category:"",
-        madeof:"",
-        madefrom:"",
+        picker:"",
         initialbid:""
-      }
+      },
+      selectedFile:null
     }
   },
+  
   directives: {money: VMoney},
   methods: {
-    addartigo(name, image, description, category, madefrom, initialbid, madeof){
-      const artigo = {name, image, description, category, madefrom, initialbid, madeof}
+    onFileSelected(event){
+this.selectedFile = event.target.files[0]
+  },
+  onUpload(){
+      const fd = new FormData();
+      fd.append('image',this.selectedFile)
+      axios.post('',fd)
+      
+  },
+    addartigo(name, image, description, date, initialbid){
+      const artigo = {name, image, description, date, initialbid}
       this.$emit("addItem", artigo);
       this.artigo.image="";
       this.artigo.name="";
       this.artigo.description="";
-      this.artigo.category="";
-      this.artigo.madeof="";
-      this.artigo.madefrom="";
+      this.artigo.date="";
       this.artigo.initialbid="";
       }
       
     }
 }
 </script>
+
+
+
 <style scoped>
 v-content{width:80%;}
 </style>
