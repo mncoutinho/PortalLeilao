@@ -1,76 +1,109 @@
 <template>
-	<v-container class="container">			
+	<v-container class="container ">	
+        <div class="col-md-6 " style="float:left"
+>	
 		<v-card
 		class="mx-auto my-1"
-        max-width="350"
+        max-width="100%"
 		justify="center"
         align="center"
+        height="420"
+        
 		>
 		
 			<div class="my-1 subtitle-2 white--text" style="background:#3f51b5">
                           Aberto
                             </div>
-
+                            <br>
                             <v-img
-                            height="200"
+                            height="300"
+                            width="400"
                             src="https://i.imgur.com/EaowRPb.jpg"
                             >
+                           
+							
+							</v-img>
                             <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-							<v-row
+                        <v-row
                                 align="center"
-                                class="mx-0"
-                                
+                                class="mx-0" 
                             >
-                                <v-rating
+                                <v-rating  style="margin-left:2%"
+
                                 :value="4.5"
                                 color="amber"
                                 dense
                                 half-increments
                                 readonly
                                 size="14"
-                                float="bottom"
+                                
                                 ></v-rating>
 
-                                <div class="white--text ml-4">4.5 (Nota do vendedor)</div>
+                                <div class="black--text ml-1">4.5 (Nota do vendedor)</div>
                             </v-row>
-							</v-img>
-							<br>
-							<div>
-                               <v-text> Carro novo e com pouco tempo de uso</v-text>
-                            </div>
-			<v-card-title class="subtitle-2 " >
-                            Lance Inicial:  <data style="margin:0px 1% 0px 1%"> R$ 30,00</data> 
-                            </v-card-title>
 
-			<v-card-title class="subtitle-2 " >
-                            Lance Atual:  <data style="margin:0px 1% 0px 1%"> </data> 
-                            </v-card-title>	
+		</v-card>
+        </div>	
 
-			<v-card-text justify="center">
+     <!--------------------------------------------------->   
+
+        <div 
+        class="col-md-6 mx-auto my-1"
+        style="float:right"
+        max-width="100%"
+        >	
+ 
+
+ <span  class="title">Lote: {{ selected }}</span>
+ <select v-model="selected" >
+            <option disabled value="">selecionar</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+            </select>
+
+  <a href="#" style="text-decoration:none;float:right;margin-left:1%">  Próximo </a>  <a href="#" style="text-decoration:none;float:right;margin-left:1%">  Anterior </a><a href=""  style="text-decoration:none;float:right"> Voltar | </a>   
+  <br>     
+    <hr>
+    <p
+        style="font-size:12px"
+    >
+        <b>visitas:</b>   25</p>
+
+		<div align="justify">
+          <v-text > Carro novo e com pouco tempo de uso</v-text>
+        </div>
+
+         <hr>
+        <p
+        style="font-size:12px"
+    >
+        <b>Local:</b>   Rio de Janeiro</p>
+
+         <p
+        class="subtitle-2">
+        <b> Dia dos leilão:</b>
+         <data style="margin:0px 1% 0px 1%"> 10/04/2020</data>
+        </p>
+
+        
+        <hr>
+         <p
+        class="subtitle-2 "
+    >
+         Lance Inicial: R$ 50,00
+         </p> 
+         <p
+        class="title"
+        v-for="lance in lances" 
+				:key="lance"
+    >
+         Lance Atual: <v-list-item-text v-text="lance.lance"/>
+         </p>
+        <v-card-text justify="center">
 				lances sobre o artigo <span class="badge badge-info">{{ lances.length }}</span>
 			</v-card-text>	
-			<v-list>
-				<v-list-item 
-				v-for="lance in lances" 
-				:key="lance">
-				<v-row>
-					<v-col>
-						<v-list-item-text v-text="lance.lance"/>
-					</v-col>
-					<v-col>
-					<v-list-item-time v-text="lance.time"/>
-					</v-col>
-				</v-row>
-				</v-list-item>
-			</v-list>	
-						
-
+			
 			<v-text-field v-model="lance" class="col-12"
 				v-on:keyup.enter="AddLance(lance)" 
 				v-money="money" 
@@ -81,88 +114,12 @@
 			Faça seu Lance
 			</v-btn>
 			
-		</v-card>
+		
+        </div>	
+        
 	</v-container>
 </template>
-
-<!---
-<v-card
-                            :loading="loading"
-                            class="mx-auto my-1"
-                            max-width="350"
-                        >
-                         <div class="my-1 subtitle-2 white--text" style="background:#3f51b5">
-                          Aberto
-                            </div>
-
-                            <v-img
-                            height="200"
-                            src="https://i.imgur.com/EaowRPb.jpg"
-                            >
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                          
-                            
-                            <v-row
-                                align="center"
-                                class="mx-0"
-                                
-                            >
-                                <v-rating
-                                :value="4.5"
-                                color="amber"
-                                dense
-                                half-increments
-                                readonly
-                                size="14"
-                                float="bottom"
-                                ></v-rating>
-
-                                <div class="white--text ml-4">4.5 (Nota do vendedor)</div>
-                            </v-row>
-                            </v-img>
-                             
-
-
-                            <v-card-title>{{artigo.name}}</v-card-title>
-
-                            <v-card-text>
-                           
-                                <br>
-                            <div>
-                                {{artigo.description}}
-                            </div>
-                            </v-card-text>
-
-                            <v-divider class="mx-4"></v-divider>
-                                <v-card-title class="subtitle-2 " >
-                            Abertura:  <data style="margin:0px 1% 0px 1%"> {{artigo.date}}</data> 
-                            </v-card-title> 
-
-                            <v-card-title class="subtitle-2 " >
-                            Lance Inicial:  <data style="margin:0px 1% 0px 1%"> {{artigo.initialbid}}</data> 
-                            </v-card-title> 
-
-                            
-                        <v-card-actions>
-                            <v-btn class="col-12 white--text"
-                                color="light-green lighten-1 "
-                                @click="Lance"
-                               
-                            >
-                             ABERTO PARA LANCES
-                            </v-btn>
-                            </v-card-actions>
-                        </v-card>
---->
-
 <script>
-
 import {VMoney} from "v-money";
 export default {
 	data(){
@@ -173,11 +130,13 @@ export default {
 				prefix: 'R$ ',
 				suffix: ' ',
 				precision: 2,
-				masked: false
+                masked: false
+                
 			},
 			lance: "",
 			lances: [],
-			time:"",	
+            time:"",	
+            selected: '',
 		};
 	},
 	directives: {money: VMoney},
