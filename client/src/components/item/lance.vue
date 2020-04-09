@@ -88,7 +88,7 @@
 
         
         <hr>
-         <p
+       <p
         class="subtitle-2 "
     >
          Lance Inicial: R$ 50,00
@@ -100,19 +100,75 @@
     >
          Lance Atual: <v-list-item-text v-text="lance.lance"/>
          </p>
+		<p
+        class="subtitle-2"
+        v-for="lance in lances" 
+				:key="lance"
+    >
+         Usuario: <v-list-item-text v-text="lance.user"/>
+         </p>
+		<!--	<v-list>
+			<v-list-item 
+			v-for="lance in lances" 
+			:key="lance">
+				<v-row>
+					<v-col>
+						<v-list-item-time v-text="lance.user"/>
+					</v-col>
+					<v-col>
+						<v-list-item-text v-text="lance.lance"/>
+					</v-col>
+					<v-col>
+						<v-list-item-time v-text="lance.time"/>
+					</v-col>
+				</v-row>
+			</v-list-item>
+		</v-list> -->
+
+
         <v-card-text justify="center">
 				lances sobre o artigo <span class="badge badge-info">{{ lances.length }}</span>
 			</v-card-text>	
 			
 			<v-text-field v-model="lance" class="col-12"
-				v-on:keyup.enter="AddLance(lance)" 
+				v-on:keyup.enter="AddLance(lance,user)" 
 				v-money="money" 
 				label="Faca seu lance" />
 			<v-btn color="success" class="col-12"
-			v-on:click="AddLance(lance)"
+			v-on:click="AddLance(lance,user)"
 			>
 			Faça seu Lance
 			</v-btn>
+			<br><br>
+			<v-btn
+			v-on:click="autoLanceModal(autolance.modal)">
+				auto lance
+			</v-btn>
+				<br><br>
+			<div v-if="autolance.modal"
+			style="box-shadow:1px 1px 10px 1px gray;
+			border-radius:10px 10px 10px 10px
+			"
+			>
+			<p
+        class="subtitle-3 col-12">
+				De limite ao seu lance 
+				</p>
+				<v-text-field class="col-12"
+					v-model="lanceLimit"
+					v-money="money"
+					v-on:keyup.enter="autolancelimit(lanceLimit)"
+					/>
+			<v-btn color="gray" class="col-6 "
+			>
+			Cancelar
+			</v-btn>
+			<v-btn color="white" class="col-6"
+			>
+			Confirmar
+			</v-btn>
+
+			</div>
 			
 		
         </div>	
@@ -120,6 +176,7 @@
 	</v-container>
 </template>
 <script>
+
 import {VMoney} from "v-money";
 export default {
 	data(){
@@ -135,23 +192,45 @@ export default {
 			},
 			lance: "",
 			lances: [],
+			user:"Joao Claudio",
             time:"",	
-            selected: '',
+			selected: '',
+			
+			
+			// teste auto lance
+			autolance: {
+				modal: false,
+				limit: 0
+			}
 		};
 	},
 	directives: {money: VMoney},
 	methods: {
-		AddLance(lance) {
+		AddLance(lance,user) {
 			const time = new Date();
-			const lanceConfirmado = {lance, time};		
+			const lanceConfirmado = {lance, time,user};		
 			this.lances.push(lanceConfirmado);
 		}, 
 		DeleteLance(lance){
 			this.lances.splice(this.lances.indexOf(lance), 1);
 		},
+		// Teste
+		
+		autoLanceModal(modal){
+			if (modal) {
+				this.autolance.modal = false;
+			}else{
+				this.autolance.modal = true;
+			}			
+		},
+		autolancelimit(){
+			
+		}	
 	},   
 }
 </script>
+
+
 
 
 

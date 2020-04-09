@@ -48,7 +48,6 @@
                          <div class="my-1 subtitle-2 white--text" style="background:#3f51b5">
                           Aberto
                             </div>
-
                             <v-img
                             height="200"
                             >
@@ -76,28 +75,26 @@
                                 size="14"
                                 float="bottom"
                                 ></v-rating>
-
                                 <div class="white--text ml-4">4.5 (Nota do vendedor)</div>
                             </v-row>
                             </v-img>
                              
-
-
                             <v-card-title>{{artigo.name}}</v-card-title>
-
                             <v-card-text>
                            
                                 <br>
                             <div>
                                 {{artigo.description}}
+                                <br>
+                                <a v-bind:href="artigo.link" target="_blank">link do Youtube</a>
+                                
+                                
                             </div>
                             </v-card-text>
-
                             <v-divider class="mx-4"></v-divider>
                                 <v-card-title class="subtitle-2 " >
                             Abertura:  <data style="margin:0px 1% 0px 1%"> {{artigo.date}}</data> 
                             </v-card-title> 
-
                             <v-card-title class="subtitle-2 " >
                             Lance Inicial:  <data style="margin:0px 1% 0px 1%"> {{artigo.initialbid}}</data> 
                             </v-card-title> 
@@ -106,14 +103,10 @@
                               </v-card-actions>
                             
                         </v-card>
-
-
                          
                         </v-col>
                     </v-row>
       <!--------------------->
-
-
 </v-content>
 </template>
 <script>
@@ -142,7 +135,6 @@ export default {
 6 imagens por item
 Link para youtube na carrossel de imagens
 */
-
     };
   },
   directives: {money: VMoney},
@@ -167,6 +159,7 @@ Link para youtube na carrossel de imagens
             id
             name
             description
+            link
             date           
             lances
             initialbid
@@ -178,7 +171,6 @@ Link para youtube na carrossel de imagens
   }
 };
 </script>
-
 <style scoped>
 h5 {
   margin-top: 25px;

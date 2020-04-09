@@ -1,6 +1,6 @@
 <template >
-
-  <v-app id="inspire" >
+  
+  <v-app id="inspire">
 <!--MENU-->
     <v-navigation-drawer
       v-model="drawer"
@@ -235,9 +235,15 @@
   </v-app>
 </template>
 <script>
+
+ 
+</script>
+
+<script>
 import "font-awesome/css/font-awesome.css";
 
 export default {
+
   name: 'App',
   component:{
   },
@@ -248,6 +254,8 @@ export default {
     }),
 };
 </script>
+
+
 
 
 

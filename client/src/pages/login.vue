@@ -1,4 +1,4 @@
-<template>
+<template >
     <v-content>
       
       <v-row>
@@ -71,6 +71,7 @@
 
 
 <script>
+
 export default {
   data: () => ({
     drawer: null

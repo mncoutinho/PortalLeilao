@@ -32,6 +32,15 @@
                 v-model="artigo.image"
                 label="Insira a Imagem"/>
                  <br>
+
+                 <v-btn class="col-md2" href="https://www.youtube.com" target="_blank"> <i class="fab fa-youtube-square"></i> </v-btn>
+                
+                 <v-text-field 
+                 class="col-md 2" 
+                v-model="artigo.link"
+                label="link do Youtube"/>
+
+
                 <span>
                 Data inicial para lance
                 </span>
@@ -48,7 +57,7 @@
 
             <v-col align="" class="mt-12">
               <button class="btn col-12" 
-                  v-on:click="addartigo(artigo.name, artigo.image, artigo.description, artigo.date, artigo.initialbid)"
+                  v-on:click="addartigo(artigo.name,artigo.description,artigo.image,artigo.link,artigo.date, artigo.initialbid)"
                   >
                   <div >
           <v-btn class="col-12"  color="primary" >Confirmar</v-btn>
@@ -79,9 +88,10 @@ export default {
           masked: false
         },
       artigo:{
-        image:[],
         name:"",
         description:"",
+        image:[],
+        link:"",
         picker:"",
         initialbid:""
       },
@@ -100,12 +110,13 @@ this.selectedFile = event.target.files[0]
       axios.post('',fd)
       
   },
-    addartigo(name, image, description, date, initialbid){
-      const artigo = {name, image, description, date, initialbid}
+    addartigo(name,description,image,link,date,initialbid){
+      const artigo = {name,description,image,link,date,initialbid}
       this.$emit("addItem", artigo);
-      this.artigo.image="";
       this.artigo.name="";
       this.artigo.description="";
+      this.artigo.image="";
+      this.artigo.link="";
       this.artigo.date="";
       this.artigo.initialbid="";
       }

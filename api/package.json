@@ -1,0 +1,23 @@
+{
+  "name": "portalleilao",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node ./bin/server.js"
+  },
+  "author": "Pedro Coutinho (Aguia)",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "debug": "^4.1.1",
+    "express": "^4.17.1",
+    "firebase": "^7.9.3",
+    "http": "0.0.0",
+    "md5": "^2.2.1",
+    "mongoose": "^5.9.2",
+    "sendgrid": "^5.2.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
