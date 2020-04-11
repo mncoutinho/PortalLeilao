@@ -1,4 +1,4 @@
-<template>
+<template >
     <v-content>
       
       <v-row>
@@ -32,7 +32,7 @@
             
             >
             <v-row class="mt-10">
-                <v-card-title class="display-3 blue--text">Login</v-card-title>
+                <v-card-title class="display-3 blue--text text-center font-weight-minimun" style="margin-left:3%">Conecte-se</v-card-title>
             </v-row>
 
               <v-card-text class="col-md-11 mr--12" >
@@ -71,6 +71,7 @@
 
 
 <script>
+
 export default {
   data: () => ({
     drawer: null
