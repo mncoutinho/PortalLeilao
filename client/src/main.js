@@ -11,6 +11,7 @@ import Leilao from "./pages/leilao";
 import Login from "./pages/login";
 import Criar from "./pages/criar";
 import Produtos from "./pages/Produtos";
+import Pagina from "./pages/userpage"
 Vue.use(VueRouter);
 
 const router = new VueRouter({
@@ -29,6 +30,10 @@ const router = new VueRouter({
 		{
 			path:"/login",
 			component:Login
+		},
+		{
+			path:"/userpage",
+			component:Pagina
 		},
 		{
 			path:"/",
