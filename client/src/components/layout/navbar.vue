@@ -6,7 +6,7 @@
         temporary
         >
         <v-list dense>
-          <router-link to="/" style="text-decoration:none;">
+          <router-link to="/" >
           <v-list-item link>
             <v-list-item-action>
               <v-icon >mdi-home</v-icon>
@@ -17,7 +17,7 @@
           </v-list-item>
           </router-link>
           
-          <router-link to="/adicionarItem" style="text-decoration:none;">
+          <router-link to="/adicionarItem">
           <v-list-item link>
             <v-list-item-action>
               <v-icon>mdi-contact-mail</v-icon>
@@ -28,7 +28,7 @@
           </v-list-item>
           </router-link>
 
-          <router-link to="/leilao" style="text-decoration:none;">
+          <router-link to="/leilao" >
           <v-list-item link>
             <v-list-item-action>
               <v-icon>mdi-contact-mail</v-icon>
@@ -52,7 +52,7 @@
         >
         <v-app-bar-nav-icon @click="drawer = !drawer"/>
         <v-toolbar-title> 
-          <router-link to="/" style="text-decoration:none;">
+          <router-link to="/" >
               Portal Leilão
         </router-link>
         </v-toolbar-title>
@@ -80,3 +80,8 @@ export default {
     }),
 }
 </script>
+<style>
+  router-link{
+    text-decoration:none
+  }
+</style>
