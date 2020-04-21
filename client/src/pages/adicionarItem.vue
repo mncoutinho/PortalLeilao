@@ -1,7 +1,7 @@
 <template>
-      <div class="full-container">
+      <v-container>
         <AdicionaImagem/>
-      </div>
+      </v-container>
 </template>
 <script>
 import AdicionaImagem from "../components/item/item"
