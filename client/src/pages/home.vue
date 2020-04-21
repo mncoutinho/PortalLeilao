@@ -1,10 +1,10 @@
 <template >
 
             <!-- BANNER -->
-            <v-app id="inspire">
+            <v-app class="mt-1" id="inspire">
                <v-carousel
                 cycle
-                height="350"
+                height="550"
                 width="100%"
                 hide-delimiter-background
                 show-arrows-on-hover>

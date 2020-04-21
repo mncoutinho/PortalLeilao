@@ -1,8 +1,8 @@
 <template>
     <div class="NavBar">
-        <v-navigation-drawer
+      <!-- Menu Lateral -->
+        <v-navigation-drawer app
         v-model="drawer"
-        app
         temporary
         >
         <v-list dense>
@@ -42,9 +42,8 @@
         </v-list>
       </v-navigation-drawer>
 
-    
-      <v-app-bar
-        app
+<!-- NavBar -->
+      <v-app-bar app
         color="indigo lighten-1"
         dark
         clipped-left
@@ -57,13 +56,16 @@
         </router-link>
         </v-toolbar-title>
   <!--BARRA DE PESQUISA-->
+        <v-spacer/>
           <v-text-field
+
             v-model="Pesquisar"
             append-icon="mdi-magnify"
             label="Pesquisar"
             single-line
             hide-details
             />
+        <v-spacer/>
          <v-btn class="mr-2" :elevation="0" to="/criar"  text>
         Crie Sua conta
         </v-btn>
@@ -80,8 +82,3 @@ export default {
     }),
 }
 </script>
-<style>
-  router-link{
-    text-decoration:none
-  }
-</style>
