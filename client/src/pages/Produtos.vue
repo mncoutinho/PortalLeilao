@@ -51,44 +51,95 @@
                 </v-row>
                 </div>
     <!--PAGINA-->
-        <v-row class="mt-6 mb-6" :elevation="12">
+         <v-row class="mt-6 mb-12 " :elevation="12">
                         <v-col 
-                        v-for="n in 20"
-                        :key="n"
+                        v-for="artigo in artigos"
+                         v-bind:key="artigo"
                         justify="center"
                         align="center"
+                         
+         
                         >
-                            
-                            <v-card
-                            height="280"
-                            width="250"
-                            color= "indigo accent-2"
-                            v-model="accordion"
-                            :elevation="15"
-                            
+                         <v-card
+                            :loading="loading"
+                            class="mx-auto my-1"
+                            max-width="350"
+                        >
+                         <div class="my-1 subtitle-2 white--text" style="background:#3f51b5">
+                          Aberto
+                            </div>
+
+                            <v-img
+                            height="200"
+                            src="https://i.imgur.com/EaowRPb.jpg"
                             >
-                                <!--IMAGEN-->
-                                <v-img
-                                height="180px"
-                                width="310px"
-                                color="indigo lighten-5"
-                                class="white--text align-end"
-                                src="#"
-                                >
-                                    <p class="display-2 white--text">FOTO</p>
-                                    <div class="text-center">
-                                        <v-rating v-model="rating" color="yellow"></v-rating>
-                                    </div>
-                                </v-img>
-                                <!--INFORMAÇOES-->
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                          
+                            
+                            <v-row
+                                align="center"
+                                class="mx-0"
                                 
-                                <div align="start">                               
-                                   <p class="white--text text-uppercase headline mr-2" >Nome Do Produto</p>
-                                   <p class="white--text lowercase font-weight-light mr-12">informaçoes do produto</p>
-                                </div>
-                            </v-card>
+                            >
+                                <v-rating
+                                :value="4.5"
+                                color="amber"
+                                dense
+                                half-increments
+                                readonly
+                                size="14"
+                                float="bottom"
+                                ></v-rating>
+
+                                <div class="white--text ml-4">4.5 (Nota do vendedor)</div>
+                            </v-row>
+                            </v-img>
+                             
+
+
+                            <v-card-title>{{artigo.name}}</v-card-title>
+
+                            <v-card-text>
+                           
+                                <br>
+                            <div>
+                                {{artigo.description}}
+                            </div>
+                            </v-card-text>
+
+                            <v-divider class="mx-4"></v-divider>
+                                <v-card-title class="subtitle-2 " >
+                            Abertura:  <data style="margin:0px 1% 0px 1%"> {{artigo.date}}</data> 
+                            </v-card-title> 
+
+                            <v-card-title class="subtitle-2 " >
+                            Lance Inicial:  <data style="margin:0px 1% 0px 1%"> {{artigo.initialbid}}</data> 
+                            </v-card-title> 
+
+                            
+                        <v-card-actions>
+                            <v-btn class="col-12 white--text"
+                                color="light-green lighten-1 "
+                                @click="Lance"
+                               
+                            >
+                             ABERTO PARA LANCES
+                            </v-btn>
+                            </v-card-actions>
+                        </v-card>
+
+
+                         
                         </v-col>
                     </v-row>
+
+                            
                     <div class="text-center mt-12 mb-4">
                         <v-pagination
                             v-model="page"
@@ -100,6 +151,7 @@
 </template>
 
 <script>
+
 import homeVue from './home.vue'
 export default {
     data(){
@@ -135,3 +187,4 @@ export default {
   }),
 }
 </script>>
+

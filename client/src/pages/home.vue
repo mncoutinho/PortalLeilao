@@ -148,10 +148,12 @@
             <!--PRODUTO-->
                 <v-row class="mt-6 mb-12 " :elevation="12">
                         <v-col 
-                        v-for="n in 3"
-                        :key="n"
+                        v-for="artigo in produtos"
+                         v-bind:key="artigo"
                         justify="center"
                         align="center"
+                         
+         
                         >
                          <v-card
                             :loading="loading"
@@ -196,26 +198,27 @@
                              
 
 
-                            <v-card-title>Jac Motors</v-card-title>
+                            <v-card-title>{{artigo.name}}</v-card-title>
 
                             <v-card-text>
                            
                                 <br>
                             <div>
-                                Com 5 anos de uso e documentos em dias.
+                                {{artigo.description}}
                             </div>
                             </v-card-text>
 
                             <v-divider class="mx-4"></v-divider>
                                 <v-card-title class="subtitle-2 " >
-                            Abertura:  <data style="margin:0px 1% 0px 1%"> 20/05/2020</data> às 10:00
+                            Abertura:  <data style="margin:0px 1% 0px 1%"> {{artigo.date}}</data> 
                             </v-card-title> 
 
                             <v-card-title class="subtitle-2 " >
-                            Fechamento:   <data style="margin:0px 1% 0px 1%"> 20/05/2020</data> às 15:00
-                            </v-card-title>
+                            Lance Inicial:  <data style="margin:0px 1% 0px 1%"> {{artigo.initialbid}}</data> 
+                            </v-card-title> 
 
-                            <v-card-actions>
+                            
+                        <v-card-actions>
                             <v-btn class="col-12 white--text"
                                 color="light-green lighten-1 "
                                 @click="Lance"
