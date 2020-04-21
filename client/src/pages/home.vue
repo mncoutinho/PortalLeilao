@@ -1,6 +1,5 @@
 <template >
-    <div id= "app">
-        <div>
+
             <!-- BANNER -->
             <v-app id="inspire">
                <v-carousel
@@ -152,8 +151,6 @@
                          v-bind:key="artigo"
                         justify="center"
                         align="center"
-                         
-         
                         >
                          <v-card
                             :loading="loading"
@@ -175,12 +172,10 @@
                             <br>
                             <br>
                             <br>
-                          
-                            
+
                             <v-row
                                 align="center"
-                                class="mx-0"
-                                
+                                class="mx-0" 
                             >
                                 <v-rating
                                 :value="4.5"
@@ -228,16 +223,10 @@
                             </v-btn>
                             </v-card-actions>
                         </v-card>
-
-
-                         
                         </v-col>
                     </v-row>
                 </v-app>   
             </v-app>
-        </div>
-    </div>
-
 </template>
 
 <script>

@@ -1,49 +1,74 @@
 <template>
     <div class="NavBar">
         <v-navigation-drawer
-      v-model="drawer"
-      app
-    >
-      <v-list dense>
-        <v-list-item link>
-          <v-list-item-action>
-            <v-icon>mdi-home</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title ><router-link to="/">Home</router-link></v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item link>
-          <v-list-item-action>
-            <v-icon>mdi-contact-mail</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title><router-link to="/adicionarItem">item</router-link></v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-         <v-list-item link>
-          <v-list-item-action>
-            <v-icon>mdi-contact-mail</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title><router-link to="/leilao">Leilão</router-link></v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
+        v-model="drawer"
+        app
+        temporary
+        >
+        <v-list dense>
+          <router-link to="/" style="text-decoration:none;">
+          <v-list-item link>
+            <v-list-item-action>
+              <v-icon >mdi-home</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title ><router-link to="/">HOME</router-link></v-list-item-title>
+            </v-list-item-content>          
+          </v-list-item>
+          </router-link>
+          
+          <router-link to="/adicionarItem" style="text-decoration:none;">
+          <v-list-item link>
+            <v-list-item-action>
+              <v-icon>mdi-contact-mail</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title><router-link to="/adicionarItem">ITEM</router-link></v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          </router-link>
 
-    <v-app-bar
-      app
-      color="indigo"
-      dark
-    >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title>Portal Leilão</v-toolbar-title>
-    </v-app-bar>
-      
-      
-      <v-spacer></v-spacer>
+          <router-link to="/leilao" style="text-decoration:none;">
+          <v-list-item link>
+            <v-list-item-action>
+              <v-icon>mdi-contact-mail</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title><router-link to="/leilao">LEILÃO</router-link></v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          </router-link>
 
+        </v-list>
+      </v-navigation-drawer>
+
+    
+      <v-app-bar
+        app
+        color="indigo lighten-1"
+        dark
+        clipped-left
+        
+        >
+        <v-app-bar-nav-icon @click="drawer = !drawer"/>
+        <v-toolbar-title> 
+          <router-link to="/" style="text-decoration:none;">
+              Portal Leilão
+        </router-link>
+        </v-toolbar-title>
+  <!--BARRA DE PESQUISA-->
+          <v-text-field
+            v-model="Pesquisar"
+            append-icon="mdi-magnify"
+            label="Pesquisar"
+            single-line
+            hide-details
+            />
+         <v-btn class="mr-2" :elevation="0" to="/criar"  text>
+        Crie Sua conta
+        </v-btn>
+        <v-btn to="/login"  color="white indigo--text">Login</v-btn>
+      </v-app-bar>
     </div>
 </template>
 <script>
