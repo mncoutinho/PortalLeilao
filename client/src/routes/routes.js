@@ -3,7 +3,7 @@ import adicionarItem from "../pages/adicionarItem";
 import Home from "../pages/home";
 import Leilao from "../pages/leilao";
 import Login from "../pages/login";
-import Criar from "../pages/criar";
+import Criar from "../pages/criarconta";
 import Produtos from "../pages/Produtos";
 
 const router = new VueRouter({
