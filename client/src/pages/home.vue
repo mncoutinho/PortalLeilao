@@ -1,11 +1,10 @@
 <template >
-    <div id= "app">
-        <div>
+
             <!-- BANNER -->
-            <v-app id="inspire">
+            <v-app class="mt-1" id="inspire">
                <v-carousel
                 cycle
-                height="350"
+                height="550"
                 width="100%"
                 hide-delimiter-background
                 show-arrows-on-hover>
@@ -152,8 +151,11 @@
                          v-bind:key="artigo"
                         justify="center"
                         align="center"
+<<<<<<< HEAD
                          
          
+=======
+>>>>>>> VuetifyPedro
                         >
                          <v-card
                             :loading="loading"
@@ -167,6 +169,7 @@
                             <v-img
                             height="200"
                             src="https://i.imgur.com/EaowRPb.jpg"
+<<<<<<< HEAD
                             >
                             <br>
                             <br>
@@ -224,20 +227,77 @@
                                 @click="Lance"
                                
                             >
+=======
+                            >
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+
+                            <v-row
+                                align="center"
+                                class="mx-0" 
+                            >
+                                <v-rating
+                                :value="4.5"
+                                color="amber"
+                                dense
+                                half-increments
+                                readonly
+                                size="14"
+                                float="bottom"
+                                ></v-rating>
+
+                                <div class="white--text ml-4">4.5 (Nota do vendedor)</div>
+                            </v-row>
+                            </v-img>
+                             
+
+
+                            <v-card-title>{{artigo.name}}</v-card-title>
+
+                            <v-card-text>
+                           
+                                <br>
+                            <div>
+                                {{artigo.description}}
+                            </div>
+                            </v-card-text>
+
+                            <v-divider class="mx-4"></v-divider>
+                                <v-card-title class="subtitle-2 " >
+                            Abertura:  <data style="margin:0px 1% 0px 1%"> {{artigo.date}}</data> 
+                            </v-card-title> 
+
+                            <v-card-title class="subtitle-2 " >
+                            Lance Inicial:  <data style="margin:0px 1% 0px 1%"> {{artigo.initialbid}}</data> 
+                            </v-card-title> 
+
+                            
+                        <v-card-actions>
+                            <v-btn class="col-12 white--text"
+                                color="light-green lighten-1 "
+                                @click="Lance"
+                               
+                            >
+>>>>>>> VuetifyPedro
                              ABERTO PARA LANCES
                             </v-btn>
                             </v-card-actions>
                         </v-card>
+<<<<<<< HEAD
 
 
                          
+=======
+>>>>>>> VuetifyPedro
                         </v-col>
                     </v-row>
                 </v-app>   
             </v-app>
-        </div>
-    </div>
-
 </template>
 
 <script>

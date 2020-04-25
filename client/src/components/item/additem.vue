@@ -124,9 +124,3 @@ this.selectedFile = event.target.files[0]
     }
 }
 </script>
-
-
-
-<style scoped>
-v-content{width:80%;}
-</style>
