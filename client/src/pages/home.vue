@@ -151,11 +151,6 @@
                          v-bind:key="artigo"
                         justify="center"
                         align="center"
-<<<<<<< HEAD
-                         
-         
-=======
->>>>>>> VuetifyPedro
                         >
                          <v-card
                             :loading="loading"
@@ -165,25 +160,14 @@
                          <div class="my-1 subtitle-2 white--text" style="background:#3f51b5">
                           Aberto
                             </div>
-
                             <v-img
                             height="200"
                             src="https://i.imgur.com/EaowRPb.jpg"
-<<<<<<< HEAD
                             >
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                          
-                            
+
                             <v-row
                                 align="center"
-                                class="mx-0"
-                                
+                                class="mx-0"                     
                             >
                                 <v-rating
                                 :value="4.5"
@@ -198,14 +182,8 @@
                                 <div class="white--text ml-4">4.5 (Nota do vendedor)</div>
                             </v-row>
                             </v-img>
-                             
-
-
                             <v-card-title>{{artigo.name}}</v-card-title>
-
                             <v-card-text>
-                           
-                                <br>
                             <div>
                                 {{artigo.description}}
                             </div>
@@ -226,17 +204,8 @@
                                 color="light-green lighten-1 "
                                 @click="Lance"
                                
-                            >
-=======
-                            >
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-
+                            />
+                         
                             <v-row
                                 align="center"
                                 class="mx-0" 
@@ -253,47 +222,29 @@
 
                                 <div class="white--text ml-4">4.5 (Nota do vendedor)</div>
                             </v-row>
-                            </v-img>
-                             
-
-
                             <v-card-title>{{artigo.name}}</v-card-title>
-
                             <v-card-text>
-                           
-                                <br>
                             <div>
                                 {{artigo.description}}
                             </div>
                             </v-card-text>
-
                             <v-divider class="mx-4"></v-divider>
                                 <v-card-title class="subtitle-2 " >
                             Abertura:  <data style="margin:0px 1% 0px 1%"> {{artigo.date}}</data> 
                             </v-card-title> 
-
                             <v-card-title class="subtitle-2 " >
                             Lance Inicial:  <data style="margin:0px 1% 0px 1%"> {{artigo.initialbid}}</data> 
                             </v-card-title> 
-
-                            
+                        </v-card-actions>    
                         <v-card-actions>
                             <v-btn class="col-12 white--text"
                                 color="light-green lighten-1 "
-                                @click="Lance"
-                               
+                                @click="Lance"  
                             >
->>>>>>> VuetifyPedro
                              ABERTO PARA LANCES
                             </v-btn>
                             </v-card-actions>
                         </v-card>
-<<<<<<< HEAD
-
-
-                         
-=======
->>>>>>> VuetifyPedro
                         </v-col>
                     </v-row>
                 </v-app>   
