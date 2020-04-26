@@ -4,6 +4,7 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 // inicializando firebase
 admin.initializeApp(functions.config().firebase);
 // Inicializando Servidor Express
@@ -11,15 +12,14 @@ const loginApp = express();
 
 loginApp.use(bodyParser.json());
 loginApp.use(bodyParser.urlencoded({extended:false}));
-
+loginApp.use(cors({origin:true}))
 // Inicializnando banco
 const db = admin.firestore();
 const user = db.collection('user');
-loginApp.get('/', (req, res) => res.send('Olá Mundo!'));
-loginApp.get('/getUsers', (req, res) => {
-    
-    res.send(user.get());
-});
+loginApp.get('/', (req, res) => res.status(200).send('Olá Mundo!'));
+loginApp.get('/getUsers',(req, res) => {
+    res.status(200).send('Deveria Enviar a POrra de uma lista que nao aguento mais');
+    });
 loginApp.post('/criarUser',(req, res) => {
     let newUser = {
         cpf:req.body.cpf,
@@ -31,8 +31,9 @@ loginApp.post('/criarUser',(req, res) => {
         class:req.body.class
 
     };
-    user.add(newUser).then( response => res.send("Gravado!")
-    ).catch(err);
+    user.add(newUser).then((documentRef) => {
+        return res.send(`Usuario adicionado com id ${documentRef.path} e dados ${JSON.stringify(newUser)}`);
+    }).catch(err => res.send(err));
 });
 // Item
 const itemApp = express();
