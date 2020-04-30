@@ -4,6 +4,8 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const express = require('express');
 const bodyParser = require('body-parser');
+// const credential = require('/home/aguia/Documents/firebase/portalleilao-26290-firebase-adminsdk-c5ywf-b4f15e6777.json');
+
 // inicializando firebase
 admin.initializeApp(functions.config().firebase);
 // Inicializando Servidor Express
@@ -16,23 +18,50 @@ loginApp.use(bodyParser.urlencoded({extended:false}));
 const db = admin.firestore();
 const user = db.collection('user');
 loginApp.get('/', (req, res) => res.send('Olá Mundo!'));
-loginApp.get('/getUsers', (req, res) => {
-    
-    res.send(user.get());
+loginApp.get('/getUsers', async (req, res) => {
+    try {
+        let query = await user.get().then(snapshot => {
+            let users = [];
+            snapshot.forEach(doc => {
+               users.push({ 
+                access: doc.data().access,
+                accountClass: doc.data().accountClass,
+                address: doc.data().address,
+                cpf:doc.data().cpf,
+                email: doc.data().email,
+                name:doc.data().name,
+                phone:doc.data().phone
+                });
+            })
+            return users
+        })
+        res.status(200).send(query);
+    }
+    catch(err){
+        res.status(400).send(err.message);
+    }
 });
-loginApp.post('/criarUser',(req, res) => {
-    let newUser = {
-        cpf:req.body.cpf,
-        name:req.body.name,
-        email:req.body.email,
-        access:req.body.access,
-        address:req.body.address,
-        phone:req.body.phone,
-        class:req.body.class
+loginApp.post('/criarUser',async (req, res) => {
+    try{
+        let newUser = {
+            cpf:req.body.cpf,
+            name:req.body.name,
+            email:req.body.email,
+            access:req.body.access,
+            address:req.body.address,
+            phone:req.body.phone,
+            accountClass:req.body.accountClass,
+            password:req.body.password
+            
+        };
+        let query = await user.add(newUser)
+        res.status(200).send(`Gravado!${JSON.stringify(req.body)}`)
 
-    };
-    user.add(newUser).then( response => res.send("Gravado!")
-    ).catch(err);
+    }
+    catch(err) {
+        res.status(400).send(err.message);
+    
+    }
 });
 // Item
 const itemApp = express();
