@@ -4,6 +4,7 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 // const credential = require('/home/aguia/Documents/firebase/portalleilao-26290-firebase-adminsdk-c5ywf-b4f15e6777.json');
 
 // inicializando firebase
@@ -71,16 +72,47 @@ itemApp.use(bodyParser.urlencoded({extended:false}));
 
 const items = db.collection('item');
 itemApp.get('/', (req, res) => res.send('Olá Mundo!'));
-itemApp.get('/getItems', (req, res) => {
-    
-    res.send(items.get());
+itemApp.get('/getItems', async (req, res) => {
+    try {
+        let query = await items.get().then(snapshot => {
+            let users = [];
+            snapshot.forEach(doc => {
+               users.push({ 
+                active: doc.data().active,
+                name:doc.data().name,
+                category: doc.data().category,
+                description:doc.data().description,
+                initialbid: doc.data().initialbid,
+                partialbid:doc.data().partialbid
+                });
+            })
+            return users
+        })
+        res.status(200).send(query);
+    }
+    catch(err){
+        res.status(400).send(err.message);
+    }
 });
-itemApp.post('/criarItem',(req, res) => {
-    let newItem = {
-        
-    };
-    items.add(newitem).then( response => res.send("Gravado!")
-    ).catch(err);
+itemApp.post('/criarItem', async (req, res) => {
+    try{
+        let newUser = {
+            active:req.body.active,
+            name:req.body.name,
+            description:req.body.description,
+            initialbid:req.body.initialbid,
+            category:req.body.category,
+            partialbid:req.body.partialbid,
+            idUser:req.body.idUser
+        };
+        let query = await items.add(newUser)
+        res.status(200).send(`Gravado!${JSON.stringify(req.body)}`)
+
+    }
+    catch(err) {
+        res.status(400).send(err.message);
+    
+    }
 });
 // Leilão
 const leilaoApp = express();
@@ -90,16 +122,41 @@ leilaoApp.use(bodyParser.urlencoded({extended:false}));
 
 const leiloes = db.collection('leilao');
 leilaoApp.get('/', (req, res) => res.send('Olá Mundo!'));
-leilaoApp.get('/getleiloes', (req, res) => {
-    
-    res.send(leiloes.get());
+leilaoApp.get('/getleiloes', async (req, res) => {
+    try {
+        let query = await leiloes.get().then(snapshot => {
+            let users = [];
+            snapshot.forEach(doc => {
+               users.push({ 
+                items: doc.data().items,
+                iduser: doc.data().iduser,    
+                name:doc.data().name,
+                });
+            })
+            return users
+        })
+        res.status(200).send(query);
+    }
+    catch(err){
+        res.status(400).send(err.message);
+    }
 });
-leilaoApp.post('/criarLeilao',(req, res) => {
-    let newLeilao = {
-        
-    };
-    leiloes.add(newLeilao).then( response => res.send("Gravado!")
-    ).catch(err);
+leilaoApp.post('/criarLeilao', async (req, res) => {
+    try{
+        let newUser = {
+            name:req.body.name,
+            descprition:req.body.description,
+            items:req.body.items,
+            
+        };
+        let query = await leiloes.add(newUser)
+        res.status(200).send(`Gravado!${JSON.stringify(req.body)}`)
+
+    }
+    catch(err) {
+        res.status(400).send(err.message);
+    
+    }
 });
 // Instancia da Função
 const item = functions.https.onRequest(itemApp);
