@@ -6,7 +6,12 @@ import routes from "./routes/routes";
 import vuetify from './plugins/vuetify';
 //Dependencia do Vuex
 import store from './store';
+//Import icones
+import '@fortawesome/fontawesome-free/css/all.css';
 //Import de páginas
+
+
+
 
 Vue.use(VueRouter);
 

@@ -9,7 +9,7 @@
           <router-link to="/" >
           <v-list-item link>
             <v-list-item-action>
-              <v-icon >mdi-home</v-icon>
+              <v-icon ><i class="fas fa-home"></i></v-icon>
             </v-list-item-action>
             <v-list-item-content>
               <v-list-item-title ><router-link to="/">HOME</router-link></v-list-item-title>
@@ -31,7 +31,7 @@
           <router-link to="/leilao" >
           <v-list-item link>
             <v-list-item-action>
-              <v-icon>mdi-contact-mail</v-icon>
+              <v-icon><i class="fas fa-gavel"></i></v-icon>
             </v-list-item-action>
             <v-list-item-content>
               <v-list-item-title><router-link to="/leilao">LEILÃO</router-link></v-list-item-title>
@@ -44,14 +44,15 @@
 
 <!-- NavBar -->
       <v-app-bar app
-        color="indigo lighten-1"
+        color="#63432D"
+        :elevation="0"
         dark
         clipped-left
         
         >
         <v-app-bar-nav-icon @click="drawer = !drawer"/>
         <v-toolbar-title> 
-          <router-link to="/" >
+          <router-link class="white--text" to="/" >
               Portal Leilão
         </router-link>
         </v-toolbar-title>
@@ -67,9 +68,9 @@
             />
         <v-spacer/>
          <v-btn class="mr-2" :elevation="0" to="/criar"  text>
-        Crie Sua conta
+        Inscreva-se
         </v-btn>
-        <v-btn to="/login"  color="white indigo--text">Login</v-btn>
+        <v-btn to="/login"  color="#28989E">Login <i class="fas fa-arrow-right ml-1"></i></v-btn>
       </v-app-bar>
     </div>
 </template>

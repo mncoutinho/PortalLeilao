@@ -1,254 +1,492 @@
-<template >
+<template >      
+    <v-app id="inspire">
+        
+        <!--IMAGEM-->
+        <v-parallax
+        dark
+        src="https://i.imgur.com/V5FBLN3.jpg"
+        height="600">
+        <!--BOTOES-->
+            <div
+            width="100%"
+            height="80"
+            :elevation="20"
+            class="mt-6"
+            >
+                <v-row
+                align="center"
+                justify="space-around">
+                    <v-btn
+                    width="8%"
+                    height="80"
+                    text
+                    color="white"
+                    class="ml-12"
+                    fab>
+                        <v-col class="text-center">
+                            <v-icon size="30">fas fa-address-card</v-icon>    
+                            <h6 class="subtitle-1 mt-2">PRODUTO</h6>
+                        </v-col>
+                    </v-btn>
 
-            <!-- BANNER -->
-            <v-app class="mt-1" id="inspire">
-               <v-carousel
-                cycle
-                height="550"
-                width="100%"
-                hide-delimiter-background
-                show-arrows-on-hover>
-                    <v-carousel-item
-                     v-for="(item,i) in items"
-                    :key="i"
-                    :src="item.src"
-                    
-                     reverse-transition="fade-transition"
-                     transition="fade-transition"
-                     
-                     
-                 ></v-carousel-item>
-                </v-carousel>
-               
-   
-                <!--ICONES-->
-                <v-app id="inspire" >
-                  <!--  <v-row class="mt-8 mx-auto">
-                        <v-btn style="text-decoration:none;" to="./Produtos" class="ma-4  mr-12" outlined x-large fab color="indigo" width="150px" height="150px">
-                            <v-col align="center">
-                                <v-icon size="50px" class="mt-4">mdi-car</v-icon>                            
-                                <p class="mt-2 font-weight-regular">Carros</p>
-                            </v-col>
-                        </v-btn>
+                    <v-divider
+                        inset
+                        vertical
+                    />
 
-                        <v-btn style="text-decoration:none;" to="./Produtos" class="ma-4  mr-12" outlined x-large fab color="red" width="150px" height="150px">
-                            <v-col align="center">
-                                <v-icon size="50px" class="mt-4">mdi-home</v-icon>                            
-                                <p class="mt-2 font-weight-regular">Imoveis</p>
-                            </v-col>
-                        </v-btn>
+                    <v-btn
+                    width="8%"
+                    height="80"
+                    text
+                    color="white"
+                    fab>
+                        <v-col class="text-center">
+                            <v-icon size="30">fas fa-address-card</v-icon>    
+                            <h6 class="subtitle-1 mt-2">PRODUTO</h6>
+                        </v-col>
+                    </v-btn>
 
-                        <v-btn style="text-decoration:none;" to="./Produtos" class="ma-4  mr-12" outlined x-large fab color="orange" width="150px" height="150px">
-                            <v-col align="center">
-                                <v-icon size="50px" class="mt-4">mdi-crown-outline</v-icon>                            
-                                <p class="mt-2 font-weight-regular">Antiguidades</p>
-                            </v-col>
-                        </v-btn>
-                        
-                        <v-btn style="text-decoration:none;" to="./Produtos" class="ma-4  mr-12" outlined x-large fab color="black" width="150px" height="150px">
-                            <v-col align="center">
-                                <v-icon size="50px" class="mt-4">mdi-desktop-tower-monitor</v-icon>                            
-                                <p class="mt-2 font-weight-regular">Eletronicos</p>
-                            </v-col>
-                        </v-btn>
+                    <v-divider
+                        inset
+                        vertical
+                    />
 
-                        <v-btn style="text-decoration:none;" to="./Produtos" class="ma-4  mr-12" outlined x-large fab color="grey" width="150px" height="150px">
-                            <v-col align="center">
-                                <v-icon size="50px" class="mt-4">mdi-ship-wheel</v-icon>                            
-                                <p class="mt-2 font-weight-regular">Embarcação</p>
-                            </v-col>
-                        </v-btn>
-                        
-                    </v-row> -->
+                    <v-btn
+                    width="8%"
+                    height="80"
+                    text
+                    color="white"
+                    fab>
+                        <v-col class="text-center">
+                            <v-icon size="30" >fas fa-address-card</v-icon>    
+                            <h6 class="subtitle-1 mt-2">PRODUTO</h6>
+                        </v-col>
+                    </v-btn>
+
+                    <v-divider
+                        inset
+                        vertical
+                    />
+
+                    <v-btn
+                    width="8%"
+                    height="80"
+                    text
+                    color="white"
+                    fab>
+                        <v-col class="text-center">
+                            <v-icon size="30">fas fa-address-card</v-icon>    
+                            <h6 class="subtitle-1 mt-2">PRODUTO</h6>
+                        </v-col>
+                    </v-btn>
+
+                    <v-divider
+                        inset
+                        vertical
+                    />
+
+                    <v-btn
+                    width="8%"
+                    height="80"
+                    text
+                    color="white"
+                    class="mr-12"
+                    fab>
+                        <v-col class="text-center">
+                            <v-icon size="30">fas fa-address-card</v-icon>    
+                            <h6 class="subtitle-1 mt-2">PRODUTO</h6>
+                        </v-col>
+                    </v-btn>
+
+                </v-row>
+            </div>
+
+            <v-row
+                align="center"
+                justify="center"
+                
+            >
+                <v-col class="text-center" cols="12">
+                    <h1 style=" color:white" class=" display-2 font-weight-thin mb-4 ">Portal Leilao</h1>
+                    <h4 style=" color:white" class=" display-3">Venha participar do nosso site</h4>
+                </v-col>
+            </v-row>
+        </v-parallax>
+        <!--ANUNCIO-->
+                <v-card
+                width="90%"
+                height="300"
+                class="mx-auto"
+                :elevation="0">
+                    <v-col class="mt-9" > 
+                        <v-row justify="space-around">
+                            <!--ANUNCIO 1-->
+                            <v-card
+                            width="550"
+                            height="200">
+                                <h1>ANUNCIO APP</h1>
+                            </v-card>
+                            <!--ANUNCIO 2-->
+                            <v-card
+                            width="550"
+                            height="200">
+                                <h1>ANUNCIO APP</h1>
+                            </v-card>
+                        </v-row>
+                    </v-col>    
+                </v-card>
                     <!-- BOX-->
-                    <v-slide-group
-                        v-model="model"
-                        class="pa-5"
-                        active-class="success"
-                        show-arrows
-                    >
-                        <v-slide-item
-                        v-for="n in 9"
-                        :key="n"
-                        v-slot:default="{ active, toggle }"
-                        >
-                        <v-card
-                            :color="active ? undefined : 'green'"
-                            class="ma-12"
-                            height="230"
-                            width="300"
-                            @click="toggle"
-                        >
-                            <v-row
-                            class="fill-height"
-                            align="center"
-                            justify="center"
-                            ><iframe width="300" height="230" src="https://www.youtube.com/embed/nwIZH_VVhwI" 
-                            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
-                                <p class="title green--text">AO VIVO</p>
-                            </v-row>
-                        </v-card>
-                        </v-slide-item>
-                    </v-slide-group>
+                    <v-card :elevation="0" color="#735642" height="1050">
+                        <v-row justify="center">
+                                <v-text class="mt-10 white--text display-1" >Veja quem está ao vivo, agora
+                                    <v-divider class="mx-8" color="white"/>
+                                </v-text>
+                                
+                        </v-row >
+                        <!--TRANSMISSOES-->
+                        <v-row align="center" justify="space-around" class="mt-12">       
+                            <div
+                            style="width:20%; height:400;background-color:#EDE7E2">
+                                <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
+                                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen>
+                                           
+                                        </iframe>
+                                        
+                                        <v-list-item-content class="ml-5"> 
+                                            <span style="color:green">Ao Vivo</span>
+                                            <v-list-item-title style="color:#63432D" class="bold headline mb-1">NOME DA LIVE</v-list-item-title>
+                                            <v-list-item-subtitle style="color:#1B120C">informaçoes da transmissao</v-list-item-subtitle>
+                                                <v-divider class="mx-5" color="#EDE7E2"/>
+                                            <v-list-item-text style="color:#1B120C" class="mt-2">Capão Redondo</v-list-item-text> 
+                                        </v-list-item-content>   
+                            </div>
+                            <div
+                            style="width:20%; height:400;background-color:#EDE7E2">
+                                <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
+                                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen>
+                                           
+                                        </iframe>
+                                        
+                                        <v-list-item-content class="ml-5"> 
+                                            <span style="color:green">Ao Vivo</span>
+                                            <v-list-item-title style="color:#63432D" class="bold headline mb-1">NOME DA LIVE</v-list-item-title>
+                                            <v-list-item-subtitle style="color:#1B120C">informaçoes da transmissao</v-list-item-subtitle>
+                                                <v-divider class="mx-5" color="#EDE7E2"/>
+                                            <v-list-item-text style="color:#1B120C" class="mt-2">Capão Redondo</v-list-item-text> 
+                                        </v-list-item-content>   
+                            </div>
+                            <div
+                            style="width:20%; height:400;background-color:#EDE7E2">
+                                <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
+                                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen>
+                                           
+                                        </iframe>
+                                        
+                                        <v-list-item-content class="ml-5"> 
+                                            <span style="color:green">Ao Vivo</span>
+                                            <v-list-item-title style="color:#63432D" class="bold headline mb-1">NOME DA LIVE</v-list-item-title>
+                                            <v-list-item-subtitle style="color:#1B120C">informaçoes da transmissao</v-list-item-subtitle>
+                                                <v-divider class="mx-5" color="#EDE7E2"/>
+                                            <v-list-item-text style="color:#1B120C" class="mt-2">Capão Redondo</v-list-item-text> 
+                                        </v-list-item-content>   
+                            </div>
+                            <div
+                            style="width:20%; height:400;background-color:#EDE7E2">
+                                <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
+                                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen>
+                                           
+                                        </iframe>
+                                        
+                                        <v-list-item-content class="ml-5"> 
+                                            <span style="color:green">Ao Vivo</span>
+                                            <v-list-item-title style="color:#63432D" class="bold headline mb-1">NOME DA LIVE</v-list-item-title>
+                                            <v-list-item-subtitle style="color:#1B120C">informaçoes da transmissao</v-list-item-subtitle>
+                                                <v-divider class="mx-5" color="#EDE7E2"/>
+                                            <v-list-item-text style="color:#1B120C" class="mt-2">Capão Redondo</v-list-item-text> 
+                                        </v-list-item-content>   
+                            </div>
+                        </v-row>
+                        <v-row align="center" justify="space-around" class="mt-12">       
+                            <div
+                            style="width:20%; height:400;background-color:#EDE7E2">
+                                <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
+                                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen>
+                                           
+                                        </iframe>
+                                        
+                                        <v-list-item-content class="ml-5"> 
+                                            <span style="color:green">Ao Vivo</span>
+                                            <v-list-item-title style="color:#63432D" class="bold headline mb-1">NOME DA LIVE</v-list-item-title>
+                                            <v-list-item-subtitle style="color:#1B120C">informaçoes da transmissao</v-list-item-subtitle>
+                                                <v-divider class="mx-5" color="#EDE7E2"/>
+                                            <v-list-item-text style="color:#1B120C" class="mt-2">Capão Redondo</v-list-item-text> 
+                                        </v-list-item-content>   
+                            </div>
+                            <div
+                            style="width:20%; height:400;background-color:#EDE7E2">
+                                <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
+                                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen>
+                                           
+                                        </iframe>
+                                        
+                                        <v-list-item-content class="ml-5"> 
+                                            <span style="color:green">Ao Vivo</span>
+                                            <v-list-item-title style="color:#63432D" class="bold headline mb-1">NOME DA LIVE</v-list-item-title>
+                                            <v-list-item-subtitle style="color:#1B120C">informaçoes da transmissao</v-list-item-subtitle>
+                                                <v-divider class="mx-5" color="#EDE7E2"/>
+                                            <v-list-item-text style="color:#1B120C" class="mt-2">Capão Redondo</v-list-item-text> 
+                                        </v-list-item-content>   
+                            </div>
+                            <div
+                            style="width:20%; height:400;background-color:#EDE7E2">
+                                <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
+                                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen>
+                                           
+                                        </iframe>
+                                        
+                                        <v-list-item-content class="ml-5"> 
+                                            <span style="color:green">Ao Vivo</span>
+                                            <v-list-item-title style="color:#63432D" class="bold headline mb-1">NOME DA LIVE</v-list-item-title>
+                                            <v-list-item-subtitle style="color:#1B120C">informaçoes da transmissao</v-list-item-subtitle>
+                                                <v-divider class="mx-5" color="#EDE7E2"/>
+                                            <v-list-item-text style="color:#1B120C" class="mt-2">Capão Redondo</v-list-item-text> 
+                                        </v-list-item-content>   
+                            </div>
+                            <v-btn
+                            width="20%"
+                            height="400"
+                            color="#EDE7E2"
+                            >   
+                                <v-col>
+                                  <h1 class="display-4" style="color:#342B25">+</h1>
+                                  <h6 style="color:#342B25">Para ver mais...</h6>
+                                </v-col>  
+                            </v-btn>
+
+
+                        </v-row>
+                    </v-card>
                     <!--ANUNCIO-->
-                <v-row class="mt-5">
-                    <v-col justify="center" align="center">
-                        <v-card
-                            width=900
-                            height=150 
-                            color="purple darken-3"
-                            :elevetion= "n-5"  
-                        >
-                            <span class="display-3 white--text" >ANUNCIO</span>                        
-                        </v-card>
-                    </v-col>
+                <v-row>
+                    <!--TEXTO-->
+                    <v-card
+                    width="50%"
+                    height="400"
+                    :elevation="0"
+                    >
+                        <v-col class="mt-12 ml-12" sm="10" >
+                            <v-card-title class="title" color="#735642">Não Sabe como "leiloar" ?</v-card-title>
+                                
+                                <v-card-subtitle class="subtitle-1  ">Saiba Agora...</v-card-subtitle>
+                                <v-card-text class="body-2 lighten-5">Lorem ipsum faucibus dictumst sagittis ligula habitasse curabitur et, ad dictum amet aliquam rutrum purus turpis, dictum nec quis proin curae purus ligula. feugiat quisque faucibus elit ornare quisque lobortis at, potenti nulla in rhoncus varius vulputate bibendum, elit eget pellentesque at taciti primis. erat eleifend suscipit auctor netus sodales tempor nullam ultricies elit, enim id praesent cras blandit inceptos curabitur praesent, nec pulvinar sed consequat ac felis facilisis imperdiet. amet ligula quisque vehicula integer proin ornare pretium, magna rutrum proin arcu lobortis morbi, est primis lacus morbi varius fermentum. </v-card-text>
+                            
+                        </v-col>
+                    </v-card>
+                    <!--IMAGEM-->
+                    <v-card
+                    width="50%"
+                    height="400"
+                    :elevation="0"
+                    >
+                        <v-img
+                        style="opacity:0.7; background-color:blue" 
+                        src="https://cdn.pixabay.com/photo/2016/03/09/09/22/workplace-1245776_960_720.jpg"
+                        ></v-img>
+                    </v-card>
                 </v-row>
             <!--LIVES FUTURAS-->
-            <v-slide-group
-                        v-model="model"
-                        class="pa-4"
-                        active-class="success"
-                        show-arrows
-                    >
-                        <v-slide-item
-                        v-for="n in 9"
-                        :key="n"
-                        v-slot:default="{ active, toggle }"
-                        >
-                        <v-card
-                            class="ma-12"
-                            height="230"
-                            width="300"
-                            @click="toggle"
-                        >
-                            <v-row
-                            class="fill-height"
-                            align="center"
-                            justify="center"
-                            >
-                            <iframe width="300" height="230" src="https://www.youtube.com/embed/nwIZH_VVhwI" 
-                            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
-
-                            <p class="title red--text">EM BREVE</p>
-                            <v-scale-transition>
-                                <v-icon
-                                v-if="active"
-                                color="white"
-                                size="48"
-                                v-text="'mdi-close-circle-outline'"
-                                ></v-icon>
-                            </v-scale-transition>
-                            </v-row>
-                        </v-card>
-                        </v-slide-item>
-                    </v-slide-group>   
-            <!--PRODUTO-->
-                <v-row class="mt-6 mb-12 " :elevation="12">
-                        <v-col 
-                        v-for="artigo in produtos"
-                         v-bind:key="artigo"
-                        justify="center"
-                        align="center"
-                        >
-                         <v-card
-                            :loading="loading"
-                            class="mx-auto my-1"
-                            max-width="350"
-                        >
-                         <div class="my-1 subtitle-2 white--text" style="background:#3f51b5">
-                          Aberto
-                            </div>
-                            <v-img
-                            height="200"
-                            src="https://i.imgur.com/EaowRPb.jpg"
-                            >
-
-                            <v-row
-                                align="center"
-                                class="mx-0"                     
-                            >
-                                <v-rating
-                                :value="4.5"
-                                color="amber"
-                                dense
-                                half-increments
-                                readonly
-                                size="14"
-                                float="bottom"
-                                ></v-rating>
-
-                                <div class="white--text ml-4">4.5 (Nota do vendedor)</div>
-                            </v-row>
-                            </v-img>
-                            <v-card-title>{{artigo.name}}</v-card-title>
-                            <v-card-text>
-                            <div>
-                                {{artigo.description}}
-                            </div>
-                            </v-card-text>
-
-                            <v-divider class="mx-4"></v-divider>
-                                <v-card-title class="subtitle-2 " >
-                            Abertura:  <data style="margin:0px 1% 0px 1%"> {{artigo.date}}</data> 
-                            </v-card-title> 
-
-                            <v-card-title class="subtitle-2 " >
-                            Lance Inicial:  <data style="margin:0px 1% 0px 1%"> {{artigo.initialbid}}</data> 
-                            </v-card-title> 
-
-                            
-                        <v-card-actions>
-                            <v-btn class="col-12 white--text"
-                                color="light-green lighten-1 "
-                                @click="Lance"
-                               
-                            />
-                         
-                            <v-row
-                                align="center"
-                                class="mx-0" 
-                            >
-                                <v-rating
-                                :value="4.5"
-                                color="amber"
-                                dense
-                                half-increments
-                                readonly
-                                size="14"
-                                float="bottom"
-                                ></v-rating>
-
-                                <div class="white--text ml-4">4.5 (Nota do vendedor)</div>
-                            </v-row>
-                            <v-card-title>{{artigo.name}}</v-card-title>
-                            <v-card-text>
-                            <div>
-                                {{artigo.description}}
-                            </div>
-                            </v-card-text>
-                            <v-divider class="mx-4"></v-divider>
-                                <v-card-title class="subtitle-2 " >
-                            Abertura:  <data style="margin:0px 1% 0px 1%"> {{artigo.date}}</data> 
-                            </v-card-title> 
-                            <v-card-title class="subtitle-2 " >
-                            Lance Inicial:  <data style="margin:0px 1% 0px 1%"> {{artigo.initialbid}}</data> 
-                            </v-card-title> 
-                        </v-card-actions>    
-                        <v-card-actions>
-                            <v-btn class="col-12 white--text"
-                                color="light-green lighten-1 "
-                                @click="Lance"  
-                            >
-                             ABERTO PARA LANCES
-                            </v-btn>
-                            </v-card-actions>
-                        </v-card>
-                        </v-col>
+                <v-card :elevation="0" color="#735642" height="1050">    
+                    <v-row justify="center">
+                        <v-text class="mt-8 white--text display-1" >Veja os proximos leiloes
+                            <v-divider class="mx-8" color="white"/>
+                        </v-text>
                     </v-row>
-                </v-app>   
-            </v-app>
+                   <v-row align="center" justify="space-around" class="mt-12">       
+                            <div
+                            style="width:20%; height:400;background-color:#EDE7E2">
+                                <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
+                                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen>
+                                           
+                                        </iframe>
+                                        
+                                        <v-list-item-content class="ml-5"> 
+                                            <span style="color:Orange">Em Breve</span>
+                                            <v-list-item-title style="color:#63432D" class="bold headline mb-1">NOME DA LIVE</v-list-item-title>
+                                            <v-list-item-subtitle style="color:#1B120C">informaçoes da transmissao</v-list-item-subtitle>
+                                                <v-divider class="mx-5" color="#EDE7E2"/>
+                                            <v-list-item-text style="color:#1B120C" class="mt-2">Capão Redondo</v-list-item-text> 
+                                        </v-list-item-content>   
+                            </div>
+                            <div
+                            style="width:20%; height:400;background-color:#EDE7E2">
+                                <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
+                                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen>
+                                           
+                                        </iframe>
+                                        
+                                        <v-list-item-content class="ml-5"> 
+                                            <span style="color:Orange">Em Breve</span>
+                                            <v-list-item-title style="color:#63432D" class="bold headline mb-1">NOME DA LIVE</v-list-item-title>
+                                            <v-list-item-subtitle style="color:#1B120C">informaçoes da transmissao</v-list-item-subtitle>
+                                                <v-divider class="mx-5" color="#EDE7E2"/>
+                                            <v-list-item-text style="color:#1B120C" class="mt-2">Capão Redondo</v-list-item-text> 
+                                        </v-list-item-content>   
+                            </div>
+                            <div
+                            style="width:20%; height:400;background-color:#EDE7E2">
+                                <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
+                                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen>
+                                           
+                                        </iframe>
+                                        
+                                        <v-list-item-content class="ml-5"> 
+                                            <span style="color:Orange">Em Breve</span>
+                                            <v-list-item-title style="color:#63432D" class="bold headline mb-1">NOME DA LIVE</v-list-item-title>
+                                            <v-list-item-subtitle style="color:#1B120C">informaçoes da transmissao</v-list-item-subtitle>
+                                                <v-divider class="mx-5" color="#EDE7E2"/>
+                                            <v-list-item-text style="color:#1B120C" class="mt-2">Capão Redondo</v-list-item-text> 
+                                        </v-list-item-content>   
+                            </div>
+                            <div
+                            style="width:20%; height:400;background-color:#EDE7E2">
+                                <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
+                                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen>
+                                           
+                                        </iframe>
+                                        
+                                        <v-list-item-content class="ml-5"> 
+                                            <span style="color:Orange">Em Breve</span>
+                                            <v-list-item-title style="color:#63432D" class="bold headline mb-1">NOME DA LIVE</v-list-item-title>
+                                            <v-list-item-subtitle style="color:#1B120C">informaçoes da transmissao</v-list-item-subtitle>
+                                                <v-divider class="mx-5" color="#EDE7E2"/>
+                                            <v-list-item-text style="color:#1B120C" class="mt-2">Capão Redondo</v-list-item-text> 
+                                        </v-list-item-content>   
+                            </div>
+                        </v-row>
+                        <v-row align="center" justify="space-around" class="mt-12">       
+                            <div
+                            style="width:20%; height:400;background-color:#EDE7E2">
+                                <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
+                                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen>
+                                           
+                                        </iframe>
+                                        
+                                        <v-list-item-content class="ml-5"> 
+                                            <span style="color:Orange">Em Breve</span>
+                                            <v-list-item-title style="color:#63432D" class="bold headline mb-1">NOME DA LIVE</v-list-item-title>
+                                            <v-list-item-subtitle style="color:#1B120C">informaçoes da transmissao</v-list-item-subtitle>
+                                                <v-divider class="mx-5" color="#EDE7E2"/>
+                                            <v-list-item-text style="color:#1B120C" class="mt-2">Capão Redondo</v-list-item-text> 
+                                        </v-list-item-content>   
+                            </div>
+                            <div
+                            style="width:20%; height:400;background-color:#EDE7E2">
+                                <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
+                                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen>
+                                           
+                                        </iframe>
+                                        
+                                        <v-list-item-content class="ml-5"> 
+                                            <span style="color:Orange">Em Breve</span>
+                                            <v-list-item-title style="color:#63432D" class="bold headline mb-1">NOME DA LIVE</v-list-item-title>
+                                            <v-list-item-subtitle style="color:#1B120C">informaçoes da transmissao</v-list-item-subtitle>
+                                                <v-divider class="mx-5" color="#EDE7E2"/>
+                                            <v-list-item-text style="color:#1B120C" class="mt-2">Capão Redondo</v-list-item-text> 
+                                        </v-list-item-content>   
+                            </div>
+                            <div
+                            style="width:20%; height:400;background-color:#EDE7E2">
+                                <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
+                                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen>
+                                           
+                                        </iframe>
+                                        
+                                        <v-list-item-content class="ml-5"> 
+                                            <span style="color:Orange">Em Breve</span>
+                                            <v-list-item-title style="color:#63432D" class="bold headline mb-1">NOME DA LIVE</v-list-item-title>
+                                            <v-list-item-subtitle style="color:#1B120C">informaçoes da transmissao</v-list-item-subtitle>
+                                                <v-divider class="mx-5" color="#EDE7E2"/>
+                                            <v-list-item-text style="color:#1B120C" class="mt-2">Capão Redondo</v-list-item-text> 
+                                        </v-list-item-content>   
+                            </div>
+                            <v-btn
+                            width="20%"
+                            height="400"
+                            color="#EDE7E2"
+                            >   
+                                <v-col>
+                                  <h1 class="display-4" style="color:#342B25">+</h1>
+                                  <h6 style="color:#342B25">Para ver mais...</h6>
+                                </v-col>  
+                            </v-btn>
+
+
+                        </v-row>
+                </v-card>
+
+                <!--PROPAGANDA/A alma do negocio-->
+                    <v-card
+                    width="100%"
+                    height="250"
+                    :elevation="0"
+                    class="mt-12">
+                        
+                        <v-row justify="center">
+                            <div
+                            
+                            height="200"
+                            align="center"
+                            style="border-right: 2px solid grey; padding-right:100px"
+                            colored-border
+                            >
+                                <v-icon size="60" class="mt-2">fas fa-address-card</v-icon>
+                                <v-card-text class="title">Pague no Cartão</v-card-text>
+                                <v-card-subtitle>de forma rapida e facil</v-card-subtitle>
+                                <v-card-text>em até 12x sem juros</v-card-text>
+                            </div>
+
+                            <div
+                            style="border-right: 2px solid grey; padding-left:100px; padding-right:100px"
+                            height="200"
+                            align="center" 
+                            colored-border
+                            >
+                                <v-icon size="60" class="mt-2">fas fa-address-card</v-icon>
+                                <v-card-text class="title">Pague no Boleto</v-card-text>
+                                <v-card-subtitle>de forma rapida e facil</v-card-subtitle>
+                                <v-card-text>em até 12x sem juros</v-card-text>
+                            </div>
+
+                            <div
+                            height="200"
+                            align="center"
+                            colored-border
+                            style="padding-left:100px"
+                            >
+                                <v-icon size="60" class="mt-2">fas fa-address-card</v-icon>
+                                <v-card-text class="title">Pague no PayPal</v-card-text>
+                                <v-card-subtitle>de forma rapida e facil</v-card-subtitle>
+                                <v-card-text>em até 12x sem juros</v-card-text>
+                            </div>
+                        </v-row>
+                        
+                    </v-card>
+                
+    </v-app>   
 </template>
 
 <script>
