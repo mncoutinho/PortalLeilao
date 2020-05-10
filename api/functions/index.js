@@ -69,7 +69,7 @@ const itemApp = express();
 
 itemApp.use(bodyParser.json());
 itemApp.use(bodyParser.urlencoded({extended:false}));
-
+itemApp.use(cors({origin:true}));
 const items = db.collection('item');
 itemApp.get('/', (req, res) => res.send('Olá Mundo!'));
 itemApp.get('/category', async (req, res) => {
