@@ -132,7 +132,7 @@ const leilaoApp = express();
 
 leilaoApp.use(bodyParser.json());
 leilaoApp.use(bodyParser.urlencoded({extended:false}));
-
+leilaoApp.use(cors(òrigin:true));
 const leiloes = db.collection('leilao');
 leilaoApp.get('/', (req, res) => res.send('Olá Mundo!'));
 leilaoApp.get('/getleiloes', async (req, res) => {
