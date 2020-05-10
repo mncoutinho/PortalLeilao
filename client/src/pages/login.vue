@@ -1,8 +1,9 @@
+
 <template >
-    <v-content>
+    <v-content  >
       
-      <v-row>
-        <v-card class="mx-auto mb-12" :elevation="12">
+      <v-row >
+        <v-card  class="mx-auto mb-12" :elevation="12">
           <v-flex class="d-flex justify-center" >
             <v-card 
             class="col-md-10"

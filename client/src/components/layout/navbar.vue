@@ -1,85 +1,68 @@
 <template>
-    <div class="NavBar">
+    <div class="NavBar" >
       <!-- Menu Lateral -->
-        <v-navigation-drawer app
-        v-model="drawer"
-        temporary
-        >
-        <v-list dense>
-          <router-link to="/" >
-          <v-list-item link>
-            <v-list-item-action>
-              <v-icon ><i class="fas fa-home"></i></v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title ><router-link to="/">HOME</router-link></v-list-item-title>
-            </v-list-item-content>          
-          </v-list-item>
-          </router-link>
-          
-          <router-link to="/adicionarItem">
-          <v-list-item link>
-            <v-list-item-action>
-              <v-icon>mdi-contact-mail</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title><router-link to="/adicionarItem">ITEM</router-link></v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          </router-link>
-
-          <router-link to="/leilao" >
-          <v-list-item link>
-            <v-list-item-action>
-              <v-icon><i class="fas fa-gavel"></i></v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title><router-link to="/leilao">LEILÃO</router-link></v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          </router-link>
-
+        <v-navigation-drawer app temporary v-model="drawer" >               
+        <v-list
+         v-for="items in navItens"
+          :key="items.title"
+          :to="items.routerLinks">    
+          <v-list-item-content> 
+            <v-btn color="#EEB147" text style="text-decoration:none;">
+          <v-icon left>{{ items.i }}</v-icon>     
+          {{ items.title }}
+          </v-btn>
+          </v-list-item-content>          
         </v-list>
       </v-navigation-drawer>
 
 <!-- NavBar -->
-      <v-app-bar app
-        color="#63432D"
+      <v-app-bar
+        absolute 
+        app
+        color="#422321"
         :elevation="0"
-        dark
         clipped-left
-        
-        >
+        dark>
         <v-app-bar-nav-icon @click="drawer = !drawer"/>
         <v-toolbar-title> 
-          <router-link class="white--text" to="/" >
-              Portal Leilão
+        <router-link class="white--text" tag="span" to="/"  style="cursor:pointer">
+        Portal Leilão
         </router-link>
         </v-toolbar-title>
-  <!--BARRA DE PESQUISA-->
         <v-spacer/>
-          <v-text-field
-
-            v-model="Pesquisar"
-            append-icon="mdi-magnify"
-            label="Pesquisar"
-            single-line
-            hide-details
-            />
-        <v-spacer/>
-         <v-btn class="mr-2" :elevation="0" to="/criar"  text>
-        Inscreva-se
+        <v-toolbar-items class="hidden-xs-only">
+         <v-btn color="#EEB147" text  center style="text-decoration:none;"
+         v-for="item in menuItens"
+          :key="item.title"
+          :to="item.link">
+          <v-icon>{{ item.i }}</v-icon>
+          {{item.title}}
         </v-btn>
-        <v-btn to="/login"  color="#28989E">Login <i class="fas fa-arrow-right ml-1"></i></v-btn>
+      </v-toolbar-items>
       </v-app-bar>
     </div>
 </template>
+
 <script>
 export default {
     name:"NavBar",
-    data: () => ({
-        drawer:false
+    data() {
+      return {
+        drawer:false,
+           menuItens:[
+          { i: '', title: 'cadastre-se', link: '/criar' },
+          { i: '', title: 'Login', link: '/login' },
+           { i: '', title: 'novo Item', link: '/item' }
+        ],
+        navItens:[
+          { i: 'fas fa-home', title: 'HOME', routerLinks: '/' },
+          { i: 'fas fa-plus', title: 'Item', routerLinks: '/adicionarItem' },
+          { i: 'fas fa-gavel ', title: ' leilão', routerLinks: '/leilao' },
+          { i: 'fab fa-accessible-icon ', title: ' Lucas', routerLinks: '/lucas' }
 
-    }),
+         
+        ]
+      }
+    }
 }
 </script>

@@ -8,7 +8,8 @@ import vuetify from './plugins/vuetify';
 import store from './store';
 //Import icones
 import '@fortawesome/fontawesome-free/css/all.css';
-//Import de páginas
+
+
 
 
 

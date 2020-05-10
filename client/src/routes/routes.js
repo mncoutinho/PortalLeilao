@@ -5,6 +5,7 @@ import Leilao from "../pages/leilao";
 import Login from "../pages/login";
 import Criar from "../pages/criarconta";
 import Produtos from "../pages/Produtos";
+import userpage from "../pages/userpage.vue";
 
 const router = new VueRouter({
     // rotas
@@ -13,27 +14,40 @@ const router = new VueRouter({
         routes:[
             {
                 path:"/adicionarItem",
+                name:"adicionarItem",
                 component:adicionarItem
             },
             {
                 path:"/criar",
+                name:"criar",
                 component:Criar
             },
             {
                 path:"/login",
-                component:Login
+                name:"login",
+                component:Login,
+                
             },
             {
                 path:"/",
-                component:Home
+                name:"Home",
+                component:Home,
+                
             },
             {
                 path:"/Produtos",
+                name:"Produtos",
                 component:Produtos
             },
             {
                 path:"/leilao",
+                name:"leilao",
                 component:Leilao
+            },
+            {
+                path:"/userpage",
+                name:"userpage",
+                component:userpage
             }
         ]
     });
