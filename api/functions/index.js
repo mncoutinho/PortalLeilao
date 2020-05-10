@@ -72,6 +72,19 @@ itemApp.use(bodyParser.urlencoded({extended:false}));
 
 const items = db.collection('item');
 itemApp.get('/', (req, res) => res.send('Olá Mundo!'));
+itemApp.get('/category', async (req, res) => {
+try{
+    let getCategory = await items.doc('category').get().then(doc => {
+        let category = [];
+        category.push(category = doc.data().category);
+        return category
+    });
+    res.status(200).send(getCategory);
+}
+catch(err){
+    res.status(400).send(err.message)
+}
+});
 itemApp.get('/getItems', async (req, res) => {
     try {
         let query = await items.get().then(snapshot => {
