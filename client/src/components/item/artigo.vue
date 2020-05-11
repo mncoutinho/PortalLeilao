@@ -91,7 +91,8 @@
 </template>
 
 <script>
-import lance from "./lance"
+import lance from "./lance";
+import axios from 'axios';
 
 export default {
 	components:{
@@ -114,6 +115,14 @@ export default {
 				value: 5
 			}			
 		};
+	},
+
+	created() {
+		//const ID = 'category';
+		const ID = 'leilaoBeta';
+      axios.get('https://us-central1-portalleilao-26290.cloudfunctions.net/item/'+ID )
+      .then(response => console.log(response.data))
+      .catch(error => console.log(error))
 	},
 	
 	methods: {
