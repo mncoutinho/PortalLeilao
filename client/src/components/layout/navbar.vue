@@ -1,16 +1,23 @@
 <template>
     <div class="NavBar" >
-      <!-- Menu Lateral -->  
+      <!-- Menu Lateral -->
         <v-navigation-drawer app temporary v-model="drawer" >               
         <v-list>    
           <v-list-item-content> 
-         <v-btn color="#EEB147" text class="mb-4" center style="text-decoration:none;"
-         v-for="item in navItens"
-          :key="item.title"
-          :to="item.link">
-          <v-icon left>{{ item.i }}</v-icon>
-          {{item.title}}
-        </v-btn>
+            <v-btn 
+            color="#562B28"
+            text 
+            style="text-decoration:none;"
+            v-for="items in navItens"
+            :key="items.title"
+            :to="items.routerLinks"
+            class="mb-2"
+            >
+            <v-col>
+              <v-icon left>{{ items.i }}</v-icon>  
+              <v-text-title class="ml-12">{{ items.title }}</v-text-title>
+            </v-col>  
+          </v-btn>
           </v-list-item-content>          
         </v-list>
       </v-navigation-drawer>
@@ -51,12 +58,14 @@ export default {
         drawer:false,
            menuItens:[
           { i: '', title: 'cadastre-se', link: '/criar' },
-          { i: '', title: 'Login', link: '/login' }
+          { i: '', title: 'Login', link: '/login' },
         ],
         navItens:[
-          { i: 'fas fa-home', title: 'HOME', link: '/' },
-          { i: 'fas fa-plus', title: 'Item', link: '/adicionarItem' },
-          { i: 'fas fa-gavel ', title: ' leilão', link: '/leilao' }         
+          { i: 'fas fa-home', title: 'HOME', routerLinks: '/' },
+          { i: 'fas fa-plus', title: 'Item', routerLinks: '/adicionarItem' },
+          { i: 'fas fa-gavel ', title: ' leilão', routerLinks: '/leilao' },
+
+         
         ]
       }
     }

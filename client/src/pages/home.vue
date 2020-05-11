@@ -7,100 +7,6 @@
         src="https://i.imgur.com/V5FBLN3.jpg"
         height="600">
         <!--BOTOES-->
-            <div
-            width="100%"
-            height="80"
-            :elevation="20"
-            class="mt-6"
-            >
-                <v-row
-                align="center"
-                justify="space-around">
-                    <v-btn
-                    width="8%"
-                    height="80"
-                    text
-                    color="#F7F4F4"
-                    class="ml-12"
-                    >
-                        <v-col class="text-center">
-                            <v-icon size="30">fas fa-address-card</v-icon>    
-                            <h6 class="subtitle-1 mt-2">PRODUTO</h6>
-                        </v-col>
-                    </v-btn>
-
-                    <v-divider
-                        inset
-                        vertical
-                    />
-
-                    <v-btn
-                    width="8%"
-                    height="80"
-                    text
-                    color="#F7F4F4"
-                    >
-                        <v-col class="text-center">
-                            <v-icon size="30">fas fa-address-card</v-icon>    
-                            <h6 class="subtitle-1 mt-2">PRODUTO</h6>
-                        </v-col>
-                    </v-btn>
-
-                    <v-divider
-                        inset
-                        vertical
-                    />
-
-                    <v-btn
-                    width="8%"
-                    height="80"
-                    text
-                    color="#F7F4F4"
-                    >
-                        <v-col class="text-center">
-                            <v-icon size="30" >fas fa-address-card</v-icon>    
-                            <h6 class="subtitle-1 mt-2">PRODUTO</h6>
-                        </v-col>
-                    </v-btn>
-
-                    <v-divider
-                        inset
-                        vertical
-                    />
-
-                    <v-btn
-                    width="8%"
-                    height="80"
-                    text
-                    color="#F7F4F4"
-                    >
-                        <v-col class="text-center">
-                            <v-icon size="30">fas fa-address-card</v-icon>    
-                            <h6 class="subtitle-1 mt-2">PRODUTO</h6>
-                        </v-col>
-                    </v-btn>
-
-                    <v-divider
-                        inset
-                        vertical
-                    />
-
-                    <v-btn
-                    width="8%"
-                    height="80"
-                    text
-                    color="#F7F4F4"
-                    class="mr-12"
-                    >
-                        <v-col class="text-center">
-                            <v-icon size="30">fas fa-address-card</v-icon>    
-                            <h6 class="subtitle-1 mt-2">PRODUTO</h6>
-                        </v-col>
-                    </v-btn>
-
-                </v-row>
-            </div>
-
             <v-row
                 align="center"
                 justify="center"
@@ -159,8 +65,8 @@
                             style="background-color:#EFEAEA"
                             width="20%"
                             heigh="400"
-                            v-for="n in 4"
-                            :key="n">
+                            v-for="stream in stream"
+                            :key="stream">
                                 <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
                                         frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen>
@@ -169,8 +75,8 @@
                                         <v-list-item-content class="ml-5">
                                         <div>     
                                             <span style="color:green">Ao Vivo</span>
-                                            <v-list-item-title style="color:#63432D" class="bold headline mb-1">NOME DA LIVE</v-list-item-title>
-                                            <v-list-item-subtitle style="color:#1B120C">informaçoes da transmissao</v-list-item-subtitle>
+                                            <v-list-item-title style="color:#63432D" class="bold headline mb-1">{{stream.nome}}</v-list-item-title>
+                                            <v-list-item-subtitle style="color:#1B120C">{{stream.sub}}</v-list-item-subtitle>
                                                 <v-divider class="mx-5" color="#EDE7E2"/>
                                         </div>            
                                             <v-row class="mr-5" justify="center">
@@ -184,8 +90,8 @@
                             style="background-color:#EFEAEA"
                             width="20%"
                             heigh="400"
-                            v-for="n in 3"
-                            :key="n">
+                            v-for="stream2 in stream2"
+                            :key="stream2">
                                 <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
                                         frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen>
@@ -195,8 +101,8 @@
                                         <v-list-item-content class="ml-5"> 
                                             <div>     
                                             <span style="color:green">Ao Vivo</span>
-                                            <v-list-item-title style="color:#63432D" class="bold headline mb-1">NOME DA LIVE</v-list-item-title>
-                                            <v-list-item-subtitle style="color:#1B120C">informaçoes da transmissao</v-list-item-subtitle>
+                                            <v-list-item-title style="color:#63432D" class="bold headline mb-1">{{stream2.nome}}</v-list-item-title>
+                                            <v-list-item-subtitle style="color:#1B120C">{{stream2.sub}}</v-list-item-subtitle>
                                                 <v-divider class="mx-5" color="#EDE7E2"/>
                                         </div>            
                                             <v-row class="mr-5" justify="center">
@@ -268,8 +174,8 @@
                             style="background-color:#EFEAEA"
                             width="20%" 
                             height="420"
-                            v-for="n in 3"
-                            :key="n">
+                            v-for="Item in live"
+                            :key="Item">
                                 <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
                                         frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen>
@@ -279,8 +185,8 @@
                                         <v-list-item-content class="ml-5">
                                             <div> 
                                                 <span style="color:Orange">Em Breve</span>
-                                                <v-list-item-title style="color:#63432D" class="bold headline mb-1">NOME DA LIVE</v-list-item-title>
-                                                <v-list-item-subtitle style="color:#1B120C">informaçoes da transmissao</v-list-item-subtitle>
+                                                <v-list-item-title style="color:#63432D" class="bold headline mb-1">{{Item.nome}}</v-list-item-title>
+                                                <v-list-item-subtitle style="color:#1B120C">{{Item.informacoes}}</v-list-item-subtitle>
                                                     <v-divider class="mx-5" color="#EDE7E2"/>
                                             </div>    
                                             <v-row class="mr-5" justify="center">
@@ -316,47 +222,66 @@
                             <div
                             height="200"
                             align="center"
-                            style="border-right: 2px solid #F5F3F2; padding-right:100px;margin-top:2%"
+                            class="pagamentos"
                             colored-border
+                            v-for="items in anuItem"
+                            :key="items.title"
                             >
-                                <v-icon size="60" class="mt-2 mb-5" color="#F5F3F2">fas fa-address-card</v-icon>
-                                <v-list-item-title class="title" style="color:#F5F3F2">Pague no Cartão</v-list-item-title>
-                                <v-list-item-subtitle style="color:#F5F3F2" class="subtitle-1">de forma rapida e facil</v-list-item-subtitle>
-                                <v-card-text class="overline" style="color:#F5F3F2">em até 12x sem juros</v-card-text>
-                            </div>
-
-                            <div
-                            style="border-right: 2px solid #F5F3F2; padding-left:100px; padding-right:100px;margin-top:2%"
-                            height="200"
-                            align="center" 
-                            colored-border
-                            >
-                                <v-icon size="60" class="mt-2 mb-5" color="#F5F3F2">fas fa-address-card</v-icon>
-                                <v-list-item-title class="title" style="color:#F5F3F2">Pague no Boleto</v-list-item-title>
-                                <v-list-item-subtitle style="color:#F5F3F2" class="subtitle-1">de forma rapida e facil</v-list-item-subtitle>
-                                <v-card-text class="overline" style="color:#F5F3F2">em até 12x sem juros</v-card-text>
-                            </div>
-
-                            <div
-                            height="200"
-                            align="center"
-                            colored-border
-                            style="padding-left:100px;margin-top:2%"
-                            >
-                                <v-icon size="60" class="mt-2 mb-5" color="#F5F3F2">fas fa-address-card</v-icon>
-                                <v-list-item-title class="title" style="color:#F5F3F2">Pague no PayPal</v-list-item-title>
-                                <v-list-item-subtitle style="color:#F5F3F2" class="subtitle-1">de forma rapida e facil</v-list-item-subtitle>
-                                <v-card-text class="overline" style="color:#F5F3F2">em até 12x sem juros</v-card-text>
-                            </div>
+                                <v-icon size="60" class="mt-2 mb-5" color="#F5F3F2">{{items.i}}</v-icon>
+                                <v-list-item-title class="title" style="color:#F5F3F2">{{items.texto}}</v-list-item-title>
+                                <v-list-item-subtitle style="color:#F5F3F2" class="subtitle-1">{{items.texto2}}</v-list-item-subtitle>
+                                <v-card-text class="overline" style="color:#F5F3F2">{{items.parcela}}</v-card-text>
+                            </div>   
                         </v-row>
-                        
-                    </v-card>
-                
-    </v-app>   
+                    </v-card>  
+    </v-app> 
 </template>
 
+<!--STYLE-->
+<style scoped>
+    .pagamentos{
+        border-right: 2px solid #F5F3F2; 
+        padding-right:100px;
+        margin-top:2%;
+        margin-left:5%
+    }
+    .pagamentos:first-child{
+         margin-left:none
+    }
+    .pagamentos:last-child{
+        border-right: none;
+        
+    }
+</style>
+<!--scripts-->
 <script>
-  
+export default {
+    data() {
+        return{
+            stream:[
+                {nome:'Nome da Transmissoes',sub:'texto 1'},
+                {nome:'Nome da T',sub:'texto 2'},
+                {nome:'Nome da Transmissoes',sub:'texto 3'},
+                {nome:'Nome da T',sub:'texto 4'},
+            ],
+            stream2:[
+                {nome:'Nome da Transmissoes',sub:'texto 1'},
+                {nome:'Nome da T',sub:'texto 2'},
+                {nome:'Nome da Transmissoes',sub:'texto 3'},
+            ],
+            live:[
+                {nome:'NOME DÁ LIB', informacoes:'Texto 1'},
+                {nome:'NOME DÁ LIB', informacoes:'Texto 2'},
+                {nome:'NOME DÁ LIB', informacoes:'Texto 3'},
+            ],
+            anuItem:[
+                {i:'fas fa-address-card',texto:'Pague no cartao',texto2:'de credito ou debito',parcela:'12 vzs sem juros'},
+                {i:'fab fa-cc-paypal',texto:'Pague no PayPal',texto2:'de forma rapida e facil',parcela:'12 vzs sem juros'},
+                {i:'fas fa-money-bill',texto:'Pague no Boleto',texto2:'de forma rapida e facil',parcela:''},
+                ],
+            }
+        }
+    }    
 </script>
 
 
