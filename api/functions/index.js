@@ -1,17 +1,13 @@
-// Acesso
 // Importando Dependencias
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-// const credential = require('/home/aguia/Documents/firebase/portalleilao-26290-firebase-adminsdk-c5ywf-b4f15e6777.json');
-
 // inicializando firebase
 admin.initializeApp(functions.config().firebase);
-// Inicializando Servidor Express
+// Acesso
 const loginApp = express();
-
 loginApp.use(bodyParser.json());
 loginApp.use(bodyParser.urlencoded({extended:false}));
 loginApp.use(cors({origin:true}))
@@ -52,12 +48,10 @@ loginApp.post('/criarUser',async (req, res) => {
             address:req.body.address,
             phone:req.body.phone,
             accountClass:req.body.accountClass,
-            password:req.body.password
-            
+            password:req.body.password        
         };
         let query = await user.add(newUser)
         res.status(200).send(`Gravado!${JSON.stringify(req.body)}`)
-
     }
     catch(err) {
         res.status(400).send(err.message);
@@ -66,7 +60,6 @@ loginApp.post('/criarUser',async (req, res) => {
 });
 // Item
 const itemApp = express();
-
 itemApp.use(bodyParser.json());
 itemApp.use(bodyParser.urlencoded({extended:false}));
 itemApp.use(cors({origin:true}));
@@ -95,7 +88,6 @@ itemApp.post('/getItemById', async (req, res) => {
              item = doc.data()
             return res.status(200).send(`${JSON.stringify(item)}`)
         })
-        
     }
     catch(err){
         res.status(400).send(err.message);
