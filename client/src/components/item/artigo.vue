@@ -34,25 +34,17 @@
 
 			</v-card>
 		</div>
-		
-		<br>
-		
-
 		<a href="#" style="text-decoration:none;float:right;margin-left:1%">  Próximo </a>  
 		<a href="#" style="text-decoration:none;float:right;margin-left:1%">  Anterior </a>
-		<a href="#"  style="text-decoration:none;float:right"> Voltar | </a>   
-		<br>     
-		<hr>
-
+		<a href="#"  style="text-decoration:none;float:right"> Voltar | </a>    
+		<p>{{artigo.name}}</p>
 		<p style="font-size:12px">
 			<b>visitas:</b>   
 			25
 		</p>
-
 		<div align="justify">
 			<v-text >{{ artigo.description }}</v-text>
 		</div>
-		<hr>
 		<p style="font-size:12px">
 		<b>Local:</b>   
 			Rio de Janeiro
@@ -103,13 +95,13 @@ export default {
 			// teste botao de abrir leilao
 			
 			artigo: {
-				name:"Carro",
-				img:"https://firebasestorage.googleapis.com/v0/b/portalleilao-26290.appspot.com/o/Files%2FArticles%2Farticles%20Portal%20Leiloes%20from%20Sun%20May%2003%202020%2011%3A15%3A23%20GMT-0300%20(Brasilia%20Standard%20Time)?alt=media&token=74d2e610-c010-42c5-93a5-9e0734a19117",
-				description:"Carro novo e com pouco tempo de uso",
-				link: "https://www.youtube.com/watch?v=kc0Q9sfbhwg",
-				date:"30/06/2020",
-				initialbid:55.00,
-				status:false,				
+				name:"",
+				img:"",
+				description:"",
+				link: "",
+				date:"",
+				initialbid:"",
+				status:"",				
 			},
 			vendedor: {
 				value: 5
@@ -119,9 +111,22 @@ export default {
 
 	created() {
 		//const ID = 'category';
-		const ID = 'leilaoBeta';
-      axios.get('https://us-central1-portalleilao-26290.cloudfunctions.net/item/'+ID )
-      .then(response => console.log(response.data))
+      axios.post('https://us-central1-portalleilao-26290.cloudfunctions.net/item/getItemById',{
+		id:'leilaoBeta'
+	})
+      .then(response => {
+		this.artigo = {
+			name: response.data.name,
+			date: response.data.date,
+			description: response.data.description,
+			img: response.data.img,
+			initialbid: response.data.initialbid,
+			link: response.data.link,
+			status: response.data.status
+		
+		}
+		
+	})
       .catch(error => console.log(error))
 	},
 	

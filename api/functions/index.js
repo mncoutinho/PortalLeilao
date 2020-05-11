@@ -85,6 +85,22 @@ catch(err){
     res.status(400).send(err.message)
 }
 });
+itemApp.post('/getItemById', async (req, res) => {
+    try{
+        let id = req.body.id;
+        let item = "";
+        let query = await items.doc(id)
+        .get()
+        .then(doc => {
+             item = doc.data()
+            return res.status(200).send(`${JSON.stringify(item)}`)
+        })
+        
+    }
+    catch(err){
+        res.status(400).send(err.message);
+    }
+})
 itemApp.get('/getItems', async (req, res) => {
     try {
         let query = await items.get().then(snapshot => {
@@ -132,7 +148,7 @@ const leilaoApp = express();
 
 leilaoApp.use(bodyParser.json());
 leilaoApp.use(bodyParser.urlencoded({extended:false}));
-leilaoApp.use(cors(òrigin:true));
+leilaoApp.use(cors({origin:true}));
 const leiloes = db.collection('leilao');
 leilaoApp.get('/', (req, res) => res.send('Olá Mundo!'));
 leilaoApp.get('/getleiloes', async (req, res) => {
