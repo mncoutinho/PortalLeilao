@@ -23,8 +23,6 @@ loginApp.use(bodyParser.urlencoded({extended:false}));
 loginApp.use(cors({origin:true}))
 
 loginApp.get('/', (req, res) => res.send('Olá Mundo!'));
-
-//usuarios
 loginApp.get('/getUsers', async (req, res) => {
     try {
         let query = await user.get().then(snapshot => {
@@ -114,9 +112,6 @@ itemApp.get('/getItems', async (req, res) => {
                users.push({ 
                 active: doc.data().active,
                 name:doc.data().name,
-                img:doc.data().img,
-                date: doc.data().date,
-                link: doc.data().link,
                 category: doc.data().category,
                 description:doc.data().description,
                 initialBid: doc.data().initialBid,
@@ -137,6 +132,7 @@ itemApp.post('/uploadImage', async (req,res) => {
         await bucket.upload(req.data.image,{
             gzip:true
         })
+        res.status(200).send("Enviado Com Sucesso")
     }
     catch(err){
         res.status(400).send(err.message);
