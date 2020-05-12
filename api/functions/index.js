@@ -4,17 +4,27 @@ const admin = require('firebase-admin');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+
 // inicializando firebase
 admin.initializeApp(functions.config().firebase);
+
+// Iniciando Storage
+const storage = admin.storage();
+
+// Inicializando banco
+const db = admin.firestore();
+const user = db.collection('user');
+
 // Acesso
+// Inicializando Servidor Express
 const loginApp = express();
 loginApp.use(bodyParser.json());
 loginApp.use(bodyParser.urlencoded({extended:false}));
 loginApp.use(cors({origin:true}))
-// Inicializnando banco
-const db = admin.firestore();
-const user = db.collection('user');
+
 loginApp.get('/', (req, res) => res.send('Olá Mundo!'));
+
+//usuarios
 loginApp.get('/getUsers', async (req, res) => {
     try {
         let query = await user.get().then(snapshot => {
@@ -48,16 +58,19 @@ loginApp.post('/criarUser',async (req, res) => {
             address:req.body.address,
             phone:req.body.phone,
             accountClass:req.body.accountClass,
-            password:req.body.password        
+            password:req.body.password
+            
         };
         let query = await user.add(newUser)
         res.status(200).send(`Gravado!${JSON.stringify(req.body)}`)
+
     }
     catch(err) {
         res.status(400).send(err.message);
     
     }
 });
+
 // Item
 const itemApp = express();
 itemApp.use(bodyParser.json());
@@ -92,7 +105,7 @@ itemApp.post('/getItemById', async (req, res) => {
     catch(err){
         res.status(400).send(err.message);
     }
-})
+});
 itemApp.get('/getItems', async (req, res) => {
     try {
         let query = await items.get().then(snapshot => {
@@ -101,10 +114,13 @@ itemApp.get('/getItems', async (req, res) => {
                users.push({ 
                 active: doc.data().active,
                 name:doc.data().name,
+                img:doc.data().img,
+                date: doc.data().date,
+                link: doc.data().link,
                 category: doc.data().category,
                 description:doc.data().description,
-                initialbid: doc.data().initialbid,
-                partialbid:doc.data().partialbid
+                initialBid: doc.data().initialBid,
+                partialBid:doc.data().partialBid
                 });
             })
             return users
@@ -115,29 +131,39 @@ itemApp.get('/getItems', async (req, res) => {
         res.status(400).send(err.message);
     }
 });
+itemApp.post('/uploadImage', async (req,res) => {
+    try{
+        let bucket = storage.bucket('items/');
+        await bucket.upload(req.data.image,{
+            gzip:true
+        })
+    }
+    catch(err){
+        res.status(400).send(err.message);
+    }
+})
 itemApp.post('/criarItem', async (req, res) => {
     try{
         let newUser = {
-            active:req.body.active,
-            name:req.body.name,
-            description:req.body.description,
-            initialbid:req.body.initialbid,
-            category:req.body.category,
-            partialbid:req.body.partialbid,
-            idUser:req.body.idUser
+                active:true,
+                name:req.body.name,
+                description:req.body.description,
+                initialBid:req.body.initialBid,
+                category:req.body.category,
+                partialbid:req.body.initialBid,
+                idUser:req.body.idUser
         };
-        let query = await items.add(newUser)
-        res.status(200).send(`Gravado!${JSON.stringify(req.body)}`)
-
+        let query = await items.add(newUser);
+        res.status(200).send(`Gravado!${JSON.stringify(req.body)}`);
     }
     catch(err) {
         res.status(400).send(err.message);
     
     }
 });
+
 // Leilão
 const leilaoApp = express();
-
 leilaoApp.use(bodyParser.json());
 leilaoApp.use(bodyParser.urlencoded({extended:false}));
 leilaoApp.use(cors({origin:true}));
