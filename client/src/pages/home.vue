@@ -270,9 +270,9 @@ export default {
                 {nome:'Nome da Transmissoes',sub:'texto 3'},
             ],
             live:[
-                {nome:'NOME DÁ LIB', informacoes:'Texto 1'},
-                {nome:'NOME DÁ LIB', informacoes:'Texto 2'},
-                {nome:'NOME DÁ LIB', informacoes:'Texto 3'},
+                {nome:'Nome Dá Prox Transmissao', informacoes:'Texto 1'},
+                {nome:'Nome Dá Prox Transmissao', informacoes:'Texto 2'},
+                {nome:'Nome Dá Prox Transmissao', informacoes:'Texto 3'},
             ],
             anuItem:[
                 {i:'fas fa-address-card',texto:'Pague no cartao',texto2:'de credito ou debito',parcela:'12 vzs sem juros'},
