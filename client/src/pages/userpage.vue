@@ -114,13 +114,11 @@
         <v-tab-item>
           <v-card flat>
             <v-card-text>
-              <p>
-                Fusce a quam. Phasellus nec sem in justo pellentesque facilisis. Nam eget dui. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. In dui magna, posuere eget, vestibulum et, tempor auctor, justo.
-              </p>
+              <!--Titulo-->
+              <v-row justify="center" class="mb-12"> 
+                <h1>Cartoes</h1>
+              </v-row>
   
-              <p class="mb-0">
-                Cras sagittis. Phasellus nec sem in justo pellentesque facilisis. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nam at tortor in tellus interdum sagittis.
-              </p>
             </v-card-text>
           </v-card>
         </v-tab-item>
@@ -183,11 +181,26 @@
                 </v-card>
               </v-col>
             </v-card>
-          
         </v-tab-item>
         <!--ITEM 5-->
         <v-tab-item>
-
+          <!--Titulo da pagina-->
+          <v-row justify="center"> 
+            <h1>Entre em contato conosco...</h1>
+          </v-row>
+          <v-row class="mt-12">
+            <v-col
+            align="center" 
+            justify="space-around"
+            :key="contato"
+            v-for="contato in contact">
+              <v-icon size="100" color="#5B2D2A">{{contato.icon}}</v-icon>
+                <!--Titulo do iten-->
+              <h3 class="mt-6" style="color:#422321">{{contato.tipo}}</h3>
+              <p>{{contato.texto}} </p>
+              <p class="title">{{contato.forma}}</p>            
+            </v-col>
+          </v-row>  
         </v-tab-item>
       </v-tabs>
   </v-card>
@@ -210,6 +223,11 @@ export default {
         {i:'fas fa-id-card',dados:'Cartoes'},
         {i:'fas fa-hourglass',dados:'Historico'},
         {i:'fas fa-phone',dados:'Contate-nos'}
+      ],
+      contact:[
+        {icon:'far fa-envelope',tipo:'Email',texto:'24 horas por dia',forma:'Portal@gmail.com'},
+        {icon:'fas fa-mobile-alt',tipo:'Telefone',texto:'24 horas por dia',forma:'(21)2424-2424'},
+        {icon:'far fa-comment',tipo:'Chat',texto:'24 horas por dia',forma:'Chat'},
       ]
     }
   }
