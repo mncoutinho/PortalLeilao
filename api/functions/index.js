@@ -149,17 +149,17 @@ itemApp.get('/getAllItem', async (req, res) => {
 
 itemApp.get('/searchItem', async (req, res) => {
     try{
-        let filter = where('initialbid',">", 500);
-        let query = await items.filter.get().then(snapshot =>{
-            let artigo = [];
+        let filter =  items.where('initialbid',">",500);
+        let query = await filter.get().then(snapshot =>{
+            let article = [];
             snapshot.forEach(doc =>{
-                artigo.push({
+                article.push({
                     name: doc.data().name,
                     valor: doc.data().initialbid,
                     id: doc.id
                 });
             })
-            return artigo
+            return article
         })
         res.status(200).send(query);
     }
