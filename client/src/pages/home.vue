@@ -110,10 +110,10 @@
                                             </v-row> 
                                         </v-list-item-content>   
                             </v-card>
-                            
+                            <!--Botao para ver mais-->
                             <v-btn
                             width="20%"
-                            height="400"
+                            height="420"
                             color="#EDE7E2"
                             >   
                                 <v-col>
@@ -194,10 +194,10 @@
                                             </v-row>  
                                         </v-list-item-content>   
                             </v-card>
-                            
+                            <!--BOTAO-->
                             <v-btn
                             width="20%"
-                            height="400"
+                            height="420"
                             color="#EDE7E2"
                             >   
                                 <v-col>
@@ -209,13 +209,38 @@
 
                         </v-row>
                 </v-card>
-
+                <div
+                style="background-color:#EFEAEA"
+                class="mt-4"
+                >
+                    <v-row >
+                        <v-col align="center" class="mt-4">
+                            <v-text class="display-1">Fique por dentro das ultimas novidades.</v-text>
+                            <v-col cols="12" sm="5" class="mt-6">
+                                <v-row>   
+                                    <v-text-field
+                                    solo
+                                    label="Email">
+                                    </v-text-field>
+                                    
+                                </v-row>
+                                <v-btn
+                                class="mt-1 ml-6 white--text"
+                                color="#422321"
+                                large
+                                >
+                                    Enviar    
+                                </v-btn>
+                            </v-col>    
+                           
+                        </v-col>
+                    </v-row>
+                </div>
                 <!--PROPAGANDA/A alma do negocio-->
                     <v-card
                     width="100%"
                     height="250"
                     :elevation="0"
-                    class="mt-12"
                     color="#AC9594">
                         
                         <v-row justify="center">
@@ -249,8 +274,7 @@
          margin-left:none
     }
     .pagamentos:last-child{
-        border-right: none;
-        
+        border-right: none; 
     }
 </style>
 <!--scripts-->
@@ -275,8 +299,8 @@ export default {
                 {nome:'Nome Dá Prox Transmissao', informacoes:'Texto 3'},
             ],
             anuItem:[
-                {i:'fas fa-address-card',texto:'Pague no cartao',texto2:'de credito ou debito',parcela:'12 vzs sem juros'},
-                {i:'fab fa-cc-paypal',texto:'Pague no PayPal',texto2:'de forma rapida e facil',parcela:'12 vzs sem juros'},
+                {i:'fas fa-address-card',texto:'Pague no cartao',texto2:'de credito ou debito',parcela:'12X  sem juros'},
+                {i:'fab fa-cc-paypal',texto:'Pague no PayPal',texto2:'de forma rapida e facil',parcela:'3X sem juros'},
                 {i:'fas fa-money-bill',texto:'Pague no Boleto',texto2:'de forma rapida e facil',parcela:''},
                 ],
             }

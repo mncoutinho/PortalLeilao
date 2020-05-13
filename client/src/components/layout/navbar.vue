@@ -42,8 +42,8 @@
          v-for="item in menuItens"
           :key="item.title"
           :to="item.link">
-          <v-icon>{{ item.i }}</v-icon>
           {{item.title}}
+          <v-icon class="ml-2" size="15">{{ item.i }}</v-icon>
         </v-btn>
       </v-toolbar-items>
       </v-app-bar>
@@ -58,7 +58,7 @@ export default {
         drawer:false,
            menuItens:[
           { i: '', title: 'cadastre-se', link: '/criar' },
-          { i: '', title: 'Login', link: '/login' },
+          { i: 'fas fa-arrow-right', title: 'Login', link: '/login' },
         ],
         navItens:[
           { i: 'fas fa-home', title: 'HOME', routerLinks: '/' },
