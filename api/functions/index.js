@@ -126,13 +126,32 @@ itemApp.get('/getItems', async (req, res) => {
         res.status(400).send(err.message);
     }
 });
+
+itemApp.get('/getAllItem', async (req, res) => {
+    try{
+        let query = await items.get().then(snapshot =>{
+            let artigo = [];
+            snapshot.forEach(doc =>{
+                artigo.push({
+                    name: doc.data().name,
+                    id: doc.id
+                });
+            })
+            return artigo
+        })
+        res.status(200).send(query);
+    }
+    catch(err){
+        res.status(400).send(err.message);
+    }
+});
+
 itemApp.post('/uploadImage', async (req,res) => {
     try{
         let bucket = storage.bucket('items/');
         await bucket.upload(req.data.image,{
             gzip:true
         })
-        res.status(200).send("Enviado Com Sucesso")
     }
     catch(err){
         res.status(400).send(err.message);
