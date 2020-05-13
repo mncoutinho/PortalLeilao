@@ -134,6 +134,27 @@ itemApp.get('/getAllItem', async (req, res) => {
             snapshot.forEach(doc =>{
                 artigo.push({
                     name: doc.data().name,
+                    valor: doc.data().initialbid,
+                    id: doc.id
+                });
+            })
+            return artigo
+        })
+        res.status(200).send(query);
+    }
+    catch(err){
+        res.status(400).send(err.message);
+    }
+});
+
+itemApp.get('/searchItem', async (req, res) => {
+    try{
+        let query = await items.where('initialbid',">", 500).get().then(snapshot =>{
+            let artigo = [];
+            snapshot.forEach(doc =>{
+                artigo.push({
+                    name: doc.data().name,
+                    valor: doc.data().initialbid,
                     id: doc.id
                 });
             })
