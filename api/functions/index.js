@@ -149,7 +149,15 @@ itemApp.get('/getAllItem', async (req, res) => {
 
 itemApp.get('/searchItem', async (req, res) => {
     try{
-        let filter =  items.where('initialbid',">",500);
+        let filter = "";
+        let composite = true;
+        if(composite){
+            filter =  items.where('initialbid',">",500).where('initialbid',"<",1000);
+        }else{
+            filter =  items.where('initialbid',">",500);
+        }
+        
+        
         let query = await filter.get().then(snapshot =>{
             let article = [];
             snapshot.forEach(doc =>{
