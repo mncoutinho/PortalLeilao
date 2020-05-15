@@ -197,13 +197,13 @@ itemApp.post('/createItem', async (req, res) => {
                 category:req.body.category,
                 date:req.body.date,
                 description:req.body.description,
-                img:req.body.img,
+                imgUrl:req.body.imgUrl,
                 initialBid:req.body.initialBid,
                 link:req.body.link,
                 name:req.body.name,                
         };
         let query = await items.add(newItem);
-        res.status(200).send(`Gravado!${JSON.stringify(req.body)}`);
+        res.status(200).send(`${req.body.name} gravado com Sucesso!`);
     }
     catch(err) {
         res.status(400).send(err.message);
@@ -220,13 +220,13 @@ itemApp.put('/updateItem', async (req, res) => {
             category:req.body.category,
             date:req.body.date,
             description:req.body.description,
-            img:req.body.img,
+            imgUrl:req.body.imgUrl,
             initialBid:req.body.initialBid,
             link:req.body.link,
             name:req.body.name,     
         };
         let query = await items.doc(id).update(Item);
-        res.status(200).send(`Atualizado!${JSON.stringify(req.body)}`);
+        res.status(200).send(`${JSON.stringify(req.body)} atualizados com sucesso`);
     }
     catch(err) {
         res.status(400).send(err.message);
