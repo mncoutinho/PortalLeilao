@@ -226,7 +226,7 @@ itemApp.put('/updateItem', async (req, res) => {
             name:req.body.name,     
         };
         let query = await items.doc(id).update(Item);
-        res.status(200).send('Atualizado!${JSON.stringify(req.body)}');
+        res.status(200).send(`Atualizado!${JSON.stringify(req.body)}`);
     }
     catch(err) {
         res.status(400).send(err.message);
