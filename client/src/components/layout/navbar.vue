@@ -13,11 +13,11 @@
             :to="items.routerLinks"
             class="mb-2"
             >
-            <v-col>
-              <v-icon left>{{ items.i }}</v-icon>  
-              <v-text-title class="ml-12">{{ items.title }}</v-text-title>
-            </v-col>  
-          </v-btn>
+              <v-col>
+                <v-icon left>{{ items.i }}</v-icon>  
+                <v-text-title class="ml-12">{{ items.title }}</v-text-title>
+              </v-col>  
+            </v-btn>
           </v-list-item-content>          
         </v-list>
       </v-navigation-drawer>
@@ -38,8 +38,8 @@
         </v-toolbar-title>
         <v-spacer/>
         <v-toolbar-items class="hidden-xs-only">
-         <v-btn color="#EEB147" text  center style="text-decoration:none;"
-         v-for="item in menuItens"
+         <v-btn color="#EEB147" text center style="text-decoration:none;"
+          v-for="item in menuItens"
           :key="item.title"
           :to="item.link">
           {{item.title}}
@@ -64,8 +64,6 @@ export default {
           { i: 'fas fa-home', title: 'HOME', routerLinks: '/' },
           { i: 'fas fa-plus', title: 'Item', routerLinks: '/adicionarItem' },
           { i: 'fas fa-gavel ', title: ' leilão', routerLinks: '/leilao' },
-
-         
         ]
       }
     }

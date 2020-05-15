@@ -1,6 +1,5 @@
 <template >      
     <v-app id="inspire">
-        
         <!--IMAGEM-->
         <v-parallax
         dark
@@ -52,85 +51,64 @@
                     </v-col>    
                 </v-card>
                     <!-- BOX-->
-                    <v-card :elevation="0"  height="1100">
-                        <v-row justify="center">
-                                <v-text class="mt-10 display-1" style="color:#A64E4B;" >Veja quem está ao vivo, agora
-                                    <v-divider class="mx-8" color="white"/>
-                                </v-text>
-                                
-                        </v-row >
-                        <!--TRANSMISSOES-->
-                        <v-row align="center" justify="space-around" class="mt-12">       
-                            <v-card
-                            style="background-color:#EFEAEA"
-                            width="20%"
-                            heigh="400"
-                            v-for="stream in stream"
-                            :key="stream">
-                                <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
-                                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen>
-                                </iframe>
-                                    
-                                        <v-list-item-content class="ml-5">
-                                        <div>     
-                                            <span style="color:green">Ao Vivo</span>
-                                            <v-list-item-title style="color:#63432D" class="bold headline mb-1">{{stream.nome}}</v-list-item-title>
-                                            <v-list-item-subtitle style="color:#1B120C">{{stream.sub}}</v-list-item-subtitle>
-                                                <v-divider class="mx-5" color="#EDE7E2"/>
-                                        </div>            
-                                            <v-row class="mr-5" justify="center">
-                                                <v-btn outlined class="pr-12 pl-12" color="green">PARTICIPAR</v-btn>
-                                            </v-row>
-                                        </v-list-item-content>   
-                            </v-card>
-                        </v-row>
-                        <v-row align="center" justify="space-around" class="mt-12">       
-                            <v-card
-                            style="background-color:#EFEAEA"
-                            width="20%"
-                            heigh="400"
-                            v-for="stream2 in stream2"
-                            :key="stream2">
-                                <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
-                                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen>
-                                           
-                                        </iframe>
+                    <v-flex class="mt-auto">
+                        <v-card :elevation="0" max-width="1550" class="mx-auto">
+                            <v-row justify="center">
+                                    <v-text class="mt-10 display-1" style="color:#A64E4B;" >Veja quem está ao vivo, agora
+                                        <v-divider class="mx-8" color="white"/>
+                                    </v-text>
+                            </v-row >
+                            <!--TRANSMISSOES-->
+                            <v-row 
+                            align="center" 
+                            justify="space-around" 
+                            class="mt-12"
+                            >       
+                                <v-card
+                                class="mt-6 mb-6"
+                                style="background-color:#EFEAEA"
+                                width="350"
+                                v-for="stream in stream"
+                                :key="stream">
+                                    <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
+                                            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen>
+                                    </iframe>
                                         
-                                        <v-list-item-content class="ml-5"> 
+                                            <v-list-item-content class="ml-5">
                                             <div>     
-                                            <span style="color:green">Ao Vivo</span>
-                                            <v-list-item-title style="color:#63432D" class="bold headline mb-1">{{stream2.nome}}</v-list-item-title>
-                                            <v-list-item-subtitle style="color:#1B120C">{{stream2.sub}}</v-list-item-subtitle>
-                                                <v-divider class="mx-5" color="#EDE7E2"/>
-                                        </div>            
-                                            <v-row class="mr-5" justify="center">
-                                                <v-btn outlined class="pr-12 pl-12" color="green">PARTICIPAR</v-btn>
-                                            </v-row> 
-                                        </v-list-item-content>   
-                            </v-card>
+                                                <span style="color:green">Ao Vivo</span>
+                                                <v-list-item-title style="color:#63432D" class="bold headline mb-1">{{stream.nome}}</v-list-item-title>
+                                                <v-list-item-subtitle style="color:#1B120C">{{stream.sub}}</v-list-item-subtitle>
+                                                    <v-divider class="mx-5" color="#EDE7E2"/>
+                                            </div>            
+                                                <v-row class="mr-5" justify="center">
+                                                    <v-btn outlined class="pr-12 pl-12" color="green">PARTICIPAR</v-btn>
+                                                </v-row>
+                                            </v-list-item-content>   
+                                </v-card>
+                            </v-row>
+                            <v-row align="center" justify="space-around" class="mt-12">
                             <!--Botao para ver mais-->
-                            <v-btn
-                            width="20%"
-                            height="420"
-                            color="#EDE7E2"
-                            >   
-                                <v-col>
-                                  <h1 class="display-4" 
-                                      style="color:#342B25" >
-                                      +
-                                      </h1>
-                                  <h6 style="color:#342B25"
-                                  >
-                                  Para ver mais...
-                                  </h6>
-                                </v-col>  
-                            </v-btn>
-
-
-                        </v-row>
-                    </v-card>
+                                <!-- <v-btn
+                                width="20%"
+                                height="420"
+                                color="#EDE7E2"
+                                >   
+                                    <v-col>
+                                    <h1 class="display-4" 
+                                        style="color:#342B25" >
+                                        +
+                                        </h1>
+                                    <h6 style="color:#342B25"
+                                    >
+                                    Para ver mais...
+                                    </h6>
+                                    </v-col>  
+                                </v-btn> -->
+                            </v-row>
+                        </v-card>
+                    </v-flex>
                     <!--ANUNCIO-->
                 <v-row>
                     <!--TEXTO-->
@@ -162,14 +140,15 @@
                 </v-row>
             <!--LIVES FUTURAS-->
                 <!--TITULO-->
-                <v-card :elevation="0"  height="600">    
-                    <v-row justify="center">
-                        <v-text class="mt-8 display-1" style="color:#A64E4B">Veja os proximos leiloes
-                            <v-divider class="mx-8" color="white"/>
-                        </v-text>
-                    </v-row>
-                    <!--CARDS-->
-                    <v-row align="center" justify="space-around" class="mt-12">       
+                
+                    <v-card :elevation="0" >    
+                        <v-row justify="center">
+                            <v-text class="mt-8 display-1" style="color:#A64E4B">Veja os proximos leiloes
+                                <v-divider class="mx-8" color="white"/>
+                            </v-text>
+                        </v-row>
+                        <!--CARDS-->
+                        <v-row align="center" justify="space-around" class="mt-12">       
                             <v-card
                             style="background-color:#EFEAEA"
                             width="20%" 
@@ -177,22 +156,20 @@
                             v-for="Item in live"
                             :key="Item">
                                 <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
-                                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen>
-                                           
-                                        </iframe>
-                                        
-                                        <v-list-item-content class="ml-5">
-                                            <div> 
-                                                <span style="color:Orange">Em Breve</span>
-                                                <v-list-item-title style="color:#63432D" class="bold headline mb-1">{{Item.nome}}</v-list-item-title>
-                                                <v-list-item-subtitle style="color:#1B120C">{{Item.informacoes}}</v-list-item-subtitle>
-                                                    <v-divider class="mx-5" color="#EDE7E2"/>
-                                            </div>    
-                                            <v-row class="mr-5" justify="center">
-                                                <v-btn outlined class="pr-5 pl-5" style="color:Orange">Em breve</v-btn>
-                                            </v-row>  
-                                        </v-list-item-content>   
+                                    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>    
+                                </iframe>
+                                <v-list-item-content class="ml-5">
+                                    <div> 
+                                    <span style="color:Orange">Em Breve</span>
+                                        <v-list-item-title style="color:#63432D" class="bold headline mb-1">{{Item.nome}}</v-list-item-title>
+                                    <v-list-item-subtitle style="color:#1B120C">{{Item.informacoes}}</v-list-item-subtitle>
+                                        <v-divider class="mx-5" color="#EDE7E2"/>
+                                    </div>    
+                                    <v-row class="mr-5" justify="center">
+                                        <v-btn outlined class="pr-5 pl-5" style="color:Orange">Em breve</v-btn>
+                                    </v-row>  
+                                </v-list-item-content>   
                             </v-card>
                             <!--BOTAO-->
                             <v-btn
@@ -201,14 +178,13 @@
                             color="#EDE7E2"
                             >   
                                 <v-col>
-                                  <h1 class="display-4" style="color:#342B25">+</h1>
-                                  <h6 style="color:#342B25">Para ver mais...</h6>
+                                    <h1 class="display-4" style="color:#342B25">+</h1>
+                                    <h6 style="color:#342B25">Para ver mais...</h6>
                                 </v-col>  
                             </v-btn>
-
-
                         </v-row>
-                </v-card>
+                    </v-card>
+                
                 <div
                 style="background-color:#EFEAEA"
                 class="mt-4"
@@ -287,12 +263,12 @@ export default {
                 {nome:'Nome da T',sub:'texto 2'},
                 {nome:'Nome da Transmissoes',sub:'texto 3'},
                 {nome:'Nome da T',sub:'texto 4'},
+                {nome:'Nome da Transmissoes',sub:'texto 5'},
+                {nome:'Nome da T',sub:'texto 6'},
+                {nome:'Nome da Transmissoes',sub:'texto 7'},
+                {nome:'Nome da T',sub:'texto 8'},
             ],
-            stream2:[
-                {nome:'Nome da Transmissoes',sub:'texto 1'},
-                {nome:'Nome da T',sub:'texto 2'},
-                {nome:'Nome da Transmissoes',sub:'texto 3'},
-            ],
+            
             live:[
                 {nome:'Nome Dá Prox Transmissao', informacoes:'Texto 1'},
                 {nome:'Nome Dá Prox Transmissao', informacoes:'Texto 2'},

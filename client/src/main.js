@@ -9,11 +9,6 @@ import store from './store';
 //Import icones
 import '@fortawesome/fontawesome-free/css/all.css';
 
-
-
-
-
-
 Vue.use(VueRouter);
 
 const router = routes;
@@ -26,4 +21,8 @@ new Vue({
     store,
     render: h => h(App)
 }).$mount("#app");
+
+
+
+
 
