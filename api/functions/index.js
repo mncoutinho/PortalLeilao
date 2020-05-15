@@ -76,6 +76,7 @@ itemApp.use(bodyParser.urlencoded({extended:false}));
 itemApp.use(cors({origin:true}));
 const items = db.collection('item');
 itemApp.get('/', (req, res) => res.send('Olá Mundo!'));
+//categoria
 itemApp.get('/category', async (req, res) => {
 try{
     let getCategory = await items.doc('category').get().then(doc => {
@@ -188,18 +189,19 @@ itemApp.post('/uploadImage', async (req,res) => {
         res.status(400).send(err.message);
     }
 })
-itemApp.post('/criarItem', async (req, res) => {
+itemApp.post('/createItem', async (req, res) => {
     try{
-        let newUser = {
+        let newItem = {
                 active:true,
-                name:req.body.name,
-                description:req.body.description,
-                initialBid:req.body.initialBid,
                 category:req.body.category,
-                partialbid:req.body.initialBid,
-                idUser:req.body.idUser
+                date:req.body.date,
+                description:req.body.description,
+                img:req.body.img,
+                initialBid:req.body.initialBid,
+                link:req.body.link,
+                name:req.body.name,                
         };
-        let query = await items.add(newUser);
+        let query = await items.add(newItem);
         res.status(200).send(`Gravado!${JSON.stringify(req.body)}`);
     }
     catch(err) {
