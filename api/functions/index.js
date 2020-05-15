@@ -188,7 +188,8 @@ itemApp.post('/uploadImage', async (req,res) => {
     catch(err){
         res.status(400).send(err.message);
     }
-})
+});
+//criacao de item
 itemApp.post('/createItem', async (req, res) => {
     try{
         let newItem = {
@@ -207,6 +208,28 @@ itemApp.post('/createItem', async (req, res) => {
     catch(err) {
         res.status(400).send(err.message);
     
+    }
+});
+
+//update Item
+itemApp.put('/updateItem', async (req, res) => {
+    try{
+        let id = req.body.id;
+        let Item = {
+            active:req.body.active,
+            category:req.body.category,
+            date:req.body.date,
+            description:req.body.description,
+            img:req.body.img,
+            initialBid:req.body.initialBid,
+            link:req.body.link,
+            name:req.body.name,     
+        };
+        let query = await items.doc(id).update(Item);
+        res.status(200).send('Atualizado!${JSON.stringify(req.body)}');
+    }
+    catch(err) {
+        res.status(400).send(err.message);
     }
 });
 
