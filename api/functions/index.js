@@ -232,6 +232,17 @@ itemApp.put('/updateItem', async (req, res) => {
         res.status(400).send(err.message);
     }
 });
+//delete item
+itemApp.delete('/deleteItem', async (req, res) =>{
+    try{
+        let id = req.body.id;
+    let query = await items.doc(id).delete();
+    res.status(200).send(`Item com o id ${JSON.stringify(req.body.id)} apagado com Sucesso`);
+    }
+    catch(err){
+        res.status(400).send(err.message);
+    }
+});
 
 // Leilão
 const leilaoApp = express();
