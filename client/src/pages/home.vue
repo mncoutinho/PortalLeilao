@@ -20,7 +20,7 @@
                     color="white"
                 ></v-text-field>
 
-                <v-col class="text-center" cols="12">
+                <v-col class="text-center" cols="12" >
                     <h4 style=" color:white" class=" display-1">Venha participar do nosso site</h4>
                 </v-col>
           </v-col>
@@ -52,11 +52,23 @@
                 </v-card>
                     <!-- BOX-->
                     <v-flex class="mt-auto">
-                        <v-card :elevation="0" max-width="1550" class="mx-auto">
+                        <v-card :elevation="0" 
+                        max-width="1550"
+                        class="mx-auto">
                             <v-row justify="center">
-                                    <v-text class="mt-10 display-1" style="color:#A64E4B;" >Veja quem está ao vivo, agora
-                                        <v-divider class="mx-8" color="white"/>
-                                    </v-text>
+                                    <v-col 
+                                    cols="12"
+                                    md="6"
+                                    align="center"
+                                    class="mt-12"
+                                    >
+                                        <v-text 
+                                        class="display-1"
+                                        style="color:#A64E4B;">
+                                            Veja quem está ao vivo, agora
+                                            <v-divider class="mx-8" color="white"/>
+                                        </v-text>
+                                    </v-col>
                             </v-row >
                             <!--TRANSMISSOES-->
                             <v-row 
@@ -67,7 +79,7 @@
                                 <v-card
                                 class="mt-6 mb-6"
                                 style="background-color:#EFEAEA"
-                                width="350"
+                                width="330"
                                 v-for="stream in stream"
                                 :key="stream">
                                     <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
@@ -109,27 +121,25 @@
                             </v-row>
                         </v-card>
                     </v-flex>
+
                     <!--ANUNCIO-->
-                <v-row>
+                <v-row
+                class="hidden-sm-only hidden-xs-only">
                     <!--TEXTO-->
                     <v-card
                     width="50%"
-                    height="400"
                     :elevation="0"
                     color="#AC9594"
                     >
                         <v-col class="mt-12 ml-12" sm="10" >
-                            <v-card-title class="headline" style="color:#120908">Não Sabe como "leiloar" ?</v-card-title>
-                                
+                            <v-card-title class="headline" style="color:#120908">Não Sabe como "leiloar" ?</v-card-title>   
                                 <v-card-subtitle class="subtitle-1" style="color:#1E1514">Saiba Agora...</v-card-subtitle>
                                 <v-card-text class="body-2" style="color:#E5E5E5">Lorem ipsum faucibus dictumst sagittis ligula habitasse curabitur et, ad dictum amet aliquam rutrum purus turpis, dictum nec quis proin curae purus ligula. feugiat quisque faucibus elit ornare quisque lobortis at, potenti nulla in rhoncus varius vulputate bibendum, elit eget pellentesque at taciti primis. erat eleifend suscipit auctor netus sodales tempor nullam ultricies elit, enim id praesent cras blandit inceptos curabitur praesent, nec pulvinar sed consequat ac felis facilisis imperdiet. amet ligula quisque vehicula integer proin ornare pretium, magna rutrum proin arcu lobortis morbi, est primis lacus morbi varius fermentum. </v-card-text>
-                            
                         </v-col>
                     </v-card>
                     <!--IMAGEM-->
                     <v-card
                     width="50%"
-                    height="400"
                     :elevation="0"
                     >
                         <v-img
@@ -140,19 +150,30 @@
                 </v-row>
             <!--LIVES FUTURAS-->
                 <!--TITULO-->
-                
-                    <v-card :elevation="0" >    
+                <v-flex class="mt-auto">
+                    <v-card 
+                    :elevation="0"
+                    max-width="1550" 
+                    class="mx-auto" >    
                         <v-row justify="center">
-                            <v-text class="mt-8 display-1" style="color:#A64E4B">Veja os proximos leiloes
-                                <v-divider class="mx-8" color="white"/>
-                            </v-text>
+                            <v-col 
+                            cols="12"
+                            md="6"
+                            align="center"
+                            class="mt-12"
+                            >
+                                <v-text class="mt-8 display-1" style="color:#A64E4B">
+                                    Veja os proximos leiloes
+                                    <v-divider class="mx-8" color="white"/>
+                                </v-text>
+                            </v-col>
                         </v-row>
                         <!--CARDS-->
                         <v-row align="center" justify="space-around" class="mt-12">       
                             <v-card
                             style="background-color:#EFEAEA"
-                            width="20%" 
-                            height="420"
+                            class="mt-6 mb-6"
+                            width="330" 
                             v-for="Item in live"
                             :key="Item">
                                 <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
@@ -172,7 +193,7 @@
                                 </v-list-item-content>   
                             </v-card>
                             <!--BOTAO-->
-                            <v-btn
+                            <!-- <v-btn
                             width="20%"
                             height="420"
                             color="#EDE7E2"
@@ -181,10 +202,10 @@
                                     <h1 class="display-4" style="color:#342B25">+</h1>
                                     <h6 style="color:#342B25">Para ver mais...</h6>
                                 </v-col>  
-                            </v-btn>
+                            </v-btn> -->
                         </v-row>
                     </v-card>
-                
+                </v-flex>
                 <div
                 style="background-color:#EFEAEA"
                 class="mt-4"
@@ -192,13 +213,12 @@
                     <v-row >
                         <v-col align="center" class="mt-4">
                             <v-text class="display-1">Fique por dentro das ultimas novidades.</v-text>
-                            <v-col cols="12" sm="5" class="mt-6">
+                            <v-col cols="10" sm="5" class="mt-6">
                                 <v-row>   
                                     <v-text-field
                                     solo
                                     label="Email">
                                     </v-text-field>
-                                    
                                 </v-row>
                                 <v-btn
                                 class="mt-1 ml-6 white--text"
@@ -212,28 +232,56 @@
                         </v-col>
                     </v-row>
                 </div>
-                <!--PROPAGANDA/A alma do negocio-->
+                <!--PROPAGANDA-->
                     <v-card
-                    width="100%"
-                    height="250"
                     :elevation="0"
                     color="#AC9594">
-                        
-                        <v-row justify="center">
-                            <div
-                            height="200"
-                            align="center"
-                            class="pagamentos"
-                            colored-border
-                            v-for="items in anuItem"
-                            :key="items.title"
+                        <v-col 
+                        cols="12" 
+                        align="center"
+                        >
+                            <v-row 
+                            justify="center"
                             >
-                                <v-icon size="60" class="mt-2 mb-5" color="#F5F3F2">{{items.i}}</v-icon>
-                                <v-list-item-title class="title" style="color:#F5F3F2">{{items.texto}}</v-list-item-title>
-                                <v-list-item-subtitle style="color:#F5F3F2" class="subtitle-1">{{items.texto2}}</v-list-item-subtitle>
-                                <v-card-text class="overline" style="color:#F5F3F2">{{items.parcela}}</v-card-text>
-                            </div>   
-                        </v-row>
+                                <div
+                                align="center"
+                                class="pagamentos"
+                                colored-border
+                                v-for="items in anuItem"
+                                :key="items.title"
+                                >
+                                    <!-- icone -->
+                                    <v-icon 
+                                    size="60"
+                                    class="mt-2
+                                    mb-5"
+                                    color="#F5F3F2"
+                                    >
+                                        {{items.i}}
+                                    </v-icon>
+                                    <!-- titulo -->
+                                    <v-list-item-title 
+                                    class="title" 
+                                    style="color:#F5F3F2"
+                                    >
+                                        {{items.texto}}
+                                    </v-list-item-title>
+                                    <!-- subtitulo -->
+                                    <v-list-item-subtitle 
+                                    style="color:#F5F3F2" 
+                                    class="subtitle-1">
+                                        {{items.texto2}}
+                                    </v-list-item-subtitle>
+                                    <!-- parcelas -->
+                                    <v-card-text 
+                                    class="overline" 
+                                    style="color:#F5F3F2"
+                                    >
+                                        {{items.parcela}}
+                                    </v-card-text>
+                                </div>   
+                            </v-row>
+                        </v-col>
                     </v-card>  
     </v-app> 
 </template>
@@ -242,17 +290,24 @@
 <style scoped>
     .pagamentos{
         border-right: 2px solid #F5F3F2; 
-        padding-right:100px;
         margin-top:2%;
-        margin-left:5%
-    }
-    .pagamentos:first-child{
-         margin-left:none
+        
     }
     .pagamentos:last-child{
         border-right: none; 
     }
+    @media (max-width: 600px){
+        .pagamentos{
+            border-right: none;
+            border-bottom: 2px solid #F5F3F2;
+            
+        }
+        .pagamentos:last-child{
+            border-bottom: none;
+        }
+    }
 </style>
+
 <!--scripts-->
 <script>
 export default {
@@ -273,6 +328,7 @@ export default {
                 {nome:'Nome Dá Prox Transmissao', informacoes:'Texto 1'},
                 {nome:'Nome Dá Prox Transmissao', informacoes:'Texto 2'},
                 {nome:'Nome Dá Prox Transmissao', informacoes:'Texto 3'},
+                {nome:'Nome Dá Prox Transmissao', informacoes:'Texto 4'},
             ],
             anuItem:[
                 {i:'fas fa-address-card',texto:'Pague no cartao',texto2:'de credito ou debito',parcela:'12X  sem juros'},
