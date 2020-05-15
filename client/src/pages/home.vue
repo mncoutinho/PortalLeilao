@@ -237,8 +237,8 @@
                     :elevation="0"
                     color="#AC9594">
                         <v-col 
-                        cols="12" 
-                        align="center"
+                        cols="8"
+                        md="12" 
                         >
                             <v-row 
                             justify="center"
@@ -291,16 +291,18 @@
     .pagamentos{
         border-right: 2px solid #F5F3F2; 
         margin-top:2%;
-        
+        padding-right: 100px;
+        padding-left: 100px;
+         
     }
     .pagamentos:last-child{
         border-right: none; 
     }
-    @media (max-width: 600px){
+    @media (max-width: 800px){
         .pagamentos{
             border-right: none;
-            border-bottom: 2px solid #F5F3F2;
-            
+            margin-left: 50%;
+            border-bottom: 2px solid #F5F3F2;  
         }
         .pagamentos:last-child{
             border-bottom: none;
