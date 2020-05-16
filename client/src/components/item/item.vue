@@ -160,7 +160,18 @@ Link para youtube na carrossel de imagens
     deleteartigo(artigo){
       this.artigos.splice(this.artigos.indexOf(artigo), 1);
     }
-  }
+  },
+  created(){
+      axios({
+        method: "get",
+        url: `https://us-central1-portalleilao-26290.cloudfunctions.net/item/getAllItem`        
+      }).then(res => {
+        this.artigo = {
+          name: res.data.name,
+          id: res.id
+        }
+      })
+  },
   
 };
 </script>
