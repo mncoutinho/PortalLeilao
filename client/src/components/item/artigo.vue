@@ -34,17 +34,25 @@
 
 			</v-card>
 		</div>
+		
+		<br>
+		
+
 		<a href="#" style="text-decoration:none;float:right;margin-left:1%">  Próximo </a>  
 		<a href="#" style="text-decoration:none;float:right;margin-left:1%">  Anterior </a>
-		<a href="#"  style="text-decoration:none;float:right"> Voltar | </a>    
-		<p>{{artigo.name}}</p>
+		<a href="#"  style="text-decoration:none;float:right"> Voltar | </a>   
+		<br>     
+		<hr>
+
 		<p style="font-size:12px">
 			<b>visitas:</b>   
 			25
 		</p>
+
 		<div align="justify">
 			<v-text >{{ artigo.description }}</v-text>
 		</div>
+		<hr>
 		<p style="font-size:12px">
 		<b>Local:</b>   
 			Rio de Janeiro
@@ -100,8 +108,8 @@ export default {
 				description:"",
 				link: "",
 				date:"",
-				initialbid:"",
-				status:"",				
+				initialbid:0,
+				status:false,				
 			},
 			vendedor: {
 				value: 5
@@ -110,24 +118,23 @@ export default {
 	},
 
 	created() {
-		//const ID = 'category';
-      axios.post('https://us-central1-portalleilao-26290.cloudfunctions.net/item/getItemById',{
-		id:'leilaoBeta'
-	})
-      .then(response => {
-		this.artigo = {
-			name: response.data.name,
-			date: response.data.date,
-			description: response.data.description,
-			img: response.data.img,
-			initialbid: response.data.initialbid,
-			link: response.data.link,
-			status: response.data.status
-		
-		}
-		
-	})
-      .catch(error => console.log(error))
+		axios({
+			method:`post`,
+			url:'https://us-central1-portalleilao-26290.cloudfunctions.net/item/getItemById',
+			data:{id:'leilaoBeta'}
+		})
+		.then(response => {
+				this.artigo = {
+					name: response.data.name,
+					img: response.data.img,
+					description: response.data.description,
+					link: response.data.link,
+					date: response.data.date,
+					initialbid: response.data.initialbid,
+					status: response.data.status
+				}
+			})
+		.catch(error => console.log(error));
 	},
 	
 	methods: {
