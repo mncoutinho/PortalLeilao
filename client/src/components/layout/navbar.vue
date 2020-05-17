@@ -31,21 +31,21 @@
         clipped-left
         dark>
         <v-app-bar-nav-icon @click="drawer = !drawer"/>
-        <v-toolbar-title> 
-        <router-link class="white--text" tag="span" to="/"  style="cursor:pointer">
-        Portal Leilão
-        </router-link>
-        </v-toolbar-title>
+          <v-toolbar-title> 
+            <router-link class="white--text" tag="span" to="/"  style="cursor:pointer">
+              Portal Leilão
+            </router-link>
+          </v-toolbar-title>
         <v-spacer/>
-        <v-toolbar-items class="hidden-xs-only">
-         <v-btn color="#EEB147" text center style="text-decoration:none;"
-          v-for="item in menuItens"
-          :key="item.title"
-          :to="item.link">
-          {{item.title}}
-          <v-icon class="ml-2" size="15">{{ item.i }}</v-icon>
-        </v-btn>
-      </v-toolbar-items>
+          <v-toolbar-items class="hidden-xs-only">
+            <v-btn color="#EEB147" text center style="text-decoration:none;"
+              v-for="item in menuItens"
+              :key="item.title"
+              :to="item.link">
+              {{item.title}}
+              <v-icon class="ml-2" size="15">{{ item.i }}</v-icon>
+            </v-btn>
+          </v-toolbar-items>
       </v-app-bar>
     </div>
 </template>
