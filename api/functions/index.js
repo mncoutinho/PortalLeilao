@@ -23,7 +23,33 @@ loginApp.use(bodyParser.urlencoded({extended:false}));
 loginApp.use(cors({origin:true}))
 
 loginApp.get('/', (req, res) => res.send('Olá Mundo!'));
-loginApp.get('/getUsers', async (req, res) => {
+//buscar pelo cpf
+loginApp.post('/getUserByCpf', async (req,res) => {
+    try{
+        let cpf = req.body.cpf;
+        let query = await user.where('cpf', '==', cpf).get().then(snapshot =>{
+            let users = [];
+            snapshot.forEach(doc => {
+                users.push({
+                    access: doc.data().access,
+                    accountClass: doc.data().accountClass,
+                    address: doc.data().address,
+                    cpf:doc.data().cpf,
+                    email: doc.data().email,
+                    name:doc.data().name,
+                    phone:doc.data().phone
+                });
+            })
+            return users;
+        })
+        res.status(200).send(query);
+    }
+    catch(err){
+        res.status(400).send(err.message);
+    }
+});
+
+loginApp.get('/getAllUsers', async (req, res) => {
     try {
         let query = await user.get().then(snapshot => {
             let users = [];
