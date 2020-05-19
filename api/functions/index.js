@@ -46,9 +46,9 @@ loginApp.get('/getUsers', async (req, res) => {
         res.status(400).send(err.message);
     }
 });
-loginApp.post('/criarUser',async (req, res) => {
+loginApp.post('/createUser',async (req, res) => {
     try{
-        let newUser = {
+        let newPerfil = {
             cpf:req.body.cpf,
             name:req.body.name,
             email:req.body.email,
@@ -59,13 +59,45 @@ loginApp.post('/criarUser',async (req, res) => {
             password:req.body.password
             
         };
-        let query = await user.add(newUser)
+        let query = await user.add(newPerfil)
         res.status(200).send(`Gravado!${JSON.stringify(req.body)}`)
 
     }
     catch(err) {
         res.status(400).send(err.message);
     
+    }
+});
+//update
+loginApp.put('/updateUser', async (req, res)=> {
+    try{
+        let id = req.body.id;
+        let perfil = {
+            cpf:req.body.cpf,
+            name:req.body.name,
+            email:req.body.email,
+            access:req.body.access,
+            address:req.body.address,
+            phone:req.body.phone,
+            accountClass:req.body.accountClass,
+            password:req.body.password
+            
+        };
+        let query = await user.doc(id).update(perfil);
+        res.status(200).send(`Atualizado com sucesso! ${JSON.stringify(query)}`)
+    }catch(err){
+        res.status(400).send(err.message);
+    }
+});
+//delete 
+loginApp.delete('/deleteUser', async (req,res) =>{
+    try{
+        let id = req.body.id;
+        await user.doc(id).delete();
+        res.status(200).send('deletado com sucesso');
+    }
+    catch(err){
+        res.status(400).send(err.message);
     }
 });
 
@@ -100,28 +132,6 @@ itemApp.post('/getItemById', async (req, res) => {
              item = doc.data()
             return res.status(200).send(`${JSON.stringify(item)}`)
         })
-    }
-    catch(err){
-        res.status(400).send(err.message);
-    }
-});
-itemApp.get('/getItems', async (req, res) => {
-    try {
-        let query = await items.get().then(snapshot => {
-            let users = [];
-            snapshot.forEach(doc => {
-               users.push({ 
-                active: doc.data().active,
-                name:doc.data().name,
-                category: doc.data().category,
-                description:doc.data().description,
-                initialBid: doc.data().initialBid,
-                partialBid:doc.data().partialBid
-                });
-            })
-            return users
-        })
-        res.status(200).send(query);
     }
     catch(err){
         res.status(400).send(err.message);
@@ -236,8 +246,8 @@ itemApp.put('/updateItem', async (req, res) => {
 itemApp.delete('/deleteItem', async (req, res) =>{
     try{
         let id = req.body.id;
-    let query = await items.doc(id).delete();
-    res.status(200).send(`Item com o id ${JSON.stringify(req.body.id)} apagado com Sucesso`);
+        await items.doc(id).delete();
+        res.status(200).send(`Item com o id ${JSON.stringify(req.body.id)} apagado com Sucesso`);
     }
     catch(err){
         res.status(400).send(err.message);
@@ -251,6 +261,8 @@ leilaoApp.use(bodyParser.urlencoded({extended:false}));
 leilaoApp.use(cors({origin:true}));
 const leiloes = db.collection('leilao');
 leilaoApp.get('/', (req, res) => res.send('Olá Mundo!'));
+
+//a apagar
 leilaoApp.get('/getleiloes', async (req, res) => {
     try {
         let query = await leiloes.get().then(snapshot => {
@@ -270,23 +282,88 @@ leilaoApp.get('/getleiloes', async (req, res) => {
         res.status(400).send(err.message);
     }
 });
-leilaoApp.post('/criarLeilao', async (req, res) => {
-    try{
-        let newUser = {
-            name:req.body.name,
-            descprition:req.body.description,
-            items:req.body.items,
-            
-        };
-        let query = await leiloes.add(newUser)
-        res.status(200).send(`Gravado!${JSON.stringify(req.body)}`)
-
+//puxando pelo Id
+leilaoApp.post('/getBidById', async (req, res) => {
+    try {
+            let id = req.body.id;
+            let query = await leiloes.doc(id).get().then(doc => {
+            bid = doc.data()
+            return res.status(200).send(`${JSON.stringify(bid)}`)
+       });
     }
-    catch(err) {
+    catch(err){
         res.status(400).send(err.message);
-    
     }
 });
+//puxando td do banco
+leilaoApp.get('/getAllBid', async (req,res) => {
+    try{
+        let query = await leiloes.get().then(snapshot =>{
+            let bids = [];
+            snapshot.forEach(doc => {
+                bids.push({
+                    name: doc.data().name,
+                    description: doc.data().description,
+                    items: doc.data().items,
+                    startsOn: doc.data().startsOn,
+                    closedAt: doc.data().closedAt
+                });
+            })
+            return bids
+        })
+        res.status(200).send(query);
+    }catch(err){
+        res.status(400).send(err.message);
+    }
+});
+
+//criando leilao
+leilaoApp.post('/createBid', async (req,res) =>{
+    try{
+        let newBid = {
+            name: req.body.name,
+            description: req.body.description,
+            items: req.body.items,
+            startsOn: req.body.startsOn,
+            closedAt: req.body.closedAt
+        }
+        let query = await leiloes.add(newBid);
+        res.status(200).send(`${req.body.name} gravado com Sucesso!`);
+    }
+    catch(err){
+        res.status(400).send(err.message);
+    }
+});
+//update leilao
+leilaoApp.put('/updateBid', async (req, res) => {
+    try{
+        let id = req.body.id;
+        let bid = {
+            name: req.body.name,
+            description: req.body.description,
+            items: req.body.items,
+            startsOn: req.body.startsOn,
+            closedAt: req.body.closedAt
+        };
+        let query = await leiloes.doc(id).update(bid);
+        res.status(200).send(`${req.body.name} atualizado com Sucesso!`);
+    }
+    catch(err){
+        res.status(400).send(err.message);
+    }
+});
+//delete
+leilaoApp.delete('/deleteBid', async (req, res) =>{
+    try{
+        let id = req.body.id;
+        let query = await leiloes.doc(id).delete();
+        res.status(200).send(`Item com o id ${JSON.stringify(req.body.id)} apagado com Sucesso`);
+    }
+    catch(err){
+        res.status(400).send(err.message);
+    }
+});
+
 // Instancia da Função
 const item = functions.https.onRequest(itemApp);
 const login = functions.https.onRequest(loginApp);
