@@ -12,8 +12,8 @@
                     <!--NOME COMPLETO-->
                     <v-text-field
                         ref="nome"
-                        v-model="nome"
-                        :rules="[() => !!nome || 'Este campo é necessario']"
+                        v-model="name"
+                        :rules="[() => !!name || 'Este campo é necessario']"
                         :error-messages="errorMessages"
                         label="Nome Completo"
                         placeholder="Antonio Luiz da Silva"
@@ -35,6 +35,7 @@
                     <v-text-field  
                         ref="CPF"
                         v-model="CPF"
+                        :rules="[() => !!email || 'Este campo é necessario',addressCheck]"
                         maxlength="11"
                         label="CPF"
                         placeholder="123-456-789-10"
@@ -63,7 +64,7 @@
                             v-model="senhaConfirmada"
                             :rules="[
                                 () => !!senhaConfirmada || 'Este campo é necessario',
-                                () => !!senhaConfirmada != senha || 'A senha nao e igual',addressCheck
+                                () => !!senhaConfirmada !== senha || 'A senha nao e igual',addressCheck
                             ]"
                             :error-messages="errorMessages"
                             :type="'password'"
@@ -84,7 +85,7 @@
                                 Cancelar
                             </v-btn>
                             <v-spacer/>
-                            <v-btn color="primary"  @click="submit">ENVIAR</v-btn>
+                            <v-btn color="primary"  v-on:click="cadastrar(name,email,CPF,senha,senhaConfirmada)">ENVIAR</v-btn>
                         </v-flex>
                     </v-card-text>
 
@@ -105,7 +106,17 @@
                    senhaConfirmada:"" 
                 },
             }
-        }
+        },
+        methods:{
+            cadastrar(name,email,CPF,senha,senhaConfirmada){                
+                if(senha == senhaConfirmada){
+                    const user = {name,email,CPF,senha};
+                    return alert(user.email);
+                }else{
+                    return alert("As senhas n condizem");
+                }
+            },
+        },
 
     }
 </script>
