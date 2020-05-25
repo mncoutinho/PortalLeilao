@@ -95,25 +95,47 @@
 </template>
 
 <script>
+    import axios from "axios";
     export default{
         data(){
             return{
-                user:{
-                   name:"",
-                   email:"",
-                   CPF:"",
-                   senha:"",
-                   senhaConfirmada:"" 
-                },
+                name:"",
+                email:"",
+                CPF:"",
+                senha:"",
+                senhaConfirmada:"" 
             }
         },
         methods:{
-            cadastrar(name,email,CPF,senha,senhaConfirmada){                
-                if(senha == senhaConfirmada){
-                    const user = {name,email,CPF,senha};
-                    return alert(user.email);
+            cadastrar(name,email,CPF,password,senhaConfirmada){                
+                if(password == senhaConfirmada){
+                    const user = {
+                        name,
+                        email,
+                        CPF,
+                        password,
+                        phone : "null",
+                        address : "null"
+                    };
+
+                    axios({
+                        method: "post",
+                        url:"https://us-central1-portalleilao-26290.cloudfunctions.net/login/createUser",
+                        data: {
+                            access: "stand",
+                            accountClass: "plan1",
+                            name: user.name,
+                            email: user.email,
+                            cpf: user.CPF,
+                            password: user.password,
+                            phone: user.phone,
+                            address: user.address
+                        }
+                    }).then(res => alert(res.name," cadastrado com sucesso!"));
+
+                    
                 }else{
-                    return alert("As senhas n condizem");
+                    alert("As senhas n condizem");
                 }
             },
         },
