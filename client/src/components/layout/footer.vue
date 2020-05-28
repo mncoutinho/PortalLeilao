@@ -15,7 +15,7 @@
             <v-btn
                 v-for="icon in icons"
                 :key="icon"
-                class="mx-8 white--text"
+                class="mx-2 white--text"
                 icon
             >
                 <v-icon size="40px">{{ icon }}</v-icon>

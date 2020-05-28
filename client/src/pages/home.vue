@@ -255,7 +255,7 @@
                         <v-col 
                         cols="8"
                         md="12"
-                        dense 
+                        align="center"
                         >
                             <v-row 
                             justify="center"
