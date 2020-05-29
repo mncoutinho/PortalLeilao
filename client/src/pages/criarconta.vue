@@ -1,21 +1,20 @@
 <template>
     <v-content>
         <v-row justify="center">
-           <v-card color="grey" max-width="500" class="mb-12"  :elevation="10" width="50%">
-               <v-flex class="d-flex ">
+           <v-card max-width="30%" class="mb-12 pa-12"  :elevation="10" width="50%" >
+               <v-flex class="d-flex">
                 <!--outro-->
                     <v-card 
                     width="100%"
                     color="white"
+                    :elevation="0"
                     >
                         <v-window v-model="step">
                             <!--fase 1-->
                             <v-window-item :value="1">
                                 <!--title-->
-                                <v-row 
-                                justify="center"
-                                class="mt-12">
-                                    <h3>Entre Com :</h3>
+                                <v-row justify="center" class="mt-6 mb-3">
+                                    <h2>Entre com,</h2>
                                 </v-row>
                                 <!--icon-->
                                 <v-row justify="center">
@@ -25,15 +24,15 @@
                                     cols="3"
                                     >
                                         <v-row justify="space-around">
-                                            <v-icon size="50"> {{i.icon}} </v-icon>
-                                            <v-icon size="50"> {{i.icon2}} </v-icon>  
+                                            <v-icon size="50" color="#422321" > {{i.icon}} </v-icon>
+                                            <v-icon size="50" color="#422321" > {{i.icon2}} </v-icon>  
                                         </v-row>
                                     </v-col>
                                 </v-row>
                                 <v-row 
                                 justify="center"
                                 class="mt-12">
-                                    <h3>Ou, crie uma agora mesmo :</h3>
+                                    <h3>Ou :</h3>
                                 </v-row>
                                 <v-row justify="center">
                                     <v-col
@@ -43,7 +42,6 @@
                                     >
                                         <!--Email-->
                                         <v-text-field
-                                        ref="e-mail"
                                         v-model="email"
                                         :rules="[
                                             () => !!email || 'Este campo é necessario',
@@ -71,23 +69,6 @@
                                         color="green"
                                         >
                                         </v-text-field>
-                                        <!--Comfirm Password-->
-                                        <v-text-field
-                                        ref="nome"
-                                        v-model="senha"
-                                        :rules="[
-                                            () => !!senha || 'Este campo é necessario',
-                                            () => !!senha && senha.length >= 5 || 'Digite no minimo 5 caracter',
-                                            addressCheck
-                                        ]"
-                                        :error-messages="errorMessages"
-                                        :type="'password'"
-                                        label="Confirme a sua senha"
-                                        placeholder="**********"
-                                        color="green"
-                                        required
-                                        >
-                                        </v-text-field>
                                     </v-col>
                                 </v-row>    
                             </v-window-item>
@@ -95,19 +76,33 @@
                             <!--fase 2-->
                             <v-window-item :value="2">
                                 <!--title-->
-                                <v-row 
-                                justify="center"
-                                class="mt-12">
-                                    <h3>Dados Cadastrais :</h3>
+                                <v-row justify="center" class="mt-6 mb-3">
+                                    <h2>Dados</h2>
                                 </v-row>
                                 <!--dados-->
                                     <v-row justify="center">
                                         <v-col
                                         cols="10"
                                         >
+                                        <!--Comfirm Password-->
+                                            <v-text-field
+                                            v-model="senha"
+                                            :rules="[
+                                                () => !!senha || 'Este campo é necessario',
+                                                () => !!senha && senha.length >= 5 || 'Digite no minimo 5 caracter',
+                                                addressCheck
+                                            ]"
+                                            :error-messages="errorMessages"
+                                            :type="'password'"
+                                            label="Confirme a sua senha"
+                                            placeholder="**********"
+                                            color="green"
+                                            required
+                                            prepend-icon="fas fa-lock"
+                                            >
+                                            </v-text-field>
                                         <!--name-->
                                             <v-text-field
-                                            ref="nome"
                                             v-model="nome"
                                             :rules="[() => !!nome || 'Este campo é necessario']"
                                             :error-messages="errorMessages"
@@ -118,33 +113,39 @@
                                             </v-text-field>
                                         <!--CPF-->
                                             <v-text-field  
-                                            ref="CPF"
                                             v-model="CPF"
                                             maxlength="11"
                                             label="CPF"
                                             placeholder="123-456-789-10"
                                             class="cpf"
                                             required
-                                            ></v-text-field>    
+                                            ></v-text-field>
+                                        <!--telephone-->
+                                            <v-text-field
+                                            v-model="tel"
+                                            :rules="[() => !!tel || 'Este campo é necessario']"
+                                            :error-messages="errorMessages"
+                                            label="Telefone"
+                                            placeholder="(12)934567890"
+                                            required
+                                            >
+                                            </v-text-field>    
                                         </v-col>
                                     </v-row>
                             </v-window-item>
                             <!--fase 3-->
                             <v-window-item :value="3">
                                 <!--title-->
-                                <v-row 
-                                justify="center"
-                                class="mt-12">
-                                    <h3>Endereço</h3>
+                                <v-row justify="center" class="mt-6 mb-3">
+                                    <h2>Endereço</h2>
                                 </v-row>
                                 <!--dados-->
                                 <v-row justify="center">
                                     <v-col
                                     cols="10"
                                     >
-
+                                    <!--CEP-->
                                         <v-text-field  
-                                            ref="CEP"
                                             v-model="CEP"
                                             maxlength="8"
                                             label="CEP"
@@ -152,6 +153,44 @@
                                             class="cep"
                                             required
                                         ></v-text-field>
+                                    <!--Adress-->
+                                        <v-text-field  
+                                            v-model="Endereço"
+                                            label="Endereço"
+                                            placeholder="Rua. 20 "
+                                            class="Endereço"
+                                            required
+                                        ></v-text-field>
+                                    <!--Complement-->
+                                        <v-text-field  
+                                            v-model="CEP"
+                                            label="Complemento"
+                                            placeholder="Zona Sul"
+                                            class="Complemento"
+                                            required
+                                        ></v-text-field>
+                                    <!--Street-->
+                                        <v-text-field  
+                                            v-model="Bairro"
+                                            label="Bairro"
+                                            placeholder="Rio de Janeiro"
+                                            class="Bairro"
+                                            required
+                                        ></v-text-field>
+                                    <!--Street-->
+                                        <v-text-field  
+                                            v-model="Cidade"
+                                            label="Cidade"
+                                            placeholder="Rio de Janeiro"
+                                            class="Cidade"
+                                            required
+                                        ></v-text-field>
+                                    <!--uf-->
+                                        <v-select
+                                        :items="UF"                                        
+                                        label="UF"
+                                        required
+                                        ></v-select>    
                                     </v-col>
                                 </v-row>
                             </v-window-item>
@@ -163,8 +202,9 @@
                                     text
                                     large
                                     depressed
+                                    color="#422321"
                                     to="/"
-                                    :hidden="step === 3 && 2"
+                                    v-if="step === 1"
                                     >
                                         voltar
                                     </v-btn>
@@ -173,6 +213,7 @@
                                     text
                                     large
                                     depressed
+                                    color="#422321"
                                     @click="step--"
                                     :hidden="step === 1">
                                         voltar
@@ -180,11 +221,24 @@
                                     <v-spacer/>
                                     <!--next-->
                                     <v-btn
-                                    color="primary"
+                                    color="#422321"
+                                    class="white--text"
                                     depressed
                                     large
+                                    :hidden="step === 3"
                                     @click="step++">
                                         Proximo
+                                    </v-btn>
+                                    <!--next page-->
+                                    <v-btn
+                                    color="#422321"
+                                    class="white--text"
+                                    depressed
+                                    large
+                                    v-if="step === 3"
+                                    to="/"
+                                    >
+                                        Finalizar
                                     </v-btn>   
                                 </v-card-actions>
                             </v-row>
@@ -204,9 +258,17 @@ export default {
     data() {
         return{
             step: 1,
-            i:[
-                {icon:'fab fa-facebook-f',icon2:'fab fa-google'},
-            ],
+            i:[ {icon:'fab fa-facebook-f',icon2:'fab fa-google'},],
+            UF: ['SP', 'RJ', 'MG', 'PR', 'MN'],
+            
+                currentTitle () {
+                    switch (this.step) {
+                    case 1: return 'Sign-up'
+                    case 2: return 'Create a password'
+                    default: return 'Account created'
+                    }
+                },
+            
         }
     }
 }
