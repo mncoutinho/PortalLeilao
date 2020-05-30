@@ -9,15 +9,8 @@ import store from './store';
 //Import icones
 import '@fortawesome/fontawesome-free/css/all.css';
 
-
-
-
-
-
 Vue.use(VueRouter);
-
 const router = routes;
-
 Vue.config.productionTip = false;
 
 new Vue({
