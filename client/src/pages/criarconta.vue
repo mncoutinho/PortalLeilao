@@ -259,16 +259,7 @@ export default {
         return{
             step: 1,
             i:[ {icon:'fab fa-facebook-f',icon2:'fab fa-google'},],
-            UF: ['SP', 'RJ', 'MG', 'PR', 'MN'],
-            
-                currentTitle () {
-                    switch (this.step) {
-                    case 1: return 'Sign-up'
-                    case 2: return 'Create a password'
-                    default: return 'Account created'
-                    }
-                },
-            
+            UF: ['SP', 'RJ', 'MG', 'PR', 'MN'],            
         }
     }
 }

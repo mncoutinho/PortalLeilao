@@ -3,33 +3,53 @@
         padless
         color="#422321"
         class="pt-8"
-        dark
         >
-        <div
-            flat
-            tile
-            class="white--text text-center"
-        >
-            <v-card-text 
-            class="pb-8">
-            <v-btn
-                v-for="icon in icons"
-                :key="icon"
-                class="mx-2 white--text"
-                icon
-            >
-                <v-icon size="40px">{{ icon }}</v-icon>
-            </v-btn>
-            </v-card-text>
-    
-            <v-card-text class="white--text pt-0">
-                Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum. Praesent ut risus eget metus luctus accumsan id ultrices nunc. Sed at orci sed massa consectetur dignissim a sit amet dui. Duis commodo vitae velit et faucibus. Morbi vehicula lacinia malesuada. Nulla placerat augue vel ipsum ultrices, cursus iaculis dui sollicitudin. Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-            </v-card-text>
-                <v-divide/>
-            <v-card-text class="white--text">
-                {{ new Date().getFullYear() }} — <strong>Portal Leilao</strong>
-            </v-card-text>
-        </div>
+            <v-row justify="center">
+                <v-col sm="5" cols="12">
+                    <v-card-text 
+                    class="pb-8 white--text ml-8"
+                    >
+                        <h3>Descubra</h3>
+                        <!--icons-->
+                        <v-btn
+                        v-for="icon in icons"
+                        :key="icon"
+                        class="mx-2 white--text mt-2"
+                        icon
+                        >
+                            <v-icon size="40px">{{ icon }}</v-icon>
+                        </v-btn>
+                    </v-card-text>
+                </v-col>
+                <!--links-->
+                <v-col cols="12">
+                    <v-row 
+                    justify="space-around"
+                    >
+                        <div 
+                        :key="link"
+                        v-for="link in link"
+                        color="#422321"
+                        >
+                            <v-card
+                            color="#422321"
+                            class="white--text"
+                            :elevation="0"
+                            >
+                                <v-card-title class="title white--text" >{{ link.sub }}</v-card-title>
+                                    <v-card-text to="/" class="pt-0 white--text" text>{{link.content}}</v-card-text>
+                                    <v-card-text to="/" class="pt-0 white--text" text>{{link.content2}}</v-card-text>
+                                    <span to="/" class="pt-0 white--text" text>{{link.content3}}</span>
+                                </v-card>
+                            
+                        </div>
+                    </v-row>
+                </v-col>
+            </v-row>
+                <!--Portal-->
+                <v-card-text class="white--text text-center brown">
+                    {{ new Date().getFullYear() }} — <strong>Portal Leilao</strong>
+                </v-card-text>        
     </v-footer> 
 </template>
 
@@ -43,6 +63,12 @@ export default {
       'fab fa-linkedin',
       'fab fa-instagram',
     ],
+    link:[
+        {sub:'Conta ', content:'Login',content2:'Cadastre-se',},
+        {sub:'Duvidas ', content:'Contatos',content2:'Fale-Conosco',},
+        {sub:'Informaçoes ', content:'Quem somos',content2:'Como leiloar',},
+        {sub:'Parcerias ', content:'Empresa 1',content2:'Empresa 2',}
+    ]
     
   }),    
 }
