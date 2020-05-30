@@ -11,6 +11,10 @@
                     >
                         <h3>Descubra</h3>
                         <!--icons-->
+                     </v-card-text>
+                    </v-col >
+                     <v-spacer/>  
+                        <v-col sm="3" cols="12" >
                         <v-btn
                         v-for="icon in icons"
                         :key="icon"
@@ -19,8 +23,7 @@
                         >
                             <v-icon size="40px">{{ icon }}</v-icon>
                         </v-btn>
-                    </v-card-text>
-                </v-col>
+                    </v-col>
                 <!--links-->
                 <v-col cols="12">
                     <v-row 

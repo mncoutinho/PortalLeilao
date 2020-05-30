@@ -50,7 +50,8 @@
                                         label="E-mail"
                                         placeholder="exemplo@gmail.com"
                                         required
-                                        color="green">
+                                        color="green"
+                                        prepend-icon="fas fa-user">
                                         </v-text-field>
                                         <!--Password-->   
                                         <v-text-field
@@ -67,7 +68,9 @@
                                         placeholder="**********"
                                         required
                                         color="green"
-                                        >
+                                        prepend-icon="fas fa-unlock"
+                                        :append-icon="show1 ? 'fas fa-eye' : 'fas fa-eye-slash'"
+                                        @click:append="show1 = !show1">
                                         </v-text-field>
                                     </v-col>
                                 </v-row>    
@@ -98,7 +101,8 @@
                                             placeholder="**********"
                                             color="green"
                                             required
-                                            prepend-icon="fas fa-lock"
+                                            :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+                                            @click:append="show2 = !show2">
                                             >
                                             </v-text-field>
                                         <!--name-->
@@ -259,7 +263,9 @@ export default {
         return{
             step: 1,
             i:[ {icon:'fab fa-facebook-f',icon2:'fab fa-google'},],
-            UF: ['SP', 'RJ', 'MG', 'PR', 'MN'],            
+            UF: ['SP', 'RJ', 'MG', 'PR', 'MN'], 
+            show1: false,
+            show2: false,           
         }
     }
 }
