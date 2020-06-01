@@ -1,8 +1,8 @@
 <template>
     <v-content>
         <v-row justify="center">
-           <v-card max-width="30%" class="mb-12 pa-12"  :elevation="10" width="50%" >
-               <v-flex class="d-flex">
+           <v-card max-width="30%" min-width="450" class="mb-12 pa-12"  :elevation="10" width="50%" >
+               <v-flex class="d-flex" xs12>
                 <!--outro-->
                     <v-card 
                     width="100%"
@@ -50,7 +50,7 @@
                                         label="E-mail"
                                         placeholder="exemplo@gmail.com"
                                         required
-                                        color="green"
+                                        color="#422321"
                                         prepend-icon="fas fa-user">
                                         </v-text-field>
                                         <!--Password-->   
@@ -67,10 +67,29 @@
                                         label="Senha"
                                         placeholder="**********"
                                         required
-                                        color="green"
-                                        prepend-icon="fas fa-unlock"
-                                        :append-icon="show1 ? 'fas fa-eye' : 'fas fa-eye-slash'"
+                                        color="#422321"
+                                        prepend-icon="fas fa-lock"
+                                        :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                                         @click:append="show1 = !show1">
+                                        </v-text-field>
+                                        <!--Comfirm Password-->
+                                        <v-text-field
+                                        v-model="senha"
+                                        :rules="[
+                                            () => !!senha || 'Este campo é necessario',
+                                            () => !!senha && senha.length >= 5 || 'Digite no minimo 5 caracter',
+                                            addressCheck
+                                        ]"
+                                        :error-messages="errorMessages"
+                                        :type="'password'"
+                                        label="Confirme a sua senha"
+                                        placeholder="**********"
+                                        color="#422321"
+                                        required
+                                        prepend-icon="fas fa-lock"
+                                        :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+                                        @click:append="show2 = !show2">
+                                        >
                                         </v-text-field>
                                     </v-col>
                                 </v-row>    
@@ -87,24 +106,6 @@
                                         <v-col
                                         cols="10"
                                         >
-                                        <!--Comfirm Password-->
-                                            <v-text-field
-                                            v-model="senha"
-                                            :rules="[
-                                                () => !!senha || 'Este campo é necessario',
-                                                () => !!senha && senha.length >= 5 || 'Digite no minimo 5 caracter',
-                                                addressCheck
-                                            ]"
-                                            :error-messages="errorMessages"
-                                            :type="'password'"
-                                            label="Confirme a sua senha"
-                                            placeholder="**********"
-                                            color="green"
-                                            required
-                                            :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
-                                            @click:append="show2 = !show2">
-                                            >
-                                            </v-text-field>
                                         <!--name-->
                                             <v-text-field
                                             v-model="nome"
