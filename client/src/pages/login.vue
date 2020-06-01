@@ -1,30 +1,9 @@
 
 <template >
     <v-content  >
-      
       <v-row >
-        <v-card  class="mx-auto mb-12" :elevation="12">
+        <v-card  class="mx-auto mb-12" :elevation="10">
           <v-flex class="d-flex justify-center" >
-            <v-card 
-            class="col-md-10"
-            max-width="400"
-            color="indigo"
-            height="450px"
-            width="400px"
-            >
-              
-              <v-row class="fill-height ">
-               <v-card-title  class=".display-3 white--text text-center font-weight-medium" >
-                  
-                  SEJA BEM-VINDO !
-                    
-                </v-card-title>
-                <v-card-text class="text-primary white--text text-justify" sm="4" >
-                  Todos estamos ansiosos por conhecer você melhor, tanto ao nível profissional como pessoal. Aqui somos como uma família e queremos que se sinta desde já parte dela. Não temos dúvidas que você trará muitas valências e que aprenderemos muito com você.
-                </v-card-text>
-                </v-row>
-            </v-card>
-
             <v-card
             max-width="400"
             color="white "
