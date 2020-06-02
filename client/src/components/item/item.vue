@@ -138,37 +138,41 @@ Link para youtube na carrossel de imagens
     };
   },
   directives: {money: VMoney},
-  computed:{
-      },
+  
   methods: {
-    addartigo(artigo){
+    addartigo(artigo){  
+      axios({
+        method: "post",
+        url: `https://us-central1-portalleilao-26290.cloudfunctions.net/item/createItem`,
+        data: {
+          category: artigo.category,
+          date: artigo.date,
+          description: artigo.description,
+          imgUrl: artigo.image = "null",
+          initialBid: artigo.initialBid = 2000,
+          link: artigo.link,
+          name: artigo.name
+      }
+      }).then(res => console.log(res.id));
+      console.log('Posting data...');
       this.artigos.push(artigo);
     },
     deleteartigo(artigo){
       this.artigos.splice(this.artigos.indexOf(artigo), 1);
     }
   },
-  created() {
-    axios({
-      url: "http://localhost:4000",
-      method: "post",
-      data: {
-        query:`
-        {
-          artigos {
-            id
-            name
-            description
-            link
-            date           
-            lances
-            initialbid
-          }
+  created(){
+      axios({
+        method: "get",
+        url: `https://us-central1-portalleilao-26290.cloudfunctions.net/item/getAllItem`        
+      }).then(res => {
+        this.artigo = {
+          name: res.data.name,
+          id: res.id
         }
-        `
-      }
-    }).then(/* response => */);
-  }
+      })
+  },
+  
 };
 </script>
 <style scoped>

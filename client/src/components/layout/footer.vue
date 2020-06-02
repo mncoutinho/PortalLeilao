@@ -11,10 +11,6 @@
                     >
                         <h3>Descubra</h3>
                         <!--icons-->
-                     </v-card-text>
-                    </v-col >
-                     <v-spacer/>  
-                        <v-col sm="3" cols="12" >
                         <v-btn
                         v-for="icon in icons"
                         :key="icon"
@@ -23,7 +19,8 @@
                         >
                             <v-icon size="40px">{{ icon }}</v-icon>
                         </v-btn>
-                    </v-col>
+                    </v-card-text>
+                </v-col>
                 <!--links-->
                 <v-col cols="12">
                     <v-row 
@@ -31,7 +28,7 @@
                     >
                         <div 
                         :key="link"
-                        v-for="link in link"
+                        v-for="link in links"
                         color="#422321"
                         >
                             <v-card
@@ -66,10 +63,10 @@ export default {
       'fab fa-linkedin',
       'fab fa-instagram',
     ],
-    link:[
+    links:[
         {sub:'Conta ', content:'Login',content2:'Cadastre-se',},
         {sub:'Duvidas ', content:'Contatos',content2:'Fale-Conosco',},
-        {sub:'Informaçoes ', content:'Quem somos',content2:'Como leiloar',},
+        {sub:'Informaçoes ', content:'Quem Somos?',content2:'Como leiloar',},
         {sub:'Parcerias ', content:'Empresa 1',content2:'Empresa 2',}
     ]
     

@@ -15,8 +15,10 @@
             >
               <v-col>
                 <v-icon left>{{ items.i }}</v-icon>  
-                <v-text-title class="ml-12">{{ items.title }}</v-text-title>
-              </v-col>  
+              </v-col>
+              <v-col>
+                <v-list-item-title class="ml-12" v-text="items.title"/>
+              </v-col>
             </v-btn>
           </v-list-item-content>          
         </v-list>
@@ -52,7 +54,6 @@
 
 <script>
 export default {
-    name:"NavBar",
     data() {
       return {
         drawer:false,
