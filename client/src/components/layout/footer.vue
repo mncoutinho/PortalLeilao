@@ -5,22 +5,21 @@
         class="pt-8"
         >
             <v-row justify="center">
-                <v-col sm="5" cols="12">
-                    <v-card-text 
+                <v-card-text 
                     class="pb-8 white--text ml-8"
                     >
-                        <h3>Descubra</h3>
                         <!--icons-->
                         <v-btn
                         v-for="icon in icons"
                         :key="icon"
-                        class="mx-2 white--text mt-2"
+                        class="white--text mt-2 ml-4 mb-4"
                         icon
                         >
-                            <v-icon size="40px">{{ icon }}</v-icon>
+                            <v-icon size="50px">{{ icon }}</v-icon>
                         </v-btn>
                     </v-card-text>
-                </v-col>
+                </v-row>    
+            <v-row justify="center">
                 <!--links-->
                 <v-col cols="12">
                     <v-row 
@@ -35,7 +34,7 @@
                             color="#422321"
                             class="white--text"
                             :elevation="0"
-                            >
+                            min-width="140">
                                 <v-card-title class="title white--text" >{{ link.sub }}</v-card-title>
                                     <v-card-text to="/" class="pt-0 white--text" text>{{link.content}}</v-card-text>
                                     <v-card-text to="/" class="pt-0 white--text" text>{{link.content2}}</v-card-text>

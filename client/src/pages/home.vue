@@ -51,11 +51,11 @@
                     </v-col>    
                 </v-card>
                     <!-- BOX-->
-                    <v-flex class="mt-auto">
+                    <v-flex >
                         <v-card 
                         :elevation="0" 
-                        max-width="1550"
-                        class="mx-auto">
+                        max-width="1600"
+                        class="mx-auto ">
                             <v-row justify="center">
                                     <v-col 
                                     cols="12"
@@ -74,38 +74,37 @@
                             <!--TRANSMISSOES-->
                             <v-hover 
                             v-slot:default="{ hover }"
-                            open-delay="100">
-                                <v-row 
-                                align="center" 
-                                justify="space-around" 
-                                class="mt-12"
-                                >     
-                                    <v-card
-                                    :elevation="hover ? 16 : 2"
-                                    class="mt-6 mb-6"
-                                    style="cursor:pointer"
-                                    width="330"
-                                    v-for="stream in stream"
-                                    :key="stream"
+                            open-delay="100">  
+                                    <v-row
+                                    no-gutters  
+                                    justify="space-around" 
+                                    class="mt-12"
                                     >
-                                        <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
-                                                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                                allowfullscreen>
-                                        </iframe>
-                                            
-                                                <v-list-item-content class="ml-5">
-                                                <div>     
-                                                    <span style="color:green">Ao Vivo</span>
-                                                    <v-list-item-title style="color:#63432D" class="bold headline mb-1">{{stream.nome}}</v-list-item-title>
-                                                    <v-list-item-subtitle style="color:#1B120C">{{stream.sub}}</v-list-item-subtitle>
-                                                        <v-divider class="mx-5" color="#EDE7E2"/>
-                                                </div>            
-                                                    <v-row class="mr-5" justify="center">
-                                                        <v-btn outlined rounded class="pr-12 pl-12" color="green">PARTICIPAR</v-btn>
-                                                    </v-row>
-                                                </v-list-item-content>   
-                                    </v-card>
-                                </v-row>
+                                            <v-card
+                                            :elevation="hover ? 16 : 2"
+                                            class="mt-6 mb-6"
+                                            min-width="300"
+                                            max-width="330"
+                                            v-for="stream in stream"
+                                            :key="stream">
+                                                <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
+                                                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                                        allowfullscreen>
+                                                </iframe>
+                                                    
+                                                        <v-list-item-content class="ml-5">
+                                                        <div>     
+                                                            <span style="color:green">Ao Vivo</span>
+                                                            <v-list-item-title style="color:#63432D" class="bold headline mb-1">{{stream.nome}}</v-list-item-title>
+                                                            <v-list-item-subtitle style="color:#1B120C">{{stream.sub}}</v-list-item-subtitle>
+                                                                <v-divider class="mx-5" color="#EDE7E2"/>
+                                                        </div>            
+                                                            <v-row class="mr-5" justify="center">
+                                                                <v-btn outlined rounded class="pr-12 pl-12" color="green">PARTICIPAR</v-btn>
+                                                            </v-row>
+                                                        </v-list-item-content>   
+                                                </v-card> 
+                                    </v-row>
                             </v-hover>
                             <v-row align="center" justify="space-around" class="mt-12">
                             <!--Botao para ver mais-->
@@ -140,7 +139,8 @@
                         >
                             <v-col 
                             cols="12"
-                            md="6"
+                            sm="8"
+                            md="8"
                             class="mx-auto"
                             align="center"
                             >
@@ -338,10 +338,14 @@ export default {
                 {nome:'Nome da Transmissao 2',sub:'texto 2'},
                 {nome:'Nome da Transmissao 3',sub:'texto 3'},
                 {nome:'Nome da Transmissao 4',sub:'texto 4'},
-                {nome:'Nome da Transmissao 5',sub:'texto 5'},
-                {nome:'Nome da Transmissao 6',sub:'texto 6'},
-                {nome:'Nome da Transmissao 7',sub:'texto 7'},
-                {nome:'Nome da Transmissao 8',sub:'texto 8'},
+                {nome:'Nome da Transmissao 1',sub:'texto 5'},
+                {nome:'Nome da Transmissao 2',sub:'texto 6'},
+                {nome:'Nome da Transmissao 3',sub:'texto 7'},
+                {nome:'Nome da Transmissao 4',sub:'texto 8'},
+                {nome:'Nome da Transmissao 1',sub:'texto 9'},
+                {nome:'Nome da Transmissao 2',sub:'texto 10'},
+                {nome:'Nome da Transmissao 3',sub:'texto 11'},
+                {nome:'Nome da Transmissao 4',sub:'texto 12'},
             ],
             
             live:[
@@ -359,6 +363,8 @@ export default {
         }
     }    
 </script>
+<!-- Vue Component -->
+
 
 
 
