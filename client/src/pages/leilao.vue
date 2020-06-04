@@ -1,13 +1,13 @@
 <template>
     <v-container>
-        <artigo/>
+        <lance/>
     </v-container>
 </template>
 <script>
-import artigo from "../components/item/artigo"
+import lance from "../components/leilao/artigo"
 export default {
     components:{
-        artigo
+        lance
     }
     
 }

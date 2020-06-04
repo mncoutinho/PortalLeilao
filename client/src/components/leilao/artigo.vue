@@ -101,7 +101,7 @@ export default {
 	data(){
 		return{		
 			// teste botao de abrir leilao
-			
+			id:['3o4IyBuAwPoZTXpiXT4M','leilaoBeta'],
 			artigo: {
 				name:"",
 				img:"",
@@ -121,7 +121,7 @@ export default {
 		axios({
 			method:`post`,
 			url:'https://us-central1-portalleilao-26290.cloudfunctions.net/item/getItemById',
-			data:{id:'leilaoBeta'}
+			data:{id: this.id[0]}
 		})
 		.then(response => {
 				this.artigo = {
