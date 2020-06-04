@@ -101,7 +101,7 @@ export default {
 	data(){
 		return{		
 			// teste botao de abrir leilao
-			id:['3o4IyBuAwPoZTXpiXT4M','leilaoBeta'],
+			id:['3o4IyBuAwPoZTXpiXT4M','leilaoBeta','6escILKzT48O4Ocz04eY'],
 			artigo: {
 				name:"",
 				img:"",
@@ -121,7 +121,7 @@ export default {
 		axios({
 			method:`post`,
 			url:'https://us-central1-portalleilao-26290.cloudfunctions.net/item/getItemById',
-			data:{id: this.id[0]}
+			data:{id: this.id[1]}
 		})
 		.then(response => {
 				this.artigo = {
@@ -133,6 +133,7 @@ export default {
 					initialbid: response.data.initialbid,
 					status: response.data.status
 				}
+				console.log(this.artigo);
 			})
 		.catch(error => console.log(error));
 	},
