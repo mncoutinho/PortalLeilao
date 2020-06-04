@@ -23,14 +23,6 @@
                 v-model="artigo.description"
                 label="Digite a Descrição"/>
 
-                <v-flex>
-                  <v-select
-                  :items="categories"
-                  v-model="artigo.category"
-                  label="Defina a categoria"
-                  ></v-select>
-                </v-flex>
-
                 <v-file-input
                 multiple
                 show-size
@@ -40,25 +32,15 @@
                 v-model="artigo.image"
                 label="Insira a Imagem"/>
                  <br>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                      <v-btn 
-                      class="bg-danger text-white"
-                      href="https://www.youtube.com" 
-                      target="_blank"
-                      >
-                          <svg class="bi bi-play-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 010 1.393z"/>
-                          </svg>
-                      </v-btn>
-                    </div>
-                    <input
-                     class="form-control" 
-                    v-model="artigo.link"
-                    label="link do Youtube"/>
-                    
-                </div>
-                <br>
+
+                 <v-btn class="col-md2" href="https://www.youtube.com" target="_blank"> <i class="fab fa-youtube-square"></i> </v-btn>
+                
+                 <v-text-field 
+                 class="col-md 2" 
+                v-model="artigo.link"
+                label="link do Youtube"/>
+
+
                 <span>
                 Data inicial para lance
                 </span>
@@ -75,7 +57,7 @@
 
             <v-col align="" class="mt-12">
               <button class="btn col-12" 
-                  v-on:click="addartigo(artigo.name,artigo.description,artigo.category,artigo.image,artigo.link,artigo.date, artigo.initialbid)"
+                  v-on:click="addartigo(artigo.name,artigo.description,artigo.image,artigo.link,artigo.date, artigo.initialbid)"
                   >
                   <div >
           <v-btn class="col-12"  color="primary" >Confirmar</v-btn>
@@ -96,7 +78,7 @@ export default {
   name: "app",
   data() {
     return {
-      categories:[],
+      
       money: {
           decimal: ',',
           thousands: '.',
@@ -107,7 +89,6 @@ export default {
         },
       artigo:{
         name:"",
-        category:"",
         description:"",
         image:[],
         link:"",
@@ -119,27 +100,21 @@ export default {
   },
   
   directives: {money: VMoney},
-  created() {
-      axios.get('https://us-central1-portalleilao-26290.cloudfunctions.net/item/category')
-      .then(response => this.categories = response.data)
-      .catch(error => console.log(error))
-},
   methods: {
     onFileSelected(event){
-      this.selectedFile = event.target.files[0];
+this.selectedFile = event.target.files[0]
   },
   onUpload(){
       const fd = new FormData();
       fd.append('image',this.selectedFile)
-      
+      axios.post('',fd)
       
   },
-    addartigo(name,description,category,image,link,date,initialbid){
-      const artigo = {name,description,category,image,link,date,initialbid}
+    addartigo(name,description,image,link,date,initialbid){
+      const artigo = {name,description,image,link,date,initialbid}
       this.$emit("addItem", artigo);
       this.artigo.name="";
       this.artigo.description="";
-      this.artigo.category="";
       this.artigo.image="";
       this.artigo.link="";
       this.artigo.date="";
@@ -149,9 +124,3 @@ export default {
     }
 }
 </script>
-
-
-
-<style scoped>
-v-content{width:80%;}
-</style>

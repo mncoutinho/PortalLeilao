@@ -10,7 +10,9 @@ import store from './store';
 import '@fortawesome/fontawesome-free/css/all.css';
 
 Vue.use(VueRouter);
+
 const router = routes;
+
 Vue.config.productionTip = false;
 
 new Vue({
@@ -19,4 +21,8 @@ new Vue({
     store,
     render: h => h(App)
 }).$mount("#app");
+
+
+
+
 

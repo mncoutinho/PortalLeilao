@@ -7,6 +7,8 @@ import Criar from "../pages/criarconta";
 import Produtos from "../pages/Produtos";
 import userpage from "../pages/userpage.vue";
 
+
+
 const router = new VueRouter({
     // rotas
     // precisa importar a página que vai ser referida a rota
