@@ -121,7 +121,7 @@ export default {
 		axios({
 			method:`post`,
 			url:'https://us-central1-portalleilao-26290.cloudfunctions.net/item/getItemById',
-			data:{id: this.id[0]}
+			data:{id: this.id[1]}
 		})
 		.then(response => {
 				this.artigo = {
@@ -145,7 +145,7 @@ export default {
 			}else {
 				this.artigo.status = true;
 			}			
-		}
+		},
 		
 	}   
 }

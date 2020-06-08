@@ -31,14 +31,11 @@
                 prepend-icon="mdi-camera"
                 v-model="artigo.image"
                 label="Insira a Imagem"/>
-                 <br>
-
-                 <v-btn class="col-md2" href="https://www.youtube.com" target="_blank"> <i class="fab fa-youtube-square"></i> </v-btn>
-                
+                 <br>                
                  <v-text-field 
                  class="col-md 2" 
                 v-model="artigo.link"
-                label="link do Youtube"/>
+                label="link da Imagem"/>
 
 
                 <span>
