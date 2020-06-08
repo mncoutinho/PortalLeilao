@@ -72,16 +72,14 @@
                                     </v-col>
                             </v-row >
                             <!--TRANSMISSOES-->
-                            <v-hover 
-                            v-slot:default="{ hover }"
-                            open-delay="100">  
                                     <v-row
                                     no-gutters  
                                     justify="space-around" 
                                     class="mt-12"
                                     >
                                             <v-card
-                                            :elevation="hover ? 16 : 2"
+                                            hover
+                                            tile
                                             class="mt-6 mb-6"
                                             min-width="300"
                                             max-width="330"
@@ -91,7 +89,6 @@
                                                         frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                                         allowfullscreen>
                                                 </iframe>
-                                                    
                                                         <v-list-item-content class="ml-5">
                                                         <div>     
                                                             <span style="color:green">Ao Vivo</span>
@@ -103,9 +100,8 @@
                                                                 <v-btn outlined rounded class="pr-12 pl-12" color="green">PARTICIPAR</v-btn>
                                                             </v-row>
                                                         </v-list-item-content>   
-                                                </v-card> 
+                                            </v-card> 
                                     </v-row>
-                            </v-hover>
                             <v-row align="center" justify="space-around" class="mt-12">
                             <!--Botao para ver mais-->
                                 <!-- <v-btn
