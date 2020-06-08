@@ -23,6 +23,14 @@
                 v-model="artigo.description"
                 label="Digite a Descrição"/>
 
+                <v-flex>
+                  <v-select
+                  :items="categories"
+                  v-model="artigo.category"
+                  label="Defina a categoria"
+                  ></v-select>
+                </v-flex>
+
                 <v-file-input
                 multiple
                 show-size
@@ -84,6 +92,7 @@ export default {
           precision: 2,
           masked: false
         },
+        categories:[],
       artigo:{
         name:"",
         description:"",
@@ -97,6 +106,12 @@ export default {
   },
   
   directives: {money: VMoney},
+
+  created() {
+      axios.get('https://us-central1-portalleilao-26290.cloudfunctions.net/item/category')
+      .then(response => this.categories = response.data)
+      .catch(error => console.log(error))
+  },
   methods: {
     onFileSelected(event){
 this.selectedFile = event.target.files[0]
