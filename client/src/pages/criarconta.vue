@@ -12,7 +12,9 @@
                         <v-window v-model="step">
                             <!--fase 1-->
                             <v-window-item :value="1">
-                                <user titulo="Cadastre-se com..."/>
+                                <user titulo="Cadastre-se com..."
+                                v-bind:email="email"
+                                v-bind:senha="senha"/>
                             </v-window-item>
 
                             <!--fase 2-->
@@ -55,7 +57,7 @@
                                     depressed
                                     large
                                     v-if="step != 3"
-                                    @click="step++">
+                                    @click="clique()">
                                         Proximo
                                     </v-btn>
                                     <!--next page-->
@@ -79,6 +81,7 @@
     </v-content>
 </template>
 <script>
+import firebase from 'firebase';
 import user from '../components/Modal/criarUsuario/cadastrarEmailSenha';
 import personal from '../components/Modal/criarUsuario/cadastrarDadosPessoais';
 import Address from '../components/Modal/endereco'
@@ -91,12 +94,32 @@ export default {
     },
     data() {
         return{
+            email:'',
+            senha:'',
             step: 1,
             UF: ['SP', 'RJ', 'MG', 'PR', 'MN'],            
         }
     },
     computed:{
 
+    },
+    methods:{
+        clique(){
+            if(this.step==1){
+                this.signUp();
+            }
+        },
+        signUp () {
+      firebase.auth().createUserWithEmailAndPassword(this.email, this.senha).then(
+        ( user => {
+            this.$store.state.account = user;
+            alert('Sua conta foi cadastrata com sucesso!')
+        }),
+        (err) => {
+          alert('Aconteceu algo inesperado. ' + err.message)
+        }
+      );
+    }
     }
 }
 

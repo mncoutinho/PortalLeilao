@@ -1,58 +1,46 @@
 
 <template >
-    <v-content  >
-      <v-row >
-        <v-card  class="mx-auto mb-12" :elevation="10">
-          <v-flex class="d-flex justify-center" >
-            <v-card
-            max-width="400"
-            color="white "
-            height="450px"
-            width="400px"
-            
-            >
-            <v-row class="mt-10">
-                <v-card-title class="display-3 blue--text text-center font-weight-minimun" style="margin-left:3%">Conecte-se</v-card-title>
-            </v-row>
-
-              <v-card-text class="col-md-11 mr--12" >
-                <v-form color="blue">
-                  <v-text-field
-                    label="E-mail"
-                    name="login"
-                    type="text"
-                  ></v-text-field>
-
-                  <v-text-field
-                    id="password"
-                    label="Senha"
-                    name="password"
-                    type="password"
-                  ></v-text-field>
-                </v-form>
-              </v-card-text>
-
-            <v-row class="ml-3">  
-              <v-checkbox></v-checkbox>
-              <p class="mt-5">Mantenha-se online</p>
-            </v-row>
-
-              <v-card-actions>
-                <v-spacer/>
-                <v-btn class="col-12" color="primary">Entrar</v-btn>
-              </v-card-actions>
-            </v-card>
-            
-          </v-flex>
-        </v-card>
-      </v-row>
+    <v-content >
+       <v-row justify="center">
+           <v-card max-width="30%" class="mb-12 pa-12"  :elevation="10" width="50%" >
+               <v-flex class="d-flex">
+                <!--outro-->
+                    <v-card 
+                    width="100%"
+                    color="white"
+                    :elevation="0"
+                    >
+                      <login 
+                      max-width="30%" 
+                      class="mb-12 pa-12"  
+                      :elevation="10" 
+                      width="50%" 
+                      titulo="Entre con..."/>
+                      <v-row justify="center">
+                        <v-btn
+                          color="#422321"
+                          center
+                          class="white--text"
+                          depressed
+                          large
+                          >
+                              Entrar
+                          </v-btn>
+                      </v-row>
+                    </v-card>
+               </v-flex>
+           </v-card>
+       </v-row>
     </v-content>
 </template>
 
 
 <script>
-
+import login from '../components/Modal/criarUsuario/cadastrarEmailSenha'
 export default {
+  components:{
+    login
+  },
   data: () => ({
     drawer: null
   })

@@ -5,10 +5,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+
     account: undefined,
     logged: false,
   },
+
   mutations: {
+    logged(account){
+      this.state.account = account;
+      this.state.logged = true
+    }
   },
   actions: {
   },
