@@ -1,57 +1,92 @@
 <template>
-      <!--CRIAÇAO DE ITEN-->
-      <v-card  
-      class="mx-auto "
-      max-width="500" 
-      >
-          <v-col cols="12"
-          class="grey lighten-5 pt-12 pl-12 pr-12 "
-          >  
-                <v-text-field 
-                v-model="artigo.name"
-                label="Digite o nome do produto"/> 
-                <v-text-field  
-                v-model="artigo.description"
-                label="Digite a Descrição"/>
+  <v-container row>
+      <v-layout>
+          <v-flex xs12 sm6 offset-sm3>
+            <h4 class="brown--text" >Bem-vindo leiloeiro</h4>
+            <p >
+              Cadastrar seu leilão ficou ainda mais fácil, basta apenas preencher o formulário
+              e em breve estará no ar.
+            </p>
+          </v-flex>
+      </v-layout>
 
-                 <v-flex>
-                  <v-select
-                  :items="categories"
-                  v-model="artigo.category"
-                  label="Defina a categoria"
-                  ></v-select>
-                </v-flex>
+      <v-layout row>
+        <v-flex xs12>
+          <form>
+              <v-layout row>
+                  <v-flex xs12 sm6 offset-sm3>
+                    <v-text-field
+                    name="title"
+                    label="Nome do produto*"
+                    id="title"
+                    v-model="artigo.name"
+                    required/>             
+                  </v-flex>
+              </v-layout>
 
-                <v-file-input
-                multiple
-                show-size
-                counter
-                @change="onUpload"
-                prepend-icon="mdi-camera"
-                v-model="artigo.image"
-                label="Insira a Imagem"/>
-                
-                 <v-text-field 
-                 class="col-md 2" 
-                v-model="artigo.link"
-                label="Imagens"/>
-                <span>
-                Data inicial para lance
-                </span>
-                <v-date-picker style="color:"
-                v-model="artigo.date"   
-                   
-                />              
-                <v-text-field
-                v-model="artigo.initialbid"
-                v-money="money"
-                label="Insira o Lance Inicial"/>
-            {{artigo}}
-            <v-col align="" class="mt-12">
-                <v-btn class="col-12"  color="primary" @click="addartigo" >Confirmar</v-btn>
-            </v-col>
-          </v-col>         
-        </v-card>
+              <v-layout row>
+                  <v-flex xs12 sm6 offset-sm3>
+                      <v-text-field
+                      name="Descricao"
+                      label="Descrição do produto*"
+                      id="title"
+                      v-model="artigo.description"
+                      required/>             
+                  </v-flex>
+              </v-layout>
+
+              <v-layout row>
+                  <v-flex xs12 sm6 offset-sm3>
+                          <v-select
+                          :items="categories"
+                          v-model="artigo.category"
+                          label="Defina a categoria"
+                          ></v-select>
+                        </v-flex>
+              </v-layout>
+
+              <v-layout row>
+                  <v-flex xs12 sm6 offset-sm3>
+                      <v-file-input
+                        multiple
+                        show-size
+                        counter
+                        @change="onUpload"
+                        prepend-icon="mdi-camera"
+                        v-model="artigo.image"
+                        label="Insira a Imagem"/>
+                        
+                        <v-text-field 
+                        class="col-md 2" 
+                        v-model="artigo.link"
+                        label="Imagens"
+                        disabled
+                        />
+                  </v-flex>
+              </v-layout>
+
+              <v-layout>
+                  <v-flex xs12 sm6 offset-sm3>
+                      <v-text-field
+                      name="title"
+                      label="Valor inicial para lance*"
+                      id="title"
+                      v-model="artigo.initialbid"
+                      required/>             
+                  </v-flex>
+              </v-layout>
+    
+              <v-layout row>
+                  <v-flex xs12 sm6 offset-sm3>
+                      <v-btn class="col-12"  color="primary" @click="addartigo" >Confirmar</v-btn>
+                  </v-flex>
+              </v-layout>
+      {{artigo}}
+
+        </form>
+      </v-flex>
+    </v-layout>     
+  </v-container>      
 </template>
 
 <script>
