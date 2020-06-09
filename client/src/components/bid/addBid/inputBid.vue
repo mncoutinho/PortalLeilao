@@ -50,7 +50,7 @@
                         </v-flex>
                     </v-layout>
                     <dadosLeiloeiro/>
-
+                    <termos/>
 
                 </form>
             </v-flex>
@@ -59,10 +59,12 @@
 </template>
 
 <script>
-import dadosLeiloeiro from "./getAuctioneerData"
+import dadosLeiloeiro from "./getAuctioneerData";
+import termos from "./termsBid"
 export default {
     components:{
     dadosLeiloeiro,
+    termos,
   }
 }
 </script>

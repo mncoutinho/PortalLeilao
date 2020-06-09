@@ -34,16 +34,29 @@
 </template>
 
 <script>
-
+import axios from "axios"
 export default {
     data(){
         return{
             leiloeiro:{
-            nome:'Joao',
-            mail:'Joao@exemple.com',
-            tel:'(XX)XXXX-XXXX'
+            nome:'',
+            mail:'',
+            tel:''
             },
         }
+    },
+    created(){
+        axios({
+            method:`post`,
+            url:`https://us-central1-portalleilao-26290.cloudfunctions.net/login/getUserByID`,
+            data:{id:`5BarwCGpBdH6oHI9YAb9`}
+        }).then(doc =>{
+            this.leiloeiro ={
+                nome: doc.data.name,
+                mail: doc.data.email,
+                tel: doc.data.tel
+            }
+        }).catch(error => console.log(error));  
     }
     
 }
