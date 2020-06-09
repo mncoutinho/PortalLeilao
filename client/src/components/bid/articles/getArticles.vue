@@ -121,16 +121,18 @@ export default {
 		axios({
 			method:`post`,
 			url:'https://us-central1-portalleilao-26290.cloudfunctions.net/item/getItemById',
-			data:{id:'leilaoBeta'}
+			data:{id:'6escILKzT48O4Ocz04eY'},
+			status:200,
+			statusText: 'OK'
 		})
 		.then(response => {
 				this.artigo = {
 					name: response.data.name,
-					img: response.data.img,
+					img: response.data.imgUrl,
 					description: response.data.description,
 					link: response.data.link,
 					date: response.data.date,
-					initialbid: response.data.initialbid,
+					initialbid: response.data.initialBid,
 					status: response.data.status
 				}
 			})
