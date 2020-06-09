@@ -4,7 +4,7 @@
     </v-container>
 </template>
 <script>
-import artigo from "../components/leilao/artigo"
+import artigo from "../components/bid/articles/getArticles"
 export default {
     components:{
         artigo

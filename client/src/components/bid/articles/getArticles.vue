@@ -91,7 +91,7 @@
 </template>
 
 <script>
-import lance from "./lance";
+import lance from "./InputArticlesBid";
 import axios from 'axios';
 
 export default {
