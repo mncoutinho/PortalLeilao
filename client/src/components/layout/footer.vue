@@ -15,7 +15,7 @@
                         class="white--text mt-2 ml-4 mb-4"
                         icon
                         >
-                            <v-icon size="50px">{{ icon }}</v-icon>
+                            <v-icon size="40px">{{ icon }}</v-icon>
                         </v-btn>
                     </v-card-text>
                 </v-row>    

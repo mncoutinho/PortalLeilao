@@ -76,13 +76,13 @@
                                     no-gutters  
                                     justify="space-around" 
                                     class="mt-12"
-                                    >
+                                    nowrap>
                                             <v-card
                                             hover
                                             tile
                                             class="mt-6 mb-6"
+                                            width="23%"
                                             min-width="300"
-                                            max-width="330"
                                             v-for="stream in stream"
                                             :key="stream">
                                                 <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
@@ -174,15 +174,12 @@
                             </v-col>
                         </v-row>
                         <!--CARDS-->
-                        <v-hover 
-                        v-slot:default="{ hover }"
-                        open-delay="100">
                             <v-row align="center" justify="space-around" class="mt-12">       
                                 <v-card
-                                :elevation="hover ? 16 : 2"
+                                hover
                                 style="cursor:pointer"
                                 class="mt-6 mb-6"
-                                width="330" 
+                                width="300" 
                                 v-for="Item in live"
                                 :key="Item">
                                     <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
@@ -213,7 +210,6 @@
                                     </v-col>  
                                 </v-btn> -->
                             </v-row>
-                        </v-hover>
                     </v-card>
                 </v-flex>
                 <div
@@ -345,10 +341,10 @@ export default {
             ],
             
             live:[
-                {nome:'Nome Dá Prox Transmissao', informacoes:'Texto 1'},
-                {nome:'Nome Dá Prox Transmissao', informacoes:'Texto 2'},
-                {nome:'Nome Dá Prox Transmissao', informacoes:'Texto 3'},
-                {nome:'Nome Dá Prox Transmissao', informacoes:'Texto 4'},
+                {nome:'Nome da Transmissao', informacoes:'Texto 1'},
+                {nome:'Nome da Transmissao', informacoes:'Texto 2'},
+                {nome:'Nome da Transmissao', informacoes:'Texto 3'},
+                {nome:'Nome da Transmissao', informacoes:'Texto 4'},
             ],
             anuItem:[
                 {i:'fas fa-address-card',texto:'Pague no cartao',texto2:'de credito ou debito',parcela:'12X  sem juros'},
