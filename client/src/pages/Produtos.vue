@@ -6,9 +6,8 @@
                 <v-card 
                 flat
                 tile
-                min-width="250"
                 heigth=auto
-                class="ml-4 text-left"
+                class="ml-4 text-left hidden-sm-only hidden-xs-only"
                 >
                         <v-col cols="12" md="12">
                             <h3>Categorias</h3>
@@ -55,7 +54,6 @@
                             <v-list-item-title class="ml-4">PREÇO</v-list-item-title>
                             <v-col cols="12"  md="12">
                                 <v-text-field
-                                    v-model="Min"
                                     label="Valor Mínimo"
                                     max="25000"
                                     min="100"
@@ -66,7 +64,6 @@
                                 ></v-text-field>
                                 
                                 <v-text-field
-                                    v-model="Max"
                                     label="Valor maximo"
                                     max="25000"
                                     min="100"
@@ -78,7 +75,6 @@
                             </v-col>
                         </v-list-tem-group>
                     </v-list>
-                    
                 </v-card>
                 <v-divider vertical/>
                 <!--CONTEUDO-->
@@ -94,14 +90,20 @@
                                 <v-icon>mdi-chevron-right</v-icon>
                             </template>
                         </v-breadcrumbs>
-                    <v-divider class="mx-8"/>
+                    <!--BARRA HORIZONTAL-->
+                    <div class="hidden-md-only hidden-lg-only hidden-xl-only">
+                        <h3>Categorias</h3>
+                        <Resp/>
+                    </div>
+                        
+                        <v-divider class="mx-8"/>
                     <!--cards-->
                     <v-row justify="space-around">
                         <v-card
                         class="mt-6 mb-6"
-                        min-width="250px"
-                        max-width="350px"
-                        width="300"
+                        width="28%"
+                        min-width="280"
+                        max-width="300"
                         v-for="card in card"
                         :key="card">
                             <iframe width="100%" height="300" src="https://www.ecovaso.com.br/wp-content/uploads/balde.jpg" 
@@ -150,10 +152,12 @@
         </v-col>
     </v-layout>    
 </template>
-
-
 <script>
+import Resp from '../components/responsivo/ProdutoResponsivo';
 export default {
+    components:{
+        Resp,
+    },
     data(){
         return{
             page:1,

@@ -334,10 +334,6 @@ export default {
                 {nome:'Nome da Transmissao 2',sub:'texto 6'},
                 {nome:'Nome da Transmissao 3',sub:'texto 7'},
                 {nome:'Nome da Transmissao 4',sub:'texto 8'},
-                {nome:'Nome da Transmissao 1',sub:'texto 9'},
-                {nome:'Nome da Transmissao 2',sub:'texto 10'},
-                {nome:'Nome da Transmissao 3',sub:'texto 11'},
-                {nome:'Nome da Transmissao 4',sub:'texto 12'},
             ],
             
             live:[

@@ -5,7 +5,7 @@ import Leilao from "../pages/leilao";
 import Login from "../pages/login";
 import Criar from "../pages/criarconta";
 import Produtos from "../pages/Produtos";
-import userpage from "../pages/userpage.vue";
+import userpage from "../pages/userpage";
 
 
 

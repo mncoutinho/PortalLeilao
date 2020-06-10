@@ -83,7 +83,6 @@ import user from '../components/Modal/criarUsuario/cadastrarEmailSenha';
 import personal from '../components/Modal/criarUsuario/cadastrarDadosPessoais';
 import Address from '../components/Modal/endereco'
 export default {
-    
     components:{
         user,
         personal,
@@ -95,9 +94,6 @@ export default {
             UF: ['SP', 'RJ', 'MG', 'PR', 'MN'],            
         }
     },
-    computed:{
-
-    }
 }
 
 </script>
