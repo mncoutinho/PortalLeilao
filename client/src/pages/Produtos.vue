@@ -106,10 +106,9 @@
                         max-width="300"
                         v-for="card in card"
                         :key="card">
-                            <iframe width="100%" height="300" src="https://www.ecovaso.com.br/wp-content/uploads/balde.jpg" 
-                            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen>    
-                            </iframe>
+                            <v-img width="100%" height="300" src="https://www.ecovaso.com.br/wp-content/uploads/balde.jpg" 
+                            >    
+                            </v-img>
                              <v-list-item-content class="ml-5">
                                 <div>     
                                     <span style="color:green">Ao Vivo</span>
