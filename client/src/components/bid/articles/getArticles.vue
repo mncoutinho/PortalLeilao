@@ -1,93 +1,68 @@
 <template>	
-	<div>
-        <div class="col-md-6" style="float: left;">	
+	<v-container>
+		<v-row>
 			<v-card
-			max-width="100%"
-			height="420"
+			width="100%"
 			justify="center"
-			align="center"> 
-				<v-img
-				height="300"
+			align="center">
+				<v-card-actions >
+					<v-btn>Próximo</v-btn>
+					<v-btn>Anterior</v-btn>
+					<v-btn>Voltar</v-btn> 
+				</v-card-actions>
+				<v-carousel
+				cycle
 				width="100%"
-				v-bind:src="artigo.img"
-				/>
-                <br>
-                            
-				<v-row
-				align="center"
+				hide-delimiter-background
+				>
+					<v-carousel-item
+					v-for="img in artigo.imgUrl"
+					height="50%"
+					:key="img">
+						<v-img
+						:src="img"/>
+					</v-carousel-item>
+				</v-carousel>           
+				<v-card-text
+				align="left"
 				class="mx-0">
-					<v-rating
-					style="margin-left:2%"
-					v-bind:value="vendedor.value"
-					color="amber"
-					dense
-					half-increments
-					readonly
-					size="14"
-					/>
-					<div class="black--text ml-1">{{vendedor.value}} (Nota do vendedor)</div>
-				</v-row>
-
-				<v-row>
-					<a v-bind:href="artigo.link" target="_blank" style="margin-left:5%">link Youtube</a>
-				</v-row>
-
-			</v-card>
-		</div>
-		
-		<br>
-		
-
-		<a href="#" style="text-decoration:none;float:right;margin-left:1%">  Próximo </a>  
-		<a href="#" style="text-decoration:none;float:right;margin-left:1%">  Anterior </a>
-		<a href="#"  style="text-decoration:none;float:right"> Voltar | </a>   
-		<br>     
-		<hr>
-
-		<p style="font-size:12px">
-			<b>visitas:</b>   
-			25
-		</p>
-
-		<div align="justify">
-			<v-text >{{ artigo.description }}</v-text>
-		</div>
-		<hr>
-		<p style="font-size:12px">
-		<b>Local:</b>   
-			Rio de Janeiro
-		</p>
-		<p class="subtitle-2">
-			<b> Dia dos leilão:</b>
-			<data style="margin:0px 1% 0px 1%"> {{ artigo.date }}</data>
-		</p>       
-		<hr>
-		<p class="subtitle-2 " >
-			Lance Inicial: 
-			<data style="margin:0px 1% 0px 1%">
-				{{ "R$ " + artigo.initialbid + ",00"}}
-			</data>
-		</p> 
-
-		<div class="col-md-6" style="float: right;">
+					<small>
+						<v-rating
+						v-bind:value="vendedor.value"
+						color="amber"
+						dense
+						half-increments
+						readonly
+						size="14"
+						/>
+						{{vendedor.value}} (Nota do vendedor)
+					</small>
+					<v-spacer/>
+					<small><b>visitas:</b>25</small>
+					<v-spacer/>
+					<small>Descrição:{{ artigo.description }}</small>
+					<v-spacer/>
+					<small><b>Local:</b>Rio de Janeiro</small>	
+					<v-spacer/>
+					<small><b>Dia dos Leilão:</b>{{ artigo.date }}</small>	
+					<v-spacer/>
+					<small><b>Lance Inicial:</b>{{ "R$ " + artigo.initialbid + ",00"}}</small>	
 			
-
-				
-
-			<v-card v-if="artigo.status">
-				<v-card-text class="red text-center">
-					<span class="white--text">Leilao Fechado</span>
 				</v-card-text>
-			</v-card>
-			<div id="card" v-else>
-				<lance/>
-			</div>
-		</div>
-		
+			
+				<v-btn class="ma-3" v-on:click="closer()">leilao status</v-btn>
+				<!-- abertura e fachamento de leilao beta -->
+			<v-card-text v-if="status == false" class="red text-center">
+				<span class="white--text">Leilao Fechado</span>
+			</v-card-text>
 				
-	<!-- abertura e fachamento de leilao beta -->
-		<v-btn v-on:click="closer(artigo.status)">leilao status</v-btn>
-	</div>	
+			</v-card>
+		</v-row>
+
+		<v-row class="mt-5">
+			<lance  align="center"/>		
+		</v-row>
+	</v-container>	
 </template>
 
 <script>
@@ -103,14 +78,8 @@ export default {
 			// teste botao de abrir leilao
 			
 			artigo: {
-				name:"",
-				img:"",
-				description:"",
-				link: "",
-				date:"",
-				initialbid:0,
-				status:false,				
-			},
+				},
+				status:false,
 			vendedor: {
 				value: 5
 			}			
@@ -122,39 +91,20 @@ export default {
 			method:`post`,
 			url:'https://us-central1-portalleilao-26290.cloudfunctions.net/item/getItemById',
 			data:{id:'6escILKzT48O4Ocz04eY'},
-			status:200,
-			statusText: 'OK'
 		})
 		.then(response => {
-				this.artigo = {
-					name: response.data.name,
-					img: response.data.imgUrl,
-					description: response.data.description,
-					link: response.data.link,
-					date: response.data.date,
-					initialbid: response.data.initialBid,
-					status: response.data.status
-				}
+				this.artigo = response.data
+				console.log(this.artigo)
 			})
 		.catch(error => console.log(error));
 	},
 	
 	methods: {
 		// Teste
-		closer(modal){
-			if (modal) {
-				this.artigo.status = false;
-			}else {
-				this.artigo.status = true;
-			}			
+		closer(){
+				this.status = !this.status; 
 		}
 		
 	}   
 }
 </script>
-
-<style type="text/css">
-	#card{
-		padding: 30px;
-	}
-</style>
