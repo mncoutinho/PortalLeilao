@@ -1,5 +1,5 @@
 <template>
-    <v-content>
+    <v-main>
         <v-row  justify="center">
             <v-window
                 width="100%"
@@ -76,7 +76,7 @@
                 </v-row>
             </v-window>  
         </v-row>
-    </v-content>
+    </v-main>
 </template>
 <script>
 import firebase from 'firebase/app';
@@ -97,7 +97,7 @@ export default {
         senha: ''
 
         },
-            step: 2,
+            step: 1,
             UF: ['SP', 'RJ', 'MG', 'PR', 'MN'],            
         }
     },

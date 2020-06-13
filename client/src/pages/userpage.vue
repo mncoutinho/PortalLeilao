@@ -19,18 +19,18 @@
       class="mt-6"
       >
         <!--Conteudo-->
-        <div>
+     
           <v-tab 
           v-for="tab in tabela"
-          :key="tab"
+          :key="tab.i"
           class="mb-1"
           >
-            <v-col cols="8">
+            <v-col cols="8" class="ml-6">
               <v-icon>{{tab.i}}</v-icon> 
-              <v-text class="ml-6">{{tab.dados}}</v-text>
+              {{tab.dados}}
             </v-col>
           </v-tab>
-        </div>
+       
         <!--ITEM 1-->
         <v-tab-item>
               <v-row justify="center" >
@@ -50,24 +50,27 @@
                       <v-text-field
                           value="Joao Joao Joao"
                           label="NOME COMPLETO :"
+                          readonly
                         />
                         <v-text-field
                           value="123-***-***-01"
                           label="CPF :"
-                          disabled
+                          readonly
                         />
                         <v-text-field
                           value="Joaozinho@joao.com"
                           label="EMAIL :"
+                          readonly
                         />
                         <v-text-field
                           value="24"
                           label="IDADE :"
+                          readonly
                         />
                         <v-text-field
                           value="*************"
                           label="SENHA :"
-                          disabled
+                          readonly
                         />
                         <v-row justify="center">
                           <v-btn outlined color="#422321" >Alterar senha</v-btn>
@@ -78,7 +81,8 @@
         </v-tab-item>
         <!--ITEM 2-->
         <v-tab-item
-        :key="end">
+        key="end"
+        >
           <!--TITULO-->
           <v-row justify="center" class="mb-12"> 
               <h1>Endereço</h1>
@@ -142,10 +146,9 @@
                 class="mb-6"
                 width="100%"
                 v-for="historico in hist"
-                :key="historico"
+                :key="historico.nome"
                 >
-                  <v-row
-                  justify="fill-height">
+                  <v-row>
                     <!--Imagem do Produto-->
                     <v-col sm="2">
                       <v-img
@@ -159,18 +162,18 @@
                     <!--Nome do produto-->
                       <v-row align="center" class="ml-6">
                         <v-col sm="6">
-                          <v-text-title class="title">{{historico.nome}}</v-text-title>
+                          <p class="title">{{historico.nome}}</p>
                         </v-col>
                       </v-row>
                       <v-spacer/>
                       <v-row align="center" class="ml-6">
                         <!--Codigo do produto-->
                         <v-col sm="4">
-                          <v-text-title class="headline">{{historico.cod}}</v-text-title>
+                          <p class="headline">{{historico.cod}}</p>
                         </v-col>
                         <!--Preço-->
                         <v-col sm="4">
-                          <v-text-title class="headline">{{historico.preco}}</v-text-title>
+                          <p class="headline">{{historico.preco}}</p>
                         </v-col>
                       <!--Estado-->
                         <v-btn
@@ -195,7 +198,7 @@
             <v-col
             align="center" 
             justify="space-around"
-            :key="contato"
+            :key="contato.icon"
             v-for="contato in contact">
               <v-icon size="100" color="#5B2D2A">{{contato.icon}}</v-icon>
                 <!--Titulo do iten-->
@@ -214,10 +217,10 @@ export default {
   data() {
     return{
       hist:[
-        {nome:'Nome do produto',cod:'242424',preco:'24,99'},
-        {nome:'Nome do produto',cod:'242424',preco:'24,99'},
-        {nome:'Nome do produto',cod:'242424',preco:'24,99'},
-        {nome:'Nome do produto',cod:'242424',preco:'24,99'},
+        {nome:'Nome do produto 1',cod:'242424',preco:'24,99'},
+        {nome:'Nome do produto 2',cod:'242424',preco:'24,99'},
+        {nome:'Nome do produto 3',cod:'242424',preco:'24,99'},
+        {nome:'Nome do produto 4',cod:'242424',preco:'24,99'},
         
       ],
       tabela:[
