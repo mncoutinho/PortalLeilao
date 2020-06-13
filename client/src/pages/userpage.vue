@@ -1,33 +1,36 @@
 <template>
   <v-card
-  height="1200px"
+  min-height="1200"
+  height="auto"
   :elevation="0"
   >
-    <v-toolbar flat color="white mt-6" >
-          <!--Titulo-->
-          <v-toolbar-title 
-          class="display-1" 
-          color="#422321"
-          >
-          MINHA CONTA
-          </v-toolbar-title>
+    <v-toolbar right flat width="200" color="white mt-6" >
+      <!--Titulo-->
+      <v-toolbar-title 
+      class="headline" 
+      color="#422321"
+      >
+        MINHA CONTA
+      </v-toolbar-title>
     </v-toolbar>
       <v-tabs 
-      vertical 
+      vertical       
       color="#422321"
       class="mt-6"
       >
         <!--Conteudo-->
+        <div>
           <v-tab 
           v-for="tab in tabela"
           :key="tab"
           class="mb-1"
           >
-            <v-icon left>{{tab.i}}</v-icon>
-            <v-spacer/>
-            <v-text class="ml-12">{{tab.dados}}</v-text>
+            <v-col cols="8">
+              <v-icon>{{tab.i}}</v-icon> 
+              <v-text class="ml-6">{{tab.dados}}</v-text>
+            </v-col>
           </v-tab>
-        
+        </div>
         <!--ITEM 1-->
         <v-tab-item>
               <v-row justify="center" >
