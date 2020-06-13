@@ -3,11 +3,13 @@
 		<v-card-title>
 			<strong>Lance Atual: {{ lanceNow }}</strong>
 		</v-card-title>
-		<v-card-text >
-			<small v-if="lances.length" justify="center"><span class="badge badge-info">{{ lances.length }}</span> lances sobre o artigo </small>
+		<v-card-text>
+			<small v-if="lances.length" 
+			justify="center">
+				<span class="badge badge-info">{{ lances.length }}</span> lances sobre o artigo.</small>
 			<small v-else>Sem lances sobre o artigo</small>
 		</v-card-text>
-		<v-card v-if="lances != []">
+		<v-card :elevation=5 v-if="lances != []">
 			<v-row>
 				<v-col>Usuário</v-col>
 				<v-col>Lance</v-col>
@@ -47,28 +49,28 @@
 		<v-card
 		align="center" 
 		:elevation = 10
-		class="my-4"
+		class="py-auto"
 		v-if="autolance.modal"
 		>
 			<v-text-field
-			class="ma-3"
+			class="mx-3 mt-5"
 			v-model="autolance.limit"
 			v-money="money"
 			label="De limite ao seu lance :"
 			v-on:keyup.enter="autolancelimit()"
 			/>
-			<v-btn 
-			color="gray" 
-			block
-			v-on:click="autoLanceModal()"
-			>
-				Cancelar
-			</v-btn>
-			<v-btn
-			block 
-			color="white" 
-			>Confirmar
-			</v-btn>
+				<v-row align="start" justify="center">
+					<v-btn 
+					color="gray" 
+					v-on:click="autoLanceModal()"
+					>
+						Cancelar
+					</v-btn>
+					<v-btn
+					color="white" 
+					>Confirmar
+					</v-btn>
+				</v-row>
 		</v-card>
 	</v-card>		
 </template>

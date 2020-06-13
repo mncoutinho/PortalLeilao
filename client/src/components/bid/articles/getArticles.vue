@@ -5,7 +5,8 @@
 			width="100%"
 			justify="center"
 			align="center">
-				<v-card-actions >
+				<v-card-actions justify="end">
+					<v-spacer></v-spacer>
 					<v-btn>Próximo</v-btn>
 					<v-btn>Anterior</v-btn>
 					<v-btn>Voltar</v-btn> 
@@ -20,13 +21,15 @@
 					height="50%"
 					:key="img">
 						<v-img
-						:src="img"/>
+						:src="img">
+							<v-card-title float="left" v-text="artigo.name"/>
+						</v-img>
 					</v-carousel-item>
 				</v-carousel>           
 				<v-card-text
 				align="left"
 				class="mx-0">
-					<small>
+					<strong>
 						<v-rating
 						v-bind:value="vendedor.value"
 						color="amber"
@@ -36,39 +39,33 @@
 						size="14"
 						/>
 						{{vendedor.value}} (Nota do vendedor)
-					</small>
+					</strong>
 					<v-spacer/>
-					<small><b>visitas:</b>25</small>
+					<strong>visitas:<small>25</small></strong>
 					<v-spacer/>
-					<small>Descrição:{{ artigo.description }}</small>
+					<strong>Descrição:<small>{{ artigo.description }}</small></strong>
 					<v-spacer/>
-					<small><b>Local:</b>Rio de Janeiro</small>	
+					<strong>Local:<small>Rio de Janeiro</small></strong>
 					<v-spacer/>
-					<small><b>Dia dos Leilão:</b>{{ artigo.date }}</small>	
+					<strong>Dia dos Leilão:<small>{{ artigo.date }}</small></strong>
 					<v-spacer/>
-					<small><b>Lance Inicial:</b>{{ "R$ " + artigo.initialbid + ",00"}}</small>	
-			
+					<strong>Lance Inicial:<small>{{ "R$ " + artigo.initialBid + ",00"}}</small></strong>
 				</v-card-text>
-			
 				<v-btn class="ma-3" v-on:click="closer()">leilao status</v-btn>
 				<!-- abertura e fachamento de leilao beta -->
-			<v-card-text v-if="status == false" class="red text-center">
-				<span class="white--text">Leilao Fechado</span>
-			</v-card-text>
-				
+				<v-card-text v-if="status == false" class="red text-center">
+					<span class="white--text">Leilao Fechado</span>
+				</v-card-text>
 			</v-card>
 		</v-row>
-
 		<v-row class="mt-5">
 			<lance  align="center"/>		
 		</v-row>
 	</v-container>	
 </template>
-
 <script>
 import lance from "./InputArticlesBid";
 import axios from 'axios';
-
 export default {
 	components:{
 		lance
@@ -94,7 +91,6 @@ export default {
 		})
 		.then(response => {
 				this.artigo = response.data
-				console.log(this.artigo)
 			})
 		.catch(error => console.log(error));
 	},

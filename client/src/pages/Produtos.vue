@@ -12,7 +12,7 @@
                         <v-col cols="12" md="12">
                             <h3>Categorias</h3>
                             <v-text-field
-                                v-model="Pesquisar"
+                                v-model="pesquisar"
                                 append-icon="mdi-magnify"
                                 label="Pesquisar"
                                 color="#422321"
@@ -36,7 +36,7 @@
                             <v-divider/>
                         </v-list-item-group>
                         <!--Segundo grupo-->
-                        <v-list-tem-group>
+                        <v-list-item-group>
                             <v-list-item-title class="ml-4">LOCALIZAÇAO</v-list-item-title>
                             <v-radio-group>
                                 <v-radio
@@ -48,9 +48,9 @@
                                 ></v-radio>
                             </v-radio-group>
                             <v-divider/>
-                        </v-list-tem-group>
+                        </v-list-item-group>
                         <!--Terceiro grupo-->
-                        <v-list-tem-group>
+                        <v-list-item-group>
                             <v-list-item-title class="ml-4">PREÇO</v-list-item-title>
                             <v-col cols="12"  md="12">
                                 <v-text-field
@@ -73,7 +73,7 @@
                                     @keydown="false"
                                 ></v-text-field>
                             </v-col>
-                        </v-list-tem-group>
+                        </v-list-item-group>
                     </v-list>
                 </v-card>
                 <v-divider vertical/>
@@ -105,25 +105,23 @@
                         min-width="280"
                         max-width="300"
                         v-for="card in card"
-                        :key="card">
+                        :key="card.nome">
                             <v-img width="100%" height="300" src="https://www.ecovaso.com.br/wp-content/uploads/balde.jpg" 
                             >    
                             </v-img>
-                             <v-list-item-content class="ml-5">
-                                <div>     
-                                    <span style="color:green">Ao Vivo</span>
-                                        <v-list-item-title 
-                                        style="color:#63432D" 
-                                        class="bold headline mb-1">
-                                            {{card.nome}}
-                                        </v-list-item-title>
-                                        <v-list-item-subtitle 
-                                        style="color:#1B120C"
-                                        >
-                                            {{card.sub}}
-                                        </v-list-item-subtitle>
-                                    <v-divider class="mx-5" color="#EDE7E2"/>
-                                </div>            
+                             <v-list-item-content class="ml-5">   
+                                <span style="color:green">Ao Vivo</span>
+                                    <v-list-item-title 
+                                    style="color:#63432D" 
+                                    class="bold headline mb-1">
+                                        {{card.nome}}
+                                    </v-list-item-title>
+                                    <v-list-item-subtitle 
+                                    style="color:#1B120C"
+                                    >
+                                        {{card.sub}}
+                                    </v-list-item-subtitle>
+                                <v-divider class="mx-5" color="#EDE7E2"/>           
                                 <v-row 
                                 class="mr-5" 
                                 justify="center">
@@ -159,6 +157,7 @@ export default {
     },
     data(){
         return{
+            pesquisar:null,
             page:1,
             radio:[
                 {nome:'Rio'}
@@ -171,15 +170,15 @@ export default {
                 {nome:'Nome da Transmissao 1',sub:'texto 1'},
                 {nome:'Nome da Transmissao 2',sub:'texto 2'},
                 {nome:'Nome da Transmissao 3',sub:'texto 3'},
-                {nome:'Nome da Transmissao 1',sub:'texto 1'},
-                {nome:'Nome da Transmissao 2',sub:'texto 2'},
-                {nome:'Nome da Transmissao 3',sub:'texto 3'},
-                {nome:'Nome da Transmissao 1',sub:'texto 1'},
-                {nome:'Nome da Transmissao 2',sub:'texto 2'},
-                {nome:'Nome da Transmissao 3',sub:'texto 3'},
-                {nome:'Nome da Transmissao 1',sub:'texto 1'},
-                {nome:'Nome da Transmissao 2',sub:'texto 2'},
-                {nome:'Nome da Transmissao 3',sub:'texto 3'},
+                {nome:'Nome da Transmissao 4',sub:'texto 1'},
+                {nome:'Nome da Transmissao 5',sub:'texto 2'},
+                {nome:'Nome da Transmissao 6',sub:'texto 3'},
+                {nome:'Nome da Transmissao 7',sub:'texto 1'},
+                {nome:'Nome da Transmissao 8',sub:'texto 2'},
+                {nome:'Nome da Transmissao 9',sub:'texto 3'},
+                {nome:'Nome da Transmissao 10',sub:'texto 1'},
+                {nome:'Nome da Transmissao 11',sub:'texto 2'},
+                {nome:'Nome da Transmissao 12',sub:'texto 3'},
             ]
         }
     }

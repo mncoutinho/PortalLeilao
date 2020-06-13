@@ -5,7 +5,7 @@
         <v-row justify="center">
             <v-col cols="3">
                     <v-text-field
-                        v-model="Pesquisar"
+                        v-model="pesquisar"
                         append-icon="mdi-magnify"
                         label="Pesquisar"
                         color="#422321"
@@ -38,6 +38,11 @@
 </template>
 <script>
 export default {
+    data(){
+        return {
+            pesquisar:''
+        }
+    }
     
 }
 </script>
