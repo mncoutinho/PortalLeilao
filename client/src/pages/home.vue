@@ -30,8 +30,7 @@
         <v-card
         width="90%"
         height="300"
-        class="mx-auto"
-        :elevation="0">
+        class="mx-auto">
             <v-col class="mt-9" > 
                 <v-row justify="space-around">
                     <!--ANUNCIO 1-->
@@ -52,7 +51,6 @@
             <!-- BOX-->
         <v-flex class="mt-auto">
             <v-card 
-            :elevation="0" 
             max-width="1550"
             class="mx-auto">
                 <v-row justify="center">
@@ -84,8 +82,8 @@
                         class="mt-6 mb-6"
                         style="cursor:pointer"
                         width="330"
-                        v-for="stream in stream"
-                        :key="stream"
+                        v-for="stream in streams"
+                        :key="stream.nome"
                         >
                           <!--   <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
                                     frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -132,10 +130,10 @@
         class="hidden-sm-only hidden-xs-only">
             <div
             style="width:100%">
-                <v-img
+               <!-- <v-img
                 style="opacity: 0.8"
                 src="" 
-                >
+                > -->
                     <v-col 
                     cols="12"
                     md="6"
@@ -153,13 +151,12 @@
                             Ler Mais
                         </v-btn>
                     </v-col>
-                </v-img>    
+                <!-- </v-img>    -->
             </div>
         </v-row>
     <!--LIVES FUTURAS-->
         <v-flex class="mt-auto">
             <v-card 
-            :elevation="0"
             max-width="1550" 
             class="mx-auto" >    
                 <v-row justify="center">
@@ -185,8 +182,8 @@
                         style="cursor:pointer"
                         class="mt-6 mb-6"
                         width="330" 
-                        v-for="Item in live"
-                        :key="Item">
+                        v-for="item in lives"
+                        :key="item.nome">
                           <!--  <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
                                 frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen>    
@@ -194,12 +191,13 @@
                             <v-list-item-content class="ml-5">
                                 <div> 
                                 <span style="color:Orange">Em Breve</span>
-                                    <v-list-item-title style="color:#63432D" class="bold headline mb-1">{{Item.nome}}</v-list-item-title>
-                                <v-list-item-subtitle style="color:#1B120C">{{Item.informacoes}}</v-list-item-subtitle>
+                                    <v-list-item-title style="color:#63432D" 
+                                    class="bold headline mb-1" v-text="item.nome"/>
+                                <v-list-item-subtitle style="color:#1B120C" v-text="item.informacoes"/>
                                     <v-divider class="mx-5" color="#EDE7E2"/>
                                 </div>    
                                 <v-row class="mr-5" justify="center">
-                                    <v-btn outlined rounded class="pr-5 pl-5" style="color:Orange">Em breve</v-btn>
+                                    <v-btn outlined rounded class="pr-5 pl-5" color="orange">Em breve</v-btn>
                                 </v-row>  
                             </v-list-item-content>   
                         </v-card>
@@ -247,7 +245,7 @@
         </div>
         <!--PROPAGANDA-->
             <v-card
-            :elevation="0"
+
             color="#AC9594"
             >
                 <v-col 
@@ -332,8 +330,7 @@ export default {
     data() {
         return{
             pesquisar:'',
-            lives:[],
-            stream:[
+            streams:[
                 {nome:'Nome da Transmissao 1',sub:'texto 1'},
                 {nome:'Nome da Transmissao 2',sub:'texto 2'},
                 {nome:'Nome da Transmissao 3',sub:'texto 3'},
@@ -344,11 +341,11 @@ export default {
                 {nome:'Nome da Transmissao 8',sub:'texto 8'},
             ],
             
-            live:[
-                {nome:'Nome Dá Prox Transmissao', informacoes:'Texto 1'},
-                {nome:'Nome Dá Prox Transmissao', informacoes:'Texto 2'},
-                {nome:'Nome Dá Prox Transmissao', informacoes:'Texto 3'},
-                {nome:'Nome Dá Prox Transmissao', informacoes:'Texto 4'},
+            lives:[
+                {nome:'Nome Dá Prox Transmissao 1', informacoes:'Texto 1'},
+                {nome:'Nome Dá Prox Transmissao 2', informacoes:'Texto 2'},
+                {nome:'Nome Dá Prox Transmissao 3', informacoes:'Texto 3'},
+                {nome:'Nome Dá Prox Transmissao 4', informacoes:'Texto 4'},
             ],
             anuItem:[
                 {i:'fas fa-address-card',texto:'Pague no cartao',texto2:'de credito ou debito',parcela:'12X  sem juros'},
@@ -357,7 +354,10 @@ export default {
                 ],
             }
         },
-        created:{
+        mounted(){
+            //this.getHomeItems();
+        },
+        methods:{
             async getHomeItems(){
                 await firebase.firestore()
                 .collection('item')
@@ -370,10 +370,8 @@ export default {
                     })
                     console.log(this.lives)
                 })
+                .catch(err => console.log(err))
             },
-
-        },
-        methods:{
             getHomeOpenSale(){
 
             },

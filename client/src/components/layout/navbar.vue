@@ -25,9 +25,9 @@
       </v-navigation-drawer>
 
 <!-- NavBar -->
-      <v-app-bar
-        absolute 
+      <v-app-bar 
         app
+        fixed
         color="#422321"
         :elevation="0"
         clipped-left
