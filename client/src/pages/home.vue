@@ -13,7 +13,7 @@
             <v-col cols="12" md="6" class="text-center">
                 <h1 style=" color:white" class=" display-2 font-weight-thin mb-4 ">Portal Leilao</h1>
                 <v-text-field
-                    v-model="Pesquisar"
+                    v-model="pesquisar"
                     append-icon="mdi-magnify"
                     label="Pesquisar"
                     solo
@@ -63,12 +63,12 @@
                                     align="center"
                                     class="mt-12"
                                     >
-                                        <v-text 
+                                        <h3
                                         class="display-1"
                                         style="color:#A64E4B;">
                                             Veja quem está ao vivo, agora
                                             <v-divider class="mx-8" color="white"/>
-                                        </v-text>
+                                        </h3>
                                     </v-col>
                             </v-row >
                             <!--TRANSMISSOES-->
@@ -167,10 +167,10 @@
                             align="center"
                             class="mt-12"
                             >
-                                <v-text class="mt-8 display-1" style="color:#A64E4B">
+                                <p class="mt-8 display-1" style="color:#A64E4B">
                                     Veja os proximos leiloes
                                     <v-divider class="mx-8" color="white"/>
-                                </v-text>
+                                </p>
                             </v-col>
                         </v-row>
                         <!--CARDS-->
@@ -218,7 +218,7 @@
                 >
                     <v-row >
                         <v-col align="center" class="mt-4">
-                            <v-text class="display-1">Fique por dentro das ultimas novidades.</v-text>
+                            <h1 class="display-1">Fique por dentro das ultimas novidades.</h1>
                             <v-col cols="10" sm="5" class="mt-6">
                                 <v-row>   
                                     <v-text-field
@@ -323,8 +323,10 @@
 <!--scripts-->
 <script>
 export default {
-    data() {
+    data() 
+    {
         return{
+            pesquisar:"",
             stream:[
                 {nome:'Nome da Transmissao 1',sub:'texto 1'},
                 {nome:'Nome da Transmissao 2',sub:'texto 2'},
