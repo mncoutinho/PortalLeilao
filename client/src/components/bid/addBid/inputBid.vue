@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <v-container id="container" >
         <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
                 <h4 class="brown--text" >Bem-vindo leiloeiro</h4>
@@ -11,20 +11,12 @@
         <v-layout row>
             <v-flex xs12>
                 <form>
+                    
                     <v-layout row>
                         <v-flex xs12 sm6 offset-sm3>
                             <v-text-field
                                 name="title"
                                 label="Nome do leilao*"   
-                            />
-                        </v-flex>
-                    </v-layout>
-
-                    <v-layout row>
-                        <v-flex xs12 sm6 offset-sm3>
-                            <v-text-field
-                                name="title"
-                                label="Descricao do Leilao*"   
                             />
                         </v-flex>
                     </v-layout>
@@ -40,17 +32,39 @@
 
                     <v-layout row>
                         <v-flex xs12 sm6 offset-sm3>
-                            <p>Data para iniciar o Leilao</p>
+                            <v-textarea
+                                name="title"
+                                label="Descricao do Leilao*"   
+                            />
+                        </v-flex>
+                    </v-layout>
+
+                    <v-layout row style="margin-top: 30px;">
+                        <v-flex xs12 sm3 offset-sm3>
+                            <h4 class="brown--text" >Data de abertura</h4>
                             <v-date-picker color="#422321" class="col-12"/>
                         </v-flex>
-
-                        <v-flex xs12 sm6 offset-sm3>
-                            <p>Data para fechar o Leilao</p>
+                        
+                        <v-flex xs12 sm3 >
+                            <h4 class="brown--text" >Data de fechamento</h4>
                             <v-date-picker color="#422321" class="col-12"/>
                         </v-flex>
                     </v-layout>
+
                     <dadosLeiloeiro/>
+
                     <termos/>
+
+                    <v-layout row>
+                        <v-flex xs12 sm6 offset-sm3>
+                            <v-btn 
+                            class="col-12"
+                            color="success" 
+                            >
+                                Confirmar
+                            </v-btn>
+                        </v-flex>
+                    </v-layout>
 
                 </form>
             </v-flex>
@@ -68,3 +82,12 @@ export default {
   }
 }
 </script>
+
+<style>
+#container{
+    margin-top: 40px; 
+    margin-bottom: 100px; 
+    text-align:center; 
+}
+
+</style>
