@@ -41,11 +41,16 @@
                             <v-radio-group>
                                 <v-radio
                                     class="ml-4"
-                                    :v-for="radio in radio"
-                                    key="radio"
-                                    label=""
+                                    key="RJ"
+                                    label="RJ"
                                     color="#422321"    
-                                ></v-radio>
+                                />
+                                <v-radio
+                                    class="ml-4"
+                                    key="SP"
+                                    label="SP"
+                                    color="#422321"    
+                                />
                             </v-radio-group>
                             <v-divider/>
                         </v-list-item-group>
@@ -135,6 +140,7 @@
                                 </v-row>
                             </v-list-item-content>
                         </v-card>
+                        {{card}}
                     </v-row>    
                     <!--paginaçao-->
                     <v-pagination
@@ -151,6 +157,7 @@
 </template>
 <script>
 import Resp from '../components/responsivo/ProdutoResponsivo';
+import axios from 'axios';
 export default {
     components:{
         Resp,
@@ -159,28 +166,25 @@ export default {
         return{
             pesquisar:null,
             page:1,
-            radio:[
-                {nome:'Rio'}
-            ],
+            radio:['rj','sp'],
             items:[
                 {text: 'Inicio', disabled: false, to: '#'},
                 {text: 'Produto', disabled: true, },
             ],
             card:[
-                {nome:'Nome da Transmissao 1',sub:'texto 1'},
-                {nome:'Nome da Transmissao 2',sub:'texto 2'},
-                {nome:'Nome da Transmissao 3',sub:'texto 3'},
-                {nome:'Nome da Transmissao 4',sub:'texto 1'},
-                {nome:'Nome da Transmissao 5',sub:'texto 2'},
-                {nome:'Nome da Transmissao 6',sub:'texto 3'},
-                {nome:'Nome da Transmissao 7',sub:'texto 1'},
-                {nome:'Nome da Transmissao 8',sub:'texto 2'},
-                {nome:'Nome da Transmissao 9',sub:'texto 3'},
-                {nome:'Nome da Transmissao 10',sub:'texto 1'},
-                {nome:'Nome da Transmissao 11',sub:'texto 2'},
-                {nome:'Nome da Transmissao 12',sub:'texto 3'},
-            ]
+                {nome:'Nome da Transmissao 1',sub:'texto 1'}
+            ],
+
         }
+    },
+    created(){
+        axios({
+            method:'get',
+            url:'https://us-central1-portalleilao-26290.cloudfunctions.net/item/getAllItem'
+        }).then(doc => {      
+              this.card.push({nome: doc.data.name, sub: doc.data.sub});
+    }) 
+    .catch(error => console.log(error))
     }
 }
 </script>  

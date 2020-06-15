@@ -8,7 +8,6 @@ import artigo from "../components/bid/articles/getArticles"
 export default {
     components:{
         artigo
-    }
-    
+    }    
 }
 </script>
