@@ -111,9 +111,12 @@
                         max-width="300"
                         v-for="card in card"
                         :key="card.nome">
-                            <v-img width="100%" height="300" src="https://www.ecovaso.com.br/wp-content/uploads/balde.jpg" 
-                            >    
-                            </v-img>
+                            <v-img 
+                            width="100%" 
+                            height="300" 
+                            :src="card.imgUrl" 
+                            />    
+                            
                              <v-list-item-content class="ml-5">   
                                 <span style="color:green">Ao Vivo</span>
                                     <v-list-item-title 
@@ -124,7 +127,7 @@
                                     <v-list-item-subtitle 
                                     style="color:#1B120C"
                                     >
-                                        {{card.id}}
+                                        {{card.description}}
                                     </v-list-item-subtitle>
                                 <v-divider class="mx-5" color="#EDE7E2"/>           
                                 <v-row 
@@ -171,9 +174,7 @@ export default {
                 {text: 'Inicio', disabled: false, to: '#'},
                 {text: 'Produto', disabled: true, },
             ],
-            card:[
-   
-            ],
+            card:[],
 
         }
     },
