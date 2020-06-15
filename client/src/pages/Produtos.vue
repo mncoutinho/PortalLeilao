@@ -119,12 +119,12 @@
                                     <v-list-item-title 
                                     style="color:#63432D" 
                                     class="bold headline mb-1">
-                                        {{card.nome}}
+                                        {{card.name}}
                                     </v-list-item-title>
                                     <v-list-item-subtitle 
                                     style="color:#1B120C"
                                     >
-                                        {{card.sub}}
+                                        {{card.id}}
                                     </v-list-item-subtitle>
                                 <v-divider class="mx-5" color="#EDE7E2"/>           
                                 <v-row 
@@ -172,7 +172,7 @@ export default {
                 {text: 'Produto', disabled: true, },
             ],
             card:[
-                {nome:'Nome da Transmissao 1',sub:'texto 1'}
+   
             ],
 
         }
@@ -182,7 +182,7 @@ export default {
             method:'get',
             url:'https://us-central1-portalleilao-26290.cloudfunctions.net/item/getAllItem'
         }).then(doc => {      
-              this.card.push({nome: doc.data.name, sub: doc.data.sub});
+           this.card = doc.data;
     }) 
     .catch(error => console.log(error))
     }
