@@ -1,84 +1,103 @@
 <template>
-  <v-container justify="center">
-     <v-form
-      ref="form"
-      
-      >
-      <!--CRIAÇAO DE ITEN-->
-      <v-card  
-      class="mx-auto "
-      max-width="500"
-      
-      >
-          <v-col cols="12"
-          class="grey lighten-5 pt-12 pl-12 pr-12 "
-          
-          >  
-                <v-text-field 
-                v-model="artigo.name"
-                label="Digite o nome do produto"
-              />  
-                  
-                <v-text-field  
-                v-model="artigo.description"
-                label="Digite a Descrição"/>
+  <v-container row>
+      <v-layout>
+          <v-flex xs12 sm6 offset-sm3>
+            <h4 class="brown--text" >Bem-vindo leiloeiro</h4>
+            <p >
+              Cadastrar seu leilão ficou ainda mais fácil, basta apenas preencher o formulário
+              e em breve estará no ar.
+            </p>
+          </v-flex>
+      </v-layout>
 
-                <v-file-input
-                multiple
-                show-size
-                counter
-                @click="onUpload"
-                prepend-icon="mdi-camera"
-                v-model="artigo.image"
-                label="Insira a Imagem"/>
-                 <br>
+      <v-layout row>
+        <v-flex xs12>
+          <form>
+              <v-layout row>
+                  <v-flex xs12 sm6 offset-sm3>
+                    <v-text-field
+                    name="title"
+                    label="Nome do produto*"
+                    id="title"
+                    v-model="artigo.name"
+                    required/>             
+                  </v-flex>
+              </v-layout>
 
-                 <v-btn class="col-md2" href="https://www.youtube.com" target="_blank"> <i class="fab fa-youtube-square"></i> </v-btn>
-                
-                 <v-text-field 
-                 class="col-md 2" 
-                v-model="artigo.link"
-                label="link do Youtube"/>
+              <v-layout row>
+                  <v-flex xs12 sm6 offset-sm3>
+                      <v-text-field
+                      name="Descricao"
+                      label="Descrição do produto*"
+                      id="title"
+                      v-model="artigo.description"
+                      required/>             
+                  </v-flex>
+              </v-layout>
 
+              <v-layout row>
+                  <v-flex xs12 sm6 offset-sm3>
+                          <v-select
+                          :items="categories"
+                          v-model="artigo.category"
+                          label="Defina a categoria"
+                          ></v-select>
+                        </v-flex>
+              </v-layout>
 
-                <span>
-                Data inicial para lance
-                </span>
-                <br> <br> 
-                <v-date-picker style="color:"
-                v-model="artigo.date"   
-                   
-                />    
-                <br><br>           
-                <v-text-field
-                v-model="artigo.initialbid"
-                v-money="money"
-                label="Insira o Lance Inicial"/>
+              <v-layout row>
+                  <v-flex xs12 sm6 offset-sm3>
+                      <v-file-input
+                        multiple
+                        show-size
+                        counter
+                        @change="onUpload"
+                        prepend-icon="mdi-camera"
+                        v-model="artigo.image"
+                        label="Insira a Imagem"/>
+                        
+                        <v-text-field 
+                        class="col-md 2" 
+                        v-model="artigo.link"
+                        label="Imagens"
+                        disabled
+                        />
+                  </v-flex>
+              </v-layout>
 
-            <v-col align="" class="mt-12">
-              <button class="btn col-12" 
-                  v-on:click="addartigo(artigo.name,artigo.description,artigo.image,artigo.link,artigo.date, artigo.initialbid)"
-                  >
-                  <div >
-          <v-btn class="col-12"  color="primary" >Confirmar</v-btn>
-        </div>
-              </button>
-            </v-col>
+              <v-layout>
+                  <v-flex xs12 sm6 offset-sm3>
+                      <v-text-field
+                      name="title"
+                      label="Valor inicial para lance*"
+                      id="title"
+                      v-model="artigo.initialbid"
+                      required/>             
+                  </v-flex>
+              </v-layout>
+    
+              <v-layout row>
+                  <v-flex xs12 sm6 offset-sm3>
+                      <v-btn class="col-12"  color="primary" @click="addartigo" >Confirmar</v-btn>
+                  </v-flex>
+              </v-layout>
+      {{artigo}}
 
-          </v-col>         
-        </v-card>
-      </v-form>
-  </v-container>
+        </form>
+      </v-flex>
+    </v-layout>     
+  </v-container>      
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
+import firebase from 'firebase';
+import 'firebase/storage'
 import {VMoney} from "v-money";
 export default {
   name: "app",
   data() {
     return {
-      
       money: {
           decimal: ',',
           thousands: '.',
@@ -87,38 +106,67 @@ export default {
           precision: 2,
           masked: false
         },
+      categories:[],
       artigo:{
-        name:"",
+        name:"teste",
         description:"",
         image:[],
-        link:"",
+        link:[],
         picker:"",
         initialbid:""
       },
-      selectedFile:null
+      user:{
+        uid:'JoseTestando'
+      }
     }
   },
   
   directives: {money: VMoney},
-  methods: {
-    onFileSelected(event){
-this.selectedFile = event.target.files[0]
+  created(){
+    axios.get('https://us-central1-portalleilao-26290.cloudfunctions.net/item/category')
+      .then(response => this.categories = response.data)
+      .catch(error => console.log(error))  
   },
-  onUpload(){
-      const fd = new FormData();
-      fd.append('image',this.selectedFile)
-      axios.post('',fd)
+  methods: {
+  async onUpload(){
+    this.artigo.link = []
+    let images = this.artigo.image;
+    images.forEach(image => {
+      firebase.storage()
+      .ref('items/' + this.user.uid + '/' + this.artigo.name + '/'+ image.name)
+      .put(image)
+      .then(snapshot => {
+        snapshot.ref.getDownloadURL().then(url => {
+        this.artigo.link.push(url)
+    })
+    })
+    })
+ 
       
   },
-    addartigo(name,description,image,link,date,initialbid){
-      const artigo = {name,description,image,link,date,initialbid}
-      this.$emit("addItem", artigo);
-      this.artigo.name="";
-      this.artigo.description="";
-      this.artigo.image="";
-      this.artigo.link="";
-      this.artigo.date="";
-      this.artigo.initialbid="";
+    async addartigo() {
+      const artigo = {
+        name:this.artigo.name,
+        active:true,
+        description:this.artigo.description,
+        images:this.artigo.link,
+        date:this.artigo.date,
+        initialbid:this.artigo.initialbid
+      }
+      const criaItem = firebase.firestore().collection('item');
+      await criaItem
+      .doc()
+      .set(artigo)
+      .then(doc => {
+        console.log(doc)
+        this.artigo.name="";
+        this.artigo.description="";
+        this.artigo.image=[];
+        this.artigo.link=[];
+        this.artigo.date="";
+        this.artigo.initialbid="";
+
+        })
       }
       
     }

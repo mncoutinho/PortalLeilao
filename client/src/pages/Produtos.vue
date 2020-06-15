@@ -1,214 +1,187 @@
 <template>
-    <v-card height="auto">
-        <!--PRODUTOS PAGINA-->
-        <v-content style="margin-left:20%">
-            <!--NOME NA PESQUISA-->
-            <v-title class="display-1">NOME DO PRODUTO</v-title>
-            <v-divider/>
-            <!--PRODUTOS-->
+    <v-layout row>
+        <v-col>
+            <v-row>
+                <!--BARRA LATERAL-->
                 <v-card 
-                width="100%"
-                elevation="0"
-                >   
-                    <v-col
-                     sm="12" > 
-                        <v-row
-                        justify="space-around">
-                            <v-card
-                            style="background-color:#EFEAEA"
-                            width="23%"
-                            height="410"
-                            v-for="n in 20"
-                            :key="n"
-                            class="mt-4">
-                                <v-img 
-                                width="100%"
-                                height="280"
-                                src="https://i.imgur.com/EaowRPb.jpg"
-                                class="white--text align-end">
-                                    <v-card-title> NOME DO PRODUTO</v-card-title>  
-                                </v-img> 
-                                <v-rating
-                                    align="center"
-                                    v-model="rating"
-                                    color="yellow darken-3"
-                                    background-color="grey darken-5"
-                                    empty-icon="$ratingFull"
-                                    half-increments
-                                    class="mt-2"
-                                ></v-rating>              
-                                        <div align="center">            
-                                            <p style="color:#EB9500" class="headline ">R$ 12.000.000.00</p>
-                                            <p style="color:#EB9500" class="subtitle-1">em até 540X nos cartoes </p>
-                                        </div> 
-                            </v-card>
-                        </v-row>
-                    </v-col>
-                </v-card>
-                <!--PAGINAÇAO-->
-                <v-pagination
-                    class="mt-4 mb-5"
-                    v-model="page"
-                    :length="8"
+                flat
+                tile
+                heigth=auto
+                class="ml-4 text-left hidden-sm-only hidden-xs-only"
                 >
-                </v-pagination>        
-        </v-content>     
-        <v-navigation-drawer 
-            width="20%"
-            absolute
-            permanent
-        >
-            
-                <v-list>
-                    <v-list-item>
-                        <v-list-item-title>CATEGORIAS</v-list-item-title>
-                    </v-list-item>
-                    <v-col cols="12" sm="12" md="12">
-                        <v-text-field
-                            v-model="Pesquisar"
-                            append-icon="mdi-magnify"
-                            label="Pesquisar"
-                            color="#422321"  
-                        >
-                        </v-text-field>
-                    </v-col>
-                    <v-divider/>
-                    <!--AVALIAÇOES-->
-                    <v-list-item> 
-                            <v-list><!--lista dentro de lista-->
-                                <v-list-item-title>AVALIAÇÃO</v-list-item-title>
-                                <v-col>
-                                    <v-row>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                    </v-row>    
-                                    <v-row>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                    </v-row>
-                                    <v-row>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                    </v-row>
-                                    <v-row>
-                                        <i class="fas fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                    </v-row>
-                                </v-col>    
-                            </v-list>
-                    </v-list-item>
-                    <v-divider/>
-                    <!--LOCALIZAÇAO-->
-                    <v-list-item>
-                        <v-list>
-                            <v-list-item-title>LOCALIZAÇAO</v-list-item-title>
-                                <v-radio-group>
-                                    <v-radio
-                                        label="Rio de Janeiro"
-                                        color="#422321"
-                                        value="rj"
-                                    ></v-radio>
-                                
-                                    <v-radio
-                                        label="São Paulo"
-                                        color="#422321"
-                                        value="sp"
-                                    ></v-radio>
-                                
+                        <v-col cols="12" md="12">
+                            <h3>Categorias</h3>
+                            <v-text-field
+                                v-model="pesquisar"
+                                append-icon="mdi-magnify"
+                                label="Pesquisar"
+                                color="#422321"
+                            ></v-text-field>   
+                        </v-col>
+                        <v-divider/>
+                    <v-list>
+                        <!--Primeiro grupo-->
+                        <v-list-item-group>
+                            <v-list-item-title class="ml-4">AVALIAÇÃO</v-list-item-title>
+                            <v-col>
+                                <v-row>
+                                    <v-rating
+                                        background-color="orange "
+                                        color="orange"
+                                        medium
+                                        readonly
+                                    ></v-rating>
+                                </v-row>
+                            </v-col>
+                            <v-divider/>
+                        </v-list-item-group>
+                        <!--Segundo grupo-->
+                        <v-list-item-group>
+                            <v-list-item-title class="ml-4">LOCALIZAÇAO</v-list-item-title>
+                            <v-radio-group>
                                 <v-radio
-                                    label="Minas Gerais"
-                                    color="#422321"
-                                    value="mn"
-                                ></v-radio>
-
-                                <v-radio
-                                    label="Mato Grosso"
-                                    color="#422321"
-                                    value="mt"
+                                    class="ml-4"
+                                    :v-for="radio in radio"
+                                    key="radio"
+                                    label=""
+                                    color="#422321"    
                                 ></v-radio>
                             </v-radio-group>
-                        </v-list>
-                    </v-list-item>
-                    <v-divider/>
-                    <!--PREÇO-->
-                    <v-list-item>
-                        <v-list>
-                            <v-list-item-title>PREÇO</v-list-item-title>
-                            
+                            <v-divider/>
+                        </v-list-item-group>
+                        <!--Terceiro grupo-->
+                        <v-list-item-group>
+                            <v-list-item-title class="ml-4">PREÇO</v-list-item-title>
+                            <v-col cols="12"  md="12">
                                 <v-text-field
-                                v-model="Min"
-                                label="Valor Mínimo"
-                                max="25000"
-                                min="100"
-                                step="100"
-                                style="width: 250px"
-                                type="number"
-                                @keydown="false"
+                                    label="Valor Mínimo"
+                                    max="25000"
+                                    min="100"
+                                    step="100"
+                                    style="width: 250px"
+                                    type="number"
+                                    @keydown="false"
                                 ></v-text-field>
-                            
+                                
                                 <v-text-field
-                                v-model="Max"
-                                label="Valor maximo"
-                                max="25000"
-                                min="100"
-                                step="100"
-                                style="width: 250px"
-                                type="number"
-                                @keydown="false"
+                                    label="Valor maximo"
+                                    max="25000"
+                                    min="100"
+                                    step="100"
+                                    style="width: 250px"
+                                    type="number"
+                                    @keydown="false"
                                 ></v-text-field>
-                        </v-list>
-                    </v-list-item>
-                </v-list>
-               
-        </v-navigation-drawer>
-       
-    </v-card>           
+                            </v-col>
+                        </v-list-item-group>
+                    </v-list>
+                </v-card>
+                <v-divider vertical/>
+                <!--CONTEUDO-->
+                <v-col>
+                    <!--nome do produto-->
+                    <v-row>
+                        <h3 class="ml-8">NOME DO PRODUTO</h3>
+                        <v-spacer/>
+                    </v-row>
+                    <!--links-->
+                        <v-breadcrumbs :items="items" >
+                            <template v-slot:divider>
+                                <v-icon>mdi-chevron-right</v-icon>
+                            </template>
+                        </v-breadcrumbs>
+                    <!--BARRA HORIZONTAL-->
+                    <div class="hidden-md-only hidden-lg-only hidden-xl-only">
+                        <h3>Categorias</h3>
+                        <Resp/>
+                    </div>
+                        
+                        <v-divider class="mx-8"/>
+                    <!--cards-->
+                    <v-row justify="space-around">
+                        <v-card
+                        class="mt-6 mb-6"
+                        width="28%"
+                        min-width="280"
+                        max-width="300"
+                        v-for="card in card"
+                        :key="card.nome">
+                            <v-img width="100%" height="300" src="https://www.ecovaso.com.br/wp-content/uploads/balde.jpg" 
+                            >    
+                            </v-img>
+                             <v-list-item-content class="ml-5">   
+                                <span style="color:green">Ao Vivo</span>
+                                    <v-list-item-title 
+                                    style="color:#63432D" 
+                                    class="bold headline mb-1">
+                                        {{card.nome}}
+                                    </v-list-item-title>
+                                    <v-list-item-subtitle 
+                                    style="color:#1B120C"
+                                    >
+                                        {{card.sub}}
+                                    </v-list-item-subtitle>
+                                <v-divider class="mx-5" color="#EDE7E2"/>           
+                                <v-row 
+                                class="mr-5" 
+                                justify="center">
+                                    <v-btn 
+                                    outlined 
+                                    rounded 
+                                    class="pr-12 pl-12" 
+                                    color="green">
+                                        PARTICIPAR
+                                    </v-btn>
+                                </v-row>
+                            </v-list-item-content>
+                        </v-card>
+                    </v-row>    
+                    <!--paginaçao-->
+                    <v-pagination
+                        v-model="page"
+                        :length="6"
+                        circle
+                        color="#422321"
+                    >
+                    </v-pagination>
+                </v-col>
+            </v-row>
+        </v-col>
+    </v-layout>    
 </template>
-
 <script>
-
-import homeVue from './home.vue'
+import Resp from '../components/responsivo/ProdutoResponsivo';
 export default {
+    components:{
+        Resp,
+    },
     data(){
-        return {
-                page: homeVue,
+        return{
+            pesquisar:null,
+            page:1,
+            radio:[
+                {nome:'Rio'}
+            ],
+            items:[
+                {text: 'Inicio', disabled: false, to: '#'},
+                {text: 'Produto', disabled: true, },
+            ],
+            card:[
+                {nome:'Nome da Transmissao 1',sub:'texto 1'},
+                {nome:'Nome da Transmissao 2',sub:'texto 2'},
+                {nome:'Nome da Transmissao 3',sub:'texto 3'},
+                {nome:'Nome da Transmissao 4',sub:'texto 1'},
+                {nome:'Nome da Transmissao 5',sub:'texto 2'},
+                {nome:'Nome da Transmissao 6',sub:'texto 3'},
+                {nome:'Nome da Transmissao 7',sub:'texto 1'},
+                {nome:'Nome da Transmissao 8',sub:'texto 2'},
+                {nome:'Nome da Transmissao 9',sub:'texto 3'},
+                {nome:'Nome da Transmissao 10',sub:'texto 1'},
+                {nome:'Nome da Transmissao 11',sub:'texto 2'},
+                {nome:'Nome da Transmissao 12',sub:'texto 3'},
+            ]
         }
     }
 }
-</script>
-
-<script>
-export default {
-    data () {
-        return {
-        circle: false,
-        disabled: false,
-        rating: 4.3,
-        page:  homeVue,
-        Min: 100,
-        Max: 100,
-        }
-    },
-}
-</script>
-<!--ESTRELAS-->
-<script>
-export default {
-    data: () => ({
-    rating: 1,
-  }),
-}
-</script>>
-
+</script>  
+    

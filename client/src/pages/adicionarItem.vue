@@ -1,13 +1,15 @@
 <template>
       <v-container>
-        <AdicionaImagem/>
+        <addItem/>
+      
       </v-container>
 </template>
 <script>
-import AdicionaImagem from "../components/item/item"
+import addItem from "../components/item/additem"
+
 export default {
   components:{
-    AdicionaImagem,
+    addItem
   }
     
 }

@@ -1,6 +1,5 @@
 <template>
     <v-form
-    ref="form"
     v-model="valid"
     lazy-validation>
     <!--title-->
@@ -10,14 +9,10 @@
     <!--icon-->
     <v-row justify="center">
         <v-col
-        :key="i"
+        :key="i.icon"
         v-for="i in is"
-       
         >
-            <v-row justify="space-around">
                 <v-icon size="50" color="#422321" > {{i.icon}} </v-icon>
-                <v-icon size="50" color="#422321" > {{i.icon2}} </v-icon>  
-            </v-row>
         </v-col>
     </v-row>
     <v-row 
@@ -27,24 +22,26 @@
     </v-row>
     <v-row justify="center">
         <v-col
-        :key="i"
-        v-for="i in is"
         cols="10"
         >
             <!--Email-->
             <v-text-field
-            v-model="email"
+            lazy-validation
+            v-model="accountData.email"
             :rules="emailRules"
+            @change="$emit('email', accountData)"
+            autocomplete="true"
             label="E-mail"
-            placeholder="exemplo@gmail.com"
+            placeholder="exemplo@mail.com"
             required
             color="green"/>
             <!--Password-->   
             <v-text-field
-            ref="nome"
-            v-model="senha"
+            lazy-validation
+            v-model="accountData.senha"
             :rules="senhaRules"
-            :type="'password'"
+            autocomplete="true"
+            type="password"
             label="Senha"
             placeholder="**********"
             required
@@ -52,17 +49,35 @@
             />
         </v-col>
     </v-row>    
+    <v-row justify="center">
+        <v-col
+        :key="button.text"
+          v-for="button in buttons">
+                    <v-btn
+                    :color="button.color"
+                    center
+                    class="white--text"
+                    depressed
+                    large
+                    @click="button.click"
+                    v-text="button.text"
+                    />
+        </v-col>
+      </v-row>
   </v-form>
+
 </template>
 <script>
-import firebase from 'firebase';
 export default {
-  props: ['titulo'],
+  props: ['titulo','buttons'],
   data () {
     return {
         valid:true,
-        email: '',
-        senha: '',
+        accountData:{
+          email: '',
+        senha: ''
+
+        },
         senhaRules: [
                 v => !!v || 'Este campo é necessario',
                 v => !!v && v.length >= 5 || 'Digite no minimo 5 caracter'
@@ -72,23 +87,8 @@ export default {
         v => /.+@.+\..+/.test(v) || 'E-mail precisa ser valido!',
       ],
        checkbox: false,
-        is:[ {icon:'fab fa-facebook-f', icon2:'fab fa-google'},]
+        is:[ {icon:'fab fa-facebook-f'}, {icon:'fab fa-google'},]
     };
-  },
-  methods: {
-    signUp () {
-      firebase.auth().createUserWithEmailAndPassword(this.email, this.senha).then(
-        ( user => {
-        
-            this.$store.state.account = user;
-          this.$router.replace('home'),
-            alert('Sua conta foi cadastrata com sucesso!')
-        }),
-        (err) => {
-          alert('Aconteceu algo inesperado. ' + err.message)
-        }
-      );
-    },
   },
 };
 
