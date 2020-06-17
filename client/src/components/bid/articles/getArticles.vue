@@ -21,7 +21,7 @@
 					height="50%"
 					:key="img">
 						<v-img
-						:src="artigo.imgUrl">
+						:src="img">
 							<v-card-title float="left" v-text="artigo.name"/>
 						</v-img>
 					</v-carousel-item>
@@ -87,7 +87,7 @@ export default {
 		axios({
 			method:`post`,
 			url:'https://us-central1-portalleilao-26290.cloudfunctions.net/item/getItemById',
-			data:{id:'leilaoBeta'},
+			data:{id:'6escILKzT48O4Ocz04eY'},
 		})
 		.then(response => {
 				this.artigo = response.data
