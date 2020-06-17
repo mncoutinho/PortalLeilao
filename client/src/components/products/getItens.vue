@@ -170,10 +170,7 @@ export default {
             radio:[
                 {nome:'Rio'}
             ],
-            items:[
-                {text: 'Inicio', disabled: false, to: '#'},
-                {text: 'Produto', disabled: true, },
-            ],
+            
             card:[
                 
             ]
