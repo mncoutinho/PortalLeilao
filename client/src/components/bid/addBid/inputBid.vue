@@ -16,7 +16,8 @@
                         <v-flex xs12 sm6 offset-sm3>
                             <v-text-field
                                 name="title"
-                                label="Nome do leilao*"   
+                                label="Nome do leilao*"
+                                v-model="leilao.nome"   
                             />
                         </v-flex>
                     </v-layout>
@@ -25,7 +26,8 @@
                         <v-flex xs12 sm6 offset-sm3>
                             <v-text-field
                                 name="title"
-                                label="Local do leilao*"   
+                                label="Local do leilao*"
+                                v-model="leilao.local"    
                             />
                         </v-flex>
                     </v-layout>
@@ -34,7 +36,8 @@
                         <v-flex xs12 sm6 offset-sm3>
                             <v-textarea
                                 name="title"
-                                label="Descricao do Leilao*"   
+                                label="Descricao do Leilao*"
+                                v-model="leilao.descricao"    
                             />
                         </v-flex>
                     </v-layout>
@@ -42,12 +45,20 @@
                     <v-layout row style="margin-top: 30px;">
                         <v-flex xs12 sm3 offset-sm3>
                             <h4 class="brown--text" >Data de abertura</h4>
-                            <v-date-picker color="#422321" class="col-12"/>
+                            <v-date-picker
+                             color="#422321"
+                              class="col-12"
+                              v-model="leilao.abertura" 
+                              />
                         </v-flex>
                         
                         <v-flex xs12 sm3 >
                             <h4 class="brown--text" >Data de fechamento</h4>
-                            <v-date-picker color="#422321" class="col-12"/>
+                            <v-date-picker 
+                            color="#422321" 
+                            class="col-12"
+                            v-model="leilao.fechamento"
+                            />
                         </v-flex>
                     </v-layout>
 
@@ -79,6 +90,17 @@ export default {
     components:{
     dadosLeiloeiro,
     termos,
+  },
+  data(){
+      return{
+          leilao:{
+              nome:"carro",
+              local:"r lavradinho",
+              descricao:"carros loucos",
+              abertura:"",
+              fechamento:""
+          }
+      }
   }
 }
 </script>
