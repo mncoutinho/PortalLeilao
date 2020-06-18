@@ -70,10 +70,12 @@
                         <v-flex xs12 sm6 offset-sm3>
                             <v-btn 
                             class="col-12"
-                            color="success" 
+                            color="success"
+                            v-on:click="addLeilao(leilao,termos);" 
                             >
                                 Confirmar
                             </v-btn>
+                            {{registro}}
                         </v-flex>
                     </v-layout>
 
@@ -99,10 +101,17 @@ export default {
               descricao:"carros loucos",
               abertura:"",
               fechamento:""
-          }
+          },
+          registro:[]
       }
-  }
+  },
+    methods:{
+        addLeilao(obj){
+           this.registro.push(obj);
+        }
+    }
 }
+
 </script>
 
 <style>
