@@ -63,7 +63,7 @@
                     </v-layout>
 
                     <dadosLeiloeiro
-                      @nome="getLeiloeiro"  
+                      @formLeiloeiro="getLeiloeiro"  
                     />
 
                     <termos/>
@@ -77,7 +77,8 @@
                             >
                                 Confirmar
                             </v-btn>
-                            {{registro}}
+                            
+                            {{leiloeiro}}
                         </v-flex>
                     </v-layout>
 
@@ -104,7 +105,7 @@ export default {
               abertura:"",
               fechamento:""
           },
-          Leiloeiro:{},
+          leiloeiro:{},
           registro:[]
       }
   },
