@@ -39,9 +39,9 @@ export default {
     data(){
         return{
             termos:{
-            frete:'',
-            pagamento:'',
-            condicoes:''
+                frete:'',
+                pagamento:'',
+                condicoes:''
             },
         }
     },

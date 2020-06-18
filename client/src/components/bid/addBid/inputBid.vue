@@ -62,7 +62,9 @@
                         </v-flex>
                     </v-layout>
 
-                    <dadosLeiloeiro/>
+                    <dadosLeiloeiro
+                      @nome="getLeiloeiro"  
+                    />
 
                     <termos/>
 
@@ -71,7 +73,7 @@
                             <v-btn 
                             class="col-12"
                             color="success"
-                            v-on:click="addLeilao(leilao,termos);" 
+                            v-on:click="addLeilao(leilao,leiloeiro,termos);" 
                             >
                                 Confirmar
                             </v-btn>
@@ -102,12 +104,17 @@ export default {
               abertura:"",
               fechamento:""
           },
+          Leiloeiro:{},
           registro:[]
       }
   },
     methods:{
-        addLeilao(obj){
+        addLeilao(bid,auctioneer,term){
+           const obj = {bid,auctioneer,term}
            this.registro.push(obj);
+        },
+        getLeiloeiro(leiloeiro){
+            this.Leiloeiro = leiloeiro
         }
     }
 }

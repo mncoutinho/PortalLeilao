@@ -6,7 +6,8 @@
                 <v-text-field
                     name="title"
                     label="Nome do leiloeiro*"
-                    v-model="leiloeiro.nome"   
+                    v-model="leiloeiro.nome"
+                    @change="$emit('nome', leiloeiro)" 
                 />
             </v-flex>
       </v-layout>
