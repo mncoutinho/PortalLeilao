@@ -11,7 +11,6 @@
         <v-layout row>
             <v-flex xs12>
                 <form>
-                    
                     <v-layout row>
                         <v-flex xs12 sm6 offset-sm3>
                             <v-text-field
@@ -21,7 +20,6 @@
                             />
                         </v-flex>
                     </v-layout>
-
                     <v-layout row>
                         <v-flex xs12 sm6 offset-sm3>
                             <v-text-field
@@ -31,7 +29,6 @@
                             />
                         </v-flex>
                     </v-layout>
-
                     <v-layout row>
                         <v-flex xs12 sm6 offset-sm3>
                             <v-textarea
@@ -41,7 +38,6 @@
                             />
                         </v-flex>
                     </v-layout>
-
                     <v-layout row style="margin-top: 30px;">
                         <v-flex xs12 sm3 offset-sm3>
                             <h4 class="brown--text" >Data de abertura</h4>
@@ -115,7 +111,7 @@ export default {
            this.registro.push(obj);
         },
         getLeiloeiro(leiloeiro){
-            this.Leiloeiro = leiloeiro
+            this.leiloeiro = leiloeiro
         }
     }
 }
