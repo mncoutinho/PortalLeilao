@@ -6,7 +6,8 @@
                 <v-textarea
                     name="title"
                     label="Termos de Frete*"
-                    v-model="termos.frete"   
+                    v-model="termos.frete" 
+                    @change="$emit('formTermos', termos)"   
                 />
             </v-flex>
       </v-layout>
@@ -16,7 +17,8 @@
                 <v-textarea
                     name="title"
                     label="Termos de Pagamentos*"
-                    v-model="termos.pagamento"   
+                    v-model="termos.pagamento" 
+                    @change="$emit('formTermos', termos)"    
                 />
             </v-flex>
       </v-layout>
@@ -26,7 +28,8 @@
                 <v-textarea
                     name="title"
                     label="Termos & Condicoes*"
-                    v-model="termos.condicoes"   
+                    v-model="termos.condicoes"
+                    @change="$emit('formTermos', termos)"     
                 />
             </v-flex>
       </v-layout>

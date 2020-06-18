@@ -62,7 +62,9 @@
                       @formLeiloeiro="getLeiloeiro"  
                     />
 
-                    <termos/>
+                    <termos
+                        @formTermos="getTermos"
+                    />
 
                     <v-layout row>
                         <v-flex xs12 sm6 offset-sm3>
@@ -73,8 +75,8 @@
                             >
                                 Confirmar
                             </v-btn>
+                            {{registro}}
                             
-                            {{leiloeiro}}
                         </v-flex>
                     </v-layout>
 
@@ -102,6 +104,7 @@ export default {
               fechamento:""
           },
           leiloeiro:{},
+          termos:{},
           registro:[]
       }
   },
@@ -111,7 +114,10 @@ export default {
            this.registro.push(obj);
         },
         getLeiloeiro(leiloeiro){
-            this.leiloeiro = leiloeiro
+            this.leiloeiro = leiloeiro;
+        },
+        getTermos(termos){
+            this.termos = termos;
         }
     }
 }
