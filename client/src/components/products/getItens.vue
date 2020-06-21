@@ -36,26 +36,7 @@
                             <v-divider/>
                         </v-list-item-group>
                         <!--Segundo grupo-->
-                        <v-list-item-group>
-                            <v-list-item-title class="ml-4">LOCALIZAÇAO</v-list-item-title>
-                            <v-radio-group>
-                                <v-radio
-                                    class="ml-4"
-                                    :v-for="radio in radio"
-                                    key="radio"
-                                    label="Rio de Janeiro"
-                                    color="#422321"    
-                                ></v-radio>
-                                <v-radio
-                                    class="ml-4"
-                                    :v-for="radio in radio"
-                                    key="radio"
-                                    label="São Paulo"
-                                    color="#422321"    
-                                ></v-radio>
-                            </v-radio-group>
-                            <v-divider/>
-                        </v-list-item-group>
+                        
                         <!--Terceiro grupo-->
                         <v-list-item-group>
                             <v-list-item-title class="ml-4">PREÇO</v-list-item-title>
@@ -117,17 +98,17 @@
                             >    
                             </v-img>
                              <v-list-item-content class="ml-5">   
-                                <span style="color:green">Ao Vivo</span>
+                                <span style="color:green">{{status(card.active)}}</span>
                                     <v-list-item-title 
                                     style="color:#63432D" 
                                     class="bold headline mb-1">
                                         {{card.name}}
                                     </v-list-item-title>
-                                    <v-list-item-subtitle 
+                                    <v-list-item 
                                     style="color:#1B120C"
                                     >
                                         {{card.description}}
-                                    </v-list-item-subtitle>
+                                    </v-list-item>
                                 <v-divider class="mx-5" color="#EDE7E2"/>           
                                 <v-row 
                                 class="mr-5" 
@@ -137,8 +118,8 @@
                                     rounded 
                                     class="pr-12 pl-12" 
                                     color="green">
-                                        PARTICIPAR
-                                    </v-btn>
+                                        Ver Mais
+                                    </v-btn>                                  
                                 </v-row>
                             </v-list-item-content>
                         </v-card>
@@ -153,6 +134,7 @@
                     color="#422321"
                 >
                 </v-pagination>
+                
         </v-col>
     </v-layout>    
 </template>
@@ -167,13 +149,8 @@ export default {
         return{
             pesquisar:null,
             page:1,
-            radio:[
-                {nome:'Rio'}
-            ],
-            
-            card:[
-                
-            ]
+            items:[],
+            card:[]
         }
     },
     created(){
@@ -183,6 +160,16 @@ export default {
         }).then(doc => {
             this.card = doc.data;
         }).catch(error => console.log(error))     
-    }
+        
+    },
+    methods:{
+        status(status){
+            if(status){
+              return this.card.active = "Aberto"
+            }else{
+               return this.card.active = "Fechado" 
+            }
+        }
+    },
 }
 </script>
