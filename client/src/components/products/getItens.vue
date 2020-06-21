@@ -93,7 +93,7 @@
                         min-width="280"
                         max-width="300"
                         v-for="card in card"
-                        :key="card">
+                        :key="card.id">
                             <v-img width="100%" height="300" :src="card.imgUrl[0]" 
                             >    
                             </v-img>
