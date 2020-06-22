@@ -16,7 +16,7 @@
 				<v-col>Hora</v-col>
 			</v-row>
 			<v-row v-for="lance in lances" 
-				:key="lance">
+				:key="lance.length">
 				<v-col>
 					<small v-text="lance.user"/>
 				</v-col>
@@ -29,7 +29,6 @@
 			</v-row>
 		<v-text-field v-model="lance" 
 		v-on:keyup.enter="AddLance(lance,user)" 
-		v-money="money" 
 		label="Faca seu lance" />
 		<v-btn 
 		class="ma-4"
@@ -55,7 +54,7 @@
 			<v-text-field
 			class="mx-3 mt-5"
 			v-model="autolance.limit"
-			v-money="money"
+			
 			label="De limite ao seu lance :"
 			v-on:keyup.enter="autolancelimit()"
 			/>
@@ -77,20 +76,13 @@
 
 <script>
 
-import {VMoney} from "v-money";
+
 export default {
 
 	data(){
 		return{
-			money: {
-				decimal: ',',
-				thousands: '.',
-				prefix: 'R$ ',
-				suffix: ' ',
-				precision: 2,
-				masked: false
-			},
-			lance: '',
+			lanceMinimo:300,
+			lance: 0,
 			lances: [],
 			user:"Joao Claudio",
 			
@@ -101,12 +93,23 @@ export default {
 			}
 		};
 	},
-	directives: {money: VMoney},
+	
 	methods: {
 		AddLance(lance,user) {
-			const time = new Date();
-			const lanceConfirmado = {lance, time, user};		
-			this.lances.push(lanceConfirmado);
+			//convertendo
+			lance = parseInt(lance);
+			console.log(this.lanceMinimo);
+			
+			if(lance > this.lanceMinimo){
+				this.lanceMinimo = lance;
+				const time = new Date();
+				const lanceConfirmado = {lance, time, user};		
+				this.lances.push(lanceConfirmado);
+				
+			}else{
+				alert("Voce nao pode fazer um lance abaixo do minimo");
+			}
+			
 
 
 		},
