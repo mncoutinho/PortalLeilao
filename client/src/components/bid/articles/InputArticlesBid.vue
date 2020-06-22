@@ -1,7 +1,7 @@
 <template>	
 	<v-card width="100%">
 		<v-card-title>
-			<strong>Lance Atual: {{ lanceNow }}</strong>
+			<strong>Lance Atual: {{"R$"+lanceNow+",00" }}</strong>
 		</v-card-title>
 		<v-card-text>
 			<small v-if="lances.length" 
@@ -21,7 +21,7 @@
 					<small v-text="lance.user"/>
 				</v-col>
 				<v-col>
-					<small v-text="lance.lance"/>
+					<small>{{"R$"+lance.lance+",00"}}</small>
 				</v-col>
 				<v-col>
 					<small v-text="lance.time"/>
@@ -99,7 +99,7 @@ export default {
 			//convertendo
 			lance = parseInt(lance);
 			console.log(this.lanceMinimo);
-			
+
 			if(lance > this.lanceMinimo){
 				this.lanceMinimo = lance;
 				const time = new Date();
