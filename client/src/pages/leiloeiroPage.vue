@@ -1,7 +1,7 @@
 <template>
   <v-navigation-drawer permanent expand-on-hover>
     <!--INFOMAÇOES DO USUARIO-->
-    <v-list :key="usuario" v-for="usuario in usuario">
+    <v-list :key="usuario.length" v-for="usuario in usuario">
       <v-list-item class="px-2">
         <v-list-item-avatar>
           <v-img
@@ -16,7 +16,7 @@
     </v-list>
     <v-divider />
     <!--CATEGORIAS-->
-    <v-list nav dense :key="conteudo" v-for="conteudo in conteudo">
+    <v-list nav dense :key="conteudo.length" v-for="conteudo in conteudo">
       <!--titulo-->
       <v-list-group>
         <template v-slot:activator>
@@ -26,7 +26,7 @@
           <v-list-item-title>{{conteudo.title}}</v-list-item-title>
         </template>
         <!--conteudo-->
-        <v-list-item-action dense :key="i" v-for="(content, i) in content">
+        <v-list-item-action dense :key="content" v-for="content in conteudo.content">
           <v-list-item-title v-text="content[0]"></v-list-item-title>
           <v-list-item-title v-text="content[1]"></v-list-item-title>
           <v-list-item-title v-text="content[2]"></v-list-item-title>
@@ -42,12 +42,11 @@ export default {
     return {
       usuario: [{ name: "Lucas", email: "Lili@empresa.com" }],
       conteudo: [
-        { icon: "mdi-home", title: "Leilao" },
-        { icon: "mdi-home", title: "Artigos" },
-        { icon: "mdi-home", title: "Usuarios" },
-        { icon: "mdi-home", title: "Anuncios" }
-      ],
-      content: [["Visao Geral", "Editar", "Criar"]]
+        { icon: "fas fa-gavel", title: "Leilao", content:["1","2","3"]},
+        { icon: "fas fa-file-alt", title: "Artigos" , content:["test","2","3"]},
+        { icon: "mdi-card-account-details", title: "Usuarios", content:["criar","procurar","lista Negra"] },
+        { icon: "fas fa-ad", title: "Anuncios" }
+      ]
     };
   }
 };
