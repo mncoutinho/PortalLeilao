@@ -56,7 +56,7 @@
 			v-model="autolance.limit"
 			
 			label="De limite ao seu lance :"
-			v-on:keyup.enter="autolancelimit()"
+			v-on:keyup.enter="autolancelimit(autolance.limit,user)"
 			/>
 				<v-row align="start" justify="center">
 					<v-btn 
@@ -66,7 +66,8 @@
 						Cancelar
 					</v-btn>
 					<v-btn
-					color="white" 
+					color="white"
+					v-on:click="autolancelimit(autolance.limit,user)"
 					>Confirmar
 					</v-btn>
 				</v-row>
@@ -116,12 +117,19 @@ export default {
 		// Teste
 		
 		autoLanceModal(){
-
-				this.autolance.modal = !this.autolance.modal;
-			
+			this.autolance.modal = !this.autolance.modal;	
 		},
-		autolancelimit(){
-			
+		autolancelimit(limit,user){
+			limit = parseInt(limit);
+			console.log(limit);
+			if(limit > this.lanceMinimo){
+				this.lanceMinimo = this.lanceMinimo + 20;
+				const lance = this.lanceMinimo;
+				const time = new Date();
+				const lanceConfirmado = {lance,time,user};
+				console.log("autolance say: ",lance);
+				this.lances.push(lanceConfirmado);
+			}
 		}	
 	},
 	computed:{
