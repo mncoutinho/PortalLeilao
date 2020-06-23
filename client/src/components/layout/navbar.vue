@@ -68,6 +68,7 @@ export default {
           { i: 'fas fa-gavel ', title: 'Addleilão', routerLinks: '/addLeilao' },
           { i: 'fas fa-gavel ', title: 'produtos', routerLinks: '/produtos' },
           { i: 'fas fa-gavel ', title: 'perfil', routerLinks: '/userpage' },
+          { i: 'fas fa-gavel ', title: 'leiloeiro', routerLinks: '/leiloeiro' },
           { i: 'fas fa-gavel ', title: 'tutorial', routerLinks: '/tutorial' }
         ]
       }

@@ -57,13 +57,13 @@ export default {
                 {name:"Lucas",email:"Lili@empresa.com"}
             ],
             conteudo:[
-                {icon:'mdi-home',title:"nome"},
-                {icon:'mdi-home',title:"nome"},
-                {icon:'mdi-home',title:"nome"},
-                {icon:'mdi-home',title:"nome"},
+                {icon:'mdi-home',title:"Leilao"},
+                {icon:'mdi-home',title:"Artigos"},
+                {icon:'mdi-home',title:"Usuarios"},
+                {icon:'mdi-home',title:"Anuncios"},
             ],
             content:[
-                ['eai', 'meu','chapa'],
+                ['Visao Geral', 'Editar','Criar'],
             ],
         }
     }
