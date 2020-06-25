@@ -72,11 +72,12 @@
 					</v-btn>
 				</v-row>
 		</v-card>
+		{{lances}}
 	</v-card>		
 </template>
 
 <script>
-
+import axios from 'axios';
 
 export default {
 
@@ -142,6 +143,17 @@ export default {
 			}	
 			return now;
 		}
+	},
+	created(){
+		axios({
+			method:`post`,
+			url:'https://us-central1-portalleilao-26290.cloudfunctions.net/item/getBidItem',
+			data:{item:'A5zfqb6in8HoIm99CMmt'},
+		})
+		.then(response => {
+				this.lances = response.data
+			})
+		.catch(error => console.log(error));
 	}
 }
 </script>
