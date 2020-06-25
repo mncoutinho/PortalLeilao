@@ -87,6 +87,8 @@ export default {
 			lance: 0,
 			lances: [],
 			user:"Joao Claudio",
+			//id herdado do pai
+			IDitem:'A5zfqb6in8HoIm99CMmt',
 			
 			// teste auto lance
 			autolance: {
@@ -148,7 +150,7 @@ export default {
 		axios({
 			method:`post`,
 			url:'https://us-central1-portalleilao-26290.cloudfunctions.net/item/getBidItem',
-			data:{item:'A5zfqb6in8HoIm99CMmt'},
+			data:{item: this.IDitem},
 		})
 		.then(response => {
 				this.lances = response.data
