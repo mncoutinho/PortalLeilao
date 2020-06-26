@@ -167,7 +167,8 @@ export default {
 			data:{item: this.IDitem},
 		})
 		.then(response => {
-				this.lances = response.data
+				this.lances = response.data,
+				this.lanceMinimo = response.data().bid[response.length];
 			})
 		.catch(error => console.log(error));
 	}
