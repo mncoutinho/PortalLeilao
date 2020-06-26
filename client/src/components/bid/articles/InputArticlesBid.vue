@@ -1,7 +1,7 @@
 <template>	
 	<v-card width="100%">
 		<v-card-title>
-			<strong>Lance Atual: {{"R$"+lanceNow+",00" }}</strong>
+			<strong>Lance Atual: {{"R$"+ lanceNow+",00" }}</strong>
 		</v-card-title>
 		<v-card-text>
 			<small v-if="lances.length" 
@@ -83,7 +83,7 @@ export default {
 
 	data(){
 		return{
-			lanceMinimo:300,
+			lanceMinimo: 300,
 			lance: 0,
 			lances: [],
 			user:"Adalto Silva",
@@ -157,7 +157,7 @@ export default {
 			for (var i = 0; i < this.lances.length; i++) {
 				now = this.lances[i].lance;
 			}	
-			return now;
+			return  now;
 		}
 	},
 	created(){
@@ -167,8 +167,7 @@ export default {
 			data:{item: this.IDitem},
 		})
 		.then(response => {
-				this.lances = response.data,
-				this.lanceMinimo = response.data().bid[response.length];
+				this.lances = response.data
 			})
 		.catch(error => console.log(error));
 	}
