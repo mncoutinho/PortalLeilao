@@ -86,7 +86,7 @@ export default {
 			lanceMinimo:300,
 			lance: 0,
 			lances: [],
-			user:"Joao Claudio",
+			user:"Adalto Silva",
 			//id herdado do pai
 			IDitem:'A5zfqb6in8HoIm99CMmt',
 			
@@ -109,6 +109,20 @@ export default {
 				const time = new Date();
 				const lanceConfirmado = {lance, time, user};		
 				this.lances.push(lanceConfirmado);
+
+				//postando no banco
+				axios({
+					method:`patch`,
+					url:'https://us-central1-portalleilao-26290.cloudfunctions.net/item/bidding',
+					data:{
+						item: this.IDitem,
+						bid: this.lances
+					},
+				})
+				.then(() =>{
+					return alert("lance feito");
+				})
+				.catch(error => console.log(error));
 				
 			}else{
 				alert("Voce nao pode fazer um lance abaixo do minimo");
