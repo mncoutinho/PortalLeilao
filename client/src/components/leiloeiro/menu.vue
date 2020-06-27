@@ -49,29 +49,29 @@ export default {
     conteudo:[
       //numero 1
       {icon:"mdi-home",
-        title:"NOME",
+        title:"Artigos",
         conteudo:[
-          {title:"nome", routerLinks:'/adicionarItem'},
-          {title:"nome", routerLinks:'/adicionarItem'},
-          {title:"nome", routerLinks:'/adicionarItem'},
+          {title:"Adicionar", routerLinks:'/adicionarItem'},
+          {title:"Editar"},
+          {title:"Gerenciar Lances"},
         ]
       },
       //numero 2
       {icon:"mdi-home",
-        title:"OUTRO-NOME",
+        title:"Leilao",
         conteudo:[
-          {title:"nomeS"},
-          {title:"nomeS"},
-          {title:"nomeS"},
+          {title:"Criar"},
+          {title:"Editar"},
+          {title:"Informar sobre o Lote"},
         ]
       },
       //numero 3
       {icon:"mdi-home",
-        title:"FUNCINO POHA",
+        title:"Cliente",
         conteudo:[
-          {title:"AEW CARALHO"},
-          {title:"PEGOU"},
-          {title:"kek"},
+          {title:"Criar"},
+          {title:"Editar"},
+          {title:"Lista Negra"},
         ]
       },
 
