@@ -27,15 +27,21 @@
 					<small v-text="lance.time"/>
 				</v-col>
 			</v-row>
-		<v-text-field v-model="lance" 
-		v-on:keyup.enter="AddLance(lance,user)" 
-		label="Faca seu lance" />
+
+		<v-text-field 
+			v-model="lance" 
+			v-on:keyup.enter="AddLance(lance,user)" 
+			label="Faca seu lance" 
+		/>
+
 		<v-btn 
-		class="ma-4"
-		v-on:click="AddLance(lance,user)"
-		color="success" >
+			class="ma-4"
+			v-on:click="AddLance(lance,user)"
+			color="success" 
+		>
 			Faça seu Lance
 		</v-btn>
+
 		</v-card>
 			<!-- Auto lance beta -->
 		<v-btn
@@ -72,7 +78,6 @@
 					</v-btn>
 				</v-row>
 		</v-card>
-		{{lances}}
 	</v-card>		
 </template>
 
@@ -150,10 +155,8 @@ export default {
 		}	
 	},
 	computed:{
-		// funcoes de leitura rapida na tela
-		
-		lanceNow(){
-			var now = 0;
+		// funcoes de leitura rapida na tela	
+		lanceNow(now){
 			for (var i = 0; i < this.lances.length; i++) {
 				now = this.lances[i].lance;
 			}	
