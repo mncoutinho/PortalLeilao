@@ -84,7 +84,7 @@ export default {
 	data(){
 		return{
 			lanceMinimo: 300,
-			lance: 0,
+			lance: "",
 			lances: [],
 			user:"Adalto Silva",
 			//id herdado do pai
