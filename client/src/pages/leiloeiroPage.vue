@@ -1,11 +1,18 @@
 <template>
   <v-app id="inspire">
     <v-row no-gutters>
-      <navegacao/>
-      <v-col>
-        <h1>TEXTO</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe nulla vitae obcaecati laudantium! Aperiam sit et consectetur minima animi accusamus sapiente quas asperiores. Blanditiis, cumque.</p>
-      </v-col>
+
+      <navegacao
+      @to='this.page'
+      />
+      <v-windonw v-model="page">
+        <v-windonw-item :value="1">
+          <h1>oi</h1>
+        </v-windonw-item>
+        <v-windonw-item :value="2">
+          <h1>ola</h1>
+        </v-windonw-item>
+      </v-windonw>
     </v-row>
   </v-app>  
 </template>
@@ -15,6 +22,12 @@ import navegacao from "../components/leiloeiro/menu"
 export default {
   components:{
     navegacao,
+  },
+  data(){
+    return{
+      page: 0,
+    }
   }
+
 }
 </script>

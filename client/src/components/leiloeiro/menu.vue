@@ -33,7 +33,7 @@
                     dense 
                     :key="filho.conteudo" 
                     v-for="filho in pai.conteudo">
-                        <v-btn text v-text="filho.title" :to="filho.routerLinks"></v-btn>
+                        <v-btn text v-text="filho.title" @click=filho.to></v-btn>
                   </v-list-item-content>
               </v-list-group>
               <v-divider class="mt-2"/>
@@ -51,8 +51,8 @@ export default {
       {icon:"mdi-home",
         title:"Artigos",
         conteudo:[
-          {title:"Adicionar", routerLinks:'/adicionarItem'},
-          {title:"Editar"},
+          {title:"Adicionar",to:"$emit('to','1')"},
+          {title:"Editar",to:"$emit('to','2')"},
           {title:"Gerenciar Lances"},
         ]
       },
@@ -74,7 +74,6 @@ export default {
           {title:"Lista Negra"},
         ]
       },
-
     ] 
   })
 };
