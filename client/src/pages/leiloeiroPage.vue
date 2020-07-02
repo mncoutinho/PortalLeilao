@@ -3,16 +3,16 @@
     <v-row no-gutters>
 
       <navegacao
-      @to='this.page'
+      @pagina='mudaPage'
       />
-      <v-windonw v-model="page">
-        <v-windonw-item :value="1">
+      <v-window v-model="page">
+        <v-window-item :value="1">
           <h1>oi</h1>
-        </v-windonw-item>
-        <v-windonw-item :value="2">
+        </v-window-item>
+        <v-window-item :value="2">
           <h1>ola</h1>
-        </v-windonw-item>
-      </v-windonw>
+        </v-window-item>
+      </v-window>
     </v-row>
   </v-app>  
 </template>
@@ -26,6 +26,11 @@ export default {
   data(){
     return{
       page: 0,
+    }
+  },
+  methods:{
+    mudaPage(page){
+      this.page = page;
     }
   }
 

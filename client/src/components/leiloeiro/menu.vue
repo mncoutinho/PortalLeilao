@@ -18,22 +18,22 @@
           <v-list 
             nav 
             dense 
-            :key="pai.title" 
-            v-for="pai in conteudo">
+            :key="listas.title" 
+            v-for="listas in conteudos">
             <!--titulo-->
               <v-list-group>
                 <template v-slot:activator>
                   <v-list-item-icon>
-                    <v-icon>{{pai.icon}}</v-icon>
+                    <v-icon>{{listas.icon}}</v-icon>
                   </v-list-item-icon>
-                  <v-list-item-title v-text="pai.title"></v-list-item-title>
+                  <v-list-item-title v-text="listas.title"/>
                 </template>
                 <!--conteudo-->
                   <v-list-item-content 
                     dense 
-                    :key="filho.conteudo" 
-                    v-for="filho in pai.conteudo">
-                        <v-btn text v-text="filho.title" @click=filho.to></v-btn>
+                    :key="lista.conteudo" 
+                    v-for="lista in listas.conteudo">
+                        <v-btn text v-text="lista.title" @click="meunMudaPagina(lista.page)"/>
                   </v-list-item-content>
               </v-list-group>
               <v-divider class="mt-2"/>
@@ -44,15 +44,20 @@
 
 <script>
 export default { 
+  methods:{
+    meunMudaPagina(page){
+      this.$emit('pagina', page)
+    }
+  },
   data:() =>({
     usuario: [{ name: "Lucas", email: "Lili@empresa.com" }],
-    conteudo:[
+    conteudos:[
       //numero 1
       {icon:"mdi-home",
         title:"Artigos",
         conteudo:[
-          {title:"Adicionar",to:"$emit('to','1')"},
-          {title:"Editar",to:"$emit('to','2')"},
+          {title:"Adicionar", page:1},
+          {title:"Editar", page:2},
           {title:"Gerenciar Lances"},
         ]
       },
