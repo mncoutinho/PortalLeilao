@@ -56,16 +56,16 @@ export default {
       {icon:"mdi-home",
         title:"Artigos",
         conteudo:[
-          {title:"Adicionar", page:1},
-          {title:"Editar", page:2},
-          {title:"Gerenciar Lances",page:3},
+          {title:"Produtos", page:1},
+          {title:"adicionar", page:2},
+          
         ]
       },
       //numero 2
       {icon:"mdi-home",
         title:"Leilao",
         conteudo:[
-          {title:"Criar"},
+          {title:"Criar", page:3},
           {title:"Editar"},
           {title:"Informar sobre o Lote"},
         ]
