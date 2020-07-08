@@ -58,7 +58,7 @@ export default {
         conteudo:[
           {title:"Adicionar", page:1},
           {title:"Editar", page:2},
-          {title:"Gerenciar Lances"},
+          {title:"Gerenciar Lances",page:3},
         ]
       },
       //numero 2
@@ -79,6 +79,13 @@ export default {
           {title:"Lista Negra"},
         ]
       },
+      {
+        icon:"mdi-home",
+        title:"Produtos",
+        conteudo:[
+          {title:"nome"}
+        ]
+      }
     ] 
   })
 };
