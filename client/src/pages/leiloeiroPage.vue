@@ -7,10 +7,10 @@
       <v-col> 
         <v-window v-model="page" >
           <v-window-item :value="1" >
-            <produtos/>
+            <addItem/>
           </v-window-item>
           <v-window-item :value="2">
-            <h1>ola</h1>
+            <produtos/>
           </v-window-item>
         </v-window>
       </v-col>
@@ -21,11 +21,14 @@
 <script>
 import navegacao from "../components/leiloeiro/menu"
 import produtos from "../components/products/getItens"
+import addItem from  "../components/item/additem"
+
 
 export default {
   components:{
     navegacao,
-    produtos
+    produtos,
+    addItem
   },
   data(){
     return{
