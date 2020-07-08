@@ -28,7 +28,7 @@ import navegacao from "../components/leiloeiro/menu"
 import produtos from "../components/products/getItens"
 import addItem from  "../components/item/additem"
 
-import addBid from "../pages/addLeilao"
+import addBid from "../components/bid/addBid/inputBid"
 
 
 export default {
