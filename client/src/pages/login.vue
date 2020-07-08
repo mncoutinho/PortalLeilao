@@ -1,14 +1,16 @@
 
 <template >
-    <v-content >
+    <v-main>
        <v-row justify="center">
            <login 
             justify="center"
             align="center" 
             titulo="Entre con..."
+            @email="getAccountData"
             :buttons="buttons"/> 
        </v-row>
-    </v-content>
+       {{accountData}}
+    </v-main>
 </template>
 
 
@@ -20,7 +22,34 @@ export default {
   },
   data: () => ({
     drawer: null,
-    buttons:[{text:"Voltar",click:'', color:"#422321", link:"/"},{text:"Logar", click:'',color:"#422321", link:"/"}]
-  })
+    buttons:[
+      {
+        text:"Voltar",
+        click:'',
+        color:"#422321",
+         link:"/"
+      },
+      {
+        text:"Logar",
+        click:'',
+        color:"#422321",
+        link:"/"
+      }
+    ],
+    //dados pro login 
+    accountData:""
+  }),
+  methods:{
+    getAccountData(accountData){
+      this.accountData = accountData
+    },
+    
+    loginEmail(){
+        alert('123')
+        //metodo de login
+        this.$store.dispatch('signUserIn',this.accountData)
+    }
+
+  }
 }
 </script>

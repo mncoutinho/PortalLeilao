@@ -1,5 +1,5 @@
 <template>
-    <v-content>
+    <v-main>
         <v-row  justify="center">
             <v-window
                 width="100%"
@@ -9,14 +9,15 @@
                 <v-window-item :value="1">
                     <v-card max-width="30%" min-width="450" class="mb-12 pa-12"  :elevation="10" width="50%" >
                     <user titulo="Cadastre-se com..."
-                    @email="getAccountData"/>
+                    @email="getAccountData"
+                    />
                     </v-card>
                 </v-window-item>
-
                 <!--fase 2-->
                 <v-window-item :value="2">
                     <v-card max-width="30%" min-width="450" class="mb-12 pa-12"  :elevation="10" width="50%" >
-                        <personal/>
+                        <personal
+                        @data="getPersonalData"/>
                     </v-card>
                 </v-window-item>
                 <!--fase 3-->
@@ -76,10 +77,9 @@
                 </v-row>
             </v-window>  
         </v-row>
-    </v-content>
+    </v-main>
 </template>
 <script>
-import firebase from 'firebase/app';
 import user from '../components/Modal/criarUsuario/formEmailSenha';
 import personal from '../components/Modal/criarUsuario/cadastrarDadosPessoais';
 import Address from '../components/Modal/endereco'
@@ -92,37 +92,33 @@ export default {
     },
     data() {
         return{
-            accountData:{
-          email: '',
-        senha: ''
-
-        },
-            step: 2,
+            personalData:{},
+            accountData:{},
+            step: 1,
             UF: ['SP', 'RJ', 'MG', 'PR', 'MN'],            
         }
     },
-  
+
     methods:{
         getAccountData(accountData){
             this.accountData = accountData
                 },
+        getPersonalData(personalData){
+            this.personalData = personalData
+        },
         clique(){
-            if(this.step==1){
-                this.signUp();
+            if(this.step===2){
+                this.step++
+            }
+            if(this.step===1){
+                this.signUp().then(
+                    this.step++             
+                )
             }
         },
-        signUp () {
-        firebase.auth().createUserWithEmailAndPassword(this.email, this.senha).then(
-        ( user => {
-            this.$store.state.account = user;
-            alert('Sua conta foi cadastrata com sucesso!')
-        }),
-        (err) => {
-          alert('Aconteceu algo inesperado. ' + err.message)
-        }
-      );
+        async signUp () {
+            await this.$store.dispatch('signUserUp', this.accountData)
     }
     }
 }
-
 </script>
