@@ -89,11 +89,19 @@
                 const data = this.obj;
 
                 for (let i = 0; i < data.length;i++) {
-                    if( item == data[i].nome){
-                        var result = data[i];                        
+                    var result;
+                    //busca por nome 
+                    if(item == data[i].nome){
+                        result = data[i];                        
+                        break
+                    }
+                    // busca por id
+                    if(item == data[i].id){
+                        result = data[i];
                         break
                     }
                 }
+
                 if(result){
                     alert("encontrado "+ result.nome)
                 }else{

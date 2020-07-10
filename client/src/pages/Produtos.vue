@@ -24,6 +24,11 @@ export default {
     components:{
         Produtos,
         Menu
+    },
+    data(){
+        return{
+            page:1
+        }
     }
 }
 </script>    
