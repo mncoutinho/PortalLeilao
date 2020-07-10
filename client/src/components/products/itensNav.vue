@@ -70,17 +70,12 @@
 </template >
 
     <script>
+    import axios from 'axios';
         export default {
             data(){
         return{
             pesquisar:"",
-            obj:[
-                {nome:'joao',id:1},
-                {nome:'jose',id:2},
-                {nome:'claudia',id:3},
-                {nome:'fernanda',id:4},
-                {nome:'pedro',id:5},
-            ]
+            obj:[]
         }
     },
     methods:{
@@ -91,7 +86,7 @@
                 for (let i = 0; i < data.length;i++) {
                     var result;
                     //busca por nome 
-                    if(item == data[i].nome){
+                    if(item == data[i].name){
                         result = data[i];                        
                         break
                     }
@@ -100,15 +95,36 @@
                         result = data[i];
                         break
                     }
+                    // busca por preco
+                    if(item == data[i].initialbid){
+                        result = data[i];
+                        break
+                    }
+
+                    // busca por descricao
+                    if(item == data[i].description){
+                        result = data[i];
+                        break
+                    }
+
                 }
 
                 if(result){
-                    alert("encontrado "+ result.nome)
+                    alert("encontrado "+ result.name)
                 }else{
                     alert("Item n encontrado")
                 }
                 
         }
+    },
+    created(){
+        axios({
+            method:'get',
+            url:'https://us-central1-portalleilao-26290.cloudfunctions.net/item/getAllItem'
+        }).then(doc => {
+            this.obj = doc.data;
+        }).catch(error => console.log(error))     
+        
     }
 }
 </script>    
