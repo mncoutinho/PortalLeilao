@@ -64,3 +64,12 @@
             
 </template>
 
+<script>
+export default {
+    data(){
+        return{
+            pesquisar:""
+        }
+    }
+}
+</script>    
