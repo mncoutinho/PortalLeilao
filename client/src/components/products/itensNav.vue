@@ -68,19 +68,15 @@ export default {
           this.result = [];
       }
 
-      item;
       const data = this.obj;
 
       for (let i = 0; i < data.length; i++) {
+
         //busca por nome
         if (item == data[i].name) {
           this.result.push(data[i]);
         }
-        // busca por id
-        if (item == data[i].id) {
-          this.result = data[i];
-          break;
-        }
+        
         // busca por preco
         if (item == data[i].initialbid) {
           this.result.push(data[i]);
@@ -94,7 +90,7 @@ export default {
 
     //se nao encontrar o item 
       if (!this.result) {
-        alert("Item n encontrado");
+        alert("Item não encontrado");
       }
     }
   },
