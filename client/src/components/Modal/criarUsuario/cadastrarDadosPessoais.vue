@@ -37,8 +37,7 @@
                 label="Telefone"
                 placeholder="(12)934567890"
                 required
-                >
-                </v-text-field>    
+                />     
             </v-col>
         </v-row>
     </v-form>
