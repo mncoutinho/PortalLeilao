@@ -1,7 +1,7 @@
 <template>
     <v-card flat max-width="1500">    
         <v-col cols='12' class="mx-auto">
-                    <!--nome do produto-->
+                    <!--Nome do produto-->
                     <v-row>
                         <h3 class="ml-8">NOME DO PRODUTO</h3>
                         <v-spacer/>
