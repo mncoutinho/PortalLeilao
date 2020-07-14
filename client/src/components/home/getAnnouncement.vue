@@ -4,13 +4,13 @@
     <v-col class="mt-9">
       <v-row justify="space-around">
         <!--ANUNCIO 1-->
-        <a :href="anuncio[0].url">
+        <a :href="anuncio[0].url" target="_blank">
           <v-card width="550" height="200">
             <v-img width="100%" height="100%" :src="anuncio[0].img" />
           </v-card>
         </a>
         <!--ANUNCIO 2-->
-        <a :href="anuncio[1].url">
+        <a :href="anuncio[1].url" target="_blank">
           <v-card width="550" height="200">
             <v-img width="100%" height="100%" :src="anuncio[1].img" />
           </v-card>
