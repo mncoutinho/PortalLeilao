@@ -66,7 +66,7 @@ export default {
         title:"Leilao",
         conteudo:[
           {title:"Criar", page:3},
-          {title:"Editar"},
+          {title:"Todos os leiloes", page:4},
           {title:"Informar sobre o Lote"},
         ]
       },

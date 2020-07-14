@@ -17,6 +17,9 @@
           <v-window-item :value="3">           
             <addBid/>
           </v-window-item>
+          <v-window-item :value="4">           
+            <listBid/>
+          </v-window-item>
         </v-window>
       </v-col>
     </v-row>
@@ -27,8 +30,8 @@
 import navegacao from "../components/leiloeiro/menu"
 import produtos from "../components/products/getItens"
 import addItem from  "../components/item/additem"
-
 import addBid from "../components/bid/addBid/inputBid"
+import listBid from "../components/bid/listbid"
 
 
 export default {
@@ -36,7 +39,8 @@ export default {
     navegacao,
     produtos,
     addItem,
-    addBid
+    addBid,
+    listBid
   },
   data(){
     return{
