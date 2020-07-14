@@ -30,7 +30,7 @@
                             >    
                             </v-img>
                              <v-list-item-content class="ml-5">   
-                                <span style="color:green">{{status(card.active)}}</span>
+                                <span :style="color(card.active)">{{status(card.active)}}</span>
                                     <v-list-item-title 
                                     style="color:#63432D" 
                                     class="bold headline mb-1">
@@ -88,9 +88,16 @@ export default {
     methods:{
         status(status){
             if(status){
-              return this.card.active = "Aberto"
+              return "Aberto"
             }else{
-               return this.card.active = "Fechado" 
+               return "Fechado" 
+            }
+        },
+        color(status){
+            if(status){
+              return "color:green"
+            }else{
+               return "color:red" 
             }
         }
     },
