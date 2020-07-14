@@ -22,7 +22,7 @@
         <div>
           <v-tab 
           v-for="tab in tabela"
-          :key="tab"
+          :key="tab.length"
           class="mb-1"
           >
             <v-col cols="8">
@@ -77,8 +77,7 @@
               </v-row>
         </v-tab-item>
         <!--ITEM 2-->
-        <v-tab-item
-        :key="end">
+        <v-tab-item>
           <!--TITULO-->
           <v-row justify="center" class="mb-12"> 
               <h1>Endereço</h1>
@@ -142,7 +141,7 @@
                 class="mb-6"
                 width="100%"
                 v-for="historico in hist"
-                :key="historico"
+                :key="historico.length"
                 >
                   <v-row
                   justify="fill-height">
@@ -195,7 +194,7 @@
             <v-col
             align="center" 
             justify="space-around"
-            :key="contato"
+            :key="contato.length"
             v-for="contato in contact">
               <v-icon size="100" color="#5B2D2A">{{contato.icon}}</v-icon>
                 <!--Titulo do iten-->
@@ -213,6 +212,7 @@
 export default {
   data() {
     return{
+      
       hist:[
         {nome:'Nome do produto',cod:'242424',preco:'24,99'},
         {nome:'Nome do produto',cod:'242424',preco:'24,99'},
