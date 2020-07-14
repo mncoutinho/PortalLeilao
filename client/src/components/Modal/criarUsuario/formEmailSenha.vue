@@ -40,6 +40,7 @@
             lazy-validation
             v-model="accountData.senha"
             :rules="senhaRules"
+            @change="$emit('email', accountData)"
             autocomplete="true"
             type="password"
             label="Senha"
@@ -59,7 +60,7 @@
                     class="white--text"
                     depressed
                     large
-                    @click="button.click"
+                    @click="$emit('clicked',button.click)"
                     v-text="button.text"
                     />
         </v-col>
@@ -75,8 +76,7 @@ export default {
         valid:true,
         accountData:{
           email: '',
-        senha: ''
-
+          senha: ''
         },
         senhaRules: [
                 v => !!v || 'Este campo é necessario',
@@ -91,9 +91,4 @@ export default {
     };
   },
 };
-
 </script>
-
-<style>
-
-</style>

@@ -51,15 +51,19 @@
 					<v-spacer/>
 					<strong>Lance Inicial:<small>{{ "R$ " + artigo.initialBid + ",00"}}</small></strong>
 				</v-card-text>
-				<v-btn class="ma-3" v-on:click="closer()">leilao status</v-btn>
 				<!-- abertura e fachamento de leilao beta -->
-				<v-card-text v-if="status == false" class="red text-center">
-					<span class="white--text">Leilao Fechado</span>
-				</v-card-text>
+				
 			</v-card>
 		</v-row>
 		<v-row class="mt-5">
-			<lance  align="center"/>		
+			<v-card-text v-if="artigo.active == false" class="red text-center">
+					<span class="white--text">Leilao Fechado</span>
+			</v-card-text>
+			<v-card-text v-else>
+				<lance
+					align="center"
+				/>	
+			</v-card-text>	
 		</v-row>
 	</v-container>	
 </template>
@@ -74,9 +78,7 @@ export default {
 		return{		
 			// teste botao de abrir leilao
 			
-			artigo: {
-				},
-				status:false,
+			artigo: {},
 			vendedor: {
 				value: 5
 			}			
@@ -87,7 +89,7 @@ export default {
 		axios({
 			method:`post`,
 			url:'https://us-central1-portalleilao-26290.cloudfunctions.net/item/getItemById',
-			data:{id:'6escILKzT48O4Ocz04eY'},
+			data:{id:'A5zfqb6in8HoIm99CMmt'},
 		})
 		.then(response => {
 				this.artigo = response.data
@@ -96,11 +98,6 @@ export default {
 	},
 	
 	methods: {
-		// Teste
-		closer(){
-				this.status = !this.status; 
-		}
-		
 	}   
 }
 </script>

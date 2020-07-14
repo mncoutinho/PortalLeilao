@@ -78,7 +78,9 @@
     
               <v-layout row>
                   <v-flex xs12 sm6 offset-sm3>
-                      <v-btn class="col-12"  color="primary" @click="addartigo" >Confirmar</v-btn>
+                      <v-btn class="col-12"
+                      color="primary"
+                      @click="addartigo">Confirmar</v-btn>
                   </v-flex>
               </v-layout>
       {{artigo}}
@@ -150,7 +152,6 @@ export default {
         active:true,
         description:this.artigo.description,
         images:this.artigo.link,
-        date:this.artigo.date,
         initialbid:this.artigo.initialbid
       }
       const criaItem = firebase.firestore().collection('item');
@@ -163,7 +164,6 @@ export default {
         this.artigo.description="";
         this.artigo.image=[];
         this.artigo.link=[];
-        this.artigo.date="";
         this.artigo.initialbid="";
 
         })

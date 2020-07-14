@@ -1,7 +1,7 @@
 <template>	
 	<v-card width="100%">
 		<v-card-title>
-			<strong>Lance Atual: {{ lanceNow }}</strong>
+			<strong>Lance Atual: {{"R$"+ lanceNow+",00" }}</strong>
 		</v-card-title>
 		<v-card-text>
 			<small v-if="lances.length" 
@@ -16,27 +16,32 @@
 				<v-col>Hora</v-col>
 			</v-row>
 			<v-row v-for="lance in lances" 
-				:key="lance">
+				:key="lance.length">
 				<v-col>
 					<small v-text="lance.user"/>
 				</v-col>
 				<v-col>
-					<small v-text="lance.lance"/>
+					<small>{{"R$"+lance.lance+",00"}}</small>
 				</v-col>
 				<v-col>
 					<small v-text="lance.time"/>
 				</v-col>
 			</v-row>
-		<v-text-field v-model="lance" 
-		v-on:keyup.enter="AddLance(lance,user)" 
-		v-money="money" 
-		label="Faca seu lance" />
+
+		<v-text-field 
+			v-model="lance" 
+			v-on:keyup.enter="AddLance(lance,user)" 
+			label="Faca seu lance" 
+		/>
+
 		<v-btn 
-		class="ma-4"
-		v-on:click="AddLance(lance,user)"
-		color="success" >
+			class="ma-4"
+			v-on:click="AddLance(lance,user)"
+			color="success" 
+		>
 			Faça seu Lance
 		</v-btn>
+
 		</v-card>
 			<!-- Auto lance beta -->
 		<v-btn
@@ -55,9 +60,9 @@
 			<v-text-field
 			class="mx-3 mt-5"
 			v-model="autolance.limit"
-			v-money="money"
+			
 			label="De limite ao seu lance :"
-			v-on:keyup.enter="autolancelimit()"
+			v-on:keyup.enter="autolancelimit(autolance.limit,user)"
 			/>
 				<v-row align="start" justify="center">
 					<v-btn 
@@ -67,7 +72,8 @@
 						Cancelar
 					</v-btn>
 					<v-btn
-					color="white" 
+					color="white"
+					v-on:click="autolancelimit(autolance.limit,user)"
 					>Confirmar
 					</v-btn>
 				</v-row>
@@ -76,23 +82,18 @@
 </template>
 
 <script>
+import axios from 'axios';
 
-import {VMoney} from "v-money";
 export default {
 
 	data(){
 		return{
-			money: {
-				decimal: ',',
-				thousands: '.',
-				prefix: 'R$ ',
-				suffix: ' ',
-				precision: 2,
-				masked: false
-			},
-			lance: '',
+			lanceMinimo: 300,
+			lance: "",
 			lances: [],
-			user:"Joao Claudio",
+			user:"Adalto Silva",
+			//id herdado do pai
+			IDitem:'A5zfqb6in8HoIm99CMmt',
 			
 			// teste auto lance
 			autolance: {
@@ -101,36 +102,77 @@ export default {
 			}
 		};
 	},
-	directives: {money: VMoney},
+	
 	methods: {
 		AddLance(lance,user) {
-			const time = new Date();
-			const lanceConfirmado = {lance, time, user};		
-			this.lances.push(lanceConfirmado);
+			//convertendo
+			lance = parseInt(lance);
+			console.log(this.lanceMinimo);
+
+			if(lance > this.lanceMinimo){
+				this.lanceMinimo = lance;
+				const time = new Date();
+				const lanceConfirmado = {lance, time, user};		
+				this.lances.push(lanceConfirmado);
+
+				//postando no banco
+				axios({
+					method:`patch`,
+					url:'https://us-central1-portalleilao-26290.cloudfunctions.net/item/bidding',
+					data:{
+						item: this.IDitem,
+						bid: this.lances
+					},
+				})
+				.then(() =>{
+					return alert("lance feito");
+				})
+				.catch(error => console.log(error));
+				
+			}else{
+				alert("Voce nao pode fazer um lance abaixo do minimo");
+			}
+			
 
 
 		},
 		// Teste
 		
 		autoLanceModal(){
-
-				this.autolance.modal = !this.autolance.modal;
-			
+			this.autolance.modal = !this.autolance.modal;	
 		},
-		autolancelimit(){
-			
+		autolancelimit(limit,user){
+			limit = parseInt(limit);
+			console.log(limit);
+			if(limit > this.lanceMinimo){
+				this.lanceMinimo = this.lanceMinimo + 20;
+				const lance = this.lanceMinimo;
+				const time = new Date();
+				const lanceConfirmado = {lance,time,user};
+				console.log("autolance say: ",lance);
+				this.lances.push(lanceConfirmado);
+			}
 		}	
 	},
 	computed:{
-		// funcoes de leitura rapida na tela
-		
-		lanceNow(){
-			var now = 0;
+		// funcoes de leitura rapida na tela	
+		lanceNow(now){
 			for (var i = 0; i < this.lances.length; i++) {
 				now = this.lances[i].lance;
 			}	
-			return now;
+			return  now;
 		}
+	},
+	created(){
+		axios({
+			method:`post`,
+			url:'https://us-central1-portalleilao-26290.cloudfunctions.net/item/getBidItem',
+			data:{item: this.IDitem},
+		})
+		.then(response => {
+				this.lances = response.data
+			})
+		.catch(error => console.log(error));
 	}
 }
 </script>

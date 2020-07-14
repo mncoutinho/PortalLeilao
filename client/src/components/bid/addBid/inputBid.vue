@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <v-container id="container" >
         <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
                 <h4 class="brown--text" >Bem-vindo leiloeiro</h4>
@@ -15,42 +15,70 @@
                         <v-flex xs12 sm6 offset-sm3>
                             <v-text-field
                                 name="title"
-                                label="Nome do leilao*"   
+                                label="Nome do leilao*"
+                                v-model="leilao.nome"   
                             />
                         </v-flex>
                     </v-layout>
-
                     <v-layout row>
                         <v-flex xs12 sm6 offset-sm3>
                             <v-text-field
                                 name="title"
-                                label="Descricao do Leilao*"   
+                                label="Local do leilao*"
+                                v-model="leilao.local"    
                             />
                         </v-flex>
                     </v-layout>
-
                     <v-layout row>
                         <v-flex xs12 sm6 offset-sm3>
-                            <v-text-field
+                            <v-textarea
                                 name="title"
-                                label="Local do leilao*"   
+                                label="Descricao do Leilao*"
+                                v-model="leilao.descricao"    
+                            />
+                        </v-flex>
+                    </v-layout>
+                    <v-layout row style="margin-top: 30px;">
+                        <v-flex xs12 sm3 offset-sm3>
+                            <h4 class="brown--text" >Data de abertura</h4>
+                            <v-date-picker
+                             color="#422321"
+                              class="col-12"
+                              v-model="leilao.abertura" 
+                              />
+                        </v-flex>
+                        
+                        <v-flex xs12 sm3 >
+                            <h4 class="brown--text" >Data de fechamento</h4>
+                            <v-date-picker 
+                            color="#422321" 
+                            class="col-12"
+                            v-model="leilao.fechamento"
                             />
                         </v-flex>
                     </v-layout>
 
+                    <dadosLeiloeiro
+                      @formLeiloeiro="getLeiloeiro"  
+                    />
+
+                    <termos
+                        @formTermos="getTermos"
+                    />
+
                     <v-layout row>
                         <v-flex xs12 sm6 offset-sm3>
-                            <p>Data para iniciar o Leilao</p>
-                            <v-date-picker color="#422321" class="col-12"/>
-                        </v-flex>
-
-                        <v-flex xs12 sm6 offset-sm3>
-                            <p>Data para fechar o Leilao</p>
-                            <v-date-picker color="#422321" class="col-12"/>
+                            <v-btn 
+                            class="col-12"
+                            color="success"
+                            v-on:click="addLeilao(leilao,leiloeiro,termos);" 
+                            >
+                                Confirmar
+                            </v-btn>
+                            {{registro}}
+                            
                         </v-flex>
                     </v-layout>
-                    <dadosLeiloeiro/>
-                    <termos/>
 
                 </form>
             </v-flex>
@@ -65,6 +93,42 @@ export default {
     components:{
     dadosLeiloeiro,
     termos,
-  }
+  },
+  data(){
+      return{
+          leilao:{
+              nome:"carro",
+              local:"r lavradinho",
+              descricao:"carros loucos",
+              abertura:"",
+              fechamento:""
+          },
+          leiloeiro:{},
+          termos:{},
+          registro:[]
+      }
+  },
+    methods:{
+        addLeilao(bid,auctioneer,term){
+           const obj = {bid,auctioneer,term}
+           this.registro.push(obj);
+        },
+        getLeiloeiro(leiloeiro){
+            this.leiloeiro = leiloeiro;
+        },
+        getTermos(termos){
+            this.termos = termos;
+        }
+    }
 }
+
 </script>
+
+<style>
+#container{
+    margin-top: 40px; 
+    margin-bottom: 100px; 
+    text-align:center; 
+}
+
+</style>

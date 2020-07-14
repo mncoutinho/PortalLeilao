@@ -7,7 +7,7 @@ import Criar from "../pages/criarconta";
 import Produtos from "../pages/Produtos";
 import userpage from "../pages/userpage.vue";
 import adicionarLeilao from "../pages/addLeilao.vue";
-import tutorial from "../pages/tutorial.vue"
+import leiloeiroPage from "../pages/leiloeiroPage";
 
 
 const router = new VueRouter({
@@ -58,10 +58,10 @@ const router = new VueRouter({
                 component:adicionarLeilao
             },
             {
-                path:"/tutorial",
-                name:"tutorial",
-                component:tutorial
-            },
+                path:"/leiloeiro",
+                name:"leiloeiroPage",
+                component:leiloeiroPage
+            }
         ]
     });
 
