@@ -195,7 +195,7 @@
             <v-col
             align="center" 
             justify="space-around"
-            :key="contato"
+            :key="contato.length"
             v-for="contato in contact">
               <v-icon size="100" color="#5B2D2A">{{contato.icon}}</v-icon>
                 <!--Titulo do iten-->
