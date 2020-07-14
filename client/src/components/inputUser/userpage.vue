@@ -27,7 +27,7 @@
           >
             <v-col cols="8">
               <v-icon>{{tab.i}}</v-icon> 
-              <v-text class="ml-6">{{tab.dados}}</v-text>
+              <p class="ml-6">{{tab.dados}}</p>
             </v-col>
           </v-tab>
         </div>
@@ -144,7 +144,7 @@
                 :key="historico.length"
                 >
                   <v-row
-                  justify="fill-height">
+                 >
                     <!--Imagem do Produto-->
                     <v-col sm="2">
                       <v-img
@@ -158,18 +158,18 @@
                     <!--Nome do produto-->
                       <v-row align="center" class="ml-6">
                         <v-col sm="6">
-                          <v-text-title class="title">{{historico.nome}}</v-text-title>
+                          <strong class="title">{{historico.nome}}</strong>
                         </v-col>
                       </v-row>
                       <v-spacer/>
                       <v-row align="center" class="ml-6">
                         <!--Codigo do produto-->
                         <v-col sm="4">
-                          <v-text-title class="headline">{{historico.cod}}</v-text-title>
+                          <strong class="headline">{{historico.cod}}</strong>
                         </v-col>
                         <!--Preço-->
                         <v-col sm="4">
-                          <v-text-title class="headline">{{historico.preco}}</v-text-title>
+                          <strong class="headline">{{historico.preco}}</strong>
                         </v-col>
                       <!--Estado-->
                         <v-btn
