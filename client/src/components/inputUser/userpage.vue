@@ -22,7 +22,7 @@
         <div>
           <v-tab 
           v-for="tab in tabela"
-          :key="tab"
+          :key="tab.length"
           class="mb-1"
           >
             <v-col cols="8">
