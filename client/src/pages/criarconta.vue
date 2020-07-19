@@ -5,6 +5,7 @@
                 width="100%"
                 align="center"
                 v-model="step">
+                {{this.$store.getters.user}}
                 <!--fase 1-->
                 <v-window-item :value="1">
                     <v-card max-width="30%" min-width="450" class="mb-12 pa-12"  :elevation="10" width="50%" >
@@ -121,5 +122,4 @@ export default {
     }
     }
 }
-
 </script>

@@ -6,6 +6,7 @@
             justify="center"
             align="center" 
             titulo="Entre con..."
+            @clicked="clique"
             @email="getAccountData"
             :buttons="buttons"/> 
        </v-row>
@@ -25,15 +26,13 @@ export default {
     buttons:[
       {
         text:"Voltar",
-        click:'',
+        click:'voltar',
         color:"#422321",
-         link:"/"
       },
       {
         text:"Logar",
-        click:'',
+        click:'login',
         color:"#422321",
-        link:"/"
       }
     ],
     //dados pro login 
@@ -43,13 +42,11 @@ export default {
     getAccountData(accountData){
       this.accountData = accountData
     },
-    
-    loginEmail(){
-        alert('123')
-        //metodo de login
-        this.$store.dispatch('signUserIn',this.accountData)
-    }
-
+    async clique(botao){
+      if(botao == 'login'){
+        await this.$store.dispatch('signUserIn',this.accountData)
+      }
+    },
   }
 }
 </script>
