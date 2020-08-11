@@ -30,13 +30,13 @@
 
 		<v-text-field 
 			v-model="lance" 
-			v-on:keyup.enter="AddLance(lance,user)" 
+			v-on:keyup.enter="AddLance()" 
 			label="Faca seu lance" 
 		/>
 
 		<v-btn 
 			class="ma-4"
-			v-on:click="AddLance(lance,user)"
+			v-on:click="AddLance()"
 			color="success" 
 		>
 			Faça seu Lance
@@ -82,19 +82,15 @@
 </template>
 
 <script>
+import {mapState} from 'vuex';
 import axios from 'axios';
 
 export default {
 
 	data(){
 		return{
-			lanceMinimo: 300,
 			lance: "",
 			lances: [],
-			user:"Adalto Silva",
-			//id herdado do pai
-			IDitem:'A5zfqb6in8HoIm99CMmt',
-			
 			// teste auto lance
 			autolance: {
 				modal: false,
@@ -104,15 +100,19 @@ export default {
 	},
 	
 	methods: {
-		AddLance(lance,user) {
+		AddLance() {
 			//convertendo
-			lance = parseInt(lance);
+			this.lance = parseInt(this.lance);
 			console.log(this.lanceMinimo);
 
-			if(lance > this.lanceMinimo){
-				this.lanceMinimo = lance;
+			if(this.lance > this.lanceMinimo){
+				this.lanceMinimo = this.lance;
 				const time = new Date();
-				const lanceConfirmado = {lance, time, user};		
+				let lance = this.lance;
+				let user = this.user.email
+				let idUser = this.user.uid
+
+				const lanceConfirmado = {lance, time, user, idUser};		
 				this.lances.push(lanceConfirmado);
 
 				//postando no banco
@@ -155,24 +155,22 @@ export default {
 		}	
 	},
 	computed:{
+		...mapState({
+			user: state => state.userApp.user,
+			lanceMinimo: state => state.itemApp.item.initialBid
+		}),
 		// funcoes de leitura rapida na tela	
 		lanceNow(now){
-			for (var i = 0; i < this.lances.length; i++) {
+			if(!this.lances[0]){
+				return this.lanceMinimo
+			}else{
+				for (var i = 0; i < this.lances.length; i++) {
 				now = this.lances[i].lance;
-			}	
-			return  now;
+				}	
+				return  now;
+			}
+			
 		}
-	},
-	created(){
-		axios({
-			method:`post`,
-			url:'https://us-central1-portalleilao-26290.cloudfunctions.net/item/getBidItem',
-			data:{item: this.IDitem},
-		})
-		.then(response => {
-				this.lances = response.data
-			})
-		.catch(error => console.log(error));
 	}
 }
 </script>

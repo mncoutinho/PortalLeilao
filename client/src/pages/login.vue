@@ -1,20 +1,42 @@
-
 <template >
     <v-main>
-       <v-row justify="center">
-           <login 
-            justify="center"
-            align="center" 
-            titulo="Entre con..."
-            @clicked="clique"
-            @email="getAccountData"
-            :buttons="buttons"/> 
-       </v-row>
-       {{accountData}}
+      <v-layout row v-if="error">
+            <v-flex xs12 sm6 offset-sm3>
+                <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
+            </v-flex>
+        </v-layout>
+      <v-row  justify="center">
+        <v-card max-width="550" class="mb-12 pa-12"  :elevation="10" width="50%"  >
+          <v-row justify="center" class="ml-6">
+            <login  
+              titulo="Entre com..."
+              @clicked="clique"
+              @email="getAccountData"
+              :buttons="buttons"
+              @submit.prevent="onSignIn"
+              />
+          </v-row>
+            <v-btn
+              color=#422321
+              center
+              class="white--text"
+              depressed
+              large
+              style="postion: absolute;top:-55px;left:100px"
+              @click="voltar"
+              >Voltar</v-btn>
+            <v-row justify="center"> 
+              <v-btn
+              color="562B28"
+              text
+              v-on:click="resetPassword"
+              >Esqueci Minha senha</v-btn>
+            </v-row>
+        </v-card>
+       </v-row> 
+        {{accountData}}
     </v-main>
 </template>
-
-
 <script>
 import login from '../components/Modal/criarUsuario/formEmailSenha'
 export default {
@@ -25,28 +47,49 @@ export default {
     drawer: null,
     buttons:[
       {
-        text:"Voltar",
-        click:'voltar',
-        color:"#422321",
-      },
-      {
         text:"Logar",
         click:'login',
         color:"#422321",
       }
     ],
     //dados pro login 
-    accountData:""
+    accountData:{}
   }),
+  computed:{
+    user(){
+      return this.$store.getters.user
+      },
+    error(){
+      return this.$store.getters.error
+      },
+    loading(){
+      return this.$store.getters.loading
+      },  
+    },
+  watch:{
+    user(value){
+      if(value != null && value != undefined){
+        this.$router.push('/')
+      }
+    }
+  },  
   methods:{
     getAccountData(accountData){
       this.accountData = accountData
     },
     async clique(botao){
       if(botao == 'login'){
-        await this.$store.dispatch('signUserIn',this.accountData)
+        await this.$store.dispatch('signUserIn',this.accountData).then(
+          
+        )
       }
     },
-  }
+    resetPassword(){
+      this.$store.dispatch('resetPassword',this.accountData)
+    },
+     onDismissed(){
+            this.$store.dispatch('clearError')
+      }
+    }
 }
 </script>

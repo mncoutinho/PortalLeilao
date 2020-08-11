@@ -44,11 +44,31 @@
             required
             />
         </v-col>
+        <v-col
+        :key="button.text"
+        v-for="button in buttons">
+            <v-btn
+            :color="button.color"
+            center
+            class="white--text"
+            depressed
+            large
+            @click="$emit('clicked',button.click)"
+            v-text="button.text"
+            />
+        </v-col>
+        {{cidade}}
+        {{bairro}}
+        {{cep}}
+        {{endereco}}
+        {{complemento}}
     </v-row>
+    
 </template>
 
 <script>
 export default {
+    props:['buttons'],
     data(){
         return {
             uf: ['SP', 'RJ', 'MG', 'PR', 'MN'],
@@ -61,7 +81,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>

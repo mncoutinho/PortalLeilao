@@ -25,8 +25,8 @@
                         class="mt-6 mb-6 "
                         width="24%"
                         max-width="300"                        
-                        v-for="card in paginacao"
-                        :key="card.length ">
+                        v-for="card in card"
+                        :key="card.length">
                             <v-img width="100%" height="300" :src="card.imgUrl[0]" 
                             />
                              <v-list-item-content class="ml-5">   
@@ -49,6 +49,24 @@
                                     color="green">
                                         Ver Mais
                                     </v-btn>
+                                    <v-btn 
+                                    outlined 
+                                    rounded 
+                                    class="pr-12 pl-12" 
+                                    color="red"
+                                    @click="deletar(card)"
+                                    >
+                                        deletar
+                                    </v-btn>
+                                    <v-btn
+                                        outlined 
+                                        rounded 
+                                        class="pr-12 pl-12" 
+                                        color="black"
+                                        @click="editar(card)"
+                                    >
+                                        Editar
+                                    </v-btn>
                                     <v-row no-gutters>
                                     <v-divider/>
                                     <v-btn
@@ -62,14 +80,8 @@
                                     </v-row>
                             </v-list-item-content>                            
                         </v-card>
-                    </v-row>
-                <v-pagination
-                    v-model="page"
-                    :length="numeroPaginas"
-                    circle
-                    color="#422321"
-                />   
-            </v-col>
+                    </v-row>    
+                </v-col>
     </v-card>            
 </template>
 
@@ -83,24 +95,25 @@ export default {
     data(){
         return{
             pesquisar:null,
+            card:[],
             items:[],
-            target:{},
-            page:1,
-            numeroPaginas:2,
-            porPagina: 4,     
+            target:{}      
         }
     },
     computed: {
-    ...mapState({
-      card: state => state.itemApp.items,
-      user: state => state.userApp.user,
-    }),
-    paginacao () {
-            return this.card.slice((this.page - 1) * this.porPagina, this.page * this.porPagina)
-        }
+        ...mapState({
+        item: state => state.itemApp.items,
+        user: state => state.userApp.user,
+        })
     },
-    created(){
-        this.$store.dispatch('getAllItems', this.card);
+    async created(){
+        await this.$store.dispatch('getAllItems', this.item).then(() =>{
+            for (let i = 0; i < this.item.length; i++) {
+                if(this.item[i].idOrganizer == this.user.uid){
+                    this.card.push(this.item[i])
+                } 
+            }
+        })    
     },
     methods:{
         status(status){
@@ -122,6 +135,27 @@ export default {
             console.log("ativo "+ this.target)
             this.$store.dispatch('getItemByID', this.target)
             this.$router.push('/leilao')
+        },
+        deletar(item){
+            if(item.idOrganizer === this.user.uid){
+                this.target = item.id
+                this.$store.dispatch('deleteItem',this.target);
+                this.$store.dispatch('getAllItems', this.card);
+            }else{
+                alert("Voce n pode deletar um item q n e seu");
+            }
+            
+            
+        },
+        editar(item){
+            if(item.idOrganizer === this.user.uid){
+                this.target = item.id
+                this.$store.commit('setItem', item);
+                this.$router.push("/updateItem")
+                
+            }else{
+                alert("Voce n pode editar um item q n e seu");
+            }
         }
     },
 }

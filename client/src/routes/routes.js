@@ -1,13 +1,16 @@
 import VueRouter from "vue-router";
-import adicionarItem from "../pages/adicionarItem";
+import adicionarItem from "../components/item/additem";
+import updateItem from "../components/item/updateItem";
+import Produtos from "../pages/Produtos";
+import meusProdutos from "../components/products/getMyItems"
 import Home from "../pages/home";
 import Leilao from "../pages/leilao";
 import Login from "../pages/login";
 import Criar from "../pages/criarconta";
-import Produtos from "../pages/Produtos";
 import userpage from "../pages/userpage.vue";
 import adicionarLeilao from "../pages/addLeilao.vue";
 import leiloeiroPage from "../pages/leiloeiroPage";
+import logout from "../pages/logout";
 
 
 const router = new VueRouter({
@@ -19,6 +22,21 @@ const router = new VueRouter({
                 path:"/adicionarItem",
                 name:"adicionarItem",
                 component:adicionarItem
+            },
+            {
+                path:"/updateItem",
+                name:"updateItem",
+                component:updateItem
+            },
+            {
+                path:"/Produtos",
+                name:"Produtos",
+                component:Produtos
+            },
+            {
+                path:"/meusProdutos",
+                name:"meusProdutos",
+                component:meusProdutos
             },
             {
                 path:"/criar",
@@ -37,11 +55,7 @@ const router = new VueRouter({
                 component:Home,
                 
             },
-            {
-                path:"/Produtos",
-                name:"Produtos",
-                component:Produtos
-            },
+            
             {
                 path:"/leilao",
                 name:"leilao",
@@ -61,6 +75,11 @@ const router = new VueRouter({
                 path:"/leiloeiro",
                 name:"leiloeiroPage",
                 component:leiloeiroPage
+            },
+            {
+                path:"/sair",
+                name:"sair",
+                component:logout
             }
         ]
     });

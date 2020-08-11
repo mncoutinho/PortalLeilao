@@ -1,5 +1,10 @@
 <template>
     <v-main>
+        <v-layout row v-if="error">
+            <v-flex xs12 sm6 offset-sm3>
+                <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
+            </v-flex>
+        </v-layout>
         <v-row  justify="center">
             <v-window
                 width="100%"
@@ -9,72 +14,60 @@
                 <!--fase 1-->
                 <v-window-item :value="1">
                     <v-card max-width="30%" min-width="450" class="mb-12 pa-12"  :elevation="10" width="50%" >
-                    <user titulo="Cadastre-se com..."
-                    @email="getAccountData"
-                    />
+                        <user titulo="Cadastre-se com..."
+                            @email="getAccountData"
+                            :buttons="buttons" 
+                            @clicked="clique"
+                        />
+                        <v-btn
+                            color=#422321
+                            center
+                            class="white--text"
+                            depressed
+                            large
+                            style="postion: absolute;top:-55px;left:-100px"
+                            @click="voltar"
+                        >Voltar</v-btn>
                     </v-card>
                 </v-window-item>
                 <!--fase 2-->
                 <v-window-item :value="2">
                     <v-card max-width="30%" min-width="450" class="mb-12 pa-12"  :elevation="10" width="50%" >
                         <personal
-                        @data="getPersonalData"/>
+                        @data="getPersonalData"
+                        :buttons="dataButtons"
+                        @clicked="clique"/>
+                        <v-btn
+                            color=#422321
+                            center
+                            class="white--text"
+                            depressed
+                            large
+                            style="postion: absolute;top:-55px;left:-100px"
+                            @click="voltarStep"
+                        >Voltar</v-btn>
                     </v-card>
                 </v-window-item>
                 <!--fase 3-->
                 <v-window-item :value="3">
                     <v-card max-width="30%" min-width="450" class="mb-12 pa-12"  :elevation="10" width="50%" >
-                        <Address/>
+                        <Address
+                        @data="getPersonalData"
+                        :buttons="finnalyButtons"
+                        @clicked="clique"/>
+                        <v-btn
+                            color=#422321
+                            center
+                            class="white--text"
+                            depressed
+                            large
+                            style="postion: absolute;top:-68px;left:-100px"
+                            @click="voltarStep"
+                        >Voltar</v-btn>
                     </v-card>
                 </v-window-item>
                 <!--Button-->
                 <v-row align="end" justify="center">
-                    <v-card-actions>
-                        <!--back to home-->
-                        <v-btn
-                        text
-                        large
-                        depressed
-                        color="#422321"
-                        to="/"
-                        v-if="step === 1"
-                        >
-                    
-                            voltar
-                        </v-btn>
-                        <!--back to item-->
-                        <v-btn
-                        text
-                        large
-                        depressed
-                        color="#422321"
-                        @click="step--"
-                        v-if="step != 1">
-                            voltar
-                        </v-btn>
-                        <v-spacer/>
-                        <!--next-->
-                        <v-btn
-                        color="#422321"
-                        class="white--text"
-                        depressed
-                        large
-                        v-if="step != 3"
-                        @click="clique()">
-                            Proximo
-                        </v-btn>
-                        <!--next page-->
-                        <v-btn
-                        color="#422321"
-                        class="white--text"
-                        depressed
-                        large
-                        v-if="step === 3"
-                        to="/"
-                        >
-                            Finalizar
-                        </v-btn>   
-                    </v-card-actions>
                 </v-row>
             </v-window>  
         </v-row>
@@ -91,35 +84,82 @@ export default {
         personal,
         Address
     },
+    
     data() {
         return{
             personalData:{},
             accountData:{},
+            //botoes
+            buttons:[
+                {
+                    text:"Criar",
+                    click:'signUp',
+                    color:"#422321",
+                }
+            ],
+            dataButtons:[
+                {
+                    text:"Salvar",
+                    click:'dado',
+                    color:"#422321",
+                },  
+            ],
+            finnalyButtons:[
+                {
+                    text:"Finaliza",
+                    click:'finalizar',
+                    color:"#422321",
+                }
+            ],
             step: 1,
             UF: ['SP', 'RJ', 'MG', 'PR', 'MN'],            
         }
     },
-
+    computed:{
+            user(){
+                return this.$store.getters.user
+            },
+            error(){
+                return this.$store.getters.error
+            },
+        },
+         watch:{
+      user(value){
+          if(value !== null && value !== undefined){
+                this.signUp().then(
+                   this.$router.push('/')
+            )  
+          }
+        }
+    },
     methods:{
+        voltar(){
+            this.$router.push('/')
+        },
+        voltarStep(){
+            this.step--
+        },
         getAccountData(accountData){
             this.accountData = accountData
-                },
+        },
         getPersonalData(personalData){
             this.personalData = personalData
         },
-        clique(){
-            if(this.step===2){
+        clique(botao){
+            if(this.step===1 && botao=="signUp" ){
                 this.step++
             }
-            if(this.step===1){
-                this.signUp().then(
-                    this.step++             
-                )
+            if(this.step===2 && botao=="dado"){
+                this.step++
             }
+            if(this.step===3 && botao=="finalizar"){
+                this.signUp().then(
+                )    
+            }         
         },
         async signUp () {
             await this.$store.dispatch('signUserUp', this.accountData)
-    }
+        }
     }
 }
 </script>

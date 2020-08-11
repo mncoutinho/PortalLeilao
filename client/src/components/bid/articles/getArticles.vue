@@ -69,35 +69,22 @@
 </template>
 <script>
 import lance from "./InputArticlesBid";
-import axios from 'axios';
+import { mapState} from "vuex";
 export default {
 	components:{
 		lance
 	},
 	data(){
 		return{		
-			// teste botao de abrir leilao
-			
-			artigo: {},
 			vendedor: {
 				value: 5
 			}			
 		};
-	},
-
-	created() {
-		axios({
-			method:`post`,
-			url:'https://us-central1-portalleilao-26290.cloudfunctions.net/item/getItemById',
-			data:{id:'A5zfqb6in8HoIm99CMmt'},
+	},computed: {
+		...mapState({
+			artigo: state => state.itemApp.item,
 		})
-		.then(response => {
-				this.artigo = response.data
-			})
-		.catch(error => console.log(error));
-	},
-	
-	methods: {
-	}   
+	}
+  
 }
 </script>

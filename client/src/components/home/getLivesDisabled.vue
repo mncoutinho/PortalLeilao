@@ -3,7 +3,8 @@
         <v-flex class="mt-auto">
             <v-card 
             max-width="1550" 
-            class="mx-auto" >    
+            class="mx-auto"
+            flat >    
                 <v-row justify="center">
                     <v-col 
                     cols="12"

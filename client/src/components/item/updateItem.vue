@@ -78,10 +78,9 @@
 
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <v-btn class="col-12" color="primary" @click="addartigo">Confirmar</v-btn>
+              <v-btn class="col-12" color="primary" @click="updateArtigo">Confirmar</v-btn>
             </v-flex>
           </v-layout>
-          {{this.$store.getters.user}}
           {{artigo}}
         </form>
       </v-flex>
@@ -104,12 +103,10 @@ export default {
     ...mapState({
       artigo: state => state.itemApp.item,
       user: state => state.userApp.user,
-      categories: state => state.category
-      
+      categories: state => state.category  
     }),
   },
   created() {
-    this.$store.commit('resetItem');
     this.$store.dispatch('getcategories', this.categories);
     if(!this.user.refreshToken){
       alert('Logue por favor');
@@ -137,10 +134,9 @@ export default {
         alert('Porfavor defina o nome do artigo antes');
       }
     },
-    addartigo() {
-      this.artigo.IdOrganizer = this.user.uid;     
-      this.$store.dispatch('createItem', this.artigo);
-      this.$router.push('/')
+    updateArtigo() {
+      this.$store.dispatch('updateItem', this.artigo);
+      this.$router.push('/leiloeiro');   
     }
   }
 };

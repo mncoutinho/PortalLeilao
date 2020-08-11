@@ -65,8 +65,7 @@ export default {
     props:['buttons'],
     data(){
         return {
-            nomeRules:[v => !!v || 'Este campo é necessario',
-                        v => !!v && v.lenght >= 15 || 'Este campo é necessario' ],
+            nameRules:[v => !!v || 'Este campo é necessario'],
             cpfRules:[v => !!v || 'Este campo é necessario',
                         v => !!v && v.lenght != 11 || 'Cpf Incompleto'],
             phoneRules:[tel => !!tel || 'Este campo é necessario'] ,
@@ -78,7 +77,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>

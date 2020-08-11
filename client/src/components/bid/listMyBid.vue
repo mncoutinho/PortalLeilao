@@ -2,7 +2,7 @@
   <v-app>
     <v-card flat width="80%" class="mx-auto">
       <v-row justify="center" class="mt-8">
-        <p class="display-2">Leiloes</p>
+        <p class="display-2">Meus Leiloes</p>
       </v-row>
       <v-row justify="center">
         <v-col cols="6">
@@ -12,7 +12,7 @@
       <v-divider class="mx-12" />
       <v-row justify="space-around">
         <!--CARTOES-->
-        <v-card width="24%" :key="card.length" v-for="card in cards" class="mt-9 mb-3">
+        <v-card width="24%" :key="card.length" v-for="card in card" class="mt-9 mb-3">
           <v-img
             height="200px"
             src="https://cdn.vuetifyjs.com/images/cards/store.jpg"
@@ -30,10 +30,15 @@
             </v-col>
           </v-row>
           <v-btn>Ver Lotes</v-btn>
+          <v-btn>Editar</v-btn>
+          <v-btn
+          @click="deletar(card)"
+          >
+            Deletar
+          </v-btn>
         </v-card>
       </v-row>
     </v-card>
-    {{cards}}
   </v-app>
 </template>
 
@@ -42,18 +47,34 @@ import { mapState} from "vuex";
 export default {
   data() {
     return {
-      target:""
+      target:"",
+      bid:""
     }
   },
   computed:{
     ...mapState({
-      cards: state => state.bidApp.bids
+      card: state => state.bidApp.bids,
+      user: state => state.userApp.user
     })
   },
   methods: {
+    deletar(bid){
+      if(bid.idOrganizer === this.user.uid){
+                this.target = bid.id
+                this.$store.dispatch('deleteBid', this.target);
+            }else{
+                alert("Voce n pode deletar um leilao q n e seu");
+            }
+    }
   },
-  created() {
-    this.$store.dispatch('getAllBids', this.cards);
-  }
+  async created(){
+        await this.$store.dispatch('getAllBids', this.bid).then(() =>{
+            for (let i = 0; i < this.bid.length; i++) {
+                if(this.bid[i].idOrganizer == this.user.uid){
+                    this.card.push(this.bid[i])
+                } 
+            }
+        })    
+    },
 };
 </script>

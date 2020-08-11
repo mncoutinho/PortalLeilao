@@ -15,7 +15,7 @@
                         <div
                         colored-border
                         align="center"
-                        class="pagamentos mb-8 mt-12"
+                        class="pagamentos mb-8 mt-12 ml-12 mr-12"
                         v-for="items in anuItem"
                         :key="items.title"
                         >
