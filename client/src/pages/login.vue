@@ -22,7 +22,7 @@
               class="white--text"
               depressed
               large
-              style="postion: absolute;top:-56px;left:250px"
+              style="postion: absolute;top:-56px;left:100px"
               @click="voltar"
               >Voltar</v-btn>
             <v-row justify="center"> 
