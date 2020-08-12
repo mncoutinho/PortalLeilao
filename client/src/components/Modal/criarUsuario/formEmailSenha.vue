@@ -54,15 +54,18 @@
         <v-col
         :key="button.text"
           v-for="button in buttons">
-                    <v-btn
-                    :color="button.color"
-                    center
-                    class="white--text"
-                    depressed
-                    large
-                    @click="$emit('clicked',button.click)"
-                    v-text="button.text"
-                    />
+            <v-row justify="end" class="mr-6">
+              <v-btn
+                :color="button.color"
+                center
+                class="white--text"
+                depressed
+                large
+                @click="$emit('clicked',button.click)"
+                v-text="button.text"
+                :disabled="estaDesativado"
+                />
+          </v-row>
         </v-col>
       </v-row>
   </v-form>
@@ -71,9 +74,13 @@
 <script>
 export default {
   props: ['titulo','buttons'],
+  computed:{
+      estaDesativado(){
+        return this.accountData.email && this.accountData.senha !== '' ? false : true
+      }
+  },
   data () {
     return {
-        valid:true,
         accountData:{
           email: '',
           senha: ''

@@ -8,38 +8,38 @@
         >
         <!--CEP-->
             <v-text-field  
-                v-model="cep"
+                v-model="accountData.cep"
                 maxlength="8"
                 label="CEP"
                 placeholder="12345-678"
                 required/>
         <!--Adress-->
             <v-text-field  
-                v-model="endereco"
+                v-model="accountData.endereco"
                 label="Endereço"
                 placeholder="Rua. 20 "
                 required/>
         <!--Complement-->
             <v-text-field  
-                v-model="complemento"
+                v-model="accountData.complemento"
                 label="Complemento"
                 placeholder="Zona Sul"
                 required/>
         <!--Street-->
             <v-text-field  
-                v-model="bairro"
+                v-model="accountData.bairro"
                 label="Bairro"
                 placeholder="Leblon"
                 required/>
         <!--Street-->
             <v-text-field  
-                v-model="cidade"
+                v-model="accountData.cidade"
                 label="Cidade"
                 placeholder="Rio de Janeiro"
                 required/>
         <!--uf-->
             <v-select
-            :items="uf"                                        
+            :items="accountData.uf"                                        
             label="UF"
             required
             />
@@ -47,21 +47,19 @@
         <v-col
         :key="button.text"
         v-for="button in buttons">
-            <v-btn
-            :color="button.color"
-            center
-            class="white--text"
-            depressed
-            large
-            @click="$emit('clicked',button.click)"
-            v-text="button.text"
-            />
+            <v-row justify="end" class="mr-6">
+                <v-btn
+                :color="button.color"
+                center
+                class="white--text"
+                depressed
+                large
+                @click="$emit('clicked',button.click)"
+                v-text="button.text"
+                :disabled="estaDesativado"
+                />
+            </v-row>
         </v-col>
-        {{cidade}}
-        {{bairro}}
-        {{cep}}
-        {{endereco}}
-        {{complemento}}
     </v-row>
     
 </template>
@@ -69,14 +67,23 @@
 <script>
 export default {
     props:['buttons'],
+    computed:{
+      estaDesativado(){
+        return this.accountData.cidade && this.accountData.bairro && this.accountData.cep && 
+        this.accountData.complemento && this.accountData.endereco !== '' ? false : true
+      }
+    },
     data(){
         return {
-            uf: ['SP', 'RJ', 'MG', 'PR', 'MN'],
-            cidade:'',
-            bairro:'',
-            cep:'',
-            complemento:'',
-            endereco:''
+            accountData:{
+                cidade:'',
+                bairro:'',
+                cep:'',
+                complemento:'',
+                endereco:'',
+                uf: ['SP', 'RJ', 'MG', 'PR', 'MN'],
+            },
+            
         }
     }
 }

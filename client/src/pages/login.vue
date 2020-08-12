@@ -6,7 +6,7 @@
             </v-flex>
         </v-layout>
       <v-row  justify="center">
-        <v-card max-width="550" class="mb-12 pa-12"  :elevation="10" width="50%"  >
+        <v-card  class="mb-12 pa-12"  :elevation="10" width="550px"  >
           <v-row justify="center" class="ml-6">
             <login  
               titulo="Entre com..."
@@ -22,7 +22,7 @@
               class="white--text"
               depressed
               large
-              style="postion: absolute;top:-55px;left:100px"
+              style="postion: absolute;top:-56px;left:250px"
               @click="voltar"
               >Voltar</v-btn>
             <v-row justify="center"> 
@@ -80,7 +80,6 @@ export default {
     async clique(botao){
       if(botao == 'login'){
         await this.$store.dispatch('signUserIn',this.accountData).then(
-          
         )
       }
     },

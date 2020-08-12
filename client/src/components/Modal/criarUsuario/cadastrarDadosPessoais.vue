@@ -14,7 +14,7 @@
             >
             <!--name-->
                 <v-text-field
-                v-model="nome"
+                v-model="accountData.nome"
                 :rules="nameRules"
                 label="Nome Completo"
                 placeholder="Antonio Luiz da Silva"
@@ -23,7 +23,7 @@
                 </v-text-field>
             <!--CPF-->
                 <v-text-field  
-                v-model="cpf"
+                v-model="accountData.cpf"
                 maxlength="11"
                 label="CPF"
                 :rules="cpfRules"
@@ -33,7 +33,7 @@
                 ></v-text-field>
             <!--telephone-->
                 <v-text-field
-                v-model="tel"
+                v-model="accountData.tel"
                 :rules="phoneRules"
                 label="Telefone"
                 placeholder="(12)934567890"
@@ -45,16 +45,19 @@
         <v-row justify="center">
         <v-col
         :key="button.text"
-          v-for="button in buttons">
-                    <v-btn
-                    :color="button.color"
-                    center
-                    class="white--text"
-                    depressed
-                    large
-                    @click="$emit('clicked',button.click)"
-                    v-text="button.text"
-                    />
+        v-for="button in buttons">
+            <v-row justify="end" class="mr-6">
+                <v-btn
+                :color="button.color"
+                center
+                class="white--text"
+                depressed
+                large
+                @click="$emit('clicked',button.click)"
+                v-text="button.text"
+                :disabled="estaDesativado"
+                />
+            </v-row>
         </v-col>
       </v-row>
     </v-form>
@@ -63,16 +66,25 @@
 <script>
 export default {
     props:['buttons'],
+    computed:{
+      estaDesativado(){
+        return this.accountData.cpf && this.accountData.tel && this.accountData.nome !== '' ? false : true
+      }
+    },
     data(){
         return {
+            accountData:{
+                cpf:'',
+                tel:'',
+                nome:''
+            },
             nameRules:[v => !!v || 'Este campo é necessario'],
             cpfRules:[v => !!v || 'Este campo é necessario',
                         v => !!v && v.lenght != 11 || 'Cpf Incompleto'],
             phoneRules:[tel => !!tel || 'Este campo é necessario'] ,
             valid:true,
-            cpf:'',
-            tel:'',
-            nome:''
+
+            
         }
     }
 }
