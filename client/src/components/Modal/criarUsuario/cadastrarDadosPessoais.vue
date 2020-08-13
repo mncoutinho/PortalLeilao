@@ -69,7 +69,7 @@ export default {
     computed:{
       estaDesativado(){
         return this.accountData.cpf && this.accountData.tel && this.accountData.nome !== '' ? false : true
-      }
+      },
     },
     data(){
         return {
@@ -78,13 +78,12 @@ export default {
                 tel:'',
                 nome:''
             },
-            nameRules:[v => !!v || 'Este campo é necessario'],
-            cpfRules:[v => !!v || 'Este campo é necessario',
-                        v => !!v && v.lenght != 11 || 'Cpf Incompleto'],
+            nameRules:[nome => !!nome || 'Este campo é necessario'],
+            cpfRules:[  cpf => !!cpf || 'Este campo é necessario',
+                        cpf => !!cpf && cpf.lenght != 11 || 'Cpf Incompleto',
+                        ],
             phoneRules:[tel => !!tel || 'Este campo é necessario'] ,
-            valid:true,
-
-            
+            valid:true,   
         }
     }
 }

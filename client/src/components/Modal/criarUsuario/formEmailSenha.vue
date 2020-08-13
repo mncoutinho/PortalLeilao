@@ -1,6 +1,5 @@
 <template>
     <v-form
-    v-model="valid"
     lazy-validation>
     <!--title-->
     <v-row justify="center" class="mt-6 mb-3">
@@ -26,7 +25,6 @@
         >
             <!--Email-->
             <v-text-field
-            lazy-validation
             v-model="accountData.email"
             :rules="emailRules"
             @change="$emit('email', accountData)"
@@ -41,6 +39,17 @@
             v-model="accountData.senha"
             :rules="senhaRules"
             @change="$emit('email', accountData)"
+            autocomplete="true"
+            type="password"
+            label="Senha"
+            placeholder="**********"
+            required
+            color="green"
+            />
+            <v-text-field
+            lazy-validation
+            v-model="accountData.comfirmar"
+            :rules="comfirmarRules"
             autocomplete="true"
             type="password"
             label="Senha"
@@ -77,24 +86,29 @@ export default {
   computed:{
       estaDesativado(){
         return this.accountData.email && this.accountData.senha !== '' ? false : true
+      },
+    passwordConfirmationRule() {
+        return () => this.password === this.confirmPassword || "Password must match";
       }
   },
+  
   data () {
     return {
         accountData:{
           email: '',
-          senha: ''
+          senha: '',
+          comfirmar:'',
         },
         senhaRules: [
-                v => !!v || 'Este campo é necessario',
-                v => !!v && v.length >= 5 || 'Digite no minimo 5 caracter'
-            ],    
+            v => !!v || 'Este campo é necessario',
+            v => !!v && v.length >= 5 || 'Digite no minimo 5 caracter'
+          ], 
         emailRules: [
-        v => !!v || 'Campo Vazio!',
-        v => /.+@.+\..+/.test(v) || 'E-mail precisa ser valido!',
-      ],
+            v => !!v || 'Campo Vazio!',
+            v => /.+@.+\..+/.test(v) || 'E-mail precisa ser valido!',
+          ],
        checkbox: false,
-        is:[ {icon:'fab fa-facebook-f'}, {icon:'fab fa-google'},]
+        is:[{icon:'fab fa-facebook-f'}, {icon:'fab fa-google'},]
     };
   },
 };
