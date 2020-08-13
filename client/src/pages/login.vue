@@ -1,28 +1,28 @@
 <template >
-    <v-main>
+    <v-main >
       <v-layout row v-if="error">
             <v-flex xs12 sm6 offset-sm3>
                 <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
             </v-flex>
         </v-layout>
-      <v-row  justify="center">
-        <v-card  class="mb-12 pa-12"  :elevation="10" width="550px"  >
-          <v-row justify="center" class="ml-6">
-            <login  
-              titulo="Entre com..."
-              @clicked="clique"
-              @email="getAccountData"
-              :buttons="buttons"
-              @submit.prevent="onSignIn"
+      <v-row justify="center">
+        <v-card  max-width="30%" min-width="450" class="mb-12 pa-12 mx-auto"  :elevation="10" width="50%">
+          <v-col>
+              <login
+                class="text-center"  
+                titulo="Entre com..."
+                @clicked="clique"
+                @email="getAccountData"
+                :buttons="buttons"
+                @submit.prevent="onSignIn"
               />
-          </v-row>
             <v-btn
               color=#422321
               center
               class="white--text"
               depressed
               large
-              style="postion: absolute;top:-56px;left:100px"
+              style="postion: absolute;top:-56px;left:30px"
               @click="voltar"
               >Voltar</v-btn>
             <v-row justify="center"> 
@@ -32,8 +32,9 @@
               v-on:click="resetPassword"
               >Esqueci Minha senha</v-btn>
             </v-row>
+          </v-col>
         </v-card>
-       </v-row> 
+       </v-row>
         {{accountData}}
     </v-main>
 </template>
