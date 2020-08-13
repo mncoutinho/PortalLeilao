@@ -14,6 +14,7 @@
                 @clicked="clique"
                 @email="getAccountData"
                 :buttons="buttons"
+                :comfirmarLayout ="comfirmar"
                 @submit.prevent="onSignIn"
               />
             <v-btn
@@ -46,6 +47,7 @@ export default {
   },
   data: () => ({
     drawer: null,
+    comfirmar:false,
     buttons:[
       {
         text:"Logar",
@@ -75,8 +77,14 @@ export default {
     }
   },  
   methods:{
+    voltar(){
+            this.$router.push('/')
+        },
     getAccountData(accountData){
       this.accountData = accountData
+    },
+    getComfirmar(){
+      false
     },
     async clique(botao){
       if(botao == 'login'){

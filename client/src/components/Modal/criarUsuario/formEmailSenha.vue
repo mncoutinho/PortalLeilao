@@ -47,12 +47,12 @@
             color="green"
             />
             <v-text-field
+            v-if="comfirmarLayout"
             lazy-validation
             v-model="accountData.comfirmar"
-            :rules="comfirmarRules"
             autocomplete="true"
             type="password"
-            label="Senha"
+            label="Comfirmar Senha"
             placeholder="**********"
             required
             color="green"
@@ -82,14 +82,11 @@
 </template>
 <script>
 export default {
-  props: ['titulo','buttons'],
+  props: ['titulo','buttons', 'comfirmarLayout'],
   computed:{
       estaDesativado(){
         return this.accountData.email && this.accountData.senha !== '' ? false : true
       },
-    passwordConfirmationRule() {
-        return () => this.password === this.confirmPassword || "Password must match";
-      }
   },
   
   data () {
