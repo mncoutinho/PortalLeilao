@@ -11,7 +11,7 @@
         :key="i.icon"
         v-for="i in is"
         >
-                <v-icon size="50" color="#422321" > {{i.icon}} </v-icon>
+          <v-icon size="50" color="#422321" > {{i.icon}} </v-icon>
         </v-col>
     </v-row>
     <v-row 
@@ -25,37 +25,35 @@
         >
             <!--Email-->
             <v-text-field
+            required
             v-model="accountData.email"
             :rules="emailRules"
             @change="$emit('email', accountData)"
             autocomplete="true"
             label="E-mail"
             placeholder="exemplo@mail.com"
-            required
             color="green"/>
             <!--Password-->   
             <v-text-field
-            lazy-validation
+            required
             v-model="accountData.senha"
-            :rules="senhaRules"
+            :rules="[regras.requisicao, regras.min]"
+            type="password"
             @change="$emit('email', accountData)"
             autocomplete="true"
-            type="password"
             label="Senha"
             placeholder="**********"
-            required
             color="green"
             />
             <v-text-field
+            required
             v-if="comfirmarLayout"
-            lazy-validation
-            v-model="accountData.comfirmar"
-            autocomplete="true"
+            :rules="[regras.requisicao, regras.min, comparePasswords]"
             type="password"
+            v-model="accountData.confirmacao"
+            autocomplete="true"
             label="Comfirmar Senha"
             placeholder="**********"
-            required
-            color="green"
             />
         </v-col>
     </v-row>    
@@ -65,13 +63,13 @@
           v-for="button in buttons">
             <v-row justify="end" class="mr-6">
               <v-btn
-                :color="button.color"
                 center
-                class="white--text"
                 depressed
                 large
-                @click="$emit('clicked',button.click)"
+                class="white--text"
                 v-text="button.text"
+                @click="$emit('clicked',button.click)"
+                :color="button.color"
                 :disabled="estaDesativado"
                 />
           </v-row>
@@ -87,19 +85,21 @@ export default {
       estaDesativado(){
         return this.accountData.email && this.accountData.senha !== '' ? false : true
       },
+      comparePasswords () {
+        return this.accountData.senha !== this.accountData.confirmacao ? 'senha incorreta' : 'senha correta'
+      },
   },
-  
   data () {
     return {
         accountData:{
           email: '',
           senha: '',
-          comfirmar:'',
+          confirmacao: ''
         },
-        senhaRules: [
-            v => !!v || 'Este campo é necessario',
-            v => !!v && v.length >= 5 || 'Digite no minimo 5 caracter'
-          ], 
+        regras: {
+          requisicao: value => !!value || 'Valor requerido',
+          min: v => v.length >= 5 || 'mínimo de 5 caractes',
+        },
         emailRules: [
             v => !!v || 'Campo Vazio!',
             v => /.+@.+\..+/.test(v) || 'E-mail precisa ser valido!',
