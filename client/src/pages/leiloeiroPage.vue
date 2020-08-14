@@ -12,8 +12,10 @@
           <v-window-item :value="2" >
             <produtos/>
           </v-window-item>
-          <v-window-item :value="3">           
+          <v-window-item :value="3">
+                     
             <addItem/>
+            
           </v-window-item>
           <v-window-item :value="4">           
             <meusProdutos/>
@@ -22,6 +24,7 @@
           <!-- leilao -->
           <v-window-item :value="5">           
             <listBid/>
+            
           </v-window-item>
           <v-window-item :value="6">           
             <addBid/>
