@@ -2,8 +2,6 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import firebase from 'firebase/app'
 
-
-
 const user = {
   state: {
     user: {},
@@ -77,11 +75,11 @@ const user = {
         alert('Usuario deslogou');
       })
     },
-    uploadProfileImg({commit},url){
+    uploadProfileImg({ commit }, url) {
       console.log(this.userApp.state.user);
       firebase.auth().currentUser.updateProfile({
         photoUrl: url
-      }).then(()=>{
+      }).then(() => {
         commit
         alert("alterado com sucesso")
       }).catch(err => {
@@ -109,7 +107,7 @@ const item = {
   state: {
     items: [],
     item: {},
-    target:'',
+    target: '',
   },
   mutations: {
     resetItem(state) {
@@ -177,7 +175,7 @@ const item = {
         alert('Aconteceu algo inesperado. ' + err.message);
       });
     },
-    deleteItem({commit},payload) {
+    deleteItem({ commit }, payload) {
       console.log(payload);
       commit
       firebase.firestore().collection('artigo').doc(payload).delete().then(() => {
@@ -228,7 +226,9 @@ const bid = {
             description: doc.data().description,
             items: doc.data().items.length,
             startsOn: doc.data().startsOn,
-            closedAt: doc.data().closedAt
+            closedAt: doc.data().closedAt,
+            idOrganizer: doc.data().idOrganizer,
+            imgUrl: doc.data().imgUrl
           });
         })
         return commit('setAllBids', bidsList);
@@ -239,14 +239,14 @@ const bid = {
     createBid({ commit }, payload) {
       firebase.firestore().collection('leilao').add(payload).then(doc => {
         commit('setBid', doc);
-        return alert(doc.name + " criado com sucesso");
+        return alert(payload.name + " criado com sucesso");
       }).catch(err => {
         alert('Aconteceu algo inesperado. ' + err.message);
       });
     },
-    deleteBid({commit},payload) {
+    deleteBid({ commit }, payload) {
       commit
-      firebase.firestore().collection('leilao').doc(payload).delete().then(()=>{
+      firebase.firestore().collection('leilao').doc(payload).delete().then(() => {
         alert("deletado com sucesso")
       }).catch(err => {
         alert('Aconteceu algo inesperado. ' + err.message);
@@ -258,7 +258,7 @@ const bid = {
       }).catch(err => {
         alert('Aconteceu algo inesperado. ' + err.message);
       });
-    }, 
+    },
     getBidById({ commit }, payload) {
       firebase.firestore().collection('leilao').doc(payload.id).then(doc => {
         return commit('setBid', doc);
