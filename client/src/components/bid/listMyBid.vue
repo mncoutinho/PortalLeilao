@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-card flat width="80%" class="mx-auto">
+    <v-card flat width="80vw" class="mx-auto">
       <v-row justify="center" class="mt-8">
         <p class="display-2">Meus Leiloes</p>
       </v-row>
@@ -15,7 +15,8 @@
         <v-card width="24%" :key="card.length" v-for="card in card" class="mt-9 mb-3">
           <v-img
             height="200px"
-            src="https://cdn.vuetifyjs.com/images/cards/store.jpg"
+            width="100%"
+            :src="card.imgUrl"
             class="white--text align-end bold"
             gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
           >

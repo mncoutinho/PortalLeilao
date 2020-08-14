@@ -97,11 +97,19 @@ export default {
     }),
     paginacao () {
             return this.card.slice((this.page - 1) * this.porPagina, this.page * this.porPagina)
-        }
+        },
     },
+    
+        
+    
     created(){
-        this.$store.dispatch('getAllItems', this.card);
-    },
+        
+         this.$store.dispatch('getAllItems', this.card).then(() =>{
+             setTimeout(() => {
+                this.numeroPaginas = this.card.length / 4 
+                }, 2200)                     
+            })
+        }, 
     methods:{
         status(status){
             if(status){
