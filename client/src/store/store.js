@@ -130,13 +130,7 @@ const item = {
   },
   actions: {
     getAllItems({ commit }) {
-      firebase
-      .firestore()
-      .collection('artigo')
-      .orderBy('name')
-      .limit(4)
-      .get()
-      .then(snapshot => {
+      firebase.firestore().collection('artigo').orderBy('name').get().then(snapshot => {
         let ItemList = [];
         snapshot.forEach(doc => {
           ItemList.push({
