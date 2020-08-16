@@ -30,10 +30,25 @@
               <v-card-subtitle class="title">Lotes: {{ card.items }}</v-card-subtitle>
             </v-col>
           </v-row>
-          <v-btn>Ver Lotes</v-btn>
-          <v-btn>Editar</v-btn>
           <v-btn
-          @click="deletar(card)"
+            large
+            color="#422321"
+            class="white--text"
+          >
+            Ver Lotes
+          </v-btn>
+          <v-btn
+            large
+            color="#422321"
+            class="white--text"
+          >
+            Editar
+          </v-btn>
+          <v-btn
+          large
+            color="#422321"
+            class="white--text"
+            @click="deletar(card)"
           >
             Deletar
           </v-btn>

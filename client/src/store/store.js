@@ -166,6 +166,14 @@ const item = {
         alert('Aconteceu algo inesperado. ' + err.message);
       });
     },
+    addLance({commit},id,payload){
+        firebase.firestore().collection('item').doc(id).collection('lances').add(payload).then(doc=>{
+          commit('setItem', doc);
+          return alert(doc.id)
+        }).catch(err => {
+          alert('Aconteceu algo inesperado. ' + err.message);
+        });
+    },
     //a testar
     updateItem({ commit }, payload) {
       firebase.firestore().collection('artigo').doc(payload.id).update(payload).then(doc => {

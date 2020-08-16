@@ -38,7 +38,20 @@
                   heigth="400px"
                   :src="leilao.imgUrl"
                 />
-            </v-row>   
+            </v-row>
+
+            <v-layout row>
+            <v-flex xs12 sm6 offset-sm3>
+              <v-text-field class="col-md 2" v-model="leilao.imgUrl" label="Imagens" disabled />
+            </v-flex>
+          </v-layout>
+            
+                 
+            
+                
+              
+            
+              
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>

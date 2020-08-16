@@ -60,7 +60,6 @@ new Vue({
           console.log("sem usuario logado");
         }
       })
-
     },
 }).$mount("#app");
 
