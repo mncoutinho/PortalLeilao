@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-card flat width="80vw" class="mx-auto">
+    <v-card flat width="67vw" class="mx-auto">
       <v-row justify="center" class="mt-8">
         <p class="display-2">Meus Leiloes</p>
       </v-row>
