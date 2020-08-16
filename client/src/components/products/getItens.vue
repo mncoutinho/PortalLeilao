@@ -87,7 +87,7 @@ export default {
             target:{},
             page:1,
             numeroPaginas:null,
-            porPagina: 4,     
+            porPagina: 8,     
         }
     },
     computed: {
@@ -96,13 +96,13 @@ export default {
       user: state => state.userApp.user,
     }),
     paginacao () {
-            return this.card.slice(0 , this.page * this.porPagina)
-        },
+            return this.card.slice((this.page - 1) * this.porPagina, this.page * this.porPagina)
+        }
     },
     created(){
          this.$store.dispatch('getAllItems', this.card).then(() =>{
              setTimeout(() => {
-                this.numeroPaginas = (this.card.length / 4 ) + 1
+                this.numeroPaginas = (this.card.length / this.porPagina ) 
                 }, 2200)                     
             })
         }, 
