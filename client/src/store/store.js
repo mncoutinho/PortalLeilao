@@ -158,7 +158,16 @@ const item = {
     },
     getItemByID({ commit }, payload) {
       firebase.firestore().collection('artigo').doc(payload).get().then(doc => {
-        const item = doc.data();
+        const item = {
+          id: doc.id,
+          active: doc.data().active,
+          category: doc.data().category,
+          description: doc.data().description,
+          imgUrl: doc.data().imgUrl,
+          initialBid: doc.data().initialBid,
+          name: doc.data().name,
+          idOrganizer: doc.data().IdOrganizer
+        };
         return commit('setItem', item)
       }).catch(err => {
         alert('Aconteceu algo inesperado. ' + err.message);

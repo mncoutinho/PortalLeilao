@@ -1,5 +1,6 @@
 <template>	
 	<v-card width="100%">
+		{{item}}
 		<v-card-title>
 			<strong>Lance Atual: {{"R$"+ lanceNow+",00" }}</strong>
 		</v-card-title>
@@ -99,14 +100,10 @@ export default {
 	methods: {
 		AddLance() {
 			//convertendo
+			console.log(this.item.id)
 			this.lance = parseInt(this.lance);
-			
-
 			if(this.lance > this.lanceNow){
-				
 				const time = new Date();
-				
-
 				const lanceConfirmado = {
 					lance: this.lance, 
 					time: time, 
@@ -114,10 +111,12 @@ export default {
 					idUser: this.user.uid, 
 				};		
 				
-				this.$store.dispatch('addLance',{id:this.idItem,payload:lanceConfirmado})
+				this.$store.dispatch('addLance',{id:this.item.id,payload:lanceConfirmado})
 				this.lanceNow = this.lance;
 
-			}	
+			}else{
+				alert('vc n pode da um lance abaixo')
+			}
 			
 
 		},
@@ -143,8 +142,8 @@ export default {
 		...mapState({
 			user: state => state.userApp.user,
 			lances: state => state.itemApp.lances,
-			lanceMinimo: state => state.itemApp.item.initialBid,
-			idItem: state => state.itemApp.item.id
+			item: state => state.itemApp.item,
+			lanceMinimo: state => state.itemApp.item.initialBid
 		}),
 		// funcoes de leitura rapida na tela	
 		lanceNow(now){
