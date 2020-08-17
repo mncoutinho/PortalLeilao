@@ -192,7 +192,7 @@ const item = {
         });
     },
     getLances({commit},payload){
-        firebase.firestore().collection('artigo/'+payload+'/lances').get().then(snapshot =>{
+        firebase.firestore().collection('artigo/'+payload+'/lances').orderBy('lance','asc').get().then(snapshot =>{
           let lances = [];
           snapshot.forEach(doc =>{
             lances.push({
