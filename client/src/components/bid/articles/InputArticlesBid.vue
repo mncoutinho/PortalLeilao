@@ -1,6 +1,7 @@
 <template>	
 	<v-card width="100%">
 		{{item}}
+		{{lances}}
 		<v-card-title>
 			<strong>Lance Atual: {{"R$"+ lanceNow+",00" }}</strong>
 		</v-card-title>
@@ -84,6 +85,7 @@
 
 <script>
 import {mapState} from 'vuex';
+import firebase from 'firebase';
 export default {
 
 	data(){
@@ -112,7 +114,7 @@ export default {
 				};		
 				
 				this.$store.dispatch('addLance',{id:this.item.id,payload:lanceConfirmado})
-				this.$store.dispatch('getLances',this.item.id)
+				//this.$store.dispatch('getLances',this.item.id)
 				this.lanceNow = this.lance;
 
 			}else{
@@ -142,7 +144,20 @@ export default {
 	watch: {
 		//n funciona
 		observe(){
-			return this.$store.dispatch('getLances',this.item.id)
+			firebase.firestore().collection('artigo/'+this.item.id+'/lances')
+			.orderBy('lance','asc').onSnapshot(snapshot =>{
+				snapshot.docChanges().forEach(doc =>{
+					if(doc.type == 'added'){
+						console.log('acionado')
+						return this.lances.push({
+							idUser: doc.data().idUser,
+							lance: doc.data().lance,
+							time: doc.data().time,
+							user:doc.data().user
+						})
+					}
+				})
+			})
 		}
 	},
 	computed:{
