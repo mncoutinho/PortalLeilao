@@ -186,7 +186,12 @@ const item = {
         firebase.firestore().collection('artigo/'+payload+'/lances').get().then(snapshot =>{
           let lances = [];
           snapshot.forEach(doc =>{
-            lances.push(doc);
+            lances.push({
+              idUser: doc.data().idUser,
+              lance: doc.data().lance,
+              time: doc.data().time,
+              user:doc.data().user
+            });
           })
           commit('setLances', lances)
         })

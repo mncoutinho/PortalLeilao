@@ -1,7 +1,5 @@
 <template>	
 	<v-card width="100%">
-		{{idItem}}
-		{{lanceMinimo}}
 		<v-card-title>
 			<strong>Lance Atual: {{"R$"+ lanceNow+",00" }}</strong>
 		</v-card-title>
