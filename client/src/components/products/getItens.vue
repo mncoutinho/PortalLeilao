@@ -125,6 +125,7 @@ export default {
             this.target = id
             console.log("ativo "+ this.target)
             this.$store.dispatch('getItemByID', this.target)
+            this.$store.dispatch('getLances',this.target)
             this.$router.push('/leilao')
         }
     },

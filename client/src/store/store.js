@@ -107,9 +107,16 @@ const item = {
   state: {
     items: [],
     item: {},
+    lances:[],
     target: '',
   },
   mutations: {
+    setLances(state,payload){
+      state.lances = payload
+    },
+    resetLances(state){
+      state.lances = {}
+    },
     resetItem(state) {
       state.item = {
         active: true,
@@ -174,6 +181,15 @@ const item = {
         }).catch(err => {
           alert('Aconteceu algo inesperado. ' + err.message);
         });
+    },
+    getLances({commit},payload){
+        firebase.firestore().collection('artigo/'+payload+'/lances').get().then(snapshot =>{
+          let lances = [];
+          snapshot.forEach(doc =>{
+            lances.push(doc);
+          })
+          commit('setLances', lances)
+        })
     },
     //a testar
     updateItem({ commit }, payload) {

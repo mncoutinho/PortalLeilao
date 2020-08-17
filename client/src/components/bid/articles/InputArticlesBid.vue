@@ -90,7 +90,6 @@ export default {
 	data(){
 		return{
 			lance: "",
-			lances: [],
 			// teste auto lance
 			autolance: {
 				modal: false,
@@ -119,7 +118,7 @@ export default {
 				
 				this.$store.dispatch('addLance',{id:this.idItem,payload:lanceConfirmado})
 				this.lanceNow = this.lance;
-				this.lances.push(lanceConfirmado);
+
 			}	
 			
 
@@ -145,6 +144,7 @@ export default {
 	computed:{
 		...mapState({
 			user: state => state.userApp.user,
+			lances: state => state.itemApp.lances,
 			lanceMinimo: state => state.itemApp.item.initialBid,
 			idItem: state => state.itemApp.item.id
 		}),
