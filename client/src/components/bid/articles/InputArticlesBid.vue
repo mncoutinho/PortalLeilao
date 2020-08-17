@@ -112,6 +112,7 @@ export default {
 				};		
 				
 				this.$store.dispatch('addLance',{id:this.item.id,payload:lanceConfirmado})
+				this.$store.dispatch('getLances',this.item.id)
 				this.lanceNow = this.lance;
 
 			}else{
@@ -137,6 +138,12 @@ export default {
 				this.lances.push(lanceConfirmado);
 			}
 		}	
+	},
+	watch: {
+		//n funciona
+		observe(){
+			return this.$store.dispatch('getLances',this.item.id)
+		}
 	},
 	computed:{
 		...mapState({
