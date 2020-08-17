@@ -1,5 +1,7 @@
 <template>	
 	<v-card width="100%">
+		{{idItem}}
+		{{lanceMinimo}}
 		<v-card-title>
 			<strong>Lance Atual: {{"R$"+ lanceNow+",00" }}</strong>
 		</v-card-title>
@@ -83,8 +85,6 @@
 
 <script>
 import {mapState} from 'vuex';
-import axios from 'axios';
-
 export default {
 
 	data(){
@@ -103,37 +103,25 @@ export default {
 		AddLance() {
 			//convertendo
 			this.lance = parseInt(this.lance);
-			console.log(this.lanceMinimo);
-
-			if(this.lance > this.lanceMinimo){
-				this.lanceMinimo = this.lance;
-				const time = new Date();
-				let lance = this.lance;
-				let user = this.user.email
-				let idUser = this.user.uid
-
-				const lanceConfirmado = {lance, time, user, idUser};		
-				this.lances.push(lanceConfirmado);
-
-				//postando no banco
-				axios({
-					method:`patch`,
-					url:'https://us-central1-portalleilao-26290.cloudfunctions.net/item/bidding',
-					data:{
-						item: this.IDitem,
-						bid: this.lances
-					},
-				})
-				.then(() =>{
-					return alert("lance feito");
-				})
-				.catch(error => console.log(error));
-				
-			}else{
-				alert("Voce nao pode fazer um lance abaixo do minimo");
-			}
 			
 
+			if(this.lance > this.lanceNow){
+				
+				const time = new Date();
+				
+
+				const lanceConfirmado = {
+					lance: this.lance, 
+					time: time, 
+					user: this.user.email , 
+					idUser: this.user.uid, 
+				};		
+				
+				this.$store.dispatch('addLance',{id:this.idItem,payload:lanceConfirmado})
+				this.lanceNow = this.lance;
+				this.lances.push(lanceConfirmado);
+			}	
+			
 
 		},
 		// Teste
@@ -157,7 +145,8 @@ export default {
 	computed:{
 		...mapState({
 			user: state => state.userApp.user,
-			lanceMinimo: state => state.itemApp.item.initialBid
+			lanceMinimo: state => state.itemApp.item.initialBid,
+			idItem: state => state.itemApp.item.id
 		}),
 		// funcoes de leitura rapida na tela	
 		lanceNow(now){
