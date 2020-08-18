@@ -55,11 +55,6 @@ export default {
     ...mapState({
       cards: state => state.bidApp.bids
     })
-  },
-  methods: {
-  },
-  created() {
-    this.$store.dispatch('getAllBids', this.cards);
   }
 };
 </script>

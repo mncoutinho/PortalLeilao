@@ -121,7 +121,7 @@ export default {
             this.$router.push('/leilao')
         },
         pages(){
-        return  this.card.length / this.porPagina +1 
+            return  this.card.length / this.porPagina +1 
         }
     },
 }
