@@ -8,6 +8,7 @@
         >
         <!--CEP-->
             <v-text-field
+                v-on:keyup.enter="getCep(accountData.cep)"
                 @change="$emit('endereco', accountData)"  
                 v-model="accountData.cep"
                 maxlength="8"
@@ -44,7 +45,8 @@
                 required/>
         <!--uf-->
             <v-select
-            :items="uf"                                        
+            :items="uf"  
+            v-model="accountData.uf"                                      
             label="UF"
             required
             />
@@ -70,6 +72,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     props:['buttons'],
     computed:{
@@ -86,10 +89,28 @@ export default {
                 cep:'',
                 complemento:'',
                 endereco:'',
+                uf:''
             },
             uf: ['SP', 'RJ', 'MG', 'PR', 'MN'],
             
         }
-    }
+    },
+    methods: {
+        getCep(cep){
+            console.log(cep);
+            axios({
+                method: 'get',
+                url:'https://viacep.com.br/ws/'+cep+'/json/'  
+            }).then(doc =>{
+                this.accountData = {
+                    cep: doc.data.cep,
+                    cidade: doc.data.localidade,
+                    bairro: doc.data.bairro,
+                    endereco: doc.data.logradouro,
+                    uf: doc.data.uf
+                }
+            })
+        }
+    },
 }
 </script>
