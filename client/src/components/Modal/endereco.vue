@@ -7,39 +7,44 @@
         cols="10"
         >
         <!--CEP-->
-            <v-text-field  
+            <v-text-field
+                @change="$emit('endereco', accountData)"  
                 v-model="accountData.cep"
                 maxlength="8"
                 label="CEP"
                 placeholder="12345-678"
                 required/>
         <!--Adress-->
-            <v-text-field  
+            <v-text-field
+                @change="$emit('endereco', accountData)"  
                 v-model="accountData.endereco"
                 label="Endereço"
                 placeholder="Rua. 20 "
                 required/>
         <!--Complement-->
-            <v-text-field  
+            <v-text-field
+                @change="$emit('endereco', accountData)"  
                 v-model="accountData.complemento"
                 label="Complemento"
                 placeholder="Zona Sul"
                 required/>
         <!--Street-->
-            <v-text-field  
+            <v-text-field
+                @change="$emit('endereco', accountData)"  
                 v-model="accountData.bairro"
                 label="Bairro"
                 placeholder="Leblon"
                 required/>
         <!--Street-->
-            <v-text-field  
+            <v-text-field
+                @change="$emit('endereco', accountData)"  
                 v-model="accountData.cidade"
                 label="Cidade"
                 placeholder="Rio de Janeiro"
                 required/>
         <!--uf-->
             <v-select
-            :items="accountData.uf"                                        
+            :items="uf"                                        
             label="UF"
             required
             />
@@ -81,8 +86,8 @@ export default {
                 cep:'',
                 complemento:'',
                 endereco:'',
-                uf: ['SP', 'RJ', 'MG', 'PR', 'MN'],
             },
+            uf: ['SP', 'RJ', 'MG', 'PR', 'MN'],
             
         }
     }

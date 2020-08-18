@@ -6,11 +6,14 @@
             </v-flex>
         </v-layout>
         <v-row  justify="center">
+            {{accountData}}
+            {{personalData}}
+            {{enderecoData}}
             <v-window
                 width="100%"
                 align="center"
                 v-model="step">
-                {{this.$store.getters.user}}
+                    {{this.$store.getters.user}}
                 <!--fase 1-->
                 <v-window-item :value="1">
                     <v-card max-width="30%" min-width="450" class="mb-12 pa-12"  :elevation="10" width="50%" >
@@ -53,7 +56,7 @@
                 <v-window-item :value="3">
                     <v-card max-width="30%" min-width="450" class="mb-12 pa-12"  :elevation="10" width="50%" >
                         <Address
-                        @data="getPersonalData"
+                        @endereco="getEndereco"
                         :buttons="finnalyButtons"
                         @clicked="clique"/>
                         <v-btn
@@ -65,6 +68,7 @@
                             style="postion: absolute;top:-68px;left:-100px"
                             @click="voltarStep"
                         >Voltar</v-btn>
+                        
                     </v-card>
                 </v-window-item>
                 <!--Button-->
@@ -90,6 +94,7 @@ export default {
         return{
             personalData:{},
             accountData:{},
+            enderecoData:{},
             //botoes
             comfirmar:true,
             buttons:[
@@ -146,6 +151,9 @@ export default {
         },
         getPersonalData(personalData){
             this.personalData = personalData
+        },
+        getEndereco(parametro){
+            this.enderecoData = parametro
         },
         clique(botao){
             if(this.step===1 && botao=="signUp" ){

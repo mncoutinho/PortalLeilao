@@ -14,6 +14,7 @@
             >
             <!--name-->
                 <v-text-field
+                @change="$emit('data', accountData)"
                 v-model="accountData.nome"
                 :rules="nameRules"
                 label="Nome Completo"
@@ -22,7 +23,8 @@
                 >
                 </v-text-field>
             <!--CPF-->
-                <v-text-field  
+                <v-text-field
+                @change="$emit('data', accountData)"  
                 v-model="accountData.cpf"
                 maxlength="11"
                 label="CPF"
@@ -33,6 +35,7 @@
                 ></v-text-field>
             <!--telephone-->
                 <v-text-field
+                @change="$emit('data', accountData)"
                 v-model="accountData.tel"
                 :rules="phoneRules"
                 label="Telefone"
