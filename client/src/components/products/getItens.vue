@@ -65,7 +65,7 @@
                     </v-row>
                 <v-pagination
                     v-model="page"
-                    :length="numeroPaginas"
+                    :length="pages()"
                     circle
                     color="#422321"
                 />   
@@ -85,9 +85,8 @@ export default {
             pesquisar:null,
             items:[],
             target:{},
-            page:1,
-            numeroPaginas:null,
-            porPagina: 8,     
+            porPagina: 8, 
+            page: 1    
         }
     },
     computed: {
@@ -97,15 +96,8 @@ export default {
     }),
     paginacao () {
             return this.card.slice((this.page - 1) * this.porPagina, this.page * this.porPagina)
-        }
+        },
     },
-    created(){
-        this.$store.dispatch('getAllItems', this.card).then(() =>{
-            setTimeout(() => {
-                this.numeroPaginas = (this.card.length / this.porPagina +1 ) 
-                }, 2200)                
-            })
-        }, 
     methods:{
         status(status){
             if(status){
@@ -127,6 +119,9 @@ export default {
             this.$store.dispatch('getItemByID', this.target)
             this.$store.dispatch('getLances',this.target)
             this.$router.push('/leilao')
+        },
+        pages(){
+        return  this.card.length / this.porPagina +1 
         }
     },
 }

@@ -114,7 +114,7 @@ export default {
 				};		
 				
 				this.$store.dispatch('addLance',{id:this.item.id,payload:lanceConfirmado})
-				//this.$store.dispatch('getLances',this.item.id)
+				this.$store.dispatch('getLances',this.item.id)
 				this.lanceNow = this.lance;
 
 			}else{

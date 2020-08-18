@@ -60,6 +60,7 @@ new Vue({
           console.log("sem usuario logado");
         }
       })
+      this.$store.dispatch('getAllItems');
     },
 }).$mount("#app");
 
