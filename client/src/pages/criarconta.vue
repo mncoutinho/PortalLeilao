@@ -7,8 +7,7 @@
         </v-layout>
         <v-row  justify="center">
             {{accountData}}
-            {{personalData}}
-            {{enderecoData}}
+            
             <v-window
                 width="100%"
                 align="center"
@@ -150,10 +149,19 @@ export default {
             this.accountData = accountData
         },
         getPersonalData(personalData){
-            this.personalData = personalData
+            this.accountData.cpf = personalData.cpf,
+            this.accountData.tel = personalData.tel,
+            this.accountData.nome = personalData.nome
+            
         },
         getEndereco(parametro){
-            this.enderecoData = parametro
+            this.accountData.cidade = parametro.cidade
+            this.accountData.bairro = parametro.bairro
+            this.accountData.cep = parametro.cep
+            this.accountData.complemento = parametro.complemento
+            this.accountData.endereco = parametro.endereco
+            this.accountData.uf = parametro.uf
+            
         },
         clique(botao){
             if(this.step===1 && botao=="signUp" ){
@@ -168,6 +176,7 @@ export default {
             }         
         },
         async signUp () {
+            console.log(this.accountData)
             await this.$store.dispatch('signUserUp', this.accountData)
         }
     }
