@@ -33,6 +33,7 @@ const user = {
         alert('Verifique sua caixa de email para altera sua senha');
       })
     },
+    //isso cria um usuario lucas
     signUserUp({ commit }, payload) {
       commit('setLoading', true)
       commit('clearError')
@@ -63,12 +64,14 @@ const user = {
             console.log(err)
           });
     },
+    //isso loga o lucas
     signUserIn({ commit }, payload) {
       commit('setLoading', true)
       commit('clearError')
       firebase.auth().signInWithEmailAndPassword(payload.email, payload.senha)
         .then(
           data => {
+            console.log(data.user.uid)
             commit('setLoading', false)
             let userProfile = data.user
             commit('setUser', userProfile);
