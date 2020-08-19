@@ -42,7 +42,21 @@ const user = {
             commit('setLoading', false)
             const newUser = user.user
             commit('setUser', newUser)
-            alert('Sua conta foi cadastrada com sucesso!' + user.user.uid)
+            
+            const userData = {
+              bairro: payload.bairro,
+              cep: payload.cep,
+              cidade: payload.cidade,
+              complemento: payload.complemento,
+              cpf: payload.cpf,
+              endereco: payload.endereco,
+              nome: payload.nome,
+              tel: payload.tel,
+              uf: payload.uf
+            }
+            firebase.firestore().collection('user').doc(user.user.uid).set(userData).then(
+              alert('cadastrado com sucesso')
+            )
           }).catch(err => {
             commit('setLoading', false)
             commit('setError', err)
