@@ -224,6 +224,7 @@ const item = {
         });
     },
     getItemByID({ commit }, payload) {
+      console.log(payload)
       firebase
         .firestore()
         .collection("artigo")

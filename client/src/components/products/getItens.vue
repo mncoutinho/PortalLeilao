@@ -118,7 +118,7 @@ export default {
             console.log("ativo "+ this.target)
             this.$store.dispatch('getItemByID', this.target)
             this.$store.dispatch('getLances',this.target)
-            this.$router.push('/leilao')
+            this.$router.push({path:'/leilao', query:{id:this.target}})
         },
         pages(){
             return  this.card.length / this.porPagina +1 

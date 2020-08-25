@@ -8,6 +8,7 @@
                 <lances/>
             </v-col>
         </v-row>
+        {{rotar}}
     </v-app>
 </template>
 <script>
@@ -17,6 +18,15 @@ export default {
     components:{
         artigo,
         lances
-    }
+    },
+    data() {
+        return {
+            rotar: this.$route.query
+        }
+    },
+    created() {
+        this.$store.dispatch('getLances',this.rotar.id)
+        this.$store.dispatch('getItemByID', this.rotar.id)
+    },
 }
 </script>
