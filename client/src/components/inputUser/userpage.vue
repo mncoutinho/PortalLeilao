@@ -54,7 +54,8 @@ export default {
   },
   computed: {
     ...mapState({
-      user: state => state.userApp.user
+      user: state => state.userApp.user,
+      
     }),
   },
   created(){

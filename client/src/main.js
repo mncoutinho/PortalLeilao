@@ -60,7 +60,10 @@ new Vue({
           console.log("sem usuario logado");
         }
       })
-
+      this.$store.dispatch('getAllItems');
+      this.$store.dispatch('getAllBids');
+      this.$store.dispatch('getUF');
+    
     },
 }).$mount("#app");
 

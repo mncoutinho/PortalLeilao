@@ -6,11 +6,12 @@
             </v-flex>
         </v-layout>
         <v-row  justify="center">
+            {{accountData}}
             <v-window
                 width="100%"
                 align="center"
                 v-model="step">
-                {{this.$store.getters.user}}
+                    {{this.$store.getters.user}}
                 <!--fase 1-->
                 <v-window-item :value="1">
                     <v-card max-width="30%" min-width="450" class="mb-12 pa-12"  :elevation="10" width="50%" >
@@ -18,6 +19,7 @@
                             @email="getAccountData"
                             :buttons="buttons" 
                             @clicked="clique"
+                            :comfirmarLayout ="comfirmar"
                         />
                         <v-btn
                             color=#422321
@@ -52,7 +54,7 @@
                 <v-window-item :value="3">
                     <v-card max-width="30%" min-width="450" class="mb-12 pa-12"  :elevation="10" width="50%" >
                         <Address
-                        @data="getPersonalData"
+                        @endereco="getEndereco"
                         :buttons="finnalyButtons"
                         @clicked="clique"/>
                         <v-btn
@@ -64,6 +66,7 @@
                             style="postion: absolute;top:-68px;left:-100px"
                             @click="voltarStep"
                         >Voltar</v-btn>
+                        
                     </v-card>
                 </v-window-item>
                 <!--Button-->
@@ -77,6 +80,7 @@
 import user from '../components/Modal/criarUsuario/formEmailSenha';
 import personal from '../components/Modal/criarUsuario/cadastrarDadosPessoais';
 import Address from '../components/Modal/endereco'
+import {mapState} from 'vuex'
 export default {
     
     components:{
@@ -89,7 +93,9 @@ export default {
         return{
             personalData:{},
             accountData:{},
+            enderecoData:{},
             //botoes
+            comfirmar:true,
             buttons:[
                 {
                     text:"Criar",
@@ -116,6 +122,9 @@ export default {
         }
     },
     computed:{
+            ...mapState({
+                uf: state => state.uf
+            }),
             user(){
                 return this.$store.getters.user
             },
@@ -143,7 +152,18 @@ export default {
             this.accountData = accountData
         },
         getPersonalData(personalData){
-            this.personalData = personalData
+            this.accountData.cpf = personalData.cpf,
+            this.accountData.tel = personalData.tel,
+            this.accountData.nome = personalData.nome
+        },
+        getEndereco(parametro){
+            this.accountData.cidade = parametro.cidade
+            this.accountData.bairro = parametro.bairro
+            this.accountData.cep = parametro.cep
+            this.accountData.complemento = parametro.complemento
+            this.accountData.endereco = parametro.endereco
+            this.accountData.uf = parametro.uf
+            this.accountData.numero = parametro.numero
         },
         clique(botao){
             if(this.step===1 && botao=="signUp" ){
@@ -158,6 +178,7 @@ export default {
             }         
         },
         async signUp () {
+            console.log(this.accountData)
             await this.$store.dispatch('signUserUp', this.accountData)
         }
     }

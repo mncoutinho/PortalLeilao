@@ -14,7 +14,8 @@
             >
             <!--name-->
                 <v-text-field
-                v-model="nome"
+                @change="$emit('data', accountData)"
+                v-model="accountData.nome"
                 :rules="nameRules"
                 label="Nome Completo"
                 placeholder="Antonio Luiz da Silva"
@@ -22,21 +23,24 @@
                 >
                 </v-text-field>
             <!--CPF-->
-                <v-text-field  
-                v-model="cpf"
-                maxlength="11"
+                <v-text-field
+                @change="$emit('data', accountData)"  
+                v-model="accountData.cpf"
+                maxlength="14"
                 label="CPF"
+                v-mask="['###.###.###-##']"
                 :rules="cpfRules"
                 placeholder="123-456-789-10"
-                class="cpf"
                 required
                 ></v-text-field>
             <!--telephone-->
                 <v-text-field
-                v-model="tel"
+                @change="$emit('data', accountData)"
+                v-model="accountData.tel"
                 :rules="phoneRules"
                 label="Telefone"
                 placeholder="(12)934567890"
+                v-mask="['(##) #####-####' || '(##) ####-####']"
                 required
                 >
                 </v-text-field>    
@@ -45,34 +49,47 @@
         <v-row justify="center">
         <v-col
         :key="button.text"
-          v-for="button in buttons">
-                    <v-btn
-                    :color="button.color"
-                    center
-                    class="white--text"
-                    depressed
-                    large
-                    @click="$emit('clicked',button.click)"
-                    v-text="button.text"
-                    />
+        v-for="button in buttons">
+            <v-row justify="end" class="mr-6">
+                <v-btn
+                :color="button.color"
+                center
+                class="white--text"
+                depressed
+                large
+                @click="$emit('clicked',button.click)"
+                v-text="button.text"
+                :disabled="estaDesativado"
+                />
+            </v-row>
         </v-col>
       </v-row>
     </v-form>
 </template>
 
 <script>
+import {mask} from 'vue-the-mask'
 export default {
+    directives: {mask},
     props:['buttons'],
+    computed:{
+      estaDesativado(){
+        return this.accountData.cpf && this.accountData.tel && this.accountData.nome !== '' ? false : true
+      },
+    },
     data(){
         return {
-            nameRules:[v => !!v || 'Este campo é necessario'],
-            cpfRules:[v => !!v || 'Este campo é necessario',
-                        v => !!v && v.lenght != 11 || 'Cpf Incompleto'],
+            accountData:{
+                cpf:'',
+                tel:'',
+                nome:''
+            },
+            nameRules:[nome => !!nome || 'Este campo é necessario'],
+            cpfRules:[  cpf => !!cpf || 'Este campo é necessario',
+                        cpf => !!cpf && cpf.lenght != 11 || 'Cpf Incompleto',
+                        ],
             phoneRules:[tel => !!tel || 'Este campo é necessario'] ,
-            valid:true,
-            cpf:'',
-            tel:'',
-            nome:''
+            valid:true,   
         }
     }
 }

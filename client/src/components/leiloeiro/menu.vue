@@ -5,7 +5,7 @@
           <v-list>
             <v-list-item class="px-2">
               <v-list-item-avatar>
-                <v-img :src="user.photoURL"/>
+                <v-img :src="perfilImg"/>
               </v-list-item-avatar>
               <v-list>
                 <v-list-item-title class="title">{{user.displayname}}</v-list-item-title>
@@ -64,7 +64,8 @@ export default {
   },
   computed: {
     ...mapState({
-      user: state => state.userApp.user
+      user: state => state.userApp.user,
+      perfilImg: state => state.userApp.userData.photoUrl
     }),
   },
   created(){

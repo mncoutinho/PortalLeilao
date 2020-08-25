@@ -7,36 +7,52 @@
           <v-row justify="center">
             <v-col cols="12" sm="6">
                 <v-text-field
-                  value="Rue 1 "
+                  v-model="userData.endereco"
                   label="ENDEREÇO :"
+                  readonly
                 />
                 <v-text-field
-                  value="entre a rua 0 e rua 2"
+                  v-model="userData.complemento"
                   label="COMPLETEMENTO :"
+                  readonly
                 />
                  <v-text-field
-                  value="12345-678 "
+                  v-model="userData.cep"
                   label="CEP :"
+                  readonly
                 />  
                 <v-text-field
-                  value="Dubai "
+                  v-model="userData.bairro"
                   label="Bairro:"
+                  readonly
                 />
                 <v-text-field
-                  value="Rio de Janeiro "
+                  v-model="userData.cidade"
                   label="Cidade:"
+                  readonly
                 /> 
                 <v-text-field
-                  value="Rio de Janeiro "
-                  label="Estado:"
-                />    
+                  v-model="userData.uf"
+                  label="UF:"
+                  readonly
+                /> 
+                <v-text-field
+                  v-model="userData.numero"
+                  label="Número:"
+                  readonly
+                />   
             </v-col>
           </v-row>
   </v-app>
 </template>
 
 <script>
+import {mapState} from 'vuex'
 export default {
-
+    computed: {
+        ...mapState({
+          userData: state => state.userApp.userData
+        })
+    },
 }
 </script>

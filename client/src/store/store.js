@@ -1,117 +1,183 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import firebase from 'firebase/app'
-
-
+import Vue from "vue";
+import Vuex from "vuex";
+import firebase from "firebase/app";
 
 const user = {
   state: {
     user: {},
     loading: false,
     error: null,
+    userData: {},
   },
   mutations: {
     setUser(state, payload) {
-      state.user = payload
+      state.user = payload;
     },
     resetUser(state) {
-      state.user = {}
+      state.user = {};
+      state.userData = {};
     },
     setLoading(state, payload) {
-      state.loading = payload
+      state.loading = payload;
     },
     setError(state, payload) {
-      state.error = payload
+      state.error = payload;
     },
     clearError(state) {
-      state.error = null
-    }
+      state.error = null;
+    },
+    setUserData(state, payload) {
+      state.userData = payload;
+    },
   },
   actions: {
     resetPassword({ commit }, payload) {
-      commit
+      commit;
       console.log(payload.email);
-      firebase.auth().sendPasswordResetEmail(payload.email).then(() => {
-        alert('Verifique sua caixa de email para altera sua senha');
-      })
+      firebase
+        .auth()
+        .sendPasswordResetEmail(payload.email)
+        .then(() => {
+          alert("Verifique sua caixa de email para altera sua senha");
+        });
     },
+    //isso cria um usuario lucas
     signUserUp({ commit }, payload) {
-      commit('setLoading', true)
-      commit('clearError')
-      firebase.auth().createUserWithEmailAndPassword(payload.email, payload.senha)
-        .then(
-          user => {
-            commit('setLoading', false)
-            const newUser = user.user
-            commit('setUser', newUser)
-            alert('Sua conta foi cadastrada com sucesso!' + user.user.uid)
-          }).catch(err => {
-            commit('setLoading', false)
-            commit('setError', err)
-            console.log(err)
-          });
-    },
-    signUserIn({ commit }, payload) {
-      commit('setLoading', true)
-      commit('clearError')
-      firebase.auth().signInWithEmailAndPassword(payload.email, payload.senha)
-        .then(
-          data => {
-            commit('setLoading', false)
-            let userProfile = data.user
-            commit('setUser', userProfile);
-          }
-        )
-        .catch(err => {
-          commit('setLoading', false)
-          commit('setError', err)
-          console.log(err)
+      commit("setLoading", true);
+      commit("clearError");
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(payload.email, payload.senha)
+        .then((user) => {
+          commit("setLoading", false);
+          const newUser = user.user;
+          commit("setUser", newUser);
+
+          const userData = {
+            bairro: payload.bairro,
+            cep: payload.cep,
+            cidade: payload.cidade,
+            complemento: payload.complemento,
+            cpf: payload.cpf,
+            endereco: payload.endereco,
+            nome: payload.nome,
+            tel: payload.tel,
+            uf: payload.uf,
+            numero: payload.numero,
+            photoUrl: "https://cdn150.picsart.com/upscale-245339439045212.png",
+          };
+          firebase
+            .firestore()
+            .collection("user")
+            .doc(user.user.uid)
+            .set(userData)
+            .then(alert("cadastrado com sucesso"));
         })
+        .catch((err) => {
+          commit("setLoading", false);
+          commit("setError", err);
+          console.log(err);
+        });
+    },
+    getData({ commit }, payload) {
+      firebase
+        .firestore()
+        .collection("user")
+        .doc(payload)
+        .get()
+        .then((doc) => {
+          const dados = doc.data();
+          commit("setUserData", dados);
+        })
+        .catch((err) => {
+          commit("setLoading", false);
+          commit("setError", err);
+          console.log(err);
+        });
+    },
+    //isso loga o lucas
+    signUserIn({ commit }, payload) {
+      commit("setLoading", true);
+      commit("clearError");
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(payload.email, payload.senha)
+        .then((data) => {
+          console.log(data.user.uid);
+          commit("setLoading", false);
+          let userProfile = data.user;
+          commit("setUser", userProfile);
+        })
+        .catch((err) => {
+          commit("setLoading", false);
+          commit("setError", err);
+          console.log(err);
+        });
+    },
+    loginGoogle({ commit }) {
+      let provider = new firebase.auth.GoogleAuthProvider();
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then((doc) => {
+          let userProfile = doc.user;
+          commit("setUser", userProfile);
+        });
     },
     cleanError({ commit }) {
-      commit('clearError')
+      commit("clearError");
     },
     singOut({ commit }) {
-      firebase.auth().signOut().then(() => {
-        commit('resetUser');
-        alert('Usuario deslogou');
-      })
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          commit("resetUser");
+          alert("Usuario deslogou");
+        });
     },
-    uploadProfileImg({commit},url){
-      console.log(this.userApp.state.user);
-      firebase.auth().currentUser.updateProfile({
-        photoUrl: url
-      }).then(()=>{
-        commit
-        alert("alterado com sucesso")
-      }).catch(err => {
-        alert('Aconteceu algo inesperado. ' + err.message)
-      })
-    }
+    uploadProfileImg({ commit }, { user, photo }) {
+      console.log(user);
+      firebase
+        .firestore()
+        .collection("user")
+        .doc(user)
+        .update({ photoUrl: photo })
+        .then(() => {
+          commit;
+          alert("alterado com sucesso");
+        });
+    },
   },
   getters: {
     user(state) {
-      console.log(state)
-      return state.user
+      console.log(state);
+      return state.user;
     },
     loading(state) {
-      return state.loading
+      return state.loading;
     },
     error(state) {
-      return state.error
-    }
-  }
-}
-
+      return state.error;
+    },
+  },
+};
 
 //modulo item
 const item = {
   state: {
     items: [],
     item: {},
-    target:'',
+    lances: [],
+    target: "",
   },
   mutations: {
+    setLances(state, payload) {
+      state.lances = payload;
+    },
+    resetLances(state) {
+      state.lances = {};
+    },
     resetItem(state) {
       state.item = {
         active: true,
@@ -120,22 +186,51 @@ const item = {
         imgUrl: [],
         initialBid: 0,
         name: "",
-        bids: []
-      }
+        bids: [],
+      };
     },
     setItem(state, payload) {
-      state.item = payload
+      state.item = payload;
     },
     setAllItems(state, payload) {
-      state.items = payload
+      state.items = payload;
     },
   },
   actions: {
     getAllItems({ commit }) {
-      firebase.firestore().collection('artigo').orderBy('name').get().then(snapshot => {
-        let ItemList = [];
-        snapshot.forEach(doc => {
-          ItemList.push({
+      firebase
+        .firestore()
+        .collection("artigo")
+        .orderBy("name")
+        .get()
+        .then((snapshot) => {
+          let ItemList = [];
+          snapshot.forEach((doc) => {
+            ItemList.push({
+              id: doc.id,
+              active: doc.data().active,
+              category: doc.data().category,
+              description: doc.data().description,
+              imgUrl: doc.data().imgUrl,
+              initialBid: doc.data().initialBid,
+              name: doc.data().name,
+              idOrganizer: doc.data().IdOrganizer,
+            });
+          });
+          return commit("setAllItems", ItemList);
+        })
+        .catch((err) => {
+          alert("Aconteceu algo inesperado. " + err.message);
+        });
+    },
+    getItemByID({ commit }, payload) {
+      firebase
+        .firestore()
+        .collection("artigo")
+        .doc(payload)
+        .get()
+        .then((doc) => {
+          const item = {
             id: doc.id,
             active: doc.data().active,
             category: doc.data().category,
@@ -143,65 +238,107 @@ const item = {
             imgUrl: doc.data().imgUrl,
             initialBid: doc.data().initialBid,
             name: doc.data().name,
-            idOrganizer: doc.data().IdOrganizer
-          });
+            idOrganizer: doc.data().IdOrganizer,
+          };
+          return commit("setItem", item);
         })
-        return commit('setAllItems', ItemList);
-      }).catch(err => {
-        alert('Aconteceu algo inesperado. ' + err.message);
-      });
-    },
-    getItemByID({ commit }, payload) {
-      firebase.firestore().collection('artigo').doc(payload).get().then(doc => {
-        const item = doc.data();
-        return commit('setItem', item)
-      }).catch(err => {
-        alert('Aconteceu algo inesperado. ' + err.message);
-      });
-
+        .catch((err) => {
+          alert("Aconteceu algo inesperado. " + err.message);
+        });
     },
     createItem({ commit }, payload) {
-      firebase.firestore().collection('artigo').add(payload).then(doc => {
-        commit('setItem', doc);
-        return alert(doc.id);
-      }).catch(err => {
-        alert('Aconteceu algo inesperado. ' + err.message);
-      });
+      firebase
+        .firestore()
+        .collection("artigo")
+        .add(payload)
+        .then((doc) => {
+          commit("setItem", doc);
+          return alert(doc.id);
+        })
+        .catch((err) => {
+          alert("Aconteceu algo inesperado. " + err.message);
+        });
+    },
+    addLance({ commit }, { id, payload }) {
+      firebase
+        .firestore()
+        .collection("artigo")
+        .doc(id)
+        .collection("lances")
+        .add(payload)
+        .then((doc) => {
+          commit;
+          return alert(doc.id + " lance computado");
+        })
+        .catch((err) => {
+          alert("Aconteceu algo inesperado. " + err.message);
+        });
+    },
+    getLances({ commit }, payload) {
+      firebase
+        .firestore()
+        .collection("artigo/" + payload + "/lances")
+        .orderBy("lance", "asc")
+        .get()
+        .then((snapshot) => {
+          let lances = [];
+          snapshot.forEach((doc) => {
+            lances.push({
+              idUser: doc.data().idUser,
+              lance: doc.data().lance,
+              time: doc.data().time,
+              user: doc.data().user,
+            });
+          });
+          commit("setLances", lances);
+        });
     },
     //a testar
     updateItem({ commit }, payload) {
-      firebase.firestore().collection('artigo').doc(payload.id).update(payload).then(doc => {
-        commit('setItem', doc);
-        alert("alterado com sucesso");
-      }).catch(err => {
-        alert('Aconteceu algo inesperado. ' + err.message);
-      });
+      firebase
+        .firestore()
+        .collection("artigo")
+        .doc(payload.id)
+        .update(payload)
+        .then((doc) => {
+          commit("setItem", doc);
+          alert("alterado com sucesso");
+        })
+        .catch((err) => {
+          alert("Aconteceu algo inesperado. " + err.message);
+        });
     },
-    deleteItem({commit},payload) {
+    deleteItem({ commit }, payload) {
       console.log(payload);
-      commit
-      firebase.firestore().collection('artigo').doc(payload).delete().then(() => {
-        alert("Deletado com sucesso");
-      }).catch(err => {
-        alert('Aconteceu algo inesperado. ' + err.message);
-      });
+      commit;
+      firebase
+        .firestore()
+        .collection("artigo")
+        .doc(payload)
+        .delete()
+        .then(() => {
+          alert("Deletado com sucesso");
+        })
+        .catch((err) => {
+          alert("Aconteceu algo inesperado. " + err.message);
+        });
     },
   },
-  getters: {}
-}
+  getters: {},
+};
 
 //leilao
 const bid = {
   state: {
     bids: [],
-    bid: {}
+    bid: {},
   },
   mutations: {
     setAllBids(state, payload) {
-      state.bids = payload
+      state.bids = payload;
     },
     setBid(state, payload) {
-      state.bid = payload
+      state.bid = payload;
     },
     resetBid(state) {
       state.bid = {
@@ -213,90 +350,137 @@ const bid = {
         closedAt: "",
         organizer: "",
         mail: "",
-        phone: ""
-      }
-    }
+        phone: "",
+      };
+    },
   },
   actions: {
     getAllBids({ commit }) {
-      firebase.firestore().collection('leilao').get().then(snapshot => {
-        let bidsList = [];
-        snapshot.forEach(doc => {
-          bidsList.push({
-            id: doc.id,
-            name: doc.data().name,
-            description: doc.data().description,
-            items: doc.data().items.length,
-            startsOn: doc.data().startsOn,
-            closedAt: doc.data().closedAt
+      firebase
+        .firestore()
+        .collection("leilao")
+        .get()
+        .then((snapshot) => {
+          let bidsList = [];
+          snapshot.forEach((doc) => {
+            bidsList.push({
+              id: doc.id,
+              name: doc.data().name,
+              description: doc.data().description,
+              items: doc.data().items.length,
+              startsOn: doc.data().startsOn,
+              closedAt: doc.data().closedAt,
+              idOrganizer: doc.data().idOrganizer,
+              imgUrl: doc.data().imgUrl,
+            });
           });
+          return commit("setAllBids", bidsList);
         })
-        return commit('setAllBids', bidsList);
-      }).catch(err => {
-        alert('Aconteceu algo inesperado. ' + err.message);
-      });
+        .catch((err) => {
+          alert("Aconteceu algo inesperado. " + err.message);
+        });
     },
     createBid({ commit }, payload) {
-      firebase.firestore().collection('leilao').add(payload).then(doc => {
-        commit('setBid', doc);
-        return alert(doc.name + " criado com sucesso");
-      }).catch(err => {
-        alert('Aconteceu algo inesperado. ' + err.message);
-      });
+      firebase
+        .firestore()
+        .collection("leilao")
+        .add(payload)
+        .then((doc) => {
+          commit("setBid", doc);
+          return alert(payload.name + " criado com sucesso");
+        })
+        .catch((err) => {
+          alert("Aconteceu algo inesperado. " + err.message);
+        });
     },
-    deleteBid({commit},payload) {
-      commit
-      firebase.firestore().collection('leilao').doc(payload).delete().then(()=>{
-        alert("deletado com sucesso")
-      }).catch(err => {
-        alert('Aconteceu algo inesperado. ' + err.message);
-      });
+    deleteBid({ commit }, payload) {
+      commit;
+      firebase
+        .firestore()
+        .collection("leilao")
+        .doc(payload)
+        .delete()
+        .then(() => {
+          alert("deletado com sucesso");
+        })
+        .catch((err) => {
+          alert("Aconteceu algo inesperado. " + err.message);
+        });
     },
     updateBid(payload) {
-      firebase.firestore().collection('leilao').doc(payload.id).update(payload).then(doc => {
-        return alert(doc.name + " atualizado com sucesso");
-      }).catch(err => {
-        alert('Aconteceu algo inesperado. ' + err.message);
-      });
-    }, 
+      firebase
+        .firestore()
+        .collection("leilao")
+        .doc(payload.id)
+        .update(payload)
+        .then((doc) => {
+          return alert(doc.name + " atualizado com sucesso");
+        })
+        .catch((err) => {
+          alert("Aconteceu algo inesperado. " + err.message);
+        });
+    },
     getBidById({ commit }, payload) {
-      firebase.firestore().collection('leilao').doc(payload.id).then(doc => {
-        return commit('setBid', doc);
-      }).catch(err => {
-        alert('Aconteceu algo inesperado. ' + err.message);
-      });
-    }
-  }
-}
+      firebase
+        .firestore()
+        .collection("leilao")
+        .doc(payload.id)
+        .then((doc) => {
+          return commit("setBid", doc);
+        })
+        .catch((err) => {
+          alert("Aconteceu algo inesperado. " + err.message);
+        });
+    },
+  },
+};
 
-
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
     userApp: user,
     itemApp: item,
-    bidApp: bid
+    bidApp: bid,
   },
   state: {
     category: [],
+    uf: [],
   },
   mutations: {
     setCategories(state, payload) {
-      state.category = payload
-    }
+      state.category = payload;
+    },
+    setUF(state, payload) {
+      state.uf = payload;
+    },
   },
   actions: {
     //categorias
     getcategories({ commit }) {
-      firebase.firestore().collection('item').doc('category').get().then(doc => {
-        let categories = [];
-        categories.push(categories = doc.data().category);
-        return commit('setCategories', categories);
-      });
-    }
+      firebase
+        .firestore()
+        .collection("item")
+        .doc("category")
+        .get()
+        .then((doc) => {
+          let categories = [];
+          categories.push((categories = doc.data().item));
+          return commit("setCategories", categories);
+        });
+    },
+    getUF({ commit }) {
+      firebase
+        .firestore()
+        .collection("item")
+        .doc("uf")
+        .get()
+        .then((doc) => {
+          let estados = [];
+          estados = doc.data().item;
+          return commit("setUF", estados);
+        });
+    },
   },
-  getters: {
-
-  },
-})
+  getters: {},
+});

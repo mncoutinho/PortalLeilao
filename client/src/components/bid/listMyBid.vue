@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-card flat width="80%" class="mx-auto">
+    <v-card flat width="67vw" class="mx-auto">
       <v-row justify="center" class="mt-8">
         <p class="display-2">Meus Leiloes</p>
       </v-row>
@@ -12,10 +12,11 @@
       <v-divider class="mx-12" />
       <v-row justify="space-around">
         <!--CARTOES-->
-        <v-card width="24%" :key="card.length" v-for="card in card" class="mt-9 mb-3">
+        <v-card width="24%" :key="card.length" v-for="card in paginacao" class="mt-9 mb-3">
           <v-img
             height="200px"
-            src="https://cdn.vuetifyjs.com/images/cards/store.jpg"
+            width="100%"
+            :src="card.imgUrl"
             class="white--text align-end bold"
             gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
           >
@@ -29,14 +30,35 @@
               <v-card-subtitle class="title">Lotes: {{ card.items }}</v-card-subtitle>
             </v-col>
           </v-row>
-          <v-btn>Ver Lotes</v-btn>
-          <v-btn>Editar</v-btn>
           <v-btn
-          @click="deletar(card)"
+            large
+            color="#422321"
+            class="white--text"
+          >
+            Ver Lotes
+          </v-btn>
+          <v-btn
+            large
+            color="#422321"
+            class="white--text"
+          >
+            Editar
+          </v-btn>
+          <v-btn
+          large
+            color="#422321"
+            class="white--text"
+            @click="deletar(card)"
           >
             Deletar
           </v-btn>
         </v-card>
+        <v-pagination
+          v-model="page"
+          :length="pages()"
+          circle
+          color="#422321"
+        />
       </v-row>
     </v-card>
   </v-app>
@@ -48,16 +70,24 @@ export default {
   data() {
     return {
       target:"",
-      bid:""
+      bid:"",
+      page:1,
+      porPagina: 8,
     }
   },
   computed:{
+    paginacao () {
+      return this.card.slice((this.page - 1) * this.porPagina, this.page * this.porPagina)
+    },
     ...mapState({
       card: state => state.bidApp.bids,
       user: state => state.userApp.user
     })
   },
   methods: {
+    pages(){
+      return  this.card.length / this.porPagina +1 
+    },
     deletar(bid){
       if(bid.idOrganizer === this.user.uid){
                 this.target = bid.id

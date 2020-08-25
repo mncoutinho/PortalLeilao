@@ -6,10 +6,6 @@
 			justify="center"
 			align="center">
 				<v-card-actions justify="end">
-					<v-spacer></v-spacer>
-					<v-btn>Próximo</v-btn>
-					<v-btn>Anterior</v-btn>
-					<v-btn>Voltar</v-btn> 
 				</v-card-actions>
 				<v-carousel
 				cycle
@@ -52,28 +48,25 @@
 					<strong>Lance Inicial:<small>{{ "R$ " + artigo.initialBid + ",00"}}</small></strong>
 				</v-card-text>
 				<!-- abertura e fachamento de leilao beta -->
-				
 			</v-card>
 		</v-row>
-		<v-row class="mt-5">
-			<v-card-text v-if="artigo.active == false" class="red text-center">
-					<span class="white--text">Leilao Fechado</span>
-			</v-card-text>
-			<v-card-text v-else>
-				<lance
-					align="center"
-				/>	
-			</v-card-text>	
-		</v-row>
+
+		<!--Segundo Card-->
+			<v-row class="mt-5">
+				<v-card-text v-if="artigo.active == false" class="red text-center">
+						<span class="white--text">Leilao Fechado</span>
+				</v-card-text>
+				<v-card-text v-else>
+					<lance
+						align="center"
+					/>	
+				</v-card-text>	
+			</v-row>
 	</v-container>	
 </template>
 <script>
-import lance from "./InputArticlesBid";
 import { mapState} from "vuex";
 export default {
-	components:{
-		lance
-	},
 	data(){
 		return{		
 			vendedor: {

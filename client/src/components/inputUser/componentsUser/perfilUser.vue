@@ -9,7 +9,7 @@
         <!--FOTO DO USUARIO-->
           <v-row justify="center"> 
             <v-avatar color="#422321" size="280">
-              <v-img :src="user.photoURL"></v-img>
+              <v-img :src="mostrar.photoUrl"/>
             </v-avatar>
           </v-row>
           <v-row justify="center">
@@ -51,11 +51,12 @@
             <v-text-field
               outlined
               label="Nome Completo"
-              :value="user.displayName"
+              :value="mostrar.nome"
               readonly
             />
           <v-text-field
-            :value="Cpf"
+            :value="mostrar.cpf"
+            v-mask="['###.***.***-##']"
             label="CPF :"
             outlined
             readonly
@@ -64,10 +65,12 @@
             outlined
             :value="user.email"
             label="EMAIL :"
+            type="email"
           />
           <v-text-field
-            :value="user.phoneNumber"
+            :value="mostrar.tel"
             label="Telefone :"
+            type='tel'
             outlined
           />
           <v-row justify="center">
@@ -77,7 +80,7 @@
             >
               Alterar senha
             </v-btn>
-          </v-row> 
+          </v-row>
         </div>          
       </v-col>
     </v-row>
@@ -85,20 +88,25 @@
 </template>
 <script>
 import firebase from "firebase";
-import "firebase/storage";
 import { mapState } from "vuex";
+import {mask} from 'vue-the-mask'
+import "firebase/storage";
 export default {
+    directives: {mask},
   computed: {
     ...mapState({
       user: (state) => state.userApp.user,
+      mostrar: (state)=> state.userApp.userData
     }),
   },
   data(){
     return{
-      Cpf:'123-***-***-01',
       modal: false,
       image:""
     }
+  },
+  created(){
+      this.$store.dispatch('getData', this.user.uid)
   },
   methods: {
     modalPhoto(){
@@ -114,9 +122,12 @@ export default {
     async onUpload() {
       let images = this.image;
       images.forEach(image => {
-        firebase.storage().ref("PerfilImage/" + this.user.uid).put(image).then(snapshot => {
+        firebase.storage().ref("PerfilImage/" + this.user.uid +"/perfilImagem").put(image).then(snapshot => {
             snapshot.ref.getDownloadURL().then(url => {
-                this.$store.dispatch('uploadProfileImg', url);
+                this.$store.dispatch('uploadProfileImg', { user:this.user.uid ,photo:url}).then(()=>{
+                  this.mostrar.photoUrl = url;
+                  this.modal = false
+                })
             });
           });
       });

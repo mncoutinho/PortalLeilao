@@ -65,7 +65,7 @@
                     </v-row>
                 <v-pagination
                     v-model="page"
-                    :length="numeroPaginas"
+                    :length="pages()"
                     circle
                     color="#422321"
                 />   
@@ -75,7 +75,7 @@
 
 <script>
 import Resp from './responsivo/ProdutoResponsivo';
-import { mapState} from "vuex";
+import {mapState} from "vuex";
 export default {
     components:{
         Resp,
@@ -85,9 +85,8 @@ export default {
             pesquisar:null,
             items:[],
             target:{},
-            page:1,
-            numeroPaginas:2,
-            porPagina: 4,     
+            porPagina: 8, 
+            page: 1    
         }
     },
     computed: {
@@ -97,10 +96,7 @@ export default {
     }),
     paginacao () {
             return this.card.slice((this.page - 1) * this.porPagina, this.page * this.porPagina)
-        }
-    },
-    created(){
-        this.$store.dispatch('getAllItems', this.card);
+        },
     },
     methods:{
         status(status){
@@ -121,7 +117,11 @@ export default {
             this.target = id
             console.log("ativo "+ this.target)
             this.$store.dispatch('getItemByID', this.target)
+            this.$store.dispatch('getLances',this.target)
             this.$router.push('/leilao')
+        },
+        pages(){
+            return  this.card.length / this.porPagina +1 
         }
     },
 }

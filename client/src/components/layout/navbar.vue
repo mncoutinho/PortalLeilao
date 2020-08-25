@@ -12,9 +12,10 @@
             :key="items.title"
             :to="items.routerLinks"
             class="mb-2"
+            v-show="items.usuarioLogado"
           >
             <v-col>
-              <v-icon left>{{ items.i }}</v-icon>
+              <v-icon left>{{ items.i }} </v-icon>
             </v-col>
             <v-col>
               <v-list-item-title class="ml-12" v-text="items.title" />
@@ -55,16 +56,22 @@ export default {
     return {
       drawer: false,
       navItens: [  
-        { i: "fas fa-gavel ", title: "produtos", routerLinks: "/produtos" },
-        { i: "fas fa-gavel ", title: "perfil", routerLinks: "/userpage" },
-        { i: "fas fa-gavel ", title: "leiloeiro", routerLinks: "/leiloeiro" },
-        { i: "fas fa-gavel ", title: "tutorial", routerLinks: "/tutorial" },
+        { i: "fas fa-gavel ", title: "produtos", routerLinks: "/produtos", usuarioLogado:true},
+        { i: "fas fa-gavel ", title: "perfil", routerLinks: "/userpage", usuarioLogado:this.usuarioL == '' ? false : true},
+        { i: "fas fa-gavel ", title: "leiloeiro", routerLinks: "/leiloeiro", usuarioLogado:true},
+        { i: "fas fa-gavel ", title: "tutorial", routerLinks: "/tutorial", usuarioLogado:true},
+        { i: "fas fa-gavel ", title: "terminal", routerLinks: "/terminal", usuarioLogado:true},
       ],
     };
   },
+  methods:{
+    usuarioL(){
+      return this.user.email
+    },
+  },
   computed: {
     ...mapState({
-      user: (state) => state.userApp.user,
+      user: (state) => state.userApp.user
     }),
     menuItens() {
       let menuItens

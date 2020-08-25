@@ -1,5 +1,5 @@
 <template>	
-	<v-card width="100%">
+	<v-card width="100%" flat>
 		<v-card-title>
 			<strong>Lance Atual: {{"R$"+ lanceNow+",00" }}</strong>
 		</v-card-title>
@@ -9,7 +9,7 @@
 				<span class="badge badge-info">{{ lances.length }}</span> lances sobre o artigo.</small>
 			<small v-else>Sem lances sobre o artigo</small>
 		</v-card-text>
-		<v-card :elevation=5 v-if="lances != []">
+		<v-card flat v-if="lances != []" >
 			<v-row>
 				<v-col>Usuário</v-col>
 				<v-col>Lance</v-col>
@@ -33,7 +33,6 @@
 			v-on:keyup.enter="AddLance()" 
 			label="Faca seu lance" 
 		/>
-
 		<v-btn 
 			class="ma-4"
 			v-on:click="AddLance()"
@@ -53,7 +52,6 @@
 		</v-btn>
 		<v-card
 		align="center" 
-		:elevation = 10
 		class="py-auto"
 		v-if="autolance.modal"
 		>
@@ -83,14 +81,12 @@
 
 <script>
 import {mapState} from 'vuex';
-import axios from 'axios';
-
+import firebase from 'firebase';
 export default {
 
 	data(){
 		return{
 			lance: "",
-			lances: [],
 			// teste auto lance
 			autolance: {
 				modal: false,
@@ -102,38 +98,25 @@ export default {
 	methods: {
 		AddLance() {
 			//convertendo
+			console.log(this.item.id)
 			this.lance = parseInt(this.lance);
-			console.log(this.lanceMinimo);
-
-			if(this.lance > this.lanceMinimo){
-				this.lanceMinimo = this.lance;
+			if(this.lance > this.lanceNow){
 				const time = new Date();
-				let lance = this.lance;
-				let user = this.user.email
-				let idUser = this.user.uid
-
-				const lanceConfirmado = {lance, time, user, idUser};		
-				this.lances.push(lanceConfirmado);
-
-				//postando no banco
-				axios({
-					method:`patch`,
-					url:'https://us-central1-portalleilao-26290.cloudfunctions.net/item/bidding',
-					data:{
-						item: this.IDitem,
-						bid: this.lances
-					},
-				})
-				.then(() =>{
-					return alert("lance feito");
-				})
-				.catch(error => console.log(error));
+				const lanceConfirmado = {
+					lance: this.lance, 
+					time: time, 
+					user: this.user.email , 
+					idUser: this.user.uid, 
+				};		
 				
+				this.$store.dispatch('addLance',{id:this.item.id,payload:lanceConfirmado})
+				this.$store.dispatch('getLances',this.item.id)
+				this.lanceNow = this.lance;
+
 			}else{
-				alert("Voce nao pode fazer um lance abaixo do minimo");
+				alert('vc n pode da um lance abaixo')
 			}
 			
-
 
 		},
 		// Teste
@@ -154,9 +137,27 @@ export default {
 			}
 		}	
 	},
+	watch: {
+		//n funciona
+		observe(){
+			firebase.firestore().collection('artigo/'+this.item.id+'/lances')
+			.orderBy('lance','asc').onSnapshot(snapshot =>{
+				snapshot.docChanges().forEach(doc =>{
+					if(doc.type == 'added'){
+						console.log('adicionado') 						
+						this.$store.dispatch('getLances', this.item.id).then(() =>{ 							
+							console.log('consulta')
+						})
+					}
+				})
+			})
+		}
+	},
 	computed:{
 		...mapState({
 			user: state => state.userApp.user,
+			lances: state => state.itemApp.lances,
+			item: state => state.itemApp.item,
 			lanceMinimo: state => state.itemApp.item.initialBid
 		}),
 		// funcoes de leitura rapida na tela	

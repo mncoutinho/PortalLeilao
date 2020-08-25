@@ -11,6 +11,7 @@ import userpage from "../pages/userpage.vue";
 import adicionarLeilao from "../pages/addLeilao.vue";
 import leiloeiroPage from "../pages/leiloeiroPage";
 import logout from "../pages/logout";
+import terminal from "../pages/terminal"
 
 
 const router = new VueRouter({
@@ -80,7 +81,12 @@ const router = new VueRouter({
                 path:"/sair",
                 name:"sair",
                 component:logout
-            }
+            },
+        {
+            path: "/terminal",
+            name: "terminal",
+            component: terminal
+        }
         ]
     });
 
