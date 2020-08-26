@@ -1,5 +1,11 @@
 <template>	
 	<v-card width="100%" flat>
+		
+
+
+
+
+
 		<v-card-title>
 			<strong>Lance Atual: {{"R$"+ lanceNow+",00" }}</strong>
 		</v-card-title>
@@ -28,7 +34,13 @@
 				</v-col>
 			</v-row>
 
-		<v-text-field 
+		<!--Segundo Card-->
+			<v-row class="mt-5">
+				<v-card-text v-if="item.active == false" class="red text-center">
+						<span class="white--text">Lote Fechado Para Lances</span>
+				</v-card-text>
+				<v-card-text v-else>
+						<v-text-field 
 			v-model="lance" 
 			v-on:keyup.enter="AddLance()" 
 			label="Faca seu lance" 
@@ -40,6 +52,10 @@
 		>
 			Faça seu Lance
 		</v-btn>
+				</v-card-text>	
+			</v-row>
+
+		
 
 		</v-card>
 			<!-- Auto lance beta -->

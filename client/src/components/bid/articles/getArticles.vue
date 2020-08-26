@@ -51,17 +51,7 @@
 			</v-card>
 		</v-row>
 
-		<!--Segundo Card-->
-			<v-row class="mt-5">
-				<v-card-text v-if="artigo.active == false" class="red text-center">
-						<span class="white--text">Leilao Fechado</span>
-				</v-card-text>
-				<v-card-text v-else>
-					<lance
-						align="center"
-					/>	
-				</v-card-text>	
-			</v-row>
+		
 	</v-container>	
 </template>
 <script>
