@@ -11,6 +11,15 @@ export default {
     components:{
         artigo,
         arremate
-    }
+    },
+    data() {
+        return {
+            rotar: this.$route.query
+        }
+    },
+    created() {
+        this.$store.dispatch('getLances',this.rotar.id)
+        this.$store.dispatch('getItemByID', this.rotar.id)
+    },
 }
 </script>
