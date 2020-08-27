@@ -1,8 +1,15 @@
 <template>
-    <v-container>
-        <artigo/>
-        <arremate/>
-    </v-container>
+    <v-app>
+        <v-row align="center">
+            <v-col cols="6">
+                <artigo/>
+            </v-col>
+            <v-col cols="4">
+                <arremate/>
+            </v-col>
+        </v-row>
+    </v-app>
+    
 </template>
 <script>
 import artigo from "../components/bid/articles/getArticles"
