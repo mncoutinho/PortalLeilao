@@ -105,7 +105,8 @@ export default {
             this.target = id
             console.log("ativo "+ this.target)
             this.$store.dispatch('getItemByID', this.target)
-            this.$router.push('/leilao')
+            this.$store.dispatch('getLances',this.target)
+            this.$router.push({path:'/terminal', query:{id:this.target}})
         },
         deletar(item){
             if(item.idOrganizer === this.user.uid){
