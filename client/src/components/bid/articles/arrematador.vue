@@ -77,6 +77,13 @@ export default {
 	},
     methods: {
         arremate(){
+			let lance = null;
+			if(this.status == "fechar lote"){
+				lance = false
+			}else{
+				lance = true
+			}
+			this.$store.dispatch('finishLance',{id: this.$route.query.id, status: lance})
 			//atualiza o status do lote
            this.$store.dispatch('getItemByID', this.$route.query.id)
 		},

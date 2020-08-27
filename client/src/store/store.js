@@ -294,6 +294,14 @@ const item = {
           commit("setLances", lances);
         });
     },
+    finishLance({commit}, {id,status}){
+      firebase.firestore()
+      .collection("artigo/")
+      .doc(id)
+      .update({active:status}).then(doc =>{
+        commit("setItem",doc);
+      })
+    },
     //a testar
     updateItem({ commit }, payload) {
       firebase

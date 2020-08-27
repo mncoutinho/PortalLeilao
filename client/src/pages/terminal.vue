@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        {{verificador}}
+        
         <v-row align="center">
             <v-col cols="6">
                 <artigo/>
@@ -32,21 +32,22 @@ export default {
     },
     created() {
         this.$store.dispatch('getLances',this.rotar.id)
-        this.$store.dispatch('getItemByID', this.rotar.id)
+        this.$store.dispatch('getItemByID', this.rotar.id)  
     },
     computed: {
        ...mapState({
            user: state => state.userApp.user.uid,
            organizer: state=> state.itemApp.item.idOrganizer
-       }),
-       // ainda em teste
-       verificador(){
-           if(this.user == this.organizer){
-               return alert('ok')
+       })
+    },
+    methods: {
+        verificador(){
+            if(this.user == this.organizer){
+               return alert(this.user+ " "+ this.organizer)
            }else{
-               return alert('nao ok')
+               return this.$route.push('/')
            }
-       }
+        }
     },
 }
 </script>
