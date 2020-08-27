@@ -1,11 +1,5 @@
 <template>	
 	<v-card width="100%" flat>
-		
-
-
-
-
-
 		<v-card-title>
 			<strong>Lance Atual: {{"R$"+ lanceNow+",00" }}</strong>
 		</v-card-title>
@@ -34,29 +28,26 @@
 				</v-col>
 			</v-row>
 
-		<!--Segundo Card-->
 			<v-row class="mt-5">
 				<v-card-text v-if="item.active == false" class="red text-center">
 						<span class="white--text">Lote Fechado Para Lances</span>
 				</v-card-text>
 				<v-card-text v-else>
 						<v-text-field 
-			v-model="lance" 
-			v-on:keyup.enter="AddLance()" 
-			label="Faca seu lance" 
-		/>
-		<v-btn 
-			class="ma-4"
-			v-on:click="AddLance()"
-			color="success" 
-		>
-			Faça seu Lance
-		</v-btn>
+							v-model="lance" 
+							v-on:keyup.enter="AddLance()" 
+							label="Faca seu lance" 
+							placeholder="R$ 999,99"
+						/>
+						<v-btn 
+							class="ma-4"
+							v-on:click="AddLance()"
+							color="success" 
+						>
+							Faça seu Lance
+						</v-btn>
 				</v-card-text>	
 			</v-row>
-
-		
-
 		</v-card>
 			<!-- Auto lance beta -->
 		<v-btn
@@ -120,7 +111,7 @@ export default {
 				const time = new Date();
 				const lanceConfirmado = {
 					lance: this.lance, 
-					time: time, 
+					time: `horario: ${time.getHours()}:${time.getMinutes()} data: ${time.getDay()}/${time.getMonth()}/${time.getFullYear()}`,  
 					user: this.user.email , 
 					idUser: this.user.uid, 
 				};		
