@@ -5,7 +5,8 @@
                 <artigo/>
             </v-col>
             <v-col cols="5" class="mr-2" align='center'>
-                <lances/>
+                <infoLote/>
+                <lances/>         
             </v-col>
         </v-row>
         {{rotar}}
@@ -14,10 +15,12 @@
 <script>
 import lances from "../components/bid/articles/InputArticlesBid";
 import artigo from "../components/bid/articles/getArticles"
+import infoLote from "../components/bid/articles/getInfoItem"
 export default {
     components:{
         artigo,
-        lances
+        lances,
+        infoLote
     },
     data() {
         return {

@@ -51,14 +51,6 @@
                                     </v-btn>
                                     <v-row no-gutters>
                                     <v-divider/>
-                                    <v-btn
-                                        class="pr-12 pl-12 mt-6" 
-                                        color="blue"
-                                        text
-                                        rounded
-                                    >
-                                        Informar sobre o Lote
-                                    </v-btn>
                                     </v-row>
                             </v-list-item-content>                            
                         </v-card>

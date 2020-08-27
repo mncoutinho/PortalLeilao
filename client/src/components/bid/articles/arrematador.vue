@@ -26,7 +26,9 @@
 					<small v-text="lance.user"/>
 				</v-col>
 				<v-col>
-					<small>{{"R$"+lance.lance+",00"}}</small>
+					<small>
+						{{"R$"+lance.lance+",00"}}
+					</small>
 				</v-col>
 				<v-col>
 					<small v-text="lance.time"/>
@@ -38,10 +40,9 @@
 				large
                 v-on:click="arremate()"
             >
-                {{status}}
+                {{button(item)}}
             </v-btn>
 		</v-card>
-        {{item}}
 	</v-card>		
 </template>
 
@@ -50,7 +51,7 @@ import {mapState} from 'vuex';
 export default {
     data() {
         return {
-            status: this.button(this.item)
+            status: ""
         }
     },
     computed:{
@@ -71,25 +72,21 @@ export default {
 				now = this.lances[i].lance;
 				}	
 				return  now;
-			}
-			
+			}	
 		}
-    },
+	},
     methods: {
         arremate(){
-            if(this.status == "fechar"){
-                return this.status = "abrir"
-            }else{
-                return this.status = "fechar"
-            }
-        },
-        button(item){
-            if(item){
-                return "fechar"
-            }else{
-                return "abrir"
-            }
-        }
+			//atualiza o status do lote
+           this.$store.dispatch('getItemByID', this.$route.query.id)
+		},
+		button(item) {
+			if(item){
+				return this.status = "fechar lote"
+			}else{
+				return this.status = "abrir lote"
+			}
+		},
     }
 }
 </script>

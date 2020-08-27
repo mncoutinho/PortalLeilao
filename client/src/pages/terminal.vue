@@ -6,18 +6,20 @@
             </v-col>
             <v-col cols="4">
                 <arremate/>
+                <infoLote/>    
             </v-col>
         </v-row>
     </v-app>
-    
 </template>
 <script>
 import artigo from "../components/bid/articles/getArticles"
 import arremate from "../components/bid/articles/arrematador"
+import infoLote from "../components/bid/articles/getInfoItem"
 export default {
     components:{
         artigo,
-        arremate
+        arremate,
+        infoLote
     },
     data() {
         return {
