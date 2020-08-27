@@ -170,7 +170,11 @@ export default {
 		// funcoes de leitura rapida na tela	
 		lanceNow(now){
 			if(!this.lances[0]){
-				return this.lanceMinimo
+				if(this.lanceMinimo){
+					return this.lanceMinimo
+				}else{
+					return "00"
+				}
 			}else{
 				for (var i = 0; i < this.lances.length; i++) {
 				now = this.lances[i].lance;

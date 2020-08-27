@@ -37,15 +37,40 @@
 						{{vendedor.value}} (Nota do vendedor)
 					</strong>
 					<v-spacer/>
-					<strong>visitas:<small>25</small></strong>
+					<strong>
+						visitas:
+						<small>
+							25
+						</small>
+					</strong>
 					<v-spacer/>
-					<strong>Descrição:<small>{{ artigo.description }}</small></strong>
+					<strong>
+						Descrição:
+						<small>
+							{{ artigo.description }}
+						</small>
+					</strong>
 					<v-spacer/>
-					<strong>Local:<small>Rio de Janeiro</small></strong>
+					<strong>
+						Local:
+						<small>
+							Rio de Janeiro
+						</small>
+					</strong>
 					<v-spacer/>
-					<strong>Dia dos Leilão:<small>{{ artigo.date }}</small></strong>
+					<strong>
+						Dia dos Leilão:
+						<small>
+							{{ artigo.date }}
+						</small>
+					</strong>
 					<v-spacer/>
-					<strong>Lance Inicial:<small>{{ "R$ " + artigo.initialBid + ",00"}}</small></strong>
+					<strong>
+						Lance Inicial:
+						<small>
+							{{ formatacao(artigo.initialBid)}}
+						</small>
+					</strong>
 				</v-card-text>
 				<!-- abertura e fachamento de leilao beta -->
 			</v-card>
@@ -63,11 +88,21 @@ export default {
 				value: 5
 			}			
 		};
-	},computed: {
+	},
+	computed: {
 		...mapState({
 			artigo: state => state.itemApp.item,
 		})
-	}
+	},
+	methods: {
+		formatacao(initialBid){
+			if(initialBid){
+				return "R$"+initialBid+",00"
+			}else{
+				return "R$00,00"
+			}
+		}
+	},
   
 }
 </script>
