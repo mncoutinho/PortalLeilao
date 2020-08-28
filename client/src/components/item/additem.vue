@@ -2,7 +2,11 @@
   <v-container row>
     <v-layout>
       <v-flex xs12 sm6 offset-sm3>
-        <h4 class="brown--text">Bem-vindo leiloeiro</h4>
+        <h4 
+          class="brown--text"
+        >
+          Bem-vindo leiloeiro
+        </h4>
         <p>
           Cadastrar seu leilão ficou ainda mais fácil, basta apenas preencher o formulário
           e em breve estará no ar.
@@ -39,7 +43,11 @@
 
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <v-select :items="categories" v-model="artigo.category" label="Defina a categoria"></v-select>
+              <v-select 
+                :items="categories" 
+                v-model="artigo.category" 
+                label="Defina a categoria"
+              />
             </v-flex>
           </v-layout>
 
@@ -60,7 +68,13 @@
                 :key="img"
                 :src="img"/>
               </v-carousel>
-              <v-text-field class="col-md 2" v-model="artigo.imgUrl" label="Imagens" disabled />
+
+              <v-text-field 
+                class="col-md 2" 
+                v-model="artigo.imgUrl" 
+                label="Imagens" 
+                disabled 
+              />
             </v-flex>
           </v-layout>
 
@@ -78,7 +92,13 @@
 
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <v-btn class="col-12" color="primary" @click="addartigo">Confirmar</v-btn>
+              <v-btn 
+                class="col-12" 
+                color="primary" 
+                @click="addartigo"
+              >
+                Confirmar
+              </v-btn>
             </v-flex>
           </v-layout>
         </form>
