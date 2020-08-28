@@ -9,7 +9,6 @@
                 <lances/>         
             </v-col>
         </v-row>
-        {{rotar}}
     </v-app>
 </template>
 <script>

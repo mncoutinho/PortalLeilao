@@ -81,8 +81,6 @@
               <v-btn class="col-12" color="primary" @click="addartigo">Confirmar</v-btn>
             </v-flex>
           </v-layout>
-          {{this.$store.getters.user}}
-          {{artigo}}
         </form>
       </v-flex>
     </v-layout>
