@@ -33,8 +33,10 @@
 				<v-col>Lance</v-col>
 				<v-col>Hora</v-col>
 			</v-row>
-			<v-row v-for="lance in lances" 
-				:key="lance.length">
+			<v-row 
+				v-for="lance in lances" 
+				:key="lance.length"
+			>
 				<v-col>
 					<small v-text="lance.user"/>
 				</v-col>
