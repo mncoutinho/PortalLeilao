@@ -5,7 +5,7 @@
 	>
 		<v-card-title>
 			<strong>
-				Lance Atual:{{" R$"+ lanceNow+",00" }}
+				Lance Atual:{{" R$"+ lanceNow+",00"}}
 			</strong>
 		</v-card-title>
 		<v-card-text>
@@ -29,11 +29,20 @@
 			v-if="lances" 
 		>
 			<v-row>
-				<v-col>Usuário</v-col>
-				<v-col>Lance</v-col>
-				<v-col>Hora</v-col>
+				<v-col>
+					Usuário
+				</v-col>
+				<v-col>
+					Lance
+				</v-col>
+				<v-col>
+					Hora
+				</v-col>
 			</v-row>
-			<v-row 
+			<div
+				class="over"
+			>
+				<v-row 
 				v-for="lance in lances" 
 				:key="lance.length"
 			>
@@ -47,7 +56,8 @@
 					<small v-text="lance.time"/>
 				</v-col>
 			</v-row>
-
+			</div>
+	
 			<v-row class="mt-5">
 				<v-card-text v-if="item.active == false" class="red text-center">
 						<span class="white--text">Lote Fechado Para Lances</span>
@@ -71,23 +81,22 @@
 		</v-card>
 			<!-- Auto lance beta -->
 		<v-btn
-		class="ma-4"
-		v-if="autolance.modal != true"
-		v-on:click="autoLanceModal()"
+			class="ma-4"
+			v-if="autolance.modal != true"
+			v-on:click="autoLanceModal()"
 		>
 			auto lance
 		</v-btn>
 		<v-card
-		align="center" 
-		class="py-auto"
-		v-if="autolance.modal"
+			align="center" 
+			class="py-auto"
+			v-if="autolance.modal"
 		>
 			<v-text-field
-			class="mx-3 mt-5"
-			v-model="autolance.limit"
-			
-			label="De limite ao seu lance :"
-			v-on:keyup.enter="autolancelimit(autolance.limit,user)"
+				class="mx-3 mt-5"
+				v-model="autolance.limit"
+				label="De limite ao seu lance :"
+				v-on:keyup.enter="autolancelimit(autolance.limit,user)"
 			/>
 				<v-row align="start" justify="center">
 					<v-btn 
@@ -110,7 +119,6 @@
 import {mapState} from 'vuex';
 import firebase from 'firebase';
 export default {
-
 	data(){
 		return{
 			lance: "",
@@ -121,7 +129,6 @@ export default {
 			}
 		};
 	},
-	
 	methods: {
 		AddLance() {
 			//convertendo
@@ -147,7 +154,6 @@ export default {
 
 		},
 		// Teste
-		
 		autoLanceModal(){
 			this.autolance.modal = !this.autolance.modal;	
 		},
@@ -196,16 +202,21 @@ export default {
 					return "00"
 				}
 			}else{
-				for (var i = 0; i < this.lances.length; i++) {
-				now = this.lances[i].lance;
-				}	
+				now = this.lances[0].lance;
 				return  now;
-			}
-			
+			}		
 		}
 	}
 }
 </script>
+
+<style scoped>
+	.over{
+		overflow-y: scroll;
+		overflow-x: hidden;
+		max-height: 30vh;
+	}
+</style>
 
 
 

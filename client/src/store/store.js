@@ -279,7 +279,7 @@ const item = {
       firebase
         .firestore()
         .collection("artigo/" + payload + "/lances")
-        .orderBy("lance", "asc")
+        .orderBy("lance", "desc")
         .get()
         .then((snapshot) => {
           let lances = [];
@@ -335,7 +335,6 @@ const item = {
   },
   getters: {},
 };
-
 //leilao
 const bid = {
   state: {
@@ -445,7 +444,6 @@ const bid = {
 };
 
 Vue.use(Vuex);
-
 export default new Vuex.Store({
   modules: {
     userApp: user,
