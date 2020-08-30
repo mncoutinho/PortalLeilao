@@ -1,15 +1,33 @@
 <template>	
-	<v-card width="100%" flat>
+	<v-card 
+		width="100%"
+		flat
+	>
 		<v-card-title>
-			<strong>Lance Atual: {{"R$"+ lanceNow+",00" }}</strong>
+			<strong>
+				Lance Atual:{{" R$"+ lanceNow+",00" }}
+			</strong>
 		</v-card-title>
 		<v-card-text>
-			<small v-if="lances.length" 
-			justify="center">
-				<span class="badge badge-info">{{ lances.length }}</span> lances sobre o artigo.</small>
-			<small v-else>Sem lances sobre o artigo</small>
+			<small 
+				v-if="lances.length" 
+				justify="center"
+			>
+				<span 
+					class="badge badge-info"
+				>
+					{{lances.length}}
+				</span> 
+				lances sobre o artigo.
+			</small>
+			<small v-else>
+				Sem lances sobre o artigo
+			</small>
 		</v-card-text>
-		<v-card flat v-if="lances != []" >
+		<v-card 
+			flat 
+			v-if="lances" 
+		>
 			<v-row>
 				<v-col>Usuário</v-col>
 				<v-col>Lance</v-col>
