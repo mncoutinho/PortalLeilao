@@ -6,6 +6,7 @@
             </v-col>
             <v-col cols="4">
                 <arremate/>
+                <inputInfoLote/>
                 <infoLote/>    
             </v-col>
         </v-row>
@@ -17,12 +18,14 @@
 import artigo from "../components/bid/articles/getArticles"
 import arremate from "../components/bid/articles/arrematador"
 import infoLote from "../components/bid/articles/getInfoItem"
+import inputInfoLote from "../components/bid/articles/inputInfoItem"
 import {mapState} from "vuex"
 export default {
     components:{
         artigo,
         arremate,
-        infoLote
+        infoLote,
+        inputInfoLote
     },
     data() {
         return {
