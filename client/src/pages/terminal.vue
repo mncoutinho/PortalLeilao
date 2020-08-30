@@ -1,6 +1,5 @@
 <template>
-    <v-app>
-        
+    <v-app>   
         <v-row align="center">
             <v-col cols="6">
                 <artigo/>

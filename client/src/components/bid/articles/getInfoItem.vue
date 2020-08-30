@@ -1,7 +1,9 @@
 <template>	
     <div>
         <v-card-title>
-			<strong>Informaçes sobre o Lote</strong>
+			<strong>
+                Informaçes sobre o Lote
+            </strong>
 		</v-card-title>
         <v-card-text v-if="text">
             {{text}}
