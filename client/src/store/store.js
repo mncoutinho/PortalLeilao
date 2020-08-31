@@ -261,15 +261,13 @@ const item = {
         });
     },
     addLance({ commit }, { id, payload }) {
-      firebase
-        .firestore()
-        .collection("artigo")
-        .doc(id)
-        .collection("lances")
-        .add(payload)
-        .then((doc) => {
+        firebase
+        .database()
+        .ref("artigo/"+id)
+        .push(payload)
+        .then(doc => {
           commit;
-          return alert(doc.id + " lance computado");
+          return alert(doc.uid + " lance computado");
         })
         .catch((err) => {
           alert("Aconteceu algo inesperado. " + err.message);
