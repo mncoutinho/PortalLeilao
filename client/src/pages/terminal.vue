@@ -21,7 +21,6 @@ import lances from "../components/bid/articles/getLances"
 import arremate from "../components/bid/articles/arrematador"
 import infoLote from "../components/bid/articles/getInfoItem"
 import inputInfoLote from "../components/bid/articles/inputInfoItem"
-import {mapState} from "vuex"
 export default {
     components:{
         artigo,
@@ -38,12 +37,6 @@ export default {
     created() {
         this.$store.dispatch('getLances',this.rotar.id)
         this.$store.dispatch('getItemByID', this.rotar.id)  
-    },
-    computed: {
-       ...mapState({
-           user: state => state.userApp.user.uid,
-           organizer: state=> state.itemApp.item.idOrganizer
-       })
     },
     methods: {
         verificador(){
