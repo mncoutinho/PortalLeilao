@@ -274,8 +274,11 @@ const item = {
         });
     },
     getLances({ commit }, payload) {
-      let referencia = firebase.database().ref("artigo/" + payload+"/lances");
+      let referencia = firebase
+      .database()
+      .ref("artigo/" + payload+"/lances");
       let lances = [];
+
       referencia.on('child_added', doc =>{
         console.log("foi adicionado lance")
         lances.push({

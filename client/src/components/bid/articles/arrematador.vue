@@ -5,51 +5,6 @@
 				Lance Atual: {{"R$"+ lanceNow+",00" }}
 			</strong>
 		</v-card-title>
-		<v-card-text>
-			<small v-if="lances.length" 
-			justify="center">
-				<span class="badge badge-info">
-					{{ lances.length }} lances sobre o artigo.
-				</span> 	
-			</small>
-			<small v-else>
-				Sem lances sobre o artigo
-			</small>
-		</v-card-text>
-		<v-card 
-			flat v-if="lances" 
-		>
-			<v-row>
-				<v-col>
-					Usuário
-				</v-col>
-				<v-col>
-					Lance
-				</v-col>
-				<v-col>
-					Hora
-				</v-col>
-			</v-row>
-			<div
-				class="over"
-			>
-				<v-row 
-					v-for="lance in lances" 
-					:key="lance.length"
-				>
-					<v-col>
-						<small v-text="lance.user"/>
-					</v-col>
-					<v-col>
-						<small>
-							{{"R$"+lance.lance+",00"}}
-						</small>
-					</v-col>
-					<v-col>
-						<small v-text="lance.time"/>
-					</v-col>
-				</v-row>
-			</div>
             <v-btn
 				width="100%"
 				color="#422321"
@@ -57,9 +12,8 @@
 				large
                 v-on:click="arremate()"
             >
-                {{button(item)}}
+                {{button(item.active)}}
             </v-btn>
-		</v-card>
 	</v-card>		
 </template>
 
@@ -74,7 +28,7 @@ export default {
     computed:{
 		...mapState({
             lances: state => state.itemApp.lances,
-            item: state => state.itemApp.item.active,
+			item: state => state.itemApp.item,
             lanceMinimo: state => state.itemApp.item.initialBid
         }),
         lanceNow(now){
@@ -87,7 +41,7 @@ export default {
 			}else{
 				now = this.lances[0].lance;
 				return  now;
-			}	
+			}		
 		}
 	},
     methods: {
@@ -99,8 +53,6 @@ export default {
 				lance = true
 			}
 			this.$store.dispatch('finishLance',{id: this.$route.query.id, status: lance})
-			//atualiza o status do lote
-           this.$store.dispatch('getItemByID', this.$route.query.id)
 		},
 		button(item) {
 			if(item){
@@ -112,11 +64,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-	.over{
-		overflow-y: scroll;
-		overflow-x: hidden;
-		max-height: 30vh;
-	}
-</style>
