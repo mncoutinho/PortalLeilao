@@ -147,8 +147,10 @@ export default {
 				}else{
 					return "00"
 				}
-			}else{
-				now = this.lances[0].lance;
+			}else{	
+				for (var i = 0; i < this.lances.length; i++) {
+				now = this.lances[i].lance;
+				}	
 				return  now;
 			}		
 		}

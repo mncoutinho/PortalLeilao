@@ -278,7 +278,7 @@ const item = {
       firebase
       .database()
       .ref("artigo/" + payload+"/lances")
-      
+     
       .on('child_added', doc =>{
         console.log("foi adicionado lance")
         lances.push({
