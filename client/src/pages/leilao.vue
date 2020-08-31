@@ -6,6 +6,7 @@
             </v-col>
             <v-col cols="5" class="mr-2" align='center'>
                 <infoLote/>
+                <getLances/>
                 <lances/>         
             </v-col>
         </v-row>
@@ -15,10 +16,12 @@
 import lances from "../components/bid/articles/InputArticlesBid";
 import artigo from "../components/bid/articles/getArticles"
 import infoLote from "../components/bid/articles/getInfoItem"
+import getLances from "../components/bid/articles/getLances"
 export default {
     components:{
         artigo,
         lances,
+        getLances,
         infoLote
     },
     data() {

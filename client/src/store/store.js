@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import firebase from "firebase/app";
+import firebase, { database } from "firebase/app";
 
 const user = {
   state: {
@@ -263,7 +263,7 @@ const item = {
     addLance({ commit }, { id, payload }) {
         firebase
         .database()
-        .ref("artigo/"+id)
+        .ref("artigo/"+id+"/lances")
         .push(payload)
         .then(doc => {
           commit;
@@ -274,7 +274,7 @@ const item = {
         });
     },
     getLances({ commit }, payload) {
-      let referencia = firebase.database().ref("artigo/" + payload);
+      let referencia = firebase.database().ref("artigo/" + payload+"/lances");
       let lances = [];
       referencia.on('child_added', doc =>{
         console.log("foi adicionado lance")
@@ -285,6 +285,27 @@ const item = {
             user: doc.exportVal().user
         })
         commit("setLances", lances);
+      })
+    },
+    addInfo({commit},{id,msg}){
+      firebase
+      database().
+      ref("artigo/"+ id+"/info")
+      .push(msg)
+      .then(()=>{
+        commit;
+        alert("mensagem enviada com sucesso");
+      })
+    },
+    getInfo({commit},id){
+      firebase
+      .database()
+      .ref("artigo/"+id+"/info")
+      .on('child_added',doc =>{
+        alert("tem uma mensagem")
+        let msg = [] 
+        msg.push(doc.msg)
+        commit("setMSG", msg)
       })
     },
     finishLance({commit}, {id,status}){
