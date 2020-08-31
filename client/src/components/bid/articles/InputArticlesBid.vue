@@ -59,8 +59,13 @@
 			</div>
 	
 			<v-row class="mt-5">
-				<v-card-text v-if="item.active == false" class="red text-center">
-						<span class="white--text">Lote Fechado Para Lances</span>
+				<v-card-text 
+					v-if="item.active == false" 
+					class="red text-center"
+				>
+						<span class="white--text">
+							Lote Fechado Para Lances
+						</span>
 				</v-card-text>
 				<v-card-text v-else>
 						<v-text-field 

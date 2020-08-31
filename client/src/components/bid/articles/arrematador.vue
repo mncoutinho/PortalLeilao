@@ -12,29 +12,46 @@
 					{{ lances.length }} lances sobre o artigo.
 				</span> 	
 			</small>
-			<small v-else>Sem lances sobre o artigo</small>
+			<small v-else>
+				Sem lances sobre o artigo
+			</small>
 		</v-card-text>
-		<v-card flat v-if="lances != []" >
+		<v-card 
+			flat v-if="lances" 
+		>
 			<v-row>
-				<v-col>Usuário</v-col>
-				<v-col>Lance</v-col>
-				<v-col>Hora</v-col>
-			</v-row>
-			<v-row v-for="lance in lances" 
-				:key="lance.length">
 				<v-col>
-					<small v-text="lance.user"/>
+					Usuário
 				</v-col>
 				<v-col>
-					<small>
-						{{"R$"+lance.lance+",00"}}
-					</small>
+					Lance
 				</v-col>
 				<v-col>
-					<small v-text="lance.time"/>
+					Hora
 				</v-col>
 			</v-row>
+			<div
+				class="over"
+			>
+				<v-row 
+					v-for="lance in lances" 
+					:key="lance.length"
+				>
+					<v-col>
+						<small v-text="lance.user"/>
+					</v-col>
+					<v-col>
+						<small>
+							{{"R$"+lance.lance+",00"}}
+						</small>
+					</v-col>
+					<v-col>
+						<small v-text="lance.time"/>
+					</v-col>
+				</v-row>
+			</div>
             <v-btn
+				width="100%"
 				color="#422321"
 				class="white--text"
 				large
@@ -66,11 +83,9 @@ export default {
 					return this.lanceMinimo
 				}else{
 					return "00"
-				}	
+				}
 			}else{
-				for (var i = 0; i < this.lances.length; i++) {
-				now = this.lances[i].lance;
-				}	
+				now = this.lances[0].lance;
 				return  now;
 			}	
 		}
@@ -97,3 +112,11 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+	.over{
+		overflow-y: scroll;
+		overflow-x: hidden;
+		max-height: 30vh;
+	}
+</style>

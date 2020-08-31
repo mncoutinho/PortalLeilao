@@ -6,8 +6,8 @@
             </v-col>
             <v-col cols="4">
                 <arremate/>
-                <inputInfoLote/>
-                <infoLote/>    
+                <infoLote/> 
+                <inputInfoLote/>       
             </v-col>
         </v-row>
         {{user}}

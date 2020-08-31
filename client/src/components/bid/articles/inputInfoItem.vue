@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-col cols="10">
-            <v-text-field 
+            <v-textarea
                 v-model="text" 
                 outlined 
                 label="digite aqui"
