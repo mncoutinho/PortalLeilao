@@ -274,18 +274,18 @@ const item = {
         });
     },
     getLances({ commit }, payload) {
-      console.log(payload)
-      firebase
-        .database()
-        .ref("artigo/" + payload )
-        .on('child_added', snapshot => {
-          let lances = [];
-          snapshot.forEach.then(doc =>{
-            lances.push(doc.val());
-          })
-          console.log(lances.lance)
-          commit("setLances", lances);
-        });
+      let referencia = firebase.database().ref("artigo/" + payload);
+      let lances = [];
+      referencia.on('child_added', doc =>{
+        console.log("foi adicionado lance")
+        lances.push({
+          idUser: doc.exportVal().idUser,
+            lance: doc.val().lance,
+            time: doc.exportVal().time,
+            user: doc.exportVal().user
+        })
+        commit("setLances", lances);
+      })
     },
     finishLance({commit}, {id,status}){
       firebase.firestore()

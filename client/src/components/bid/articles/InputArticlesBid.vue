@@ -122,7 +122,7 @@
 
 <script>
 import {mapState} from 'vuex';
-import firebase from 'firebase';
+//import firebase from 'firebase';
 export default {
 	data(){
 		return{
@@ -149,8 +149,8 @@ export default {
 				};		
 				
 				this.$store.dispatch('addLance',{id:this.item.id,payload:lanceConfirmado})
-				this.$store.dispatch('getLances',this.item.id)
-				this.lanceNow = this.lance;
+				//this.$store.dispatch('getLances',this.item.id)
+				//this.lanceNow = this.lance;
 
 			}else{
 				alert('vc n pode da um lance abaixo')
@@ -175,21 +175,8 @@ export default {
 			}
 		}	
 	},
-	watch: {
-		//n funciona
-		observe(){
-			firebase.firestore().collection('artigo/'+this.item.id+'/lances')
-			.orderBy('lance','asc').onSnapshot(snapshot =>{
-				snapshot.docChanges().forEach(doc =>{
-					if(doc.type == 'added'){
-						console.log('adicionado') 						
-						this.$store.dispatch('getLances', this.item.id).then(() =>{ 							
-							console.log('consulta')
-						})
-					}
-				})
-			})
-		}
+	created() {
+		this.$store.dispatch('getLances',this.item.id)
 	},
 	computed:{
 		...mapState({
