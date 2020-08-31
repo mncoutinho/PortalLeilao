@@ -12,7 +12,7 @@
 				large
                 v-on:click="arremate()"
             >
-                {{button(item)}}
+                {{button(item.active)}}
             </v-btn>
 	</v-card>		
 </template>
@@ -28,7 +28,7 @@ export default {
     computed:{
 		...mapState({
             lances: state => state.itemApp.lances,
-			item: state => state.itemApp.item.active,
+			item: state => state.itemApp.item,
 			lanceMinimo: state => state.itemApp.item.initialBid,
         }),
         lanceNow(now){
@@ -53,7 +53,7 @@ export default {
 				lance = true
 			}
 			this.$store.dispatch('finishLance',{id: this.$route.query.id, status: lance})
-			this.$store.dispatch('getItemById', this.$route.query.id )
+			this.$store.dispatch('getItemByID', this.$route.query.id )
 		},
 		button(item) {
 			if(item){
