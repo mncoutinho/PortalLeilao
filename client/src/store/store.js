@@ -274,21 +274,16 @@ const item = {
         });
     },
     getLances({ commit }, payload) {
+      console.log(payload)
       firebase
-        .firestore()
-        .collection("artigo/" + payload + "/lances")
-        .orderBy("lance", "desc")
-        .get()
-        .then((snapshot) => {
+        .database()
+        .ref("artigo/" + payload )
+        .on('child_added', snapshot => {
           let lances = [];
-          snapshot.forEach((doc) => {
-            lances.push({
-              idUser: doc.data().idUser,
-              lance: doc.data().lance,
-              time: doc.data().time,
-              user: doc.data().user,
-            });
-          });
+          snapshot.forEach.then(doc =>{
+            lances.push(doc.val());
+          })
+          console.log(lances.lance)
           commit("setLances", lances);
         });
     },
