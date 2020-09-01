@@ -170,6 +170,7 @@ const item = {
     item: {},
     lances: [],
     target: "",
+    msg: false
   },
   mutations: {
     setLances(state, payload) {
@@ -195,6 +196,9 @@ const item = {
     setAllItems(state, payload) {
       state.items = payload;
     },
+    setMSG(state, payload){
+      state.msg = payload
+    }
   },
   actions: {
     getAllItems({ commit }) {
@@ -293,11 +297,11 @@ const item = {
     addInfo({commit},{id,msg}){
       firebase
       database().
-      ref("artigo/"+ id+"/info")
+      ref("artigo/"+id+"/info")
       .push(msg)
-      .then(()=>{
+      .then((doc)=>{
         commit;
-        alert("mensagem enviada com sucesso");
+        alert("artigo/"+id+"/info/"+doc.key);
       })
     },
     getInfo({commit},id){

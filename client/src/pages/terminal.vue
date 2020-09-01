@@ -36,7 +36,8 @@ export default {
     },
     created() {
         this.$store.dispatch('getLances',this.rotar.id)
-        this.$store.dispatch('getItemByID', this.rotar.id)  
+        this.$store.dispatch('getItemByID', this.rotar.id)
+        this.$store.dispatch('getInfo', {id: this.rotar.id})
     },
     methods: {
         verificador(){
