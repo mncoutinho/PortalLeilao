@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import firebase, { database } from "firebase/app";
+import firebase from "firebase/app";
 
 const user = {
   state: {
@@ -170,7 +170,7 @@ const item = {
     item: {},
     lances: [],
     target: "",
-    msg: false
+    msg: null
   },
   mutations: {
     setLances(state, payload) {
@@ -296,18 +296,18 @@ const item = {
     },
     addInfo({commit},{id,msg}){
       firebase
-      database().
-      ref("artigo/"+id+"/info")
+      .database()
+      .ref("info/"+id)
       .push(msg)
       .then((doc)=>{
         commit;
-        alert("artigo/"+id+"/info/"+doc.key);
+        alert("computado "+ doc.key);
       })
     },
     getInfo({commit},id){
       firebase
       .database()
-      .ref("artigo/"+id+"/info")
+      .ref("info/"+id)
       .on('child_added',doc =>{
         alert("tem uma mensagem")
         let msg = [] 

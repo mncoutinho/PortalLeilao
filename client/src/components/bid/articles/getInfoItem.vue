@@ -11,7 +11,8 @@
         <v-card-text v-else>
             Sem Informaçes sobre esse Lote 
         </v-card-text>
-        {{text}}
+        {{this.$route.query.id}}
+
     </div>		
 </template>
 <script>
@@ -26,6 +27,9 @@ export default {
         ...mapState({
             text: state => state.itemApp.msg
         })
+    },
+    created() {
+        this.$store.dispatch('getInfo', {id: this.$route.query.id})
     },
 
 }
