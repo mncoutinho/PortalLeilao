@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import firebase from "firebase/app";
-import msg from "./modules/mensagens"
+import alerts from "./modules/alerts"
 import user from "./modules/user"
 import item from "./modules/item"
 import bid from "./modules/bid"
@@ -13,7 +13,7 @@ export default new Vuex.Store({
     userApp: user,
     itemApp: item,
     bidApp: bid,
-    msg,
+    alerts,
   },
   state: {
     category: [],
