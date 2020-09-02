@@ -59,7 +59,7 @@ export default{
           return commit("setAllItems", ItemList);
         })
         .catch((err) => {
-          alert("Aconteceu algo inesperado. " + err.message);
+          commit('ALGO_INESPERADO', err.message)
         });
     },
     getItemByID({ commit }, payload) {
@@ -83,7 +83,7 @@ export default{
           return commit("setItem", item);
         })
         .catch((err) => {
-          alert("Aconteceu algo inesperado. " + err.message);
+          commit('ALGO_INESPERADO', err.message);
         });
     },
     createItem({ commit }, payload) {
@@ -93,10 +93,10 @@ export default{
         .add(payload)
         .then((doc) => {
           commit("setItem", doc);
-          return alert(doc.id);
+          return commit('MOSTRAR_CONTEUDO', doc.id);
         })
         .catch((err) => {
-          alert("Aconteceu algo inesperado. " + err.message);
+          commit('ALGO_INESPERADO', err.message);
         });
     },
     addLance({ commit }, { id, payload }) {
@@ -106,10 +106,10 @@ export default{
         .push(payload)
         .then(doc => {
           commit;
-          return alert(doc.uid + " lance computado");
+          return commit('MOSTRAR_CONTEUDO', doc.id + " lance computado");
         })
         .catch((err) => {
-          alert("Aconteceu algo inesperado. " + err.message);
+          commit('ALGO_INESPERADO', err.message)
         });
     },
     getLances({ commit }, payload) {
@@ -136,7 +136,7 @@ export default{
       .push(msg)
       .then((doc)=>{
         commit;
-        alert("computado "+ doc.key);
+        commit('ALGO_INESPERADO', doc.key)
       })
     },
     getInfo({commit},id){
@@ -144,7 +144,7 @@ export default{
       .database()
       .ref("info/"+id)
       .on('child_added',doc =>{
-        alert("tem uma mensagem")
+        commit('POSSUI_MENSAGEM')
         let msg = [] 
         msg.push(doc.msg)
         commit("setMSG", msg)
@@ -167,10 +167,10 @@ export default{
         .update(payload)
         .then((doc) => {
           commit("setItem", doc);
-          alert("alterado com sucesso");
+          commit('ALTERADO_SUCESSO');
         })
         .catch((err) => {
-          alert("Aconteceu algo inesperado. " + err.message);
+          commit('ALGO_INESPERADO', err.message);
         });
     },
     deleteItem({ commit }, payload) {
@@ -182,10 +182,10 @@ export default{
         .doc(payload)
         .delete()
         .then(() => {
-          alert("Deletado com sucesso");
+          commit('DELETADO');
         })
         .catch((err) => {
-          alert("Aconteceu algo inesperado. " + err.message);
+          commit('ALGO_INESPERADO', err.message);
         });
     },
   },
