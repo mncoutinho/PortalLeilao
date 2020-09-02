@@ -18,7 +18,7 @@ export default new Vuex.Store({
   state: {
     category: [],
     uf: [],
-    msg:[]
+    alerts:[]
   },
   mutations: {
     setCategories(state, payload) {
