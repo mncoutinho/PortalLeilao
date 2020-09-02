@@ -1,30 +1,30 @@
 import firebase from "firebase/app";
 export default{
-    state: {
-      bids: [],
-      bid: {},
+  state: {
+     bids: [],
+     bid: {},
+  },
+  mutations: {
+    setAllBids(state, payload) {
+      state.bids = payload;
+     },
+    setBid(state, payload) {
+      state.bid = payload;
     },
-    mutations: {
-      setAllBids(state, payload) {
-        state.bids = payload;
-      },
-      setBid(state, payload) {
-        state.bid = payload;
-      },
-      resetBid(state) {
-        state.bid = {
-          name: "",
-          description: "",
-          items: [],
-          local: "",
-          startsOn: "",
-          closedAt: "",
-          organizer: "",
-          mail: "",
-          phone: "",
-        };
-      },
-    },
+    resetBid(state) {
+      state.bid = {
+        name: "",
+        description: "",
+        items: [],
+        local: "",
+        startsOn: "",
+        closedAt: "",
+        organizer: "",
+        mail: "",
+        phone: "",
+      };
+    }
+  },
     actions: {
       getAllBids({ commit }) {
         firebase
