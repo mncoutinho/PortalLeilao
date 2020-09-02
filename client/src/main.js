@@ -53,7 +53,7 @@ new Vue({
           firebase.auth().languageCode = 'pt';
           if(!user.emailVerified){
               user.sendEmailVerification().then(() => {
-                  this.$store.commit('verificarEmail');
+                this.$store.commit('VERIFICAR_EMAIL');
               });
           }
         }else{
