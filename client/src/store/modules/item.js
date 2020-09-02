@@ -106,7 +106,7 @@ export default{
         .push(payload)
         .then(doc => {
           commit;
-          return commit('MOSTRAR_CONTEUDO', doc.id + " lance computado");
+          return commit('MOSTRAR_CONTEUDO', doc.key + " lance computado");
         })
         .catch((err) => {
           commit('ALGO_INESPERADO', err.message)
