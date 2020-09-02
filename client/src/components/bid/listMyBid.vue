@@ -70,7 +70,7 @@ export default {
   data() {
     return {
       target:"",
-      bid:"",
+      card:[],
       page:1,
       porPagina: 8,
     }
@@ -80,7 +80,7 @@ export default {
       return this.card.slice((this.page - 1) * this.porPagina, this.page * this.porPagina)
     },
     ...mapState({
-      card: state => state.bidApp.bids,
+      bid: state => state.bidApp.bids,
       user: state => state.userApp.user
     })
   },
