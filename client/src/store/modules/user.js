@@ -130,7 +130,7 @@ import firebase from "firebase/app";
               .signOut()
               .then(() => {
                 commit("resetUser");
-                commit('usuarioDeslogar');
+                commit('USUARIO_DESLOGAR');
               });
           },
           uploadProfileImg({ commit }, { user, photo }) {
