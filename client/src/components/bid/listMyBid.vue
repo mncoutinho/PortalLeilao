@@ -41,6 +41,7 @@
             large
             color="#422321"
             class="white--text"
+            @click="editar(card)"
           >
             Editar
           </v-btn>
@@ -95,6 +96,11 @@ export default {
             }else{
                 alert("Voce n pode deletar um leilao q n e seu");
             }
+    },
+    editar(bid){
+      this.$store.dispatch("getBidById", bid.id);
+      this.$router.push("/updateLeilao")
+      
     }
   },
   async created(){
