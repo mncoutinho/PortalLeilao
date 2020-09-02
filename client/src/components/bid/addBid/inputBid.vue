@@ -129,6 +129,7 @@ export default {
     addLeilao(bid) {
       this.leilao.idOrganizer = this.user.uid;
       this.$store.dispatch('createBid', bid).then(()=>{
+        this.$store.dispatch('getAllBids')
         this.$router.push("/")
       })   
     },

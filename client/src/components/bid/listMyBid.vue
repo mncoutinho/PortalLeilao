@@ -92,7 +92,9 @@ export default {
     deletar(bid){
       if(bid.idOrganizer === this.user.uid){
                 this.target = bid.id
-                this.$store.dispatch('deleteBid', this.target);
+                this.$store.dispatch('deleteBid', this.target).then(()=>{
+                  this.$store.dispatch('getAllBids');
+                })
             }else{
                 alert("Voce n pode deletar um leilao q n e seu");
             }

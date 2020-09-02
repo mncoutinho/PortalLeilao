@@ -84,9 +84,9 @@
               <v-btn
                 class="col-12"
                 color="success"
-                v-on:click="updateLeilao(leilao,leiloeiro,termos);"
+                v-on:click="updateLeilao(leilao);"
               >Atualizar</v-btn>
-              {{leilao.id}}
+              {{leilao}}
             </v-flex>
           </v-layout>
         </form>
@@ -123,11 +123,12 @@ export default {
       alert("Logue por favor");
       //this.$router.push("/");
     }else{
-        this.$store.dispatch('getBidById', this.$router.query.id)
+        //this.$store.dispatch('getBidById', this.$router.query.id)
     }
   },
   methods: {
     updateLeilao(bid) {
+      console.log(bid)
       this.$store.dispatch('updateBid', bid).then(()=>{
         this.$router.push("/")
         this.$store.dispatch('getAllBids');

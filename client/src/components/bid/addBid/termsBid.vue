@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import axios from "axios"
+
 export default {
     data(){
         return{
@@ -49,16 +49,7 @@ export default {
         }
     },
     created(){
-        axios({
-            method:`get`,
-            url:`https://us-central1-portalleilao-26290.cloudfunctions.net/leilao/term`,
-        }).then(doc =>{
-            this.termos ={
-                frete: doc.data.CondicoesDeFrete,
-                pagamento: doc.data.CondicoesDePagamento,
-                condicoes: doc.data.TermosCondicoes
-            }
-        }).catch(error => console.log(error));  
+         
     }
     
 }

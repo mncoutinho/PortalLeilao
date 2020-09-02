@@ -9,7 +9,7 @@
         <v-text-field
           name="title"
           label="Nome do leiloeiro*"
-          v-model="leiloeiro.displayname"
+          v-model="leiloeiro.nome"
           @change="$emit('formLeiloeiro', leiloeiro)"
         />
       </v-flex>
@@ -31,7 +31,7 @@
         <v-text-field
           name="title"
           label="Telefone do leiloeiro*"
-          v-model="leiloeiro.phoneNumber"
+          v-model="leiloeiro.tel"
           @change="$emit('formLeiloeiro', leiloeiro)"
         />
       </v-flex>
