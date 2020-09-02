@@ -79,6 +79,8 @@ export default{
           });
       },
       updateBid( {commit} ,payload) {
+        console.log(payload.id)
+        console.log(payload.name)
         firebase
           .firestore()
           .collection("leilao")
@@ -92,16 +94,31 @@ export default{
           });
       },
       getBidById({ commit }, payload) {
+        console.log(payload)
         firebase
-          .firestore()
-          .collection("leilao")
-          .doc(payload.id)
-          .then((doc) => {
-            return commit("setBid", doc);
-          })
-          .catch((err) => {
-            commit('ALGO_INESPERADO', err.message);
-          });
+        .firestore()
+        .collection("leilao")
+        .doc(payload)
+        .get()
+        .then(doc =>{
+          let bid = { 
+            items: [],
+            closedAt: doc.data().closedAt,
+            local: doc.data().local,
+            phone: doc.data(),
+            startsOn: doc.data().startsOn,
+            organizer: doc.data().organizer,
+            idOrganizer: doc.data().idOrganizer,
+            name: doc.data().name,
+            mail: doc.data().mail,
+            description: doc.data().description,
+            id: doc.id 
+          }
+          commit('setBid', bid);
+        }).catch((err) => {
+          commit('ALGO_INESPERADO', err.message);
+        });
+        
       },
     }
 }

@@ -9,6 +9,7 @@ import Login from "../pages/login";
 import Criar from "../pages/criarconta";
 import userpage from "../pages/userpage.vue";
 import adicionarLeilao from "../pages/addLeilao.vue";
+import updateLeilao from "../components/bid/updateBid/update"
 import leiloeiroPage from "../pages/leiloeiroPage";
 import logout from "../pages/logout";
 import terminal from "../pages/terminal"
@@ -71,6 +72,11 @@ const router = new VueRouter({
                 path:"/addLeilao",
                 name:"addLeilao",
                 component:adicionarLeilao
+            },
+            {
+                path:"/updateLeilao",
+                name:"updateLeilao",
+                component:updateLeilao
             },
             {
                 path:"/leiloeiro",
