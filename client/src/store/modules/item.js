@@ -142,7 +142,7 @@ export default{
     getInfo({commit},id){
       firebase
       .database()
-      .ref("info/"+id)
+      .ref("info/",id)
       .on('child_added',doc =>{
         commit('POSSUI_MENSAGEM')
         let msg = [] 
