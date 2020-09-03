@@ -71,7 +71,6 @@ export default {
         }
     },
     computed: {
-        
         ...mapState({
         item: state => state.itemApp.items,
         user: state => state.userApp.user,
@@ -116,8 +115,6 @@ export default {
             }else{
                 alert("Voce n pode deletar um item q n e seu");
             }
-            
-            
         },
         editar(item){
             if(item.idOrganizer === this.user.uid){
