@@ -60,11 +60,11 @@ export default {
     }
   },
   methods:{
-    pages(){
-      return  this.cards.length / this.porPagina +1 
-    }
   },
   computed:{
+    pages(){
+      return  Math.ceil(this.card.length / this.porPagina)  
+    },
     paginacao () {
       return this.cards.slice((this.page - 1) * this.porPagina, this.page * this.porPagina)
     },

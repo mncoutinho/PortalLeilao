@@ -80,15 +80,15 @@ export default {
     paginacao () {
       return this.card.slice((this.page - 1) * this.porPagina, this.page * this.porPagina)
     },
+    pages(){
+            return  Math.ceil(this.card.length / this.porPagina)  
+        },
     ...mapState({
       bid: state => state.bidApp.bids,
       user: state => state.userApp.user
     })
   },
   methods: {
-    pages(){
-      return  this.card.length / this.porPagina +1 
-    },
     deletar(bid){
       if(bid.idOrganizer === this.user.uid){
                 this.target = bid.id
