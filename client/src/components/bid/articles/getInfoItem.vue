@@ -12,17 +12,11 @@
             Sem Informaçes sobre esse Lote 
         </v-card-text>
         {{this.$route.query.id}}
-
     </div>		
 </template>
 <script>
 import {mapState} from "vuex"
 export default {
-    data() {
-        return {
-            //text: "Se encontra 2 arranhoes na parte superior direita da mesa"
-        }
-    },
     computed: {
         ...mapState({
             text: state => state.itemApp.msg
@@ -31,6 +25,5 @@ export default {
     created() {
         this.$store.dispatch('getInfo', {id: this.$route.query.id})
     },
-
 }
 </script>
