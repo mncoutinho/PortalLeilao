@@ -129,14 +129,9 @@ export default{
         commit("setLances", lances);
       })
     },
-    addInfo({commit},{id,msg}){
-      firebase
-      .database()
-      .ref("info/"+id)
-      .push(msg)
-      .then((doc)=>{
-        commit;
-        commit('ALGO_INESPERADO', doc.key)
+    addInfo({commit},{msg}){
+      firebase.database().ref("mensagem/").push(msg).then((doc)=>{
+        commit('MOSTRAR_CONTEUDO', doc.key)
       })
     },
     getInfo({commit},id){
