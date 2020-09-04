@@ -157,7 +157,9 @@ export default {
     },
     addartigo() {
       this.artigo.IdOrganizer = this.user.uid;     
-      this.$store.dispatch('createItem', this.artigo);
+      this.$store.dispatch('createItem', this.artigo).then(()=>{
+        this.$store.dispatch('getAllItems')
+      })
       this.$router.push('/')
     }
   }
