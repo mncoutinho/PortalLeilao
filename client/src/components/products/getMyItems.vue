@@ -113,7 +113,7 @@ export default {
                 this.$store.dispatch('deleteItem',this.target);
                 this.$store.dispatch('getAllItems', this.card);
             }else{
-                alert("Voce n pode deletar um item q n e seu");
+                this.$store.commit('MENSAGEM_FEED',"Voce n pode deletar um item q n e seu")
             }
         },
         editar(item){
@@ -123,7 +123,7 @@ export default {
                 this.$router.push("/updateItem")
                 
             }else{
-                alert("Voce n pode editar um item q n e seu");
+                this.$store.commit('MENSAGEM_FEED',"Voce n pode editar um item q n e seu")
             }
         }
     },

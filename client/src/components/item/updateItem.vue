@@ -109,7 +109,7 @@ export default {
   created() {
     this.$store.dispatch('getcategories', this.categories);
     if(!this.user.refreshToken){
-      alert('Logue por favor');
+      this.$store.commit('MENSAGEM_LOGUE')
       this.$router.push('/')
     }  
   },
@@ -131,7 +131,7 @@ export default {
           });
       });
       }else{
-        alert('Porfavor defina o nome do artigo antes');
+        this.$store.commit('MENSAGEM_FEED', 'Porfavor defina o nome do artigo antes')
       }
     },
     updateArtigo() {

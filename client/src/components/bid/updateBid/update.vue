@@ -120,7 +120,7 @@ export default {
   },
   created() {
     if (!this.user.refreshToken) {
-      alert("Logue por favor");
+      this.$store.commit('MENSAGEM_LOGUE')
       //this.$router.push("/");
     }else{
         //this.$store.dispatch('getBidById', this.$router.query.id)
@@ -158,7 +158,7 @@ export default {
             });
           });      
         }else{
-          alert('Porfavor defina o nome do leilao antes');
+          this.$store.commit('MENSAGEM_FEED', 'Porfavor defina o nome do leilao antes')
         }
     }
   }, 

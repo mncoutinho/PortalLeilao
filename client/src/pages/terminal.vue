@@ -41,7 +41,7 @@ export default {
     methods: {
         verificador(){
             if(this.user == this.organizer){
-               return alert(this.user+ " "+ this.organizer)
+               return this.$store.commit('MENSAGEM_FEED',this.user+ " "+ this.organizer)
            }else{
                return this.$route.push('/')
            }

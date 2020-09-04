@@ -107,10 +107,8 @@ export default {
 				//this.lanceNow = this.lance;
 
 			}else{
-				alert('vc n pode da um lance abaixo')
+				this.$store.commit('MENSAGEM_FEED', 'vc n pode da um lance abaixo')
 			}
-			
-
 		},
 		// Teste
 		autoLanceModal(){
