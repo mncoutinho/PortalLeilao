@@ -7,7 +7,10 @@
     <v-snackbar
           v-model="msg.mostra"
           :color="msg.cor"
-          top
+          :top='msg.top'
+          :left='msg.left'
+          :right='msg.right'
+          :botton='msg.botton'
           :timeout="msg.tempo"
           class="pa-2"
         >
