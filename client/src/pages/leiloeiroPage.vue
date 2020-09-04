@@ -32,6 +32,9 @@
           <v-window-item :value="7">           
             <listMyBid/>
           </v-window-item>
+          <v-window-item :value="8">           
+            <criarLeilao/>
+          </v-window-item>
         </v-window>
       </v-col>
     </v-row>
@@ -46,6 +49,7 @@ import listBid from "../components/bid/listbid"
 import listMyBid from "../components/bid/listMyBid"
 import addItem from  "../components/item/additem"
 import addBid from "../components/bid/addBid/inputBid"
+import criarLeilao  from "../components/bid/criarLeilão"
 
 import principalPage from "../components/leiloeiro/principalPage"
 
@@ -58,7 +62,7 @@ export default {
     listMyBid,
     addItem,
     addBid,
-    
+    criarLeilao,
     principalPage
   },
   data(){
