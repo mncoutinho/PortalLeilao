@@ -56,7 +56,7 @@
         </v-card>
         <v-pagination
           v-model="page"
-          :length="pages()"
+          :length="pages"
           circle
           color="#422321"
         />
@@ -81,8 +81,8 @@ export default {
       return this.card.slice((this.page - 1) * this.porPagina, this.page * this.porPagina)
     },
     pages(){
-            return  Math.ceil(this.card.length / this.porPagina)  
-        },
+        return  Math.ceil(this.bid.length / this.porPagina)  
+      },
     ...mapState({
       bid: state => state.bidApp.bids,
       user: state => state.userApp.user
@@ -91,13 +91,13 @@ export default {
   methods: {
     deletar(bid){
       if(bid.idOrganizer === this.user.uid){
-                this.target = bid.id
-                this.$store.dispatch('deleteBid', this.target).then(()=>{
-                  this.$store.dispatch('getAllBids');
-                })
-            }else{
-                alert("Voce n pode deletar um leilao q n e seu");
-            }
+        this.target = bid.id
+        this.$store.dispatch('deleteBid', this.target).then(()=>{
+        this.$store.dispatch('getAllBids');
+        })
+        }else{
+          this.$store.commit('SEM_PERMICAO', 'Voce n pode deletar um leilao q n e seu')
+        }
     },
     editar(bid){
       this.$store.dispatch("getBidById", bid.id);

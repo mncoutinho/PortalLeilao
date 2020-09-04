@@ -42,7 +42,7 @@
     </v-card>
       <v-pagination
         v-model="page"
-        :length="pages()"
+        :length="pages"
         circle
         color="#422321"
       />
@@ -59,11 +59,9 @@ export default {
       porPagina: 8, 
     }
   },
-  methods:{
-  },
   computed:{
     pages(){
-      return  Math.ceil(this.card.length / this.porPagina)  
+      return  Math.ceil(this.cards.length / this.porPagina)  
     },
     paginacao () {
       return this.cards.slice((this.page - 1) * this.porPagina, this.page * this.porPagina)
