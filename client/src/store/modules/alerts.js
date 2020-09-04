@@ -4,6 +4,10 @@ export default {
         cor: '',
         tempo: '',
         mostra: false,
+        top: true,
+        left: false,
+        right: false,
+        botton: false,
     },
     mutations: {
         ERRO(state) {
@@ -50,7 +54,7 @@ export default {
         },
         DELETADO(state) {
             state.text = 'Deletado com Sucesso',
-            state.cor = 'green',
+            state.cor = 'red',
             state.tempo = 5000,
             state.mostra = true
         },
@@ -71,6 +75,28 @@ export default {
             state.cor = 'green',
             state.tempo = 5000,
             state.mostra = true
+        },
+        MENSAGEM_LOGUE(state) {
+            state.text = 'Logue por favor',
+            state.cor = 'blue',
+            state.tempo = 5000,
+            state.mostra = true
+        },
+        SEM_PERMICAO(state, payload) {
+            state.text = 'Voce não tem permissão para isso ' + payload,
+            state.cor = 'blue',
+            state.tempo = 5000,
+            state.mostra = true,
+            state.top = false,
+            state.left = true,
+            state.botton = true
+        },
+        MENSAGEM_FEED(state,payload){
+            state.text = payload,
+            state.top = false,
+            state.cor = 'blue',
+            state.left = true,
+            state.botton = true
         }
     },
 }
