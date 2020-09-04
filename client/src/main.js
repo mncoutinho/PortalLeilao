@@ -56,6 +56,7 @@ new Vue({
                 this.$store.commit('VERIFICAR_EMAIL');
               });
           }
+          this.$store.dispatch('getData', user.uid)
         }else{
           console.log("sem usuario logado");
         }
