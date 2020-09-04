@@ -57,10 +57,9 @@ export default {
       drawer: false,
       navItens: [  
         { i: "fas fa-gavel ", title: "produtos", routerLinks: "/produtos", usuarioLogado:true},
-        { i: "fas fa-gavel ", title: "perfil", routerLinks: "/userpage", usuarioLogado:this.usuarioL == '' ? false : true},
+        { i: "fas fa-gavel ", title: "perfil", routerLinks: "/userpage", usuarioLogado:true},
         { i: "fas fa-gavel ", title: "leiloeiro", routerLinks: "/leiloeiro", usuarioLogado:true},
         { i: "fas fa-gavel ", title: "tutorial", routerLinks: "/tutorial", usuarioLogado:true},
-        { i: "fas fa-gavel ", title: "terminal", routerLinks: "/terminal", usuarioLogado:true},
       ],
     };
   },
