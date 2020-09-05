@@ -13,11 +13,13 @@
                         class="mx-auto mt-8" 
                         cols="6">
                             <!--nome do leilão-->
-                            <v-text-field 
+                            <v-text-field
+                            v-model="leilao.name" 
                             name="title" 
                             label="Nome do leilao*"/>
                             <!--carregar foto-->
                             <v-file-input
+                                v-model="image"
                                 :reverse="true"
                                 prepend-icon="mdi-camera"
                                 multiple
@@ -29,38 +31,80 @@
                             <!--imagem-->
                             <v-row justify="center">
                                 <v-img
+                                    :src="leilao.imgUrl"
                                     max-width="600px"
                                     heigth="400px"
                                     />
                             </v-row>  
                             <!--imagem- mostrar-->
                             <v-text-field 
+                            v-model="leilao.imgUrl"
                             class="col-md 2"
                             label="Imagens"
                             disabled />
                             <!--local-->
-                            <v-text-field 
+                            <v-text-field
+                            v-model="leilao.local" 
                             name="title" 
                             label="Local do leilao*" />
                             <!--descriçao-->
-                            <v-textarea 
+                            <v-textarea
+                            v-model="leilao.description" 
                             name="title" 
                             label="Descricao do Leilao*"/>
                             <!--data-->
                             <v-flex row>
-                                <v-col cols="6">
-                                    <h4 class="brown--text">Data de abertura</h4>
-                                    <v-date-picker color="#422321" class="col-12" />
+                                <v-col xs12 sm6 offset-sm3>
+                                        <h4 class="brown--text">Data de abertura</h4>
+                                        <v-date-picker v-model="leilao.startsOn" color="#422321" class="col-12" />
                                 </v-col>
-                                <v-col cols="6">
+                                <v-col xs12 sm6 offset-sm3>
                                     <h4 class="brown--text">Data de fechamento</h4>
-                                    <v-date-picker color="#422321" class="col-12"/>
+                                    <v-date-picker v-model="leilao.closedAt" color="#422321" class="col-12"/>
                                 </v-col>
                             </v-flex>
+                            <!--Leiloeiro-->
+                            <h3 class="brown--text text-center">Leiloeiro</h3>
+                            <!--nome-->
+                            <v-text-field
+                                v-model="user.displayname"
+                                name="title"
+                                label="Nome"
+                            />
+                            <!--email-->
+                            <v-text-field
+                                v-model="user.email"
+                                name="title"
+                                label="E-mail"
+                            />
+                            <v-text-field
+                                v-model="user.phoneNumber"
+                                name="title"
+                                label="Telefone*"
+                            />
+                            <!--Termos-->
+                            <h3 class="brown--text text-center">Leiloeiro</h3>
+                            <!--frete-->
+                            <v-textarea
+                                name="title"
+                                label="Termos de Frete"
+                                v-model="termos.frete"
+                            />
+                            <!--pagamento-->
+                            <v-textarea
+                                name="title"
+                                label="Termos de Pagamentos"
+                                v-model="termos.pagamento"
+                            />
+                            <v-textarea
+                                name="title"
+                                label="Termos & Condições"
+                                v-model="termos.condicoes"   
+                            />
                             <!--botão para comfirmar-->
                             <v-btn
-                                class="col-12"
-                                color="success"
+                                class="col-12 white--text"
+                                color="brown"
                                 v-on:click="addLeilao(leilao,leiloeiro,termos);"
                             >Confirmar</v-btn>
                             {{leilao}}
@@ -73,10 +117,45 @@
 </template>
 
 <script>
+import firebase from "firebase";
+import {mapState} from 'vuex'
 export default {
-    data:()=>{
+    data(){
         return{
+            image:[],
+            termos:{
+                frete:'',
+                pagamento:'',
+                condicoes:'',
+            },
         }
-    }
+    },
+    computed: {
+    ...mapState({
+            user: state => state.userApp.user,
+            leilao: state => state.bidApp.bid
+        }),
+    },
+    methods:{
+         async onUpload() {
+            if(this.leilao.name){
+            let file = this.image[0];
+            firebase
+            .storage()
+            .ref(
+                "leilaoBanner/" + this.user.uid + "/" + this.leilao.name + "/" + file.name
+            )
+            .put(file)
+            .then(snapshot => {
+                snapshot.ref.getDownloadURL().then(url => {
+                this.leilao.imgUrl = url
+                console.log(url)
+                });
+            });      
+            }else{
+                this.$store.commit('MENSAGEM_FEED','Porfavor defina o nome do leilao antes')
+            }
+        }
+    },
 }
 </script>
