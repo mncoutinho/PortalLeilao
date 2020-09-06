@@ -67,7 +67,8 @@
                             <h3 class="brown--text text-center">Leiloeiro</h3>
                             <!--nome-->
                             <v-text-field
-                                v-model="nome"
+                                v-model="user.nome"
+                                @change="commit()"
                                 name="title"
                                 label="Nome"
                             />
@@ -78,7 +79,8 @@
                                 label="E-mail"
                             />
                             <v-text-field
-                                v-model="tel"
+                                v-model="user.tel"
+                                @change="commit()"
                                 name="title"
                                 label="Telefone*"
                             />
@@ -128,16 +130,19 @@ export default {
                 pagamento:'',
                 condicoes:'',
             },
+            leilao:{
+                organizer: this.nome,
+                tel: this.tel
+            }
         }
     },
     computed: {
-    ...mapState({
-            id: state => state.userApp.user.uid,
-            email: state => state.userApp.user.email,
-            tel: state => state.userApp.userData.tel,
-            nome: state => state.userApp.userData.nome,
-            leilao: state => state.bidApp.bid
-        })
+        ...mapState({
+                id: state => state.userApp.user.uid,
+                email: state => state.userApp.user.email,
+                user: state => state.userApp.userData
+                //leilao: state => state.bidApp.bid
+            })
     },
     methods:{
          async onUpload() {
@@ -163,10 +168,13 @@ export default {
         },
         addLeilao(bid){
             bid.email = this.email
-            bid.tel = this.tel
-            bid.organizer = this.nome
+            bid.tel = this.user.tel
+            bid.organizer = this.user.nome
             console.log(bid)
 
+        },
+        commit(){
+            this.$store.commit('setCache', this.user);
         }
     },
 }
