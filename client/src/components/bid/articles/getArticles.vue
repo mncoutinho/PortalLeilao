@@ -14,12 +14,13 @@
 				>
 					<v-carousel-item
 					v-for="img in artigo.imgUrl"
-					height="50%"
+					max-height="500px"
+					width="100%"
 					:key="img">
-						<v-img
-						:src="img">
+					<v-zoom :img="img" :width="width">
 							<v-card-title float="left" v-text="artigo.name"/>
-						</v-img>
+						</v-zoom>
+						
 					</v-carousel-item>
 				</v-carousel>           
 				<v-card-text
@@ -75,18 +76,19 @@
 				<!-- abertura e fachamento de leilao beta -->
 			</v-card>
 		</v-row>
-
-		
 	</v-container>	
 </template>
 <script>
 import { mapState} from "vuex";
+import vZoom from 'vue-zoom';
 export default {
+	components: {vZoom},
 	data(){
-		return{		
+		return{
 			vendedor: {
 				value: 5
-			}			
+			},
+			width: 500			
 		};
 	},
 	computed: {
@@ -103,6 +105,5 @@ export default {
 			}
 		}
 	},
-  
 }
 </script>
