@@ -1,173 +1,173 @@
 <template>
-  <v-container id="container">
-    <v-layout row>
-      <v-flex xs12 sm6 offset-sm3>
-        <h4 class="brown--text">Bem-vindo leiloeiro</h4>
-        <p>
-          Cadastrar seu leilão ficou ainda mais fácil, basta apenas preencher o formulário
-          e em breve estará no ar.
-        </p>
-      </v-flex>
-    </v-layout>
-
-    
-    <v-layout row>
-      <v-flex xs12>
-        <form>
-          
-          <v-layout row>
-            <v-flex xs12 sm6 offset-sm3>
-              <v-text-field name="title" label="Nome do leilao*" v-model="leilao.name" />
+  <v-app>
+      <v-card flat width="100%">
+        <v-row  xs12 sm6 offset-sm3>
+            <v-flex class="mt-10">
+                <h1 class="brown--text text-center">Bem-vindo leiloeiro</h1>
+                <p class="text-center">
+                Cadastrar seu leilão ficou ainda mais fácil, basta apenas preencher o formulário
+                e em breve estará no ar.
+                </p>
+                    <v-form class="mx-0">
+                        <v-col 
+                        class="mx-auto mt-8" 
+                        cols="6">
+                            <!--nome do leilão-->
+                            <v-text-field
+                            v-model="leilao.name" 
+                            name="title" 
+                            label="Nome do leilao*"/>
+                            <!--carregar foto-->
+                            <v-file-input
+                                v-model="image"
+                                :reverse="true"
+                                prepend-icon="mdi-camera"
+                                multiple
+                                show-size
+                                counter
+                                label="Banner do leilao*"
+                                @change="onUpload"
+                            />
+                            <!--imagem-->
+                            <v-row justify="center">
+                                <v-img
+                                    :src="leilao.imgUrl"
+                                    max-width="600px"
+                                    heigth="400px"
+                                    />
+                            </v-row>  
+                            <!--imagem- mostrar-->
+                            <v-text-field 
+                            v-model="leilao.imgUrl"
+                            class="col-md 2"
+                            label="Imagens"
+                            disabled />
+                            <!--local-->
+                            <v-text-field
+                            v-model="leilao.local" 
+                            name="title" 
+                            label="Local do leilao*" />
+                            <!--descriçao-->
+                            <v-textarea
+                            v-model="leilao.description" 
+                            name="title" 
+                            label="Descricao do Leilao*"/>
+                            <!--data-->
+                            <v-flex row>
+                                <v-col xs12 sm6 offset-sm3>
+                                        <h4 class="brown--text">Data de abertura</h4>
+                                        <v-date-picker v-model="leilao.startsOn" color="#422321" class="col-12" />
+                                </v-col>
+                                <v-col xs12 sm6 offset-sm3>
+                                    <h4 class="brown--text">Data de fechamento</h4>
+                                    <v-date-picker v-model="leilao.closedAt" color="#422321" class="col-12"/>
+                                </v-col>
+                            </v-flex>
+                            <!--Leiloeiro-->
+                            <h3 class="brown--text text-center">Leiloeiro</h3>
+                            <!--nome-->
+                            <v-text-field
+                                v-model="nome"
+                                name="title"
+                                label="Nome"
+                            />
+                            <!--email-->
+                            <v-text-field
+                                v-model="email"
+                                name="title"
+                                label="E-mail"
+                            />
+                            <v-text-field
+                                v-model="tel"
+                                name="title"
+                                label="Telefone*"
+                            />
+                            <!--Termos-->
+                            <h3 class="brown--text text-center">Leiloeiro</h3>
+                            <!--frete-->
+                            <v-textarea
+                                name="title"
+                                label="Termos de Frete"
+                                v-model="termos.frete"
+                            />
+                            <!--pagamento-->
+                            <v-textarea
+                                name="title"
+                                label="Termos de Pagamentos"
+                                v-model="termos.pagamento"
+                            />
+                            <v-textarea
+                                name="title"
+                                label="Termos & Condições"
+                                v-model="termos.condicoes"   
+                            />
+                            <!--botão para comfirmar-->
+                            <v-btn
+                                class="col-12 white--text"
+                                color="brown"
+                                v-on:click="addLeilao(leilao);"
+                            >Confirmar</v-btn>
+                            {{leilao}}
+                        </v-col>
+                    </v-form>
             </v-flex>
-          </v-layout>
-
-          <v-layout row>
-            <v-flex xs12 sm6 offset-sm3>
-              <v-file-input
-                multiple
-                show-size
-                counter
-                v-model="image"
-                label="Banner do leilao*"
-                @change="onUpload"
-              />  
-            </v-flex>
-            <v-row justify="center">
-              <v-img
-                  max-width="600px"
-                  heigth="400px"
-                  :src="leilao.imgUrl"
-                />
-            </v-row>
-
-            <v-layout row>
-            <v-flex xs12 sm6 offset-sm3>
-              <v-text-field class="col-md 2" v-model="leilao.imgUrl" label="Imagens" disabled />
-            </v-flex>
-          </v-layout>
-            
-                 
-            
-                
-              
-            
-              
-          </v-layout>
-          <v-layout row>
-            <v-flex xs12 sm6 offset-sm3>
-              <v-text-field name="title" label="Local do leilao*" v-model="leilao.local" />
-            </v-flex>
-          </v-layout>
-          <v-layout row>
-            <v-flex xs12 sm6 offset-sm3>
-              <v-textarea name="title" label="Descricao do Leilao*" v-model="leilao.description" />
-            </v-flex>
-          </v-layout>
-          <v-layout row style="margin-top: 30px;">
-            <v-flex xs12 sm3 offset-sm3>
-              <h4 class="brown--text">Data de abertura</h4>
-              <v-date-picker color="#422321" class="col-12" v-model="leilao.startsOn" />
-            </v-flex>
-
-            <v-flex xs12 sm3>
-              <h4 class="brown--text">Data de fechamento</h4>
-              <v-date-picker color="#422321" class="col-12" v-model="leilao.closedAt" />
-            </v-flex>
-          </v-layout>
-
-          <dadosLeiloeiro @formLeiloeiro="getLeiloeiro" />
-
-          <termos @formTermos="getTermos" />
-
-          <v-layout row>
-            <v-flex xs12 sm6 offset-sm3>
-              <v-btn
-                class="col-12"
-                color="success"
-                v-on:click="addLeilao(leilao,leiloeiro,termos);"
-              >Confirmar</v-btn>
-              {{leilao}}
-            </v-flex>
-          </v-layout>
-        </form>
-      </v-flex>
-    </v-layout>
-  </v-container>
+        </v-row>
+      </v-card>
+  </v-app>
 </template>
 
 <script>
 import firebase from "firebase";
-import dadosLeiloeiro from "./getAuctioneerData";
-import termos from "./termsBid";
 import {mapState} from 'vuex'
 export default {
-  components: {
-    dadosLeiloeiro,
-    termos,
-  },
-  data() {
-    return {
-      image:[],
-      leiloeiro: {},
-      termos: {},
-    };
-  },
-  computed: {
-    ...mapState({
-      user: state => state.userApp.user,
-      leilao: state => state.bidApp.bid
-    }),
-  },
-  created() {
-    this.$store.commit('resetBid')
-    if (!this.user.refreshToken) {
-      this.$store.commit('MENSAGEM_LOGUE')
-      this.$router.push("/");
-    }
-  },
-  methods: {
-    addLeilao(bid) {
-      this.leilao.idOrganizer = this.user.uid;
-      this.$store.dispatch('createBid', bid).then(()=>{
-        this.$store.dispatch('getAllBids')
-        this.$router.push("/")
-      })   
-    },
-    getLeiloeiro(leiloeiro) {
-      this.leilao.organizer = leiloeiro.displayname;
-      this.leilao.mail = leiloeiro.email;
-      this.leilao.phone = leiloeiro.phoneNumber;
-    },
-    getTermos(termos) {
-      this.termos = termos;
-    },
-    async onUpload() {
-        if(this.leilao.name){
-        let file = this.image[0];
-        firebase
-          .storage()
-          .ref(
-            "leilaoBanner/" + this.user.uid + "/" + this.leilao.name + "/" + file.name
-          )
-          .put(file)
-          .then(snapshot => {
-            snapshot.ref.getDownloadURL().then(url => {
-              this.leilao.imgUrl = url
-              console.log(url)
-            });
-          });      
-        }else{
-          this.$store.commit('MENSAGEM_FEED', 'Porfavor defina o nome do leilao antes')
+    data(){
+        return{
+            image:[],
+            termos:{
+                frete:'',
+                pagamento:'',
+                condicoes:'',
+            },
         }
-    }
-  }, 
-};
-</script>
+    },
+    computed: {
+    ...mapState({
+            id: state => state.userApp.user.uid,
+            email: state => state.userApp.user.email,
+            tel: state => state.userApp.userData.tel,
+            nome: state => state.userApp.userData.nome,
+            leilao: state => state.bidApp.bid
+        })
+    },
+    methods:{
+         async onUpload() {
+            if(this.leilao.name){
+            let file = this.image[0];
+            firebase
+            .storage()
+            .ref(
+                "leilaoBanner/" + this.id + "/" + this.leilao.name + "/" + file.name
+            )
+            .put(file)
+            .then(snapshot => {
+                this.$store.commit('MENSAGEM_FEED','Carregando...')
+                snapshot.ref.getDownloadURL().then(url => {
+                this.leilao.imgUrl = url
+                alert(url)
+                this.$store.commit('MENSAGEM_FEED','carregada com sucesso')
+                });
+            });      
+            }else{
+                this.$store.commit('MENSAGEM_FEED','Porfavor defina o nome do leilao antes')
+            }
+        },
+        addLeilao(bid){
+            bid.email = this.email
+            bid.tel = this.tel
+            bid.organizer = this.nome
+            console.log(bid)
 
-<style scoped>
-#container {
-  margin-top: 40px;
-  margin-bottom: 100px;
-  text-align: center;
+        }
+    },
 }
-</style>
+</script>
