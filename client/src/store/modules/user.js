@@ -113,12 +113,25 @@ import firebase from "firebase/app";
           },
           loginGoogle({ commit }) {
             let provider = new firebase.auth.GoogleAuthProvider();
+            provider.addScope('profile');
+            provider.addScope('email');
             firebase
               .auth()
               .signInWithPopup(provider)
               .then((doc) => {
                 let userProfile = doc.user;
                 commit("setUser", userProfile);
+              });
+          },
+          loginFacebook({ commit }) {
+            let provider2 = new firebase.auth.FacebookAuthProvider();
+            provider2.addScope('user_birthday');
+            firebase
+              .auth()
+              .signInWithPopup(provider2)
+              .then(function (result) {
+                let userProfile2 = result.credential.accessToken;
+                commit("setUser", userProfile2);
               });
           },
           cleanError({ commit }) {
