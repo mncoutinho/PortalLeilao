@@ -11,7 +11,7 @@
         :key="i.icon"
         v-for="i in is"
         >
-          <v-icon size="50" color="#422321" > {{i.icon}} </v-icon>
+          <v-icon size="50" color="#422321" @click="i.where"> {{i.icon}} </v-icon>
         </v-col>
     </v-row>
     <v-row 
@@ -89,6 +89,14 @@ export default {
         return this.accountData.senha !== this.accountData.confirmacao ? 'senha incorreta' : 'senha correta'
       },
   },
+  methods:{
+    LoginF(){
+      this.$store.dispatch('loginFacebook')
+    },
+    LoginG(){
+      this.$store.dispatch('loginGoogle')
+    }
+  },
   data () {
     return {
         accountData:{
@@ -105,7 +113,7 @@ export default {
             v => /.+@.+\..+/.test(v) || 'E-mail precisa ser valido!',
           ],
        checkbox: false,
-        is:[{icon:'fab fa-facebook-f'}, {icon:'fab fa-google'},]
+        is:[{icon:'fab fa-facebook-f',where:this.LoginF}, {icon:'fab fa-google',where:this.LoginG},]
     };
   },
 };
