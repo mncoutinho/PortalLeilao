@@ -6,7 +6,7 @@ export default{
   },
   mutations: {
     setAllBids(state, payload) {
-      state.bids = payload;
+      state.bids = payload
      },
     setBid(state, payload) {
       state.bid = payload;
@@ -27,25 +27,21 @@ export default{
   },
     actions: {
       getAllBids({ commit }) {
-        firebase
-          .firestore()
-          .collection("leilao")
-          .get()
-          .then((snapshot) => {
+        firebase.firestore().collection("leilao").get()
+          .then(snapshot => {
             let bidsList = [];
-            snapshot.forEach((doc) => {
+            snapshot.forEach(doc => {
               bidsList.push({
-                id: doc.id,
-                name: doc.data().name,
-                description: doc.data().description,
-                items: doc.data().items.length,
+                id:doc.id,
+                name:doc.data().name,
+                description:doc.data().description,
+                items:doc.data().items.length,
                 startsOn: doc.data().startsOn,
-                closedAt: doc.data().closedAt,
-                idOrganizer: doc.data().idOrganizer,
-                imgUrl: doc.data().imgUrl,
+                closedAt: doc.data().closedAt
               });
+              commit('setAllBids', bidsList);
             });
-            return commit("setAllBids", bidsList);
+            
           })
           .catch((err) => {
             commit('ALGO_INESPERADO', err.message)

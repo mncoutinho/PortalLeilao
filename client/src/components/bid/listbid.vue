@@ -46,6 +46,7 @@
         circle
         color="#422321"
       />
+      {{cards}}
   </v-app>
 </template>
 
@@ -56,11 +57,12 @@ export default {
     return {
       target:"",
       page:1,
-      porPagina: 8, 
+      porPagina: 2, 
     }
   },
   computed:{
     pages(){
+      console.log(this.cards)
       return  Math.ceil(this.cards.length / this.porPagina)  
     },
     paginacao () {

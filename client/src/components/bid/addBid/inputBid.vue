@@ -166,6 +166,8 @@ export default {
             bid.email = this.email
             bid.tel = this.user.tel
             bid.organizer = this.user.nome
+            bid.idOrganizer = this.id
+            bid.items = []
             console.log(bid)
             this.$store.dispatch('createBid', bid).then(()=>{
                 this.$store.dispatch('getAllBids')
