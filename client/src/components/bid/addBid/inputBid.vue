@@ -167,7 +167,9 @@ export default {
             bid.tel = this.user.tel
             bid.organizer = this.user.nome
             console.log(bid)
-            this.$store.dispatch('createBid', bid)
+            this.$store.dispatch('createBid', bid).then(()=>{
+                this.$store.dispatch('getAllBids')
+            })
 
         },
         commit(){
