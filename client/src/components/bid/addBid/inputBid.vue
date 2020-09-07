@@ -130,10 +130,7 @@ export default {
                 pagamento:'',
                 condicoes:'',
             },
-            leilao:{
-                organizer: this.nome,
-                tel: this.tel
-            }
+            leilao:{}
         }
     },
     computed: {
@@ -141,7 +138,6 @@ export default {
                 id: state => state.userApp.user.uid,
                 email: state => state.userApp.user.email,
                 user: state => state.userApp.userData
-                //leilao: state => state.bidApp.bid
             })
     },
     methods:{
@@ -171,6 +167,7 @@ export default {
             bid.tel = this.user.tel
             bid.organizer = this.user.nome
             console.log(bid)
+            this.$store.dispatch('createBid', bid)
 
         },
         commit(){

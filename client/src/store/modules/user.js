@@ -26,8 +26,8 @@ import firebase from "firebase/app";
           setUserData(state, payload) {
             state.userData = payload;
           },
-          setCache(state, payload){
-            state.userData = payload
+          setCache(state, user){
+            state.userData = user
           }
         },
         actions: {
