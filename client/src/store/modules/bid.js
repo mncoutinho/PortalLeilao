@@ -37,7 +37,8 @@ export default{
                 description:doc.data().description,
                 items:doc.data().items.length,
                 startsOn: doc.data().startsOn,
-                closedAt: doc.data().closedAt
+                closedAt: doc.data().closedAt,
+                idOrganizer: doc.data().idOrganizer
               });
               commit('setAllBids', bidsList);
             });
