@@ -3,6 +3,7 @@
 		width="100%"
 		flat
 	>
+
 		<v-card-title>
 			<strong>
 				Lance Atual:{{" R$"+ lanceNow+",00"}}
@@ -90,22 +91,20 @@ export default {
 	},
 	methods: {
 		AddLance() {
-			//convertendo
-			console.log(this.item.id)
 			this.lance = parseInt(this.lance);
 			if(this.lance > this.lanceNow){
-				const time = new Date();
-				const lanceConfirmado = {
-					lance: this.lance, 
-					time: `horario: ${time.getHours()}:${time.getMinutes()} data: ${time.getDay()}/${time.getMonth()}/${time.getFullYear()}`,  
-					user: this.user.email , 
-					idUser: this.user.uid, 
-				};		
-				
-				this.$store.dispatch('addLance',{id:this.item.id,payload:lanceConfirmado})
-				//this.$store.dispatch('getLances',this.item.id)
-				//this.lanceNow = this.lance;
-
+				if(this.user.uid){
+					const time = new Date();
+					const lanceConfirmado = {
+						lance: this.lance, 
+						time: `hora: ${time.getHours()}:${time.getMinutes()} data: ${time.getDay()}/${time.getMonth()}/${time.getFullYear()}`,  
+						user: this.user.email , 
+						idUser: this.user.uid, 
+					};		
+					this.$store.dispatch('addLance',{id:this.item.id,payload:lanceConfirmado})
+				}else{
+					this.$store.commit('MENSAGEM_LOGUE')
+				}
 			}else{
 				this.$store.commit('MENSAGEM_FEED', 'vc n pode da um lance abaixo')
 			}

@@ -56,7 +56,11 @@ new Vue({
                 this.$store.commit('VERIFICAR_EMAIL');
               });
           }
-          this.$store.dispatch('getData', user.uid)
+          this.$store.dispatch('getData', user.uid).then((doc)=>{
+            console.log('concluido'+ doc.uid)
+          }).catch(()=>{
+            alert("precisa concluir cadastro")
+          })
         }else{
           console.log("sem usuario logado");
         }
