@@ -130,7 +130,9 @@ export default {
                 pagamento:'',
                 condicoes:'',
             },
-            leilao:{}
+            leilao:{
+                imgUrl: ""
+            }
         }
     },
     computed: {
@@ -171,6 +173,7 @@ export default {
             console.log(bid)
             this.$store.dispatch('createBid', bid).then(()=>{
                 this.$store.dispatch('getAllBids')
+
             })
 
         },

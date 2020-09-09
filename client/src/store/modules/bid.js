@@ -35,6 +35,7 @@ export default{
                 id:doc.id,
                 name:doc.data().name,
                 description:doc.data().description,
+                imgUrl: doc.data().imgUrl,
                 items:doc.data().items,
                 startsOn: doc.data().startsOn,
                 closedAt: doc.data().closedAt,
