@@ -35,7 +35,7 @@ export default{
                 id:doc.id,
                 name:doc.data().name,
                 description:doc.data().description,
-                items:doc.data().items.length,
+                items:doc.data().items,
                 startsOn: doc.data().startsOn,
                 closedAt: doc.data().closedAt,
                 idOrganizer: doc.data().idOrganizer
