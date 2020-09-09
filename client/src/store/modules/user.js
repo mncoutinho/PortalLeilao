@@ -86,21 +86,13 @@ import firebase from "firebase/app";
               .doc(payload)
               .get()
               .then((doc) => {
-                const dados = {
-                  name: doc.data().name,
-                  cpf: doc.data().cpf
-                }
                 
                 if(doc.data().cpf != 'underfined'){
                   console.log('foi')
-                  return commit("setUserData", dados);
+                  return commit("setUserData", doc.data());
                 }else{
                   alert('Complete seu cadastro')
-                }
-
-                
-                  
-                
+                } 
               })
               .catch((err) => {
                 commit("setLoading", false);
