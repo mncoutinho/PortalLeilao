@@ -3,7 +3,7 @@ export default{
   state: {
      bids: [],
      bid: {},
-     myBids:{}
+     myBids:[]
   },
   mutations: {
     setAllBids(state, payload) {
@@ -58,22 +58,18 @@ export default{
         .firestore()
         .collection("leilao")
         .where('idOrganizer','==', filter)
-        .get()
-        .then(snapshot => {
-          let bidsList = [];
-          snapshot.forEach(doc => {
-            bidsList.push({
-              id:doc.id,
-              name:doc.data().name,
-              description:doc.data().description,
-              imgUrl: doc.data().imgUrl,
-              items:doc.data().items,
-              startsOn: doc.data().startsOn,
-              closedAt: doc.data().closedAt,
-              idOrganizer: doc.data().idOrganizer
-            });
-            commit('setMyBids', bidsList);
-          });
+        .onSnapshot(snapshot =>{
+          snapshot.docChanges().forEach(card =>{
+            let bid = []
+            if(card.type == 'added'){
+              console.log(card)
+              commit('setMyBids', bid);
+            }
+            if(card.type == 'removed'){
+              console.log('remove')
+              commit('setMyBids', bid);
+            }
+          })
         })
 
       },

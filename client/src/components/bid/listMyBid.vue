@@ -105,8 +105,8 @@ export default {
       
     }
   },
-  created(){
-        this.$store.dispatch('getMyBids', this.user.uid)
+  async created(){
+       await this.$store.dispatch('getMyBids', this.user.uid)
     },
 };
 </script>
