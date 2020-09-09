@@ -59,17 +59,21 @@ export default{
         .collection("leilao")
         .where('idOrganizer','==', filter)
         .onSnapshot(snapshot =>{
-          snapshot.docChanges().forEach(card =>{
-            let bid = []
-            if(card.type == 'added'){
-              console.log(card)
-              commit('setMyBids', bid);
-            }
-            if(card.type == 'removed'){
-              console.log('remove')
-              commit('setMyBids', bid);
-            }
+          let bid = []
+          snapshot.forEach(doc =>{
+           console.log(doc.data())
+              bid.push({
+                id:doc.id,
+                name:doc.data().name,
+                description:doc.data().description,
+                imgUrl: doc.data().imgUrl,
+                items:doc.data().items,
+                startsOn: doc.data().startsOn,
+                closedAt: doc.data().closedAt,
+                idOrganizer: doc.data().idOrganizer
+              })
           })
+          commit('setMyBids', bid)
         })
 
       },
