@@ -62,6 +62,7 @@
         />
       </v-row>
     </v-card>
+    {{card}}
   </v-app>
 </template>
 
@@ -71,7 +72,6 @@ export default {
   data() {
     return {
       target:"",
-      card:[],
       page:1,
       porPagina: 8,
     }
@@ -81,10 +81,10 @@ export default {
       return this.card.slice((this.page - 1) * this.porPagina, this.page * this.porPagina)
     },
     pages(){
-        return  Math.ceil(this.bid.length / this.porPagina)  
+        return  Math.ceil(this.card.length / this.porPagina)  
       },
     ...mapState({
-      bid: state => state.bidApp.bids,
+      card: state => state.bidApp.myBids,
       user: state => state.userApp.user
     })
   },
@@ -105,14 +105,8 @@ export default {
       
     }
   },
-  async created(){
-        await this.$store.dispatch('getAllBids', this.bid).then(() =>{
-            for (let i = 0; i < this.bid.length; i++) {
-                if(this.bid[i].idOrganizer == this.user.uid){
-                    this.card.push(this.bid[i])
-                } 
-            }
-        })    
+  created(){
+        this.$store.dispatch('getMyBids', this.user.uid)
     },
 };
 </script>

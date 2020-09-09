@@ -3,6 +3,7 @@ export default{
   state: {
      bids: [],
      bid: {},
+     myBids:{}
   },
   mutations: {
     setAllBids(state, payload) {
@@ -10,6 +11,9 @@ export default{
      },
     setBid(state, payload) {
       state.bid = payload;
+    },
+    setMyBids(state, payload){
+      state.myBids = payload
     },
     resetBid(state) {
       state.bid = {
@@ -48,6 +52,30 @@ export default{
           .catch((err) => {
             commit('ALGO_INESPERADO', err.message)
           });
+      },
+      getMyBids({commit},filter){
+        firebase
+        .firestore()
+        .collection("leilao")
+        .where('idOrganizer','==', filter)
+        .get()
+        .then(snapshot => {
+          let bidsList = [];
+          snapshot.forEach(doc => {
+            bidsList.push({
+              id:doc.id,
+              name:doc.data().name,
+              description:doc.data().description,
+              imgUrl: doc.data().imgUrl,
+              items:doc.data().items,
+              startsOn: doc.data().startsOn,
+              closedAt: doc.data().closedAt,
+              idOrganizer: doc.data().idOrganizer
+            });
+            commit('setMyBids', bidsList);
+          });
+        })
+
       },
       createBid({ commit }, payload) {
         firebase
