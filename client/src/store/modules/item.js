@@ -68,8 +68,7 @@ export default{
         .firestore()
         .collection("artigo")
         .doc(payload)
-        .get()
-        .then((doc) => {
+        .onSnapshot(doc =>{
           const item = {
             id: doc.id,
             active: doc.data().active,
@@ -82,9 +81,7 @@ export default{
           };
           return commit("setItem", item);
         })
-        .catch((err) => {
-          commit('ALGO_INESPERADO', err.message);
-        });
+        
     },
     createItem({ commit }, payload) {
       firebase

@@ -62,7 +62,6 @@
         />
       </v-row>
     </v-card>
-    {{card}}
   </v-app>
 </template>
 
