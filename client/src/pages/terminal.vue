@@ -11,6 +11,7 @@
                 <inputInfoLote/>       
             </v-col>
         </v-row>
+        {{verificador()}}
         {{'usuario '+user.uid}}
         {{'oragnizador '+organizer}}
     </v-app>
@@ -37,15 +38,7 @@ export default {
     },
     created() {
         this.$store.dispatch('getLances',this.rotar.id)
-        this.$store.dispatch('getItemByID', this.rotar.id)
-        if(!this.user.refreshToken){
-            this.$store.commit('MENSAGEM_LOGUE')
-            this.$router.push('/')
-        }else{
-            this.verificador();
-        }  
-        
-        
+        this.$store.dispatch('getItemByID', this.rotar.id)  
     },
     computed: {
         ...mapState({
@@ -55,11 +48,13 @@ export default {
     },
     methods: {
         verificador(){
+            if(!this.user.refreshToken){
+            this.$store.commit('MENSAGEM_LOGUE')
+            this.$router.push('/')
+            }
             if(this.user.uid != this.organizer){
                return this.$route.push('/')
-           }else{
-               return alert('foi')
-           }
+            }
         }
     },
 }
