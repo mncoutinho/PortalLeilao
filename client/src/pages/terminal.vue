@@ -11,8 +11,8 @@
                 <inputInfoLote/>       
             </v-col>
         </v-row>
-        {{user}}
-        {{organizer}}
+        {{'usuario '+user.uid}}
+        {{'oragnizador '+organizer}}
     </v-app>
 </template>
 <script>
@@ -21,6 +21,7 @@ import lances from "../components/bid/articles/getLances"
 import arremate from "../components/bid/articles/arrematador"
 import infoLote from "../components/bid/articles/getInfoItem"
 import inputInfoLote from "../components/bid/articles/inputInfoItem"
+import {mapState} from 'vuex'
 export default {
     components:{
         artigo,
@@ -37,13 +38,27 @@ export default {
     created() {
         this.$store.dispatch('getLances',this.rotar.id)
         this.$store.dispatch('getItemByID', this.rotar.id)
+        if(!this.user.refreshToken){
+            this.$store.commit('MENSAGEM_LOGUE')
+            this.$router.push('/')
+        }else{
+            this.verificador();
+        }  
+        
+        
+    },
+    computed: {
+        ...mapState({
+            user: state => state.userApp.user,
+            organizer: state => state.itemApp.item.idOrganizer,
+        })
     },
     methods: {
         verificador(){
-            if(this.user == this.organizer){
-               return this.$store.commit('MENSAGEM_FEED',this.user+ " "+ this.organizer)
-           }else{
+            if(this.user.uid != this.organizer){
                return this.$route.push('/')
+           }else{
+               return alert('foi')
            }
         }
     },
