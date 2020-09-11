@@ -1,10 +1,11 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import firebase from "firebase/app";
-import alerts from "./modules/alerts"
-import user from "./modules/user"
-import item from "./modules/item"
-import bid from "./modules/bid"
+import alerts from "./modules/alerts";
+import user from "./modules/user";
+import item from "./modules/item";
+import bid from "./modules/bid";
+import mensagens from "./modules/mensagens"
 
 Vue.use(Vuex);
 
@@ -14,11 +15,13 @@ export default new Vuex.Store({
     itemApp: item,
     bidApp: bid,
     alerts,
+    mensagens
   },
   state: {
     category: [],
     uf: [],
-    alerts:[]
+    alerts:[],
+    mensagens:[]
   },
   mutations: {
     setCategories(state, payload) {

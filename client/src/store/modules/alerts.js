@@ -83,18 +83,28 @@ export default {
             state.mostra = true
         },
         SEM_PERMICAO(state, payload) {
-            state.text = 'Voce não tem permissão para isso ' + payload,
-            state.cor = 'blue',
+            state.text = 'Voce não tem permissão para isso :' + payload,
+            state.cor = 'red',
             state.tempo = 5000,
             state.mostra = true,
             state.top = false,
             state.left = true,
             state.botton = true
         },
-        MENSAGEM_FEED(state,payload){
-            state.text = payload,
+        MENSAGEM_FEED(state, payload){
+            state.text = 'Você' + payload,
             state.top = false,
+            state.tempo = 5000,
             state.cor = 'blue',
+            state.left = true,
+            state.botton = true
+        },
+        MENSAGEM_ERRO(state, payload) {
+            state.text = payload,
+            state.cor = 'red',
+            state.tempo = 5000,
+            state.mostra = true,
+            state.top = false,
             state.left = true,
             state.botton = true
         }
