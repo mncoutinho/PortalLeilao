@@ -106,7 +106,7 @@ export default {
 					this.$store.commit('MENSAGEM_LOGUE')
 				}
 			}else{
-				this.$store.commit('MENSAGEM_FEED', 'vc n pode da um lance abaixo')
+				this.$store.commit('MENSAGEM_ERRO',  ` valor igual ou abaixo, R$ ${this.lanceNow},00`)
 			}
 		},
 		// Teste
