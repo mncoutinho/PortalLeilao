@@ -51,6 +51,7 @@
                 </v-card>
             </v-row>    
         </v-col>
+        {{user.uid}}
     </v-card>            
 </template>
 
@@ -63,27 +64,19 @@ export default {
     },
     data(){
         return{
-            pesquisar:null,
-            card:[],
+            pesquisar:null, 
             items:[],
-            target:{},
-             
+            target:{} 
         }
     },
     computed: {
         ...mapState({
-        item: state => state.itemApp.items,
+        card: state => state.itemApp.myItems,
         user: state => state.userApp.user,
         })
     },
-    async created(){
-        await this.$store.dispatch('getAllItems', this.item).then(() =>{
-            for (let i = 0; i < this.item.length; i++) {
-                if(this.item[i].idOrganizer == this.user.uid){
-                    this.card.push(this.item[i])
-                } 
-            }
-        })    
+    created(){
+        this.$store.dispatch('getMyItems', this.user.uid)    
     },
     methods:{
         status(status){

@@ -2,6 +2,7 @@ import firebase from "firebase/app";
 export default{
   state: {
     items: [],
+    myItems:[],
     item: {},
     lances: [],
     target: "",
@@ -30,6 +31,9 @@ export default{
     },
     setAllItems(state, payload) {
       state.items = payload;
+    },
+    setMyItems(state, payload){
+      state.myItems = payload;
     },
     setMSG(state, payload){
       state.msg = payload
@@ -61,6 +65,30 @@ export default{
         .catch((err) => {
           commit('ALGO_INESPERADO', err.message)
         });
+    },
+    getMyItems({commit}, filter){
+      console.log(filter)
+      firebase
+      .firestore()
+      .collection("artigo")
+      .where("IdOrganizer", "==", filter)
+      .onSnapshot(snapshot =>{
+        let items = []
+        snapshot.forEach((doc) => {
+          console.log('achei')
+          items.push({
+            id: doc.id,
+            active: doc.data().active,
+            category: doc.data().category,
+            description: doc.data().description,
+            imgUrl: doc.data().imgUrl,
+            initialBid: doc.data().initialBid,
+            name: doc.data().name,
+            idOrganizer: doc.data().IdOrganizer,
+          })
+        })
+        commit('setMyItems', items)
+      })
     },
     getItemByID({ commit }, payload) {
       console.log(payload)
