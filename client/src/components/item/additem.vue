@@ -158,6 +158,7 @@ export default {
     addartigo() {
       this.artigo.IdOrganizer = this.user.uid;     
       this.$store.dispatch('createItem', this.artigo).then(()=>{
+        this.$store.commit('MSG_COMFIRMACAO', `comfirmado o leilão de ${this.user.uid}`)
         this.$store.dispatch('getAllItems')
       })
       this.$router.push('/')
