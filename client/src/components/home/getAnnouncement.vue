@@ -1,6 +1,6 @@
 <template>
   <!--ANUNCIO-->
-  <v-card width="90%" height="300" class="mx-auto" flat>
+  <v-card width="90%" class="mx-auto" flat>
     <v-col class="mt-9">
       <v-row justify="space-around">
         <!--ANUNCIO 1-->

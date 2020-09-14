@@ -60,15 +60,16 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 export default {
     computed:{ 
         ...mapState({
-            streams: state => state.itemApp.items,
+            streams: (state) => state.itemApp.items,
             user: (state) => state.userApp.user,
         }),
+        ...mapGetters(["itensAtivos"]),
         limitador () {
-            return this.streams.slice(0,8)
+            return this.itensAtivos.slice(0,8)
         },
     },
     methods:{
