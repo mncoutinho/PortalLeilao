@@ -1,10 +1,10 @@
 <template>
-  <!--LIVES FUTURAS-->
+      <!-- BOX-->
         <v-flex class="mt-auto">
             <v-card 
-            max-width="1550" 
+            max-width="1550"
             class="mx-auto"
-            flat >    
+            flat>
                 <v-row justify="center">
                     <v-col 
                     cols="12"
@@ -17,72 +17,82 @@
                             <v-divider class="mx-8" color="white"/>
                         </p>
                     </v-col>
-                </v-row>
-                <!--CARDS-->
-                <v-hover 
-                v-slot:default="{ hover }"
-                open-delay="100">
-                    <v-row align="center" justify="space-around" class="mt-12">       
-                        <v-card
-                        :elevation="hover ? 16 : 2"
-                        style="cursor:pointer"
-                        class="mt-6 mb-6"
-                        width="330" 
-                        v-for="item in lives"
-                        :key="item.nome">
-                          <!--  <iframe width="100%" height="250" src="https://www.youtube.com/embed/gZjdAWgjLx8" 
-                                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen>    
-                            </iframe> -->
-                            <v-list-item-content class="ml-5">
-                                <div> 
-                                <span style="color:Orange">Em Breve</span>
-                                    <v-list-item-title style="color:#63432D" 
-                                    class="bold headline mb-1" v-text="item.nome"/>
-                                <v-list-item-subtitle style="color:#1B120C" v-text="item.informacoes"/>
-                                    <v-divider class="mx-5" color="#EDE7E2"/>
-                                </div>    
+                </v-row >
+                <!--TRANSMISSOES-->
+                    <v-hover 
+                    v-slot:default="{ hover }"
+                    open-delay="100">  
+                        <v-row 
+                        align="center" 
+                        justify="space-around" 
+                        class="mt-12"
+                        >
+                            <v-card
+                            class="mt-6 mb-6"
+                            style="cursor:pointer"
+                            width="330"
+                            :elevation="hover ? 16 : 2"
+                            v-for="stream in limitador"
+                            :key="stream.nome"
+                            >
+                                <v-img width="100%" height="300" :src="stream.imgUrl[0]" 
+                                /> 
+                                <v-list-item-content class="ml-5">
+                                    <div>     
+                                        <span :style="color(stream.active)" >{{status(stream.active)}}</span>
+                                        <v-list-item-title style="color:#63432D" class="bold headline mb-1">{{stream.name}}</v-list-item-title>
+                                        <v-list-item-subtitle style="color:#1B120C" class="mb-2">{{stream.description}}</v-list-item-subtitle>
+                                            <v-divider class="mx-5" color="#EDE7E2"/>
+                                </div>            
                                 <v-row class="mr-5" justify="center">
-                                    <v-btn outlined rounded class="pr-5 pl-5" color="orange">Em breve</v-btn>
-                                </v-row>  
-                            </v-list-item-content>   
-                        </v-card>
-                        <!--BOTAO-->
-                        <!-- <v-btn
-                        width="20%"
-                        height="420"
-                        color="#EDE7E2"
-                        >   
-                            <v-col>
-                                <h1 class="display-4" style="color:#342B25">+</h1>
-                                <h6 style="color:#342B25">Para ver mais...</h6>
-                            </v-col>  
-                        </v-btn> -->
-                    </v-row>
-                </v-hover>
+                                    <v-btn outlined rounded class="pr-12 pl-12 mt-4 mb-2" :style="color(stream.active)" @click="logado(stream.id)">{{status(stream.active)}}</v-btn>
+                                </v-row>
+                                </v-list-item-content>   
+                            </v-card>
+                        </v-row>
+                    </v-hover>
+                <v-row align="center" justify="space-around" class="mt-12">
+                </v-row>
             </v-card>
         </v-flex>
 </template>
 
 <script>
+import { mapGetters, mapState } from 'vuex'
 export default {
-    data(){
-        return{
-            item:[
-                {text: 'Inicio', disabled: false, to: '#'},
-                {text: 'Produto', disabled: true, },
-            ],
-            lives:[
-                {nome:'Nome Dá Prox Transmissao 1', informacoes:'Texto 1'},
-                {nome:'Nome Dá Prox Transmissao 2', informacoes:'Texto 2'},
-                {nome:'Nome Dá Prox Transmissao 3', informacoes:'Texto 3'},
-                {nome:'Nome Dá Prox Transmissao 4', informacoes:'Texto 4'},
-            ]
-        }
-    }
+    computed:{ 
+        ...mapState({
+            streams: (state) => state.itemApp.items,
+            user: (state) => state.userApp.user,
+        }),
+        ...mapGetters(["itensFinalizados"]),
+        limitador () {
+            return this.itensFinalizados.slice(0,4)
+        },
+    },
+    methods:{
+        status(status){
+            if(status){
+              return "Participar"
+            }else{
+               return "Finalizado" 
+            }
+        },
+        color(status){
+            if(status){
+              return "color:green"
+            }else{
+               return "color:red" 
+            }
+        },
+        logado(id){
+            if(!this.user.email){
+                return this.$router.push('/login')
+            }else{
+                this.target = id 
+                return this.$router.push({path:'/leilao', query:{id:this.target}})
+            }
+        }    
+    },
 }
 </script>
-
-<style>
-
-</style>
