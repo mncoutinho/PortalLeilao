@@ -112,8 +112,8 @@ export default{
           .collection("leilao")
           .doc(payload.id)
           .update(payload)
-          .then((doc) => {
-            return commit('MOSTRAR_CONTEUDO', doc.name + " atualizado com sucesso");
+          .then(() => {
+            return commit('MOSTRAR_CONTEUDO', payload.name + " atualizado com sucesso");
           })
           .catch((err) => {
             commit('ALGO_INESPERADO', err.message);
@@ -131,12 +131,13 @@ export default{
             items: [],
             closedAt: doc.data().closedAt,
             local: doc.data().local,
-            phone: doc.data(),
+            tel: doc.data().tel,
             startsOn: doc.data().startsOn,
             organizer: doc.data().organizer,
             idOrganizer: doc.data().idOrganizer,
             name: doc.data().name,
-            mail: doc.data().mail,
+            imgUrl: doc.data().imgUrl,
+            email: doc.data().email,
             description: doc.data().description,
             id: doc.id 
           }

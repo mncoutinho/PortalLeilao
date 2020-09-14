@@ -100,7 +100,7 @@ export default {
     },
     editar(bid){
       this.$store.dispatch("getBidById", bid.id);
-      this.$router.push("/updateLeilao")
+      this.$router.push({path:"/updateLeilao", query:{id:bid.id}})
       
     }
   },
