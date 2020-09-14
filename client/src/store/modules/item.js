@@ -142,7 +142,6 @@ export default{
       firebase
       .database()
       .ref("artigo/" + payload+"/lances")
-     
       .on('child_added', doc =>{
         console.log("foi adicionado lance")
         lances.push({
@@ -209,5 +208,12 @@ export default{
         });
     },
   },
-  getters: {},
+  getters: {
+    itensFinalizados(state){
+      return state.items.filter(itensAtivo => itensAtivo.active === false)
+    },
+    itensAtivos(state){
+      return state.items.filter(itensAtivo => itensAtivo.active === true)
+    },
+  },
 }
