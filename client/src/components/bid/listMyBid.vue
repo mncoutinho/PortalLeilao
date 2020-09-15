@@ -27,46 +27,50 @@
               <v-card-title class="subtitle-2">{{card.description}}</v-card-title>
               <v-card-subtitle>{{card.startsOn}} - {{card.closedAt}}</v-card-subtitle>
               <v-divider />
-              <v-card-subtitle class="title">Lotes: {{ card.items }}</v-card-subtitle>
+              <v-card-subtitle class="title">Lotes: {{pegar}}</v-card-subtitle>
             </v-col>
           </v-row>
-          <v-btn
-            large
-            color="#422321"
-            class="white--text"
-          >
-            Ver Lotes
-          </v-btn>
-          <v-btn
-            large
-            color="#422321"
-            class="white--text"
-            @click="editar(card)"
-          >
-            Editar
-          </v-btn>
-          <v-btn
-          large
-            color="#422321"
-            class="white--text"
-            @click="deletar(card)"
-          >
-            Deletar
-          </v-btn>
+          <v-row  justify="center"> 
+            <v-col cols="6" align="center">
+              <v-btn
+                large
+                color="#422321"
+                class="white--text"
+              >
+                Ver Lotes
+              </v-btn>
+              <v-btn
+                large
+                color="#422321"
+                class="white--text mt-2"
+                @click="editar(card)"
+              >
+                Editar
+              </v-btn>
+              <v-btn
+              large
+                color="#422321"
+                class="white--text mt-2"
+                @click="deletar(card)"
+              >
+                Deletar
+              </v-btn>
+            </v-col>
+          </v-row>
         </v-card>
-        <v-pagination
+      </v-row>
+    </v-card>
+    <v-pagination
           v-model="page"
           :length="pages"
           circle
           color="#422321"
         />
-      </v-row>
-    </v-card>
   </v-app>
 </template>
 
 <script>
-import { mapState} from "vuex";
+import { mapState, mapGetters} from "vuex";
 export default {
   data() {
     return {
@@ -82,6 +86,7 @@ export default {
     pages(){
         return  Math.ceil(this.card.length / this.porPagina)  
       },
+    ...mapGetters(['pegar']),
     ...mapState({
       card: state => state.bidApp.myBids,
       user: state => state.userApp.user
@@ -101,7 +106,6 @@ export default {
     editar(bid){
       this.$store.dispatch("getBidById", bid.id);
       this.$router.push({path:"/updateLeilao", query:{id:bid.id}})
-      
     }
   },
   async created(){
