@@ -144,7 +144,7 @@ export default {
 					return "00"
 				}
 			}else{	
-				for (var i = 0; i < this.lances.length; i++) {
+				for (let i = 0; i < this.lances.length; i++) {
 				now = this.lances[i].lance;
 				}	
 				return  now;

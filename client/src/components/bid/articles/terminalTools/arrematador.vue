@@ -7,7 +7,7 @@
 		</v-card-title>
             <v-btn
 				width="100%"
-				color="#422321"
+				color="red"
 				class="white--text"
 				large
                 v-on:click="arremate()"
@@ -22,7 +22,7 @@ import {mapState} from 'vuex';
 export default {
     data() {
         return {
-            status: ""
+			status: "",
         }
     },
     computed:{
@@ -39,7 +39,7 @@ export default {
 					return "00"
 				}
 			}else{	
-				for (var i = 0; i < this.lances.length; i++) {
+				for (let i = 0; i < this.lances.length; i++) {
 				now = this.lances[i].lance;
 				}	
 				return  now;
@@ -59,9 +59,9 @@ export default {
 		},
 		button(item) {
 			if(item){
-				return this.status = "fechar lote"
+				return this.status = "fechar lote" 
 			}else{
-				return this.status = "abrir lote"
+				return this.status = "abrir lote" 
 			}
 		},
     }
