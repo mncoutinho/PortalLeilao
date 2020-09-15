@@ -27,7 +27,7 @@
             <v-col>
               <v-card-title class="subtitle-2">{{card.description}}</v-card-title>
               <v-card-subtitle>{{card.startsOn}} - {{card.closedAt}}</v-card-subtitle>
-              <v-card-subtitle class="title">Lotes: {{ card.items }}</v-card-subtitle>
+              <v-card-subtitle class="title">Lotes: {{ pegar }}</v-card-subtitle>
             </v-col>
           </v-row>
           <v-divider/>
@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import { mapState} from "vuex";
+import { mapState, mapGetters} from "vuex";
 export default {
   data() {
     return {
@@ -67,6 +67,7 @@ export default {
     paginacao () {
       return this.cards.slice((this.page - 1) * this.porPagina, this.page * this.porPagina)
     },
+    ...mapGetters(['pegar']),
     ...mapState({
       cards: state => state.bidApp.bids
     })
