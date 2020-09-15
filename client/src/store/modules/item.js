@@ -6,7 +6,7 @@ export default{
     item: {},
     lances: [],
     target: "",
-    msg: null
+    msg: []
   },
   mutations: {
     setLances(state, payload) {
@@ -159,18 +159,22 @@ export default{
       .ref("artigo/"+id+"/mensagem/")
       .push(info)
       .then((doc)=>{
-        console.log("artigo/"+id+"/mensagem/")
         commit('MOSTRAR_CONTEUDO', doc.key)
       })
     },
     getInfo({commit},id){
       firebase
       .database()
-      .ref("artigo/"+id+"/mensagem/")
+      .ref("artigo/"+id+"/mensagem")
       .on('child_added',doc =>{
+        console.log("foi adicionado uma mensagem")
         commit('POSSUI_MENSAGEM')
         let msg = [] 
-        msg.push(doc.msg)
+        msg.push({
+          text: doc.exportVal().text,
+          time: doc.exportVal().time
+        })
+        console.log(msg)
         commit("setMSG", msg)
       })
     },

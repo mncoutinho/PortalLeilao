@@ -22,7 +22,7 @@ export default {
         })
     },
     created() {
-        this.$store.dispatch('getInfo', {id: this.$route.query.id})
+        this.$store.dispatch('getInfo', this.$route.query.id)
     },
 }
 </script>

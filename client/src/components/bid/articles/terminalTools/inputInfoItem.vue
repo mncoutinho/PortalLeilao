@@ -24,7 +24,13 @@ export default {
         }
     },
     methods: {
-        postMSG(msg){
+        postMSG(text){
+            const time = new Date();
+            const msg = {
+                text: text,
+                time: `hora: ${time.getHours()}:${time.getMinutes()} data: ${time.getDay()}/${time.getMonth()}/${time.getFullYear()}`
+            }
+            console.log(msg)
             this.$store.dispatch('addInfo', {info:msg, id: this.$route.query.id})
         }
     },
