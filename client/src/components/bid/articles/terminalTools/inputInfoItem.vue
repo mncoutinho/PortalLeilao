@@ -1,16 +1,23 @@
 <template>
     <div>
         <v-col cols="10">
+            <v-row>
             <v-textarea
                 v-model="text" 
                 outlined 
                 label="digite aqui"
+                @keyup.enter="postMSG(text)"
+                height="40px"
             />
-            <v-btn
-                @click="postMSG(text)"
-            >
-                publicar
-            </v-btn>
+                    <v-btn
+                        @click="postMSG(text)"
+                        color="brown"
+                        class="white--text ml-12"
+                        x-large
+                    >
+                        publicar
+                    </v-btn>
+            </v-row>
         </v-col>
     </div>
 </template>
