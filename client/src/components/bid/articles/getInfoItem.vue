@@ -11,7 +11,6 @@
         <v-card-text v-else>
             Sem Informaçes sobre esse Lote 
         </v-card-text>
-        {{this.$route.query.id}}
     </div>		
 </template>
 <script>

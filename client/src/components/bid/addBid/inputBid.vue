@@ -109,7 +109,6 @@
                                 color="brown"
                                 v-on:click="addLeilao(leilao);"
                             >Confirmar</v-btn>
-                            {{leilao}}
                         </v-col>
                     </v-form>
             </v-flex>

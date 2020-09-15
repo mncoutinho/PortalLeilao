@@ -138,8 +138,7 @@ export default {
       this.$store.dispatch('updateItem', this.artigo).then(()=>{
         this.$store.commit('MSG_AVISO', `confirmado a atualização do lote de ${this.user.uid}`)
         this.$router.push('/leiloeiro');
-      })
-         
+      })    
     }
   }
 };

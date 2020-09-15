@@ -3,7 +3,6 @@
 		width="100%"
 		flat
 	>
-
 		<v-card-title>
 			<strong>
 				Lance Atual:{{" R$"+ lanceNow+",00"}}

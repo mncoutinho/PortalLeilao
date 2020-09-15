@@ -46,7 +46,6 @@
         circle
         color="#422321"
       />
-      {{cards}}
   </v-app>
 </template>
 

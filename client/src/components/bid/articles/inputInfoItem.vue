@@ -12,7 +12,6 @@
                 publicar
             </v-btn>
             {{text}}
-            {{this.$route.query.id}}
         </v-col>
     </div>
 </template>
