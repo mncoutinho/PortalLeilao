@@ -29,7 +29,7 @@ export default{
       };
     }
   },
-    actions: {
+  actions: {
       getAllBids({ commit }) {
         firebase.firestore().collection("leilao").get()
           .then(snapshot => {
@@ -145,7 +145,11 @@ export default{
         }).catch((err) => {
           commit('ALGO_INESPERADO', err.message);
         });
-        
       },
+  },
+  getters:{
+    pegar(state){
+      return state.myBids.length
     }
+  },
 }
