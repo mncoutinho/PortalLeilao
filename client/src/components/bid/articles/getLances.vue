@@ -17,22 +17,22 @@
 			</small>
 		</v-card-text>
         <v-row>
-				<v-col>
-					Usuário
-				</v-col>
-				<v-col>
-					Lance
-				</v-col>
-				<v-col>
-					Hora
-				</v-col>
-			</v-row>
-			<div
-				class="over"
-			>
-				<v-row 
-				v-for="lance in lances" 
-				:key="lance.length"
+			<v-col>
+				Usuário
+			</v-col>
+			<v-col>
+				Lance
+			</v-col>
+			<v-col>
+				Hora
+			</v-col>
+		</v-row>
+		<div
+			class="over"
+		>
+			<v-row 
+			v-for="lance in lances" 
+			:key="lance.length"
 			>
 				<v-col>
 					<small v-text="lance.user"/>
@@ -44,7 +44,7 @@
 					<small v-text="lance.time"/>
 				</v-col>
 			</v-row>
-			</div>
+		</div>
 </div>  
 </template>
 

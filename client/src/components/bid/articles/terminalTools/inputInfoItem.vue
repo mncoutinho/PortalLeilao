@@ -11,7 +11,6 @@
             >
                 publicar
             </v-btn>
-            {{text}}
         </v-col>
     </div>
 </template>
@@ -28,7 +27,7 @@ export default {
             const time = new Date();
             const msg = {
                 text: text,
-                time: `hora: ${time.getHours()}:${time.getMinutes()} data: ${time.getDay()}/${time.getMonth()}/${time.getFullYear()}`
+                time: `${time.getDay()}/${time.getMonth()}/${time.getFullYear()}-${time.getHours()}:${time.getMinutes()}`
             }
             console.log(msg)
             this.$store.dispatch('addInfo', {info:msg, id: this.$route.query.id})

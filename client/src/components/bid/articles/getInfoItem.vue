@@ -6,7 +6,30 @@
             </strong>
 		</v-card-title>
         <v-card-text v-if="text">
-            {{text}}
+            <v-row>
+            <v-col>
+				Hora
+			</v-col>
+			<v-col>
+				Mensagem
+			</v-col>
+		</v-row>
+		<div
+			class="over"
+		>
+			<v-row 
+			v-for="msgs in text" 
+			:key="msgs.length"
+			>
+                <v-col>
+					<small>{{msgs.time}}</small>
+				</v-col>
+				<v-col>
+					<small v-text="msgs.text"/>
+				</v-col>
+				
+			</v-row>
+		</div>  
         </v-card-text>
         <v-card-text v-else>
             Sem Informaçes sobre esse Lote 
@@ -26,3 +49,11 @@ export default {
     },
 }
 </script>
+
+<style scoped>
+	.over{
+		overflow-y: scroll;
+		overflow-x: hidden;
+		max-height: 30vh;
+	}
+</style>
