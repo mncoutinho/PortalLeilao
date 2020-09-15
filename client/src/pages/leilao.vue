@@ -5,6 +5,7 @@
                 <artigo/>
             </v-col>
             <v-col cols="5" class="mr-2" align='center'>
+                <infoLote/>
                 <getLances/>
                 <lances/>         
             </v-col>
@@ -14,14 +15,14 @@
 <script>
 import lances from "../components/bid/articles/bidTools/InputArticlesBid";
 import artigo from "../components/bid/articles/getArticles"
-//import infoLote from "../components/bid/articles/getInfoItem"
+import infoLote from "../components/bid/articles/getInfoItem"
 import getLances from "../components/bid/articles/getLances"
 export default {
     components:{
         artigo,
         lances,
         getLances,
-        //infoLote
+        infoLote
     },
     data() {
         return {
