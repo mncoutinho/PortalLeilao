@@ -63,6 +63,6 @@ export default {
 	.over{
 		overflow-y: scroll;
 		overflow-x: hidden;
-		max-height: 30vh;
+		max-height: 20vh;
 	}
 </style>

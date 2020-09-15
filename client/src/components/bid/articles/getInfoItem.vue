@@ -8,15 +8,13 @@
         <v-card-text v-if="text">
             <v-row>
             <v-col>
-				Hora
+				<h4>Hora</h4>	
 			</v-col>
 			<v-col>
-				Mensagem
+				<h4>Mensagem</h4>	
 			</v-col>
 		</v-row>
-		<div
-			class="over"
-		>
+		<div class="over balao" >
 			<v-row 
 			v-for="msgs in text" 
 			:key="msgs.length"
@@ -27,7 +25,6 @@
 				<v-col>
 					<small v-text="msgs.text"/>
 				</v-col>
-				
 			</v-row>
 		</div>  
         </v-card-text>
@@ -55,5 +52,9 @@ export default {
 		overflow-y: scroll;
 		overflow-x: hidden;
 		max-height: 30vh;
+	}
+	.balao{
+		height: 100px;
+		overflow-y: auto;
 	}
 </style>
