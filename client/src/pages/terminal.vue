@@ -4,11 +4,11 @@
             <v-col cols="6">
                 <artigo/>
             </v-col>
-            <v-col cols="4">
+            <v-col cols="6">
+                <infoLote/> 
+                <inputInfoLote/>   
                 <lances/>
                 <arremate/>
-                <infoLote/> 
-                <inputInfoLote/>       
             </v-col>
         </v-row>
     </v-app>
