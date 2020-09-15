@@ -12,7 +12,7 @@
     </v-app>
 </template>
 <script>
-import lances from "../components/bid/articles/InputArticlesBid";
+import lances from "../components/bid/articles/bidTools/InputArticlesBid";
 import artigo from "../components/bid/articles/getArticles"
 //import infoLote from "../components/bid/articles/getInfoItem"
 import getLances from "../components/bid/articles/getLances"

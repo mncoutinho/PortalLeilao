@@ -16,9 +16,9 @@
 <script>
 import artigo from "../components/bid/articles/getArticles"
 import lances from "../components/bid/articles/getLances"
-import arremate from "../components/bid/articles/arrematador"
+import arremate from "../components/bid/articles/terminalTools/arrematador"
 import infoLote from "../components/bid/articles/getInfoItem"
-import inputInfoLote from "../components/bid/articles/inputInfoItem"
+import inputInfoLote from "../components/bid/articles/terminalTools/inputInfoItem"
 import {mapState} from 'vuex'
 export default {
     components:{
