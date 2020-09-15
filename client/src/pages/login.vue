@@ -36,7 +36,6 @@
           </v-col>
         </v-card>
        </v-row>
-        {{accountData}}
     </v-main>
 </template>
 <script>

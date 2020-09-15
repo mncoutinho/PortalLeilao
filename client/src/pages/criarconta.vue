@@ -65,8 +65,9 @@
                             large
                             style="postion: absolute;top:-68px;left:-100px"
                             @click="voltarStep"
-                        >Voltar</v-btn>
-                        
+                        >
+                            Voltar
+                        </v-btn>
                     </v-card>
                 </v-window-item>
                 <!--Button-->

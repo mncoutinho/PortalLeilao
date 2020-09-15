@@ -11,9 +11,6 @@
                 <inputInfoLote/>       
             </v-col>
         </v-row>
-        {{verificador()}}
-        {{'usuario '+user.uid}}
-        {{'oragnizador '+organizer}}
     </v-app>
 </template>
 <script>

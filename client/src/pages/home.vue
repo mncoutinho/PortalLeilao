@@ -21,7 +21,6 @@ import anuncioPagamento from "../components/home/paymentAnnouncement"
 
 export default {
     components:{
-        
         banner,
         anuncio,
         livesAtivas,

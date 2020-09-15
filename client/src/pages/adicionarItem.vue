@@ -1,7 +1,6 @@
 <template>
       <v-container>
         <addItem/>
-      
       </v-container>
 </template>
 <script>

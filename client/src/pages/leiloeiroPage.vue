@@ -9,22 +9,19 @@
           <v-window-item :value="1" >
             <principalPage/>
           </v-window-item>
+          <!-- item -->
           <v-window-item :value="2" >
             <produtos/>
           </v-window-item>
-          <v-window-item :value="3">
-                     
-            <addItem/>
-            
+          <v-window-item :value="3">          
+            <addItem/>           
           </v-window-item>
           <v-window-item :value="4">           
             <meusProdutos/>
           </v-window-item>
-
           <!-- leilao -->
           <v-window-item :value="5">           
             <listBid/>
-            
           </v-window-item>
           <v-window-item :value="6">           
             <addBid/>
@@ -32,6 +29,7 @@
           <v-window-item :value="7">           
             <listMyBid/>
           </v-window-item>
+          <!-- mala direta -->
         </v-window>
       </v-col>
     </v-row>

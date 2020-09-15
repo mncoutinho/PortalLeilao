@@ -5,7 +5,6 @@
                 <artigo/>
             </v-col>
             <v-col cols="5" class="mr-2" align='center'>
-                
                 <getLances/>
                 <lances/>         
             </v-col>
