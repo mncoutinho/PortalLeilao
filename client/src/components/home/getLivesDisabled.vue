@@ -13,7 +13,7 @@
                     class="mt-12"
                     >
                         <p class="mt-8 display-1" style="color:#A64E4B">
-                            Veja os proximos leiloes
+                            Veja os próximos leiloes
                             <v-divider class="mx-8" color="white"/>
                         </p>
                     </v-col>

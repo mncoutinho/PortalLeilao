@@ -16,7 +16,7 @@
                             <v-text-field
                             v-model="leilao.name" 
                             name="title" 
-                            label="Nome do leilao*"/>
+                            label="Nome do leilão*"/>
                             <!--carregar foto-->
                             <v-file-input
                                 v-model="image"
@@ -25,7 +25,7 @@
                                 multiple
                                 show-size
                                 counter
-                                label="Banner do leilao*"
+                                label="Banner do leilão*"
                                 @change="onUpload"
                             />
                             <!--imagem-->
@@ -46,12 +46,12 @@
                             <v-text-field
                             v-model="leilao.local" 
                             name="title" 
-                            label="Local do leilao*" />
+                            label="Local do leilão*" />
                             <!--descriçao-->
                             <v-textarea
                             v-model="leilao.description" 
                             name="title" 
-                            label="Descricao do Leilao*"/>
+                            label="Descricao do Leilão*"/>
                             <!--data-->
                             <v-flex row>
                                 <v-col xs12 sm6 offset-sm3>

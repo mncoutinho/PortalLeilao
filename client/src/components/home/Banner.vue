@@ -10,7 +10,7 @@
                 justify="center"
             >
             <v-col cols="12" md="6" class="text-center">
-                <h1 style=" color:white" class=" display-2 font-weight-thin mb-4 ">Portal Leilao</h1>
+                <h1 style=" color:white" class=" display-2 font-weight-thin mb-4 ">Portal Leilão</h1>
                 <v-text-field
                     v-model="pesquisar"
                     append-icon="mdi-magnify"
