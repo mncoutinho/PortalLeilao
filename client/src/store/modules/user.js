@@ -1,4 +1,4 @@
-import firebase from "firebase/app";
+import firebase  from "firebase/app";
   export default{
         state: {
           user: {},
@@ -99,6 +99,23 @@ import firebase from "firebase/app";
                 commit("setError", err);
                 console.log(err);
               });
+          },
+          updateData({commit}, id,data){
+              firebase
+              .firestore
+              .collection("user")
+              .doc(id)
+              .update(data)
+              .then((doc)=>{
+                commit("setUserData", doc.data());
+                commit('ALTERADO_SUCESSO');
+              })
+              .catch((err)=>{
+                commit("setLoading", false);
+                commit("setError", err);
+                console.log(err);
+              })
+
           },
           //isso loga o lucas
           signUserIn({ commit }, payload) {
