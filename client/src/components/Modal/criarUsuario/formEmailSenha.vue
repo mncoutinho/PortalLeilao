@@ -52,7 +52,7 @@
             type="password"
             v-model="accountData.confirmacao"
             autocomplete="true"
-            label="Comfirmar Senha"
+            label="Confirmar Senha"
             placeholder="**********"
             />
         </v-col>
@@ -86,15 +86,17 @@ export default {
         return this.accountData.email && this.accountData.senha !== '' ? false : true
       },
       comparePasswords () {
-        return this.accountData.senha !== this.accountData.confirmacao ? 'senha incorreta' : 'senha correta'
+        return this.accountData.senha !== this.accountData.confirmacao ? 'senhas diferentes' : true
       },
   },
   methods:{
     LoginF(){
-      this.$store.dispatch('loginFacebook')
+       console.log(this.accountData)
+      this.$store.dispatch('loginFacebook',this.accountData)
     },
     LoginG(){
-      this.$store.dispatch('loginGoogle')
+       console.log(this.accountData)
+       this.$store.dispatch('loginGoogle',this.accountData)
     }
   },
   data () {
