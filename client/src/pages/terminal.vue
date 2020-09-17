@@ -28,14 +28,9 @@ export default {
         infoLote,
         inputInfoLote
     },
-    data() {
-        return {
-            rotar: this.$route.query
-        }
-    },
     created() {
-        this.$store.dispatch('getLances',this.rotar.id)
-        this.$store.dispatch('getItemByID', this.rotar.id)  
+        this.$store.dispatch('getLances', this.$route.query.id)
+        this.$store.dispatch('getItemByID', this.$route.query.id)  
     },
     computed: {
         ...mapState({

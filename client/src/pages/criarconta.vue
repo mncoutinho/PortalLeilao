@@ -89,7 +89,6 @@ export default {
         personal,
         Address
     },
-    
     data() {
         return{
             personalData:{},
@@ -118,8 +117,7 @@ export default {
                     color:"#422321",
                 }
             ],
-            step: 1,
-            UF: ['SP', 'RJ', 'MG', 'PR', 'MN'],            
+            step: 1,          
         }
     },
     computed:{

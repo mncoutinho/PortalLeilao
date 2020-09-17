@@ -44,8 +44,6 @@ import listBid from "../components/bid/listbid"
 import listMyBid from "../components/bid/listMyBid"
 import addItem from  "../components/item/additem"
 import addBid from "../components/bid/addBid/inputBid"
-
-
 import principalPage from "../components/leiloeiro/principalPage"
 
 export default {

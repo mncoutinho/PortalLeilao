@@ -8,7 +8,6 @@
                 </v-col>
             </v-row>
         </v-layout>
-        
     </v-app>
 </template>      
 <script>
@@ -18,10 +17,6 @@ export default {
     components:{
         Produtos,
         Menu
-    },
-    data(){
-        return{
-        }
     }
 }
 </script>    
