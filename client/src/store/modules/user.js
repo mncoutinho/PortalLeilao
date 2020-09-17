@@ -115,7 +115,6 @@ import firebase  from "firebase/app";
                 commit("setError", err);
                 console.log(err);
               })
-
           },
           //isso loga o lucas
           signUserIn({ commit }, payload) {

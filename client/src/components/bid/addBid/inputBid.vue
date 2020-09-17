@@ -103,7 +103,7 @@
                                 label="Termos & Condições"
                                 v-model="termos.condicoes"   
                             />
-                            <!--botão para comfirmar-->
+                            <!--botão para confirmar-->
                             <v-btn
                                 class="col-12 white--text"
                                 color="brown"

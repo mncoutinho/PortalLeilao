@@ -17,7 +17,7 @@
                             @email="getAccountData"
                             :buttons="buttons" 
                             @clicked="clique"
-                            :comfirmarLayout ="comfirmar"
+                            :confirmarLayout ="confirmar"
                         />
                         <v-btn
                             color=#422321
@@ -94,7 +94,7 @@ export default {
             accountData:{},
             enderecoData:{},
             //botoes
-            comfirmar:true,
+            confirmar:true,
             buttons:[
                 {
                     text:"Criar",

@@ -47,7 +47,7 @@
             />
             <v-text-field
             required
-            v-if="comfirmarLayout"
+            v-if="confirmarLayout"
             :rules="[regras.requisicao, regras.min, comparePasswords]"
             type="password"
             v-model="accountData.confirmacao"
@@ -80,7 +80,7 @@
 </template>
 <script>
 export default {
-  props: ['titulo','buttons', 'comfirmarLayout'],
+  props: ['titulo','buttons', 'confirmarLayout'],
   computed:{
       estaDesativado(){
         return this.accountData.email && this.accountData.senha !== '' ? false : true
