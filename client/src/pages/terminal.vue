@@ -29,6 +29,7 @@ export default {
         inputInfoLote
     },
     created() {
+        this.$store.commit('clearData')
         this.$store.dispatch('getLances', this.$route.query.id)
         this.$store.dispatch('getItemByID', this.$route.query.id)  
     },

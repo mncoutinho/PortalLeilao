@@ -12,19 +12,10 @@ export default{
     setLances(state, payload) {
       state.lances = payload;
     },
-    resetLances(state) {
-      state.lances = {};
-    },
-    resetItem(state) {
-      state.item = {
-        active: true,
-        category: "",
-        description: "",
-        imgUrl: [],
-        initialBid: 0,
-        name: "",
-        bids: [],
-      };
+    clearData(state){
+      state.lances = []
+      state.item = {}
+      state.msg = null
     },
     setItem(state, payload) {
       state.item = payload;
@@ -144,6 +135,7 @@ export default{
       .ref("artigo/" + payload+"/lances")
       .on('child_added', doc =>{
         console.log("foi adicionado lance")
+        commit('MOSTRAR_CONTEUDO','novo lance feito pelo '+ doc.exportVal().user);
         lances.push({
           idUser: doc.exportVal().idUser,
             lance: doc.val().lance,
@@ -151,6 +143,7 @@ export default{
             user: doc.exportVal().user
         })
         commit("setLances", lances);
+        
       })
     },
     addInfo({commit},{info,id}){

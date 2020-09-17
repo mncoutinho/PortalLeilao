@@ -7,9 +7,6 @@
 		</v-card-title>
         <v-card-text v-if="text">
             <v-row>
-            <v-col>
-				<h4>Hora</h4>	
-			</v-col>
 			<v-col>
 				<h4>Mensagem</h4>	
 			</v-col>
@@ -19,11 +16,9 @@
 			v-for="msgs in text" 
 			:key="msgs.length"
 			>
-                <v-col>
-					<small>{{msgs.time}}</small>
-				</v-col>
 				<v-col>
-					<small v-text="msgs.text"/>
+					<h3>{{msgs.text}}</h3>
+					<small>{{msgs.time}}</small>
 				</v-col>
 			</v-row>
 		</div>  
