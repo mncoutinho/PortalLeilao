@@ -1,110 +1,83 @@
 <template>
-  <v-container row>
-    <v-layout>
-      <v-flex xs12 sm6 offset-sm3>
-        <h4 
-          class="brown--text"
-        >
-          Bem-vindo leiloeiro
-        </h4>
-        <p>
-          Cadastrar seu leilão ficou ainda mais fácil, basta apenas preencher o formulário
-          e em breve estará no ar.
-        </p>
-      </v-flex>
-    </v-layout>
-
-    <v-layout row>
-      <v-flex xs12>
-        <form>
-          <v-layout row>
-            <v-flex xs12 sm6 offset-sm3>
-              <v-text-field
-                name="title"
-                label="Nome do produto*"
-                id="title"
-                v-model="artigo.name"
-                required
-              />
-            </v-flex>
-          </v-layout>
-
-          <v-layout row>
-            <v-flex xs12 sm6 offset-sm3>
-              <v-text-field
-                name="Descricao"
-                label="Descrição do produto*"
-                id="title"
-                v-model="artigo.description"
-                required
-              />
-            </v-flex>
-          </v-layout>
-
-          <v-layout row>
-            <v-flex xs12 sm6 offset-sm3>
-              <v-select 
-                :items="categories" 
-                v-model="artigo.category" 
-                label="Defina a categoria"
-              />
-            </v-flex>
-          </v-layout>
-
-          <v-layout row>
-            <v-flex xs12 sm6 offset-sm3>
-              <v-file-input
-                multiple
-                show-size
-                counter
-                @change="onUpload"
-                prepend-icon="mdi-camera"
-                v-model="image"
-                label="Insira a Imagem"
-              />
-              <v-carousel>
-                <v-carousel-item
-                v-for="img in artigo.imgUrl"
-                :key="img"
-                :src="img"/>
-              </v-carousel>
-
-              <v-text-field 
-                class="col-md 2" 
-                v-model="artigo.imgUrl" 
-                label="Imagens" 
-                disabled 
-              />
-            </v-flex>
-          </v-layout>
-
-          <v-layout>
-            <v-flex xs12 sm6 offset-sm3>
-              <v-text-field
-                name="title"
-                label="Valor inicial para lance*"
-                id="title"
-                v-model="artigo.initialBid"
-                required
-              />
-            </v-flex>
-          </v-layout>
-
-          <v-layout row>
-            <v-flex xs12 sm6 offset-sm3>
-              <v-btn 
-                class="col-12" 
-                color="primary" 
-                @click="addartigo"
-              >
-                Confirmar
-              </v-btn>
-            </v-flex>
-          </v-layout>
-        </form>
-      </v-flex>
-    </v-layout>
-  </v-container>
+  <v-app>
+    <v-card flat width="100%">
+      <v-row xs12 sm6 offset-sm3>
+        <v-flex class="mt-10">
+            <h1 class="brown--text text-center">Bem-vindo leiloeiro</h1>
+                <p class="text-center">
+                Cadastrar seu leilão ficou ainda mais fácil, basta apenas preencher o formulário e em breve estará no ar.
+                </p>
+            <v-form class="mx-0">
+              <v-col 
+                class="mx-auto mt-8" 
+                cols="6">
+                  <!--nome do produto-->
+                  <v-text-field
+                  name="title"
+                  label="Nome do produto*"
+                  id="title"
+                  v-model="artigo.name"
+                  required
+                  />
+                  <!--descriçao-->
+                  <v-text-field
+                    name="Descricao"
+                    label="Descrição do produto*"
+                    id="title"
+                    v-model="artigo.description"
+                    required
+                  />
+                  <!--Categoria-->
+                  <v-select 
+                    :items="categories" 
+                    v-model="artigo.category" 
+                    label="Defina a categoria"
+                  />
+                  <!--imagem-->
+                  <v-file-input
+                    multiple
+                    show-size
+                    counter
+                    @change="onUpload"
+                    prepend-icon="mdi-camera"
+                    v-model="image"
+                    label="Insira a Imagem"
+                  />
+                  <!--Carrossel -->
+                  <v-carousel>
+                    <v-carousel-item
+                    v-for="img in artigo.imgUrl"
+                    :key="img"
+                    :src="img"/>
+                  </v-carousel>
+                  <v-text-field 
+                    class="col-md 2" 
+                    v-model="artigo.imgUrl" 
+                    label="Imagens" 
+                    disabled 
+                  />
+                  <!--Valor Inicial-->
+                  <v-text-field
+                    name="title"
+                    label="Valor inicial para lance*"
+                    id="title"
+                    v-model="artigo.initialBid"
+                    required
+                  />
+                  <!--Botão-->
+                  <v-btn 
+                    class="col-12 white--text" 
+                    color="brown"
+                    @click="addartigo"
+                  >
+                    Confirmar
+                  </v-btn>
+                </v-col>
+            </v-form>
+        </v-flex>
+      </v-row>
+    </v-card>
+  </v-app>
 </template>
 
 <script>
