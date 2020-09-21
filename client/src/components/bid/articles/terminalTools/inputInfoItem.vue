@@ -34,7 +34,7 @@ export default {
             const time = new Date();
             const msg = {
                 text: text,
-                time: `${time.getDay()}/${time.getMonth()}/${time.getFullYear()}-${time.getHours()}:${time.getMinutes()}`
+                time: `${time.getDate()}/${time.getMonth()+1}/${time.getFullYear()}-${time.getHours()}:${time.getMinutes()}`
             }
             console.log(msg)
             this.$store.dispatch('addInfo', {info:msg, id: this.$route.query.id})

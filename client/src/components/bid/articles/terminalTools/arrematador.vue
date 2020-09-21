@@ -64,6 +64,7 @@ export default {
         return {
 			status: "",
 			color:"",
+
         }
     },
     computed:{
@@ -81,7 +82,7 @@ export default {
 				}
 			}else{	
 				for (let i = 0; i < this.lances.length; i++) {
-				now = this.lances[i].lance;
+					now = this.lances[i].lance;
 				}	
 				return  now;
 			}				
@@ -89,6 +90,7 @@ export default {
 	},
     methods: {
         arremate(){
+			console.log('ativado')
 			let lance = null;
 			if(this.status == "fechar lote"){
 				lance = false
@@ -96,7 +98,7 @@ export default {
 				lance = true
 			}
 			this.$store.dispatch('finishLance',{id: this.$route.query.id, status: lance})
-			this.$store.dispatch('getItemByID', this.$route.query.id )
+			
 		},
 		button(item) {
 			if(item){
@@ -104,20 +106,20 @@ export default {
 				return this.status = "fechar lote" 
 			}else{
 				this.color = "green"
-				return this.status = "abrir lote" 
+				return this.status = "reabrir lote" 
 			}
 		},
 		alert(type){
 			const time = new Date();
 			let msg = {
-                time: `${time.getDay()}/${time.getMonth()}/${time.getFullYear()}-${time.getHours()}:${time.getMinutes()}`
+                time: `${time.getDate()}/${time.getMonth()+1}/${time.getFullYear()}-${time.getHours()}:${time.getMinutes()}`
             }
 			switch (type) {
 				case 'fechamento':
-					msg.text = "vc ira fechar o lote"
+					msg.text = "O leiloeiro esta preste a fechar o lote"
 					break;
 				case 'martelo':
-					msg.text = "vc avisara q estara batendo o martelo"
+					msg.text = "O leiloeiro estara batendo o martelo"
 					break;
 				default:
 					msg.text = "error"

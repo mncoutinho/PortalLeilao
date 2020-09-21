@@ -96,7 +96,13 @@ export default {
 					const time = new Date();
 					const lanceConfirmado = {
 						lance: this.lance, 
-						time: `hora: ${time.getHours()}:${time.getMinutes()} data: ${time.getDay()}/${time.getMonth()}/${time.getFullYear()}`,  
+						time:`
+						${time.getDate()}/
+						${time.getMonth()+1}/
+						${time.getFullYear()}-
+						${time.getHours()}:
+						${time.getMinutes()}
+						`, 
 						user: this.user.email , 
 						idUser: this.user.uid, 
 					};		
