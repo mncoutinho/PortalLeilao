@@ -149,16 +149,26 @@ export default{
         commit("setLances", lances);
       })
     },
-    searchlance({commit}, payload){
+    searchlance({commit, state}, payload){
       let result = []
-      firebase
-      .database()
-      .ref('artigo/CTLxbGKpyqmmiK1D3P7l/lances')
-      .orderByChild('idUser')
-      .equalTo(payload)
-      .on('child_added', doc =>{
-        result.push(doc.exportVal())
-      })
+      let items = state.items
+      console.log(items)
+      
+      for(let i = 0 ; i < items.length; i++){
+        firebase
+        .database()
+        .ref('artigo/'+ items[i].id +'/lances')
+        .orderByChild('idUser')
+        .equalTo(payload)
+        .on('child_added', doc =>{
+          result.push({
+            peca: items[i].id,
+            user: doc.exportVal().user,
+            time: doc.exportVal().time,
+            lance: doc.exportVal().lance
+          })
+        }) 
+      }
       commit('resultLances', result)
     },
     addInfo({commit},{info,id}){
