@@ -91,8 +91,8 @@ export default {
 	methods: {
 		AddLance() {
 			this.lance = parseInt(this.lance);
-			if(this.lance > this.lanceNow){
-				if(this.user.uid){
+			if(this.user.uid){
+				if(this.lance > this.lanceNow){
 					const time = new Date();
 					const lanceConfirmado = {
 						lance: this.lance, 
@@ -107,11 +107,14 @@ export default {
 						idUser: this.user.uid, 
 					};		
 					this.$store.dispatch('addLance',{id:this.item.id,payload:lanceConfirmado})
-				}else{
-					this.$store.commit('MENSAGEM_LOGUE')
-				}
+				
+				}else if(this.lance === this.lanceNow){
+						this.$store.commit('MENSAGEM_ERRO',  ` valor igual ao lance atual, R$ ${this.lanceNow},00`)
+					}else{
+						this.$store.commit('MENSAGEM_ERRO',  ` valor abaixo do atual, R$ ${this.lanceNow},00`)
+					}
 			}else{
-				this.$store.commit('MENSAGEM_ERRO',  ` valor igual ou abaixo, R$ ${this.lanceNow},00`)
+				this.$store.commit('MENSAGEM_LOGUE')
 			}
 		},
 		// Teste
