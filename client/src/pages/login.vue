@@ -72,6 +72,8 @@ export default {
     user(value){
       if(value != null && value != undefined){
         this.$router.push('/')
+      }else{
+        this.$router.push('/userpage')
       }
     }
   },  

@@ -106,7 +106,10 @@ export default {
     }
   },
   created(){
-      this.$store.dispatch('getData', this.user.uid)
+      this.$store.dispatch('getData', this.user.uid);
+      if(this.mostrar.nome === undefined){
+        return "permanecer"
+      }
   },
   methods: {
     modalPhoto(){

@@ -83,7 +83,7 @@ export default {
   props: ['titulo','buttons', 'confirmarLayout'],
   computed:{
       estaDesativado(){
-        return this.accountData.email && this.accountData.senha && this.accountData.confirmacao !== '' ? false : true 
+        return this.accountData.email && this.accountData.senha !== '' ? false : true 
       },
       comparePasswords () {
         return this.accountData.senha !== this.accountData.confirmacao ? 'senhas diferentes' : true

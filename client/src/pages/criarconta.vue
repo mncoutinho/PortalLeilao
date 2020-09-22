@@ -134,7 +134,7 @@ export default {
       user(value){
           if(value !== null && value !== undefined){
                 this.signUp().then(
-                   this.$router.push('/')
+                   
             )  
           }
         }
@@ -174,6 +174,7 @@ export default {
             }
             if(this.step===3 && botao=="finalizar"){
                 this.signUp().then(
+                    this.$router.push('/userpage')
                 )    
             }    
         },
