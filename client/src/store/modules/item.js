@@ -147,11 +147,19 @@ export default{
             user: doc.exportVal().user
         })
         commit("setLances", lances);
-        
       })
     },
     searchlance({commit}, payload){
-      commit('resultLances', payload)
+      let result = []
+      firebase
+      .database()
+      .ref('artigo/CTLxbGKpyqmmiK1D3P7l/lances')
+      .orderByChild('idUser')
+      .equalTo(payload)
+      .on('child_added', doc =>{
+        result.push(doc.exportVal())
+      })
+      commit('resultLances', result)
     },
     addInfo({commit},{info,id}){
       firebase
