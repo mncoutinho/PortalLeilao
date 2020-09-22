@@ -6,9 +6,13 @@ export default{
     item: {},
     lances: [],
     target: "",
-    msg: null
+    msg: null,
+    resultLances:[]
   },
   mutations: {
+    resultLances(state,payload){
+      state.resultLances = payload
+    },
     setLances(state, payload) {
       state.lances = payload;
     },
@@ -145,6 +149,9 @@ export default{
         commit("setLances", lances);
         
       })
+    },
+    searchlance({commit}, payload){
+      commit('resultLances', payload)
     },
     addInfo({commit},{info,id}){
       firebase

@@ -13,7 +13,6 @@
         </v-btn>
     </div>
 </template>
-
 <script>
 export default {
     data() {
@@ -23,7 +22,7 @@ export default {
     },
     methods: {
         search(text){
-            alert("procurando por "+text)
+            this.$store.dispatch('searchlance', text)
         }
     },
 
