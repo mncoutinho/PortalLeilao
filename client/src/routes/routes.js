@@ -13,6 +13,7 @@ import updateLeilao from "../components/bid/updateBid/update"
 import leiloeiroPage from "../pages/leiloeiroPage";
 import logout from "../pages/logout";
 import terminal from "../pages/terminal"
+import gestor from "../pages/gestor"
 
 
 const router = new VueRouter({
@@ -92,6 +93,11 @@ const router = new VueRouter({
             path: "/terminal",
             name: "terminal",
             component: terminal
+        },
+        {
+            path:"/gestor",
+            name:"gestor",
+            component:gestor
         }
         ]
     });
