@@ -42,7 +42,7 @@
                         <small v-text="result.time"/>
                     </v-col>
                     <v-col>
-                        <small v-text="result.lance"/>
+                        <small>{{result.lance + ",00 R$"}}</small>
                     </v-col>
                 </v-row>
             </div>
