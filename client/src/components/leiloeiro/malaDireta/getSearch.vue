@@ -33,7 +33,11 @@
                     :key="result.length"
                 >
                     <v-col>
-                        <small v-text="result.peca"/>
+                        <v-btn
+                            @click="viewitem(result.peca)"
+                        >
+                            <small v-text="result.peca"/>
+                        </v-btn>    
                     </v-col>
                     <v-col>
                         <small v-text="result.user"/>
@@ -67,6 +71,11 @@ export default {
         ...mapState({
             result: state => state.itemApp.resultLances
         })
+    },
+    methods: {
+        viewitem(target){
+            this.$router.push({ path:'/leilao', query:{id: target }})
+        }
     },
 }
 </script>
