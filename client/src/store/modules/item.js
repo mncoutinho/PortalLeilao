@@ -5,7 +5,7 @@ export default{
     myItems:[],
     item: {},
     lances: [],
-    target: "",
+    target: null,
     msg: null,
     resultLances:[]
   },

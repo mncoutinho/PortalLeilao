@@ -76,12 +76,12 @@ export default {
       let menuItens
       if (this.user.email) {
         menuItens = [
-          { i: "", title: this.user.email, link: "/userpage" },
-          { i: "", title: "Sair", link: "/sair" }, 
+          { i: null, title: this.user.email, link: "/userpage" },
+          { i: null, title: "Sair", link: "/sair" }, 
         ];
       } else {
         menuItens = [
-          { i: "", title: "cadastre-se", link: "/criar" },
+          { i: null, title: "cadastre-se", link: "/criar" },
           { i: "fas fa-arrow-right", title: "Login", link: "/login" },
         ];
       }

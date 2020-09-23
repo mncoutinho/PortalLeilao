@@ -16,17 +16,7 @@ export default{
       state.myBids = payload
     },
     resetBid(state) {
-      state.bid = {
-        name: "",
-        description: "",
-        items: [],
-        local: "",
-        startsOn: "",
-        closedAt: "",
-        organizer: "",
-        mail: "",
-        phone: "",
-      };
+      state.bid = {};
     }
   },
   actions: {
