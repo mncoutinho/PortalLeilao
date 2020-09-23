@@ -1,187 +1,176 @@
 <template>
     <v-main>
-        <v-layout row v-if="error">
-            <v-flex xs12 sm6 offset-sm3>
-                <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
-            </v-flex>
-        </v-layout>
-        <v-row  justify="center">
-            <v-window
-                width="100%"
-                align="center"
-                v-model="step">
-                <!--fase 1-->
-                <v-window-item :value="1">
-                    <v-card max-width="30%" min-width="450" class="mb-12 pa-12"  :elevation="10" width="50%" >
-                        <user titulo="Cadastre-se com..."
-                            @email="getAccountData"
-                            :buttons="buttons" 
-                            @clicked="clique"
-                            :confirmarLayout ="confirmar"
-                        />
-                        <v-btn
-                            color=#422321
-                            center
-                            class="white--text"
-                            depressed
-                            large
-                            style="postion: absolute;top:-55px;left:-100px"
-                            @click="voltar"
-                        >Voltar</v-btn>
-                    </v-card>
-                </v-window-item>
-                <!--fase 2-->
-                <v-window-item :value="2">
-                    <v-card max-width="30%" min-width="450" class="mb-12 pa-12"  :elevation="10" width="50%" >
-                        <personal
-                        @data="getPersonalData"
-                        :buttons="dataButtons"
-                        @clicked="clique"/>
-                        <v-btn
-                            color=#422321
-                            center
-                            class="white--text"
-                            depressed
-                            large
-                            style="postion: absolute;top:-55px;left:-100px"
-                            @click="voltarStep"
-                        >Voltar</v-btn>
-                    </v-card>
-                </v-window-item>
-                <!--fase 3-->
-                <v-window-item :value="3">
-                    <v-card max-width="30%" min-width="450" class="mb-12 pa-12"  :elevation="10" width="50%" >
-                        <Address
-                        @endereco="getEndereco"
-                        :buttons="finnalyButtons"
-                        @clicked="clique"/>
-                        <v-btn
-                            color=#422321
-                            center
-                            class="white--text"
-                            depressed
-                            large
-                            style="postion: absolute;top:-68px;left:-100px"
-                            @click="voltarStep"
+        <v-row justify="center">
+            <v-window>
+                <!--Primeira fase-->
+                <v-window-item>
+                        <v-card
+                         max-width="30%" 
+                         min-width="450" 
+                         class="mb-12 pa-10"  
+                         :elevation="10" 
+                         width="50%"
                         >
-                            Voltar
-                        </v-btn>
+                            <v-row justify="center" class="pa-8">
+                                <h1 class="brown--text">Cadastre-se</h1>
+                            </v-row>
+                            <v-form
+                            ref="form"
+                            :lazy-validation="lazy"
+                            >
+                                <!--Email-->
+                                <h4 class="brown--text">E-mail:</h4>
+                                <v-text-field
+                                required
+                                outlined
+                                autocomplete="true"
+                                type="email"
+                                placeholder="exemplo@email.com"
+                                color="brown"/>
+                                <!--senha-->
+                                <h4 class="brown--text">Senha:</h4>
+                                <v-text-field
+                                required
+                                outlined
+                                type="password"
+                                autocomplete="true"
+                                placeholder="**********"
+                                color="brown"
+                                />
+                                <!--Confirmar senha-->
+                                <h4 class="brown--text">Confirmar Senha:</h4>
+                                <v-text-field
+                                required
+                                outlined
+                                type="password"
+                                autocomplete="true"
+                                placeholder="**********"
+                                color="brown"
+                                />
+                            </v-form>
+                        </v-card>
+                <!--</v-window-item>
+                    Segunda fase
+                <v-window-item>-->
+                    <v-card
+                    max-width="30%" 
+                    min-width="450" 
+                    class="mb-12 pa-10"  
+                    :elevation="10" 
+                    width="50%"
+                    >
+                        <v-row justify="center" class="pa-8">
+                            <h1 class="brown--text">Dados Pessoais</h1>
+                        </v-row>
+                        <v-form
+                        ref="form"
+                        :lazy-validation="lazy"
+                        >
+                            <!--name-->
+                            <h4 class="brown--text">Nome:</h4>
+                            <v-text-field
+                            required
+                            outlined
+                            color="brown"
+                            >
+                            </v-text-field>
+                            <!--CPF-->
+                            <h4 class="brown--text">CPF:</h4>
+                            <v-text-field
+                            maxlength="14"
+                            v-mask="['###.###.###-##']"
+                            placeholder="123-456-789-10"
+                            color="brown"
+                            required
+                            outlined
+                            ></v-text-field>
+                            <!--telephone-->
+                            <h4 class="brown--text">Telefone:</h4>
+                            <v-text-field
+                            placeholder="(12)934567890"
+                            v-mask="['(##) #####-####' || '(##) ####-####']"
+                            color="brown"
+                            required
+                            outlined
+                            >
+                            </v-text-field>
+                        </v-form>
+                    </v-card>
+                <!--</v-window-item>
+                Terceira fase
+                <v-window-item>-->
+                    <v-card
+                    max-width="30%" 
+                    min-width="450" 
+                    class="mb-12 pa-10"  
+                    :elevation="10" 
+                    width="50%"
+                    >
+                        <v-row justify="center" class="pa-8">
+                            <h1 class="brown--text">Endereço</h1>
+                        </v-row>
+                        <v-form
+                        ref="form"
+                        :lazy-validation="lazy"
+                        >
+                            <!--CEP-->
+                            <h4 class="brown--text">CEP:</h4>
+                            <v-text-field
+                            maxlength="9"
+                            v-mask="['#####-###']"
+                            placeholder="12345-678"
+                            color="brown"
+                            required
+                            outlined/>
+                            <!--Endereço-->
+                            <h4 class="brown--text">Endereço:</h4>
+                            <v-text-field
+                            placeholder="Rua. 20 "
+                            color="brown"
+                            required
+                            outlined
+                            />
+                            <!--Complemento-->
+                            <h4 class="brown--text">Complemento:</h4>
+                            <v-text-field
+                            placeholder="Zona Sul"
+                            color="brown"
+                            outlined
+                            required/>
+                            <!--Rua-->
+                            <h4 class="brown--text">Bairro:</h4>
+                            <v-text-field
+                            placeholder="Leblon"
+                            color="brown"
+                            required
+                            outlined
+                            />
+                            <!--Rua-->
+                            <h4 class="brown--text">Cidade:</h4>
+                            <v-text-field
+                            placeholder="Rio de Janeiro"
+                            color="brown"
+                            required
+                            outlined
+                            />
+                            <!--uf-->
+                            <h4 class="brown--text">UF:</h4>
+                            <v-select
+                            label="UF"
+                            color="brown"
+                            required
+                            outlined
+                            />
+                        </v-form>
                     </v-card>
                 </v-window-item>
-                <!--Button-->
-                <v-row align="end" justify="center">
-                </v-row>
-            </v-window>  
+            </v-window>
         </v-row>
     </v-main>
 </template>
 <script>
-import user from '../components/Modal/criarUsuario/formEmailSenha';
-import personal from '../components/Modal/criarUsuario/cadastrarDadosPessoais';
-import Address from '../components/Modal/endereco'
-import {mapState} from 'vuex'
+import {mask} from 'vue-the-mask'
 export default {
-    
-    components:{
-        user,
-        personal,
-        Address
-    },
-    
-    data() {
-        return{
-            personalData:{},
-            accountData:{},
-            enderecoData:{},
-            //botoes
-            confirmar:true,
-            buttons:[
-                {
-                    text:"Criar",
-                    click:'signUp',
-                    color:"#422321",
-                }
-            ],
-            dataButtons:[
-                {
-                    text:"Salvar",
-                    click:'dado',
-                    color:"#422321",
-                },  
-            ],
-            finnalyButtons:[
-                {
-                    text:"Finaliza",
-                    click:'finalizar',
-                    color:"#422321",
-                }
-            ],
-            step: 1,           
-        }
-    },
-    computed:{
-            ...mapState({
-                uf: state => state.uf
-            }),
-            user(){
-                return this.$store.getters.user
-            },
-            error(){
-                return this.$store.getters.error
-            },
-        },
-         watch:{
-      user(value){
-          if(value !== null && value !== undefined){
-                this.signUp().then(
-                   
-            )  
-          }
-        }
-    },
-    methods:{
-        voltar(){
-            this.$router.push('/')
-        },
-        voltarStep(){
-            this.step--
-        },
-        getAccountData(accountData){
-            this.accountData = accountData
-        },
-        getPersonalData(personalData){
-            this.accountData.cpf = personalData.cpf,
-            this.accountData.tel = personalData.tel,
-            this.accountData.nome = personalData.nome
-        },
-        getEndereco(parametro){
-            this.accountData.cidade = parametro.cidade
-            this.accountData.bairro = parametro.bairro
-            this.accountData.cep = parametro.cep
-            this.accountData.complemento = parametro.complemento
-            this.accountData.endereco = parametro.endereco
-            this.accountData.uf = parametro.uf
-            this.accountData.numero = parametro.numero
-        },
-         clique(botao){
-            if(this.step===1 && botao=="signUp" ){
-                this.step++
-            }else{
-                console.log("err")
-            }
-            if(this.step===2 && botao=="dado"){
-                this.step++
-            }
-            if(this.step===3 && botao=="finalizar"){
-                this.signUp().then(
-                    this.$router.push('/userpage')
-                )    
-            }    
-        },
-        async signUp () {
-            console.log(this.accountData)
-            await this.$store.dispatch('signUserUp', this.accountData)
-        }
-    }
+    directives: {mask},
 }
 </script>

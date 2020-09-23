@@ -172,9 +172,7 @@ export default {
             console.log(bid)
             this.$store.dispatch('createBid', bid).then(()=>{
                 this.$store.dispatch('getAllBids')
-
             })
-
         },
         commit(){
             this.$store.commit('setCache', this.user);
