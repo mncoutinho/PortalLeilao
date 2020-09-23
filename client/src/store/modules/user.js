@@ -86,12 +86,11 @@ import firebase  from "firebase/app";
               .doc(payload)
               .get()
               .then((doc) => {
-                
-                if(doc.data().cpf != 'underfined'){
+                if(doc.data() != undefined){
                   console.log('foi')
                   return commit("setUserData", doc.data());
                 }else{
-                  alert('Complete seu cadastro')
+                  commit('MENSAGEM_ERRO', 'Você, não completou o seu cadastro')
                 } 
               })
               .catch((err) => {

@@ -51,7 +51,6 @@
 					{{button(item.active)}}
 				</v-btn>
 				</div>
-				
 			</div>
             
 	</v-card>		
@@ -64,7 +63,6 @@ export default {
         return {
 			status: "",
 			color:"",
-
         }
     },
     computed:{
@@ -126,7 +124,6 @@ export default {
 					break;
 			}
 			this.$store.dispatch('addInfo',{info: msg, id: this.$route.query.id})
-			
 		}
     }
 }

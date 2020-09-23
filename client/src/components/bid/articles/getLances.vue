@@ -18,13 +18,13 @@
 		</v-card-text>
         <v-row>
 			<v-col>
-				Usuário
+				<h3>Usuário</h3>
 			</v-col>
 			<v-col>
-				Lance
+				<h3>Lance</h3>
 			</v-col>
 			<v-col>
-				Hora
+				<h3>Hora</h3>
 			</v-col>
 		</v-row>
 		<div
