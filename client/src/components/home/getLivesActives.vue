@@ -88,12 +88,8 @@ export default {
             }
         },
         logado(id){
-            if(!this.user.email){
-                return this.$router.push('/login')
-            }else{
-                this.target = id 
-                return this.$router.push({path:'/leilao', query:{id:this.target}})
-            }
+            this.target = id 
+            return this.$router.push({path:'/leilao', query:{id:this.target}})
         }    
     },
 }

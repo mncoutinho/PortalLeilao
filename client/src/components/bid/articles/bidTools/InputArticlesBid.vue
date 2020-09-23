@@ -25,7 +25,7 @@
 						<v-text-field 
 							v-model="lance" 
 							v-on:keyup.enter="AddLance()" 
-							label="Faca seu lance" 
+							label="Faça seu lance" 
 							placeholder="R$ 999,99"
 						/>
 						<v-btn 
@@ -80,7 +80,7 @@ import {mapState} from 'vuex';
 export default {
 	data(){
 		return{
-			lance: "",
+			lance: null,
 			// teste auto lance
 			autolance: {
 				modal: false,

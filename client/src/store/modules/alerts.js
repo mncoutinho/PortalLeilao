@@ -14,55 +14,91 @@ export default {
             state.text = 'erro',
             state.cor = 'red',
             state.tempo = 4000,
-            state.mostra = true
+            state.mostra = true,
+            state.top = true,
+            state.left = false,
+            state.right = false,
+            state.botton = false
         },
         VERIFICAR_EMAIL(state) {
             state.text = 'Verifique o seu e-mail',
             state.cor = 'red',
             state.tempo = 4000,
-            state.mostra = true
+            state.mostra = true,
+            state.top = true,
+            state.left = false,
+            state.right = false,
+            state.botton = false
         },
         USUARIO_DESLOGAR(state) {
             state.text = 'Usúario deslogou',
             state.cor = 'red',
             state.tempo = 5000,
-            state.mostra = true
+            state.mostra = true,
+            state.top = true,
+            state.left = false,
+            state.right = false,
+            state.botton = false
         },
         VERIFICAR_CAIXA(state) {
             state.text = 'Verifique sua caixa de email para altera sua senha',
             state.cor = 'red',
             state.tempo = 5000,
-            state.mostra = true
+            state.mostra = true,
+            state.top = true,
+            state.left = false,
+            state.right = false,
+            state.botton = false
         },
         CADASTRADO_SUCESSO(state) {
             state.text = 'Cadastrado com Sucesso',
             state.cor = 'red',
             state.tempo = 5000,
-            state.mostra = true
+            state.mostra = true,
+            state.top = true,
+            state.left = false,
+            state.right = false,
+            state.botton = false
         },
         ALTERADO_SUCESSO(state) {
             state.text = 'alterado com sucesso',
             state.cor = 'green',
             state.tempo = 5000,
-            state.mostra = true
+            state.mostra = true,
+            state.top = true,
+            state.left = false,
+            state.right = false,
+            state.botton = false
         },
         ALGO_INESPERADO(state, payload) {
             state.text = 'Algo inesperado aconteceu:' + payload,
             state.cor = 'red',
             state.tempo = 5000,
-            state.mostra = true
+            state.mostra = true,
+            state.top = true,
+            state.left = false,
+            state.right = false,
+            state.botton = false
         },
         DELETADO(state) {
             state.text = 'Deletado com Sucesso',
             state.cor = 'red',
             state.tempo = 5000,
-            state.mostra = true
+            state.mostra = true,
+            state.top = true,
+            state.left = false,
+            state.right = false,
+            state.botton = false
         },
         MOSTRAR_CONTEUDO(state, payload) {
             state.text = payload,
             state.cor = 'green',
             state.tempo = 5000,
-            state.mostra = true
+            state.mostra = true,
+            state.top = true,
+            state.left= false,
+            state.right= false,
+            state.botton= false
         },
         ATUALIZADO_SUCESSO(state, payload) {
             state.text = payload,
@@ -80,7 +116,11 @@ export default {
             state.text = 'Logue por favor',
             state.cor = 'blue',
             state.tempo = 5000,
-            state.mostra = true
+            state.mostra = true,
+            state.top = true,
+            state.left = false,
+            state.right = false,
+            state.botton = false
         },
         SEM_PERMICAO(state, payload) {
             state.text = 'Voce não tem permissão para isso :' + payload,
