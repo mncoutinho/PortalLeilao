@@ -16,11 +16,12 @@
                             <v-col cols="12">
                                 <v-form
                                 ref="form"
+                                v-model="validador"
                                 >
                                     <!--Email-->
                                     <h4 class="brown--text">E-mail:</h4>
                                     <v-text-field
-                                    @change="accountData"
+                                    :rules="rules.email"
                                     v-model="accountData.email"
                                     autocomplete="true"
                                     type="email"
@@ -32,6 +33,7 @@
                                     <!--senha-->
                                     <h4 class="brown--text">Senha:</h4>
                                     <v-text-field
+                                    :rules="rules.senha"
                                     v-model="accountData.senha"
                                     type="password"
                                     autocomplete="true"
@@ -44,12 +46,22 @@
                                     <h4 class="brown--text">Confirmar Senha:</h4>
                                     <v-text-field
                                     v-model="accountData.confirmacao"
+                                    :rules="rules.confirmarSenha && [(accountData.senha === accountData.confirmacao) || 'Senha deve ser igual']"
                                     type="password"
                                     autocomplete="true"
                                     placeholder="**********"
                                     color="brown"
                                     required
                                     outlined
+                                    />
+                                    <!--Termos e condição-->
+                                    <h4 ></h4>
+                                    <v-checkbox
+                                    color="brown"
+                                    v-model="checkbox"
+                                    :rules="[v => !!v || 'Você, Deve Concordar para Continuar!']"
+                                    label="Você concorda com os termos?"
+                                    required
                                     />
                                 </v-form>
                                 <v-row dense>
@@ -69,6 +81,7 @@
                                     depressed
                                     large
                                     @click="addStep()"
+                                    :disabled="!validador"
                                     >Proximo</v-btn>
                                 </v-row>
                             </v-col>
@@ -88,11 +101,13 @@
                         <v-col cols="12">
                             <v-form
                             ref="form"
+                            v-model="validador2"
                             >
                                 <!--name-->
                                 <h4 class="brown--text">Nome:</h4>
                                 <v-text-field
                                 v-model="accountData.nome"
+                                :rules="rules.nome"
                                 color="brown"
                                 placeholder="Nome Sobrenome"
                                 required
@@ -102,6 +117,7 @@
                                 <!--CPF-->
                                 <h4 class="brown--text">CPF:</h4>
                                 <v-text-field
+                                :rules="rules.cpf"
                                 v-model="accountData.cpf"
                                 maxlength="14"
                                 v-mask="['###.###.###-##']"
@@ -113,6 +129,7 @@
                                 <!--telephone-->
                                 <h4 class="brown--text">Telefone:</h4>
                                 <v-text-field
+                                :rules="rules.tel"
                                 v-model="accountData.tel"
                                 placeholder="(12)934567890"
                                 v-mask="['(##) #####-####' || '(##) ####-####']"
@@ -140,6 +157,7 @@
                                         depressed
                                         large
                                         @click="addStep()"
+                                        :disabled="!validador2"
                                         >Proximo</v-btn>
                                     </v-row>
                             </v-form>
@@ -159,10 +177,12 @@
                         <v-col cols="12">
                             <v-form
                             ref="form"
+                            v-model="validador3"
                             >
                                 <!--CEP-->
                                 <h4 class="brown--text">CEP:</h4>
                                 <v-text-field
+                                :rules="rules.cep"
                                 v-model="accountData.cep"
                                 maxlength="9"
                                 v-mask="['#####-###']"
@@ -216,6 +236,15 @@
                                 required
                                 outlined
                                 />
+                                <!--numero-->
+                                <h4 class="brown--text">Numero:</h4>
+                                <v-text-field
+                                v-model="accountData.numero"
+                                placeholder="454"
+                                color="brown"
+                                required
+                                outlined
+                                />
                                 <v-row dense>
                                         <!--Botão Voltar-->
                                         <v-btn
@@ -235,6 +264,7 @@
                                         depressed
                                         large
                                         @click="homeStep()"
+                                        :disabled="!validador3"
                                         >Proximo</v-btn>
                                     </v-row>
                             </v-form>
@@ -255,6 +285,10 @@ export default {
     data(){
         return{
             step:1,
+            validador:true,
+            validador2:true,
+            validador3:true,
+            checkbox:false,
             accountData:{
                 email: '',
                 senha: '',
@@ -270,6 +304,43 @@ export default {
                 numero:'',
                 uf:''
             },
+            rules: {
+                email:[
+                    value => !!value || 'E-mail necessário',
+                    value => /.+@.+\..+/.test(value) || 'E-mail deve ser valido' ,
+                ],
+                senha:[
+                    value => !!value || 'Senha é necessária',
+                    value => value.length >=  5 || 'Mínimo  de 5 caracteres'
+                ],
+                confirmarSenha:[
+                    value => !!value || 'É Necessário Confirmar Senha ',
+                    value => value.length >=  5 || 'Mínimo  de 5 Caracteres',
+                ],
+                nome:[
+                    value => !!value || 'Nome, Necessário',
+                    ],
+                cpf:[
+                    value => !!value || 'Cpf, Necessário',
+                    value => value.length >=  14 || 'Cpf, invalido', 
+                    ],
+                tel:[
+                    value => !!value || 'Tel, Necessário',
+                    value => value.length >=  14 || 'Número, Invalido',
+                    ],
+                cep:[
+                    value => !!value || 'CEP, Necessário',
+                    value => value.length >=  9 || 'CEP, Invalido',
+                ],
+                Complemento:[
+                    value => !!value || 'Complemento, Necessário',
+                    value => value.length >=  1 || 'Complemento, Necessário',
+                ],
+                numero:[
+                    value => !!value || 'Numero, Necessário',
+                    value => value.length >=  1 || 'Numero, Necessário',
+                ],
+            }
         }
     },
     methods: {
