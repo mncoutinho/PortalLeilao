@@ -89,7 +89,6 @@
               />
             </v-flex>
           </v-layout>
-
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
               <v-btn 
@@ -104,7 +103,6 @@
         </form>
       </v-flex>
     </v-layout>
-    {{artigo}}
   </v-container>
 </template>
 
@@ -152,12 +150,11 @@ export default {
       this.$store.dispatch('createItem', this.artigo).then(()=>{
         this.$store.commit('MSG_COMFIRMACAO', `confirmado criação do lote de ${this.user.uid}`)
         this.$router.push("/")
-      })
-      
+      })  
     }
   },
   created() {
     this.$store.dispatch('getcategories');
-  },
+  }
 };
 </script>

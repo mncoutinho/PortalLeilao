@@ -66,6 +66,9 @@ export default {
     mudaPage(page){
       this.page = page;
     }
-  }
+  },
+  created() {
+    this.$store.commit('clearData');
+  },
 }
 </script>
