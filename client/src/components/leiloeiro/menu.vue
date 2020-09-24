@@ -99,7 +99,7 @@ export default {
       {icon:"fas fa-suitcase",
         title:"Mala Direta",
         conteudo:[
-          {title:"Gerenciar todos", page:8},
+          {title:"Gestor de lances", page:8},
           {title:"Criar", page:9},
           {title:"Editar", page:10},          
         ]
