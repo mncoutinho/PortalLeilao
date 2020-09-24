@@ -18,7 +18,10 @@ export default{
     },
     clearData(state){
       state.lances = []
-      state.item = {}
+      state.item = {
+        name: null,
+        imgUrl: []
+      }
       state.msg = null
     },
     setItem(state, payload) {
