@@ -3,18 +3,27 @@ export default{
   state: {
     items: [],
     myItems:[],
-    item: {},
+    item: {
+      imgUrl: []
+    },
     lances: [],
-    target: "",
-    msg: null
+    target: null,
+    msg: null,
+    resultLances:[]
   },
   mutations: {
+    resultLances(state,payload){
+      state.resultLances = payload
+    },
     setLances(state, payload) {
       state.lances = payload;
     },
     clearData(state){
       state.lances = []
-      state.item = {}
+      state.item = {
+        name: null,
+        imgUrl: []
+      }
       state.msg = null
     },
     setItem(state, payload) {
@@ -143,8 +152,29 @@ export default{
             user: doc.exportVal().user
         })
         commit("setLances", lances);
-        
       })
+    },
+    searchlance({commit, state}, payload){
+      let result = []
+      let items = state.items
+      console.log(items)
+      
+      for(let i = 0 ; i < items.length; i++){
+        firebase
+        .database()
+        .ref('artigo/'+ items[i].id +'/lances')
+        .orderByChild('idUser')
+        .equalTo(payload)
+        .on('child_added', doc =>{
+          result.push({
+            peca: items[i].id,
+            user: doc.exportVal().user,
+            time: doc.exportVal().time,
+            lance: doc.exportVal().lance
+          })
+        }) 
+      }
+      commit('resultLances', result)
     },
     addInfo({commit},{info,id}){
       firebase

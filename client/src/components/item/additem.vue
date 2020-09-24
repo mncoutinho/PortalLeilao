@@ -1,4 +1,4 @@
-<template>
+  <template>
   <v-app>
     <v-card flat width="100%">
       <v-row xs12 sm6 offset-sm3>
@@ -78,6 +78,7 @@
       </v-row>
     </v-card>
   </v-app>
+
 </template>
 
 <script>
@@ -96,7 +97,6 @@ export default {
       artigo: state => state.itemApp.item,
       user: state => state.userApp.user,
       categories: state => state.category
-      
     }),
   },
   created() {
@@ -132,10 +132,12 @@ export default {
       this.artigo.IdOrganizer = this.user.uid;     
       this.$store.dispatch('createItem', this.artigo).then(()=>{
         this.$store.commit('MSG_COMFIRMACAO', `confirmado criação do lote de ${this.user.uid}`)
-        this.$store.dispatch('getAllItems')
-      })
-      this.$router.push('/')
+        this.$router.push("/")
+      })  
     }
+  },
+  created() {
+    this.$store.dispatch('getcategories');
   }
 };
 </script>

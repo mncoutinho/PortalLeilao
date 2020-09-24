@@ -107,6 +107,7 @@ export default {
 						idUser: this.user.uid, 
 					};		
 					this.$store.dispatch('addLance',{id:this.item.id,payload:lanceConfirmado})
+
 				
 				}else if(this.lance === this.lanceNow){
 						this.$store.commit('MENSAGEM_ERRO',  ` valor igual ao lance atual, R$ ${this.lanceNow},00`)
@@ -114,6 +115,7 @@ export default {
 						this.$store.commit('MENSAGEM_ERRO',  ` valor abaixo do atual, R$ ${this.lanceNow},00`)
 					}
 			}else{
+
 				this.$store.commit('MENSAGEM_LOGUE')
 			}
 		},

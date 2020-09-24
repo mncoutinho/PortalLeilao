@@ -130,7 +130,12 @@ export default {
                 condicoes:'',
             },
             leilao:{
-                imgUrl: ""
+                name:null,
+                description: null,
+                imgUrl: "",
+                local: null,
+                closedAt: null,
+                startsOn: null,
             }
         }
     },
@@ -164,15 +169,20 @@ export default {
             }
         },
         addLeilao(bid){
-            bid.email = this.email
-            bid.tel = this.user.tel
-            bid.organizer = this.user.nome
-            bid.idOrganizer = this.id
-            bid.items = []
-            console.log(bid)
-            this.$store.dispatch('createBid', bid).then(()=>{
-                this.$store.dispatch('getAllBids')
-            })
+
+            if(this.user.tel == undefined || this.user.nome == undefined ){
+                alert('Voce precisa completar o cadastro para ter o direito de solicitar a criacao de um leilao ')
+            }else{
+                bid.email = this.email
+                bid.tel = this.user.tel
+                bid.organizer = this.user.nome
+                bid.idOrganizer = this.id
+                bid.items = []
+                console.log(bid)
+                this.$store.dispatch('createBid', bid).then(()=>{
+                    this.$router.push("/")
+                })
+            }   
         },
         commit(){
             this.$store.commit('setCache', this.user);

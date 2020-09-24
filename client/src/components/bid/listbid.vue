@@ -54,7 +54,7 @@ import { mapState, mapGetters} from "vuex";
 export default {
   data() {
     return {
-      target:"",
+      target:null,
       page:1,
       porPagina: 2, 
     }

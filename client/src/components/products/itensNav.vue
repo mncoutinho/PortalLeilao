@@ -55,7 +55,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      pesquisar: "",
+      pesquisar: null,
       obj: [],
       result: []
     };

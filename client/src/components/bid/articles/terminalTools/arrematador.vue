@@ -61,8 +61,9 @@ import {mapState} from 'vuex';
 export default {
     data() {
         return {
-			status: "",
-			color:"",
+
+			status: null,
+			color:null,
         }
     },
     computed:{

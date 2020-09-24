@@ -30,6 +30,9 @@
             <listMyBid/>
           </v-window-item>
           <!-- mala direta -->
+          <v-window-item :value="8">           
+            <gestor/>
+          </v-window-item>
         </v-window>
       </v-col>
     </v-row>
@@ -46,6 +49,7 @@ import addItem from  "../components/item/additem"
 import addBid from "../components/bid/addBid/inputBid"
 import principalPage from "../components/leiloeiro/principalPage"
 
+import gestor from "../pages/gestor"
 export default {
   components:{
     navegacao,
@@ -55,7 +59,8 @@ export default {
     listMyBid,
     addItem,
     addBid,
-    principalPage
+    principalPage,
+    gestor
   },
   data(){
     return{
@@ -66,6 +71,9 @@ export default {
     mudaPage(page){
       this.page = page;
     }
-  }
+  },
+  created() {
+    this.$store.commit('clearData');
+  },
 }
 </script>
