@@ -127,7 +127,7 @@ export default {
     }),
   },
   created() {
-    this.$store.commit('resetItem');
+    this.$store.commit('clearData');
     this.$store.dispatch('getcategories', this.categories);
     if(!this.user.refreshToken){
       this.$store.commit('MENSAGEM_LOGUE')
