@@ -130,7 +130,12 @@ export default {
                 condicoes:'',
             },
             leilao:{
-                imgUrl: ""
+                name:null,
+                description: null,
+                imgUrl: "",
+                local: null,
+                closedAt: null,
+                startsOn: null,
             }
         }
     },
