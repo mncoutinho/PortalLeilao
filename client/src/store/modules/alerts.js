@@ -52,7 +52,7 @@ export default {
         },
         CADASTRADO_SUCESSO(state) {
             state.text = 'Cadastrado com Sucesso',
-            state.cor = 'red',
+            state.cor = 'green',
             state.tempo = 5000,
             state.mostra = true,
             state.top = true,
