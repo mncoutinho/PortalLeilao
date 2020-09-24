@@ -3,7 +3,9 @@ export default{
   state: {
     items: [],
     myItems:[],
-    item: {},
+    item: {
+      imgUrl: []
+    },
     lances: [],
     target: null,
     msg: null,

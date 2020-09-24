@@ -1,19 +1,20 @@
 import VueRouter from "vue-router";
-import adicionarItem from "../components/item/additem";
-import updateItem from "../components/item/updateItem";
-import Produtos from "../pages/Produtos";
-import meusProdutos from "../components/products/getMyItems"
+import leiloeiroPage from "../pages/leiloeiroPage";
+import logout from "../pages/logout";
+import terminal from "../pages/terminal"
+import gestor from "../pages/gestor"
 import Home from "../pages/home";
 import Leilao from "../pages/leilao";
 import Login from "../pages/login";
 import Criar from "../pages/criarconta";
 import userpage from "../pages/userpage.vue";
-import adicionarLeilao from "../pages/addLeilao.vue";
-import updateLeilao from "../components/bid/updateBid/update"
-import leiloeiroPage from "../pages/leiloeiroPage";
-import logout from "../pages/logout";
-import terminal from "../pages/terminal"
-import gestor from "../pages/gestor"
+import adicionarLeilao from "../pages/addLeilao";
+import Produtos from "../pages/Produtos";
+import adicionarItem from "../pages/adicionarItem";
+import updateItem from "../pages/updateItem";
+import meusProdutos from "../pages/meusProdutos"
+import updateLeilao from "../pages/updateLeilao"
+
 
 
 const router = new VueRouter({

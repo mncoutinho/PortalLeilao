@@ -171,10 +171,8 @@ export default {
             bid.items = []
             console.log(bid)
             this.$store.dispatch('createBid', bid).then(()=>{
-                this.$store.dispatch('getAllBids')
-
+                this.$router.push("/")
             })
-
         },
         commit(){
             this.$store.commit('setCache', this.user);
