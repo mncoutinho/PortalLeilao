@@ -135,9 +135,6 @@ export default {
         this.$router.push("/")
       })  
     }
-  },
-  created() {
-    this.$store.dispatch('getcategories');
   }
 };
 </script>

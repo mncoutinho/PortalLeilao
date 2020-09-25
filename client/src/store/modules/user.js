@@ -1,7 +1,8 @@
 import firebase  from "firebase/app";
-  export default{
+export default{
         state: {
           user: {},
+          uid:'',
           loading: false,
           error: null,
           userData: {},
@@ -13,6 +14,7 @@ import firebase  from "firebase/app";
           resetUser(state) {
             state.user = {};
             state.userData = {};
+            state.uid = '';
           },
           setLoading(state, payload) {
             state.loading = payload;
@@ -28,6 +30,9 @@ import firebase  from "firebase/app";
           },
           setCache(state, user){
             state.userData = user
+          },
+          setUid(state, payload){
+            state.uid = payload
           }
         },
         actions: {
@@ -51,27 +56,8 @@ import firebase  from "firebase/app";
               .then((user) => {
                 commit("setLoading", false);
                 const newUser = user.user;
+                commit("setUid", newUser.uid);
                 commit("setUser", newUser);
-      
-                const userData = {
-                  bairro: payload.bairro,
-                  cep: payload.cep,
-                  cidade: payload.cidade,
-                  complemento: payload.complemento,
-                  cpf: payload.cpf,
-                  endereco: payload.endereco,
-                  nome: payload.nome,
-                  tel: payload.tel,
-                  uf: payload.uf,
-                  numero: payload.numero,
-                  photoUrl: "https://cdn150.picsart.com/upscale-245339439045212.png",
-                };
-                firebase
-                  .firestore()
-                  .collection("user")
-                  .doc(user.user.uid)
-                  .set(userData)
-                  .then(commit('CADASTRADO_SUCESSO'));
               })
               .catch((err) => {
                 commit("setLoading", false);
@@ -180,12 +166,15 @@ import firebase  from "firebase/app";
                 commit;
                 commit('ALTERADO_SUCESSO');
               });
-          },
+          }
         },
         getters: {
           user(state) {
             console.log(state);
             return state.user;
+          },
+          uid(state){
+            return state.uid;
           },
           loading(state) {
             return state.loading;

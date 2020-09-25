@@ -80,7 +80,7 @@
                                     class="white--text"
                                     depressed
                                     large
-                                    @click="addStep()"
+                                    @click="signUp()"
                                     :disabled="!validador"
                                     >Proximo</v-btn>
                                 </v-row>
@@ -106,7 +106,7 @@
                                 <!--name-->
                                 <h4 class="brown--text">Nome:</h4>
                                 <v-text-field
-                                v-model="accountData.nome"
+                                v-model="personaldata.nome"
                                 :rules="rules.nome"
                                 color="brown"
                                 placeholder="Nome Sobrenome"
@@ -118,7 +118,7 @@
                                 <h4 class="brown--text">CPF:</h4>
                                 <v-text-field
                                 :rules="rules.cpf"
-                                v-model="accountData.cpf"
+                                v-model="personaldata.cpf"
                                 maxlength="14"
                                 v-mask="['###.###.###-##']"
                                 placeholder="123-456-789-10"
@@ -130,7 +130,7 @@
                                 <h4 class="brown--text">Telefone:</h4>
                                 <v-text-field
                                 :rules="rules.tel"
-                                v-model="accountData.tel"
+                                v-model="personaldata.tel"
                                 placeholder="(12)934567890"
                                 v-mask="['(##) #####-####' || '(##) ####-####']"
                                 color="brown"
@@ -156,7 +156,7 @@
                                         class="white--text"
                                         depressed
                                         large
-                                        @click="addStep()"
+                                        @click="setPersonalData()"
                                         :disabled="!validador2"
                                         >Proximo</v-btn>
                                     </v-row>
@@ -183,19 +183,19 @@
                                 <h4 class="brown--text">CEP:</h4>
                                 <v-text-field
                                 :rules="rules.cep"
-                                v-model="accountData.cep"
+                                v-model="endereco.cep"
                                 maxlength="9"
                                 v-mask="['#####-###']"
                                 placeholder="12345-678"
                                 color="brown"
                                 required
                                 outlined
-                                @change="getCep(accountData.cep)"
+                                @change="getCep(endereco.cep)"
                                 />
                                 <!--Endereço-->
                                 <h4 class="brown--text">Endereço:</h4>
                                 <v-text-field
-                                v-model="accountData.endereco"
+                                v-model="endereco.endereco"
                                 placeholder="Rua. 20 "
                                 color="brown"
                                 required
@@ -204,7 +204,7 @@
                                 <!--Complemento-->
                                 <h4 class="brown--text">Complemento:</h4>
                                 <v-text-field
-                                v-model="accountData.complemento"
+                                v-model="endereco.complemento"
                                 placeholder="Zona Sul"
                                 color="brown"
                                 outlined
@@ -212,7 +212,7 @@
                                 <!--Rua-->
                                 <h4 class="brown--text">Bairro:</h4>
                                 <v-text-field
-                                v-model="accountData.bairro"
+                                v-model="endereco.bairro"
                                 placeholder="Leblon"
                                 color="brown"
                                 required
@@ -221,7 +221,7 @@
                                 <!--Rua-->
                                 <h4 class="brown--text">Cidade:</h4>
                                 <v-text-field
-                                v-model="accountData.cidade"
+                                v-model="endereco.cidade"
                                 placeholder="Rio de Janeiro"
                                 color="brown"
                                 required
@@ -231,7 +231,7 @@
                                 <h4 class="brown--text">UF:</h4>
                                 <v-select
                                 :items="uf" 
-                                v-model="accountData.uf"
+                                v-model="endereco.uf"
                                 color="brown"
                                 required
                                 outlined
@@ -239,7 +239,7 @@
                                 <!--numero-->
                                 <h4 class="brown--text">Numero:</h4>
                                 <v-text-field
-                                v-model="accountData.numero"
+                                v-model="endereco.numero"
                                 placeholder="454"
                                 color="brown"
                                 required
@@ -279,7 +279,7 @@
 import {mask} from 'vue-the-mask'
 import axios from 'axios'
 import { mapState } from 'vuex'
-
+const firebase = require('firebase/app');
 export default {
     directives: {mask},
     data(){
@@ -289,13 +289,7 @@ export default {
             validador2:true,
             validador3:true,
             checkbox:false,
-            accountData:{
-                email: '',
-                senha: '',
-                confirmacao: '',
-                nome:'',
-                cpf:'',
-                tel:'',
+            endereco:{
                 cidade:'',
                 bairro:'',
                 cep:'',
@@ -303,6 +297,16 @@ export default {
                 endereco:'',
                 numero:'',
                 uf:''
+            },
+            accountData:{
+                email: '',
+                senha: '',
+                confirmacao: '',
+            },
+            personaldata:{
+                nome:'',
+                cpf:'',
+                tel:'' 
             },
             rules: {
                 email:[
@@ -347,13 +351,14 @@ export default {
         //metodos para botao
         addStep(){
             this.step++
+            
         },
         belowStep(){
             this.step--
         },
         homeStep(){
             if(this.step === 3){
-                this.signUp().then(
+                this.setEndereco().then(
                     this.$router.push('/') && this.$store.commit('CADASTRADO_SUCESSO')
                 )
             }else{
@@ -362,8 +367,7 @@ export default {
         },
         //cria o usuario
         async signUp () {
-            console.log(this.accountData)
-            await this.$store.dispatch('signUserUp', this.accountData)
+            await this.$store.dispatch('signUserUp', this.accountData).then(this.addStep());
         },
         //pegar cep
         getCep(cep){
@@ -372,7 +376,7 @@ export default {
                 method: 'get',
                 url:'https://viacep.com.br/ws/'+cep+'/json/'  
             }).then(doc =>{
-                this.accountData = {
+                this.endereco = {
                     cep: doc.data.cep,
                     cidade: doc.data.localidade,
                     bairro: doc.data.bairro,
@@ -385,20 +389,39 @@ export default {
         getAccountData(accountData){
             this.accountData = accountData
         },
-        getPersonalData(personalData){
-            this.accountData.cpf = personalData.cpf,
-            this.accountData.tel = personalData.tel,
-            this.accountData.nome = personalData.nome
+        async setPersonalData(){
+            let uid = this.$store.getters.uid
+            await firebase.firestore()
+                .collection("user")
+                .doc(uid)
+                .set({
+                    cpf: this.personaldata.cpf,
+                    tel: this.personaldata.tel,
+                    nome: this.personaldata.nome,
+                })
+                .then(() => {
+                    this.$store.commit('CADASTRADO_SUCESSO');
+                    this.addStep()
+                })
+                .catch(err => console.log(err))
         },
-        getEndereco(parametro){
-            this.accountData.cidade = parametro.cidade
-            this.accountData.bairro = parametro.bairro
-            this.accountData.cep = parametro.cep
-            this.accountData.complemento = parametro.complemento
-            this.accountData.endereco = parametro.endereco
-            this.accountData.uf = parametro.uf
-            this.accountData.numero = parametro.numero
-        },
+        async setEndereco(){
+            let uid = this.$store.getters.uid
+            await firebase.firestore()
+            .collection("user")
+            .doc(uid)
+            .update({
+                cidade:this.endereco.cidade,
+                bairro:this.endereco.bairro,
+                cep:this.endereco.cep,
+                endereco:this.endereco.endereco,
+                numero:this.endereco.numero,
+                uf:this.endereco.uf,
+                complemento:this.endereco.complemento?this.endereco.complemento:"",
+            })
+            .then(this.$store.commit('CADASTRADO_SUCESSO'))
+            .catch(err => console.log(err))
+        }
     },
     computed:{
       ...mapState({
