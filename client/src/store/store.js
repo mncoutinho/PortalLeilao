@@ -21,7 +21,8 @@ export default new Vuex.Store({
     category: [],
     uf: [],
     alerts:[],
-    mensagens:[]
+    mensagens:[],
+    admView: false
   },
   mutations: {
     setCategories(state, payload) {
@@ -30,6 +31,9 @@ export default new Vuex.Store({
     setUF(state, payload) {
       state.uf = payload;
     },
+    setAdmView(state, payload){
+      state.admView = payload
+    }
   },
   actions: {
     //categorias

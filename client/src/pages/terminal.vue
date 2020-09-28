@@ -31,7 +31,8 @@ export default {
     created() {
         this.$store.commit('clearData')
         this.$store.dispatch('getLances', this.$route.query.id)
-        this.$store.dispatch('getItemByID', this.$route.query.id)  
+        this.$store.dispatch('getItemByID', this.$route.query.id)
+        this.$store.commit('setAdmView', true); 
     },
     computed: {
         ...mapState({

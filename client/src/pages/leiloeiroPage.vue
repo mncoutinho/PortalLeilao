@@ -42,13 +42,13 @@
 <script>
 import navegacao from "../components/leiloeiro/menu"
 import produtos from "../components/products/getItens"
-import meusProdutos from "../components/products/getMyItems"
 import listBid from "../components/bid/listbid"
 import listMyBid from "../components/bid/listMyBid"
-import addItem from  "../components/item/additem"
-import addBid from "../components/bid/addBid/inputBid"
 import principalPage from "../components/leiloeiro/principalPage"
 
+import addBid from "../pages/addLeilao"
+import addItem from  "../pages/adicionarItem"
+import meusProdutos from "../pages/meusProdutos"
 import gestor from "../pages/gestor"
 export default {
   components:{

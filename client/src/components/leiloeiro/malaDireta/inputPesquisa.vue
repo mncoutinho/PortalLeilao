@@ -2,7 +2,7 @@
     <div>
         <v-text-field
             v-model="text" 
-            label="digite o que procura"
+            label="Digite a cartela do usuário"
         />  
         <v-btn
             @click="search(text)"
@@ -24,6 +24,9 @@ export default {
         search(text){
             this.$store.dispatch('searchlance', text)
         }
+    },
+    created() {
+        this.search(this.$route.query.q)
     },
 
 }

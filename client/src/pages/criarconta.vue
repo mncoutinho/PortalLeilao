@@ -192,41 +192,6 @@
                                 outlined
                                 @change="getCep(endereco.cep)"
                                 />
-                                <!--Endereço-->
-                                <h4 class="brown--text">Endereço:</h4>
-                                <v-text-field
-                                v-model="endereco.endereco"
-                                placeholder="Rua. 20 "
-                                color="brown"
-                                required
-                                outlined
-                                />
-                                <!--Complemento-->
-                                <h4 class="brown--text">Complemento:</h4>
-                                <v-text-field
-                                v-model="endereco.complemento"
-                                placeholder="Zona Sul"
-                                color="brown"
-                                outlined
-                                required/>
-                                <!--Rua-->
-                                <h4 class="brown--text">Bairro:</h4>
-                                <v-text-field
-                                v-model="endereco.bairro"
-                                placeholder="Leblon"
-                                color="brown"
-                                required
-                                outlined
-                                />
-                                <!--Rua-->
-                                <h4 class="brown--text">Cidade:</h4>
-                                <v-text-field
-                                v-model="endereco.cidade"
-                                placeholder="Rio de Janeiro"
-                                color="brown"
-                                required
-                                outlined
-                                />
                                 <!--uf-->
                                 <h4 class="brown--text">UF:</h4>
                                 <v-select
@@ -236,6 +201,34 @@
                                 required
                                 outlined
                                 />
+                                <!--Cidade-->
+                                <h4 class="brown--text">Cidade:</h4>
+                                <v-text-field
+                                v-model="endereco.cidade"
+                                placeholder="Rio de Janeiro"
+                                color="brown"
+                                required
+                                outlined
+                                />
+                                <!--Bairro-->
+                                <h4 class="brown--text">Bairro:</h4>
+                                <v-text-field
+                                v-model="endereco.bairro"
+                                placeholder="Leblon"
+                                color="brown"
+                                required
+                                outlined
+                                />
+                                <!--rua-->
+                                <h4 class="brown--text">Rua:</h4>
+                                <v-text-field
+                                v-model="endereco.endereco"
+                                placeholder="Rua. 20 "
+                                color="brown"
+                                required
+                                outlined
+                                />
+                                
                                 <!--numero-->
                                 <h4 class="brown--text">Numero:</h4>
                                 <v-text-field
@@ -245,6 +238,14 @@
                                 required
                                 outlined
                                 />
+                                <!--Complemento-->
+                                <h4 class="brown--text">Complemento:</h4>
+                                <v-text-field
+                                v-model="endereco.complemento"
+                                placeholder="Apartamento 123"
+                                color="brown"
+                                outlined
+                                required/>
                                 <v-row dense>
                                         <!--Botão Voltar-->
                                         <v-btn

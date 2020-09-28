@@ -1,7 +1,9 @@
 <template>
-    <div>
+    <div
+    class="container"
+     >
         <h1>
-            gestao de lances
+            Gestor de lances
         </h1>
         <pesquisa/>
         <result/>
@@ -11,10 +13,16 @@
 <script>
 import pesquisa from "../components/leiloeiro/malaDireta/inputPesquisa"
 import result from "../components/leiloeiro/malaDireta/getSearch"
+
 export default {
 components:{
         pesquisa,
         result
-    },
+    }
 }
 </script>
+<style>
+    .container  {
+        width: 92%;
+    }
+</style>

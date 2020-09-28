@@ -15,16 +15,16 @@
 
                 <v-row>
                     <v-col>
-                        Peca
+                        Peça
                     </v-col>
                     <v-col>
-                        usuario
+                        Usuário
                     </v-col>
                     <v-col>
-                        data
+                        Data
                     </v-col>
                     <v-col>
-                        lance
+                        Lance Feito
                     </v-col>
                 </v-row>
 
@@ -49,18 +49,13 @@
                         <small>{{result.lance + ",00 R$"}}</small>
                     </v-col>
                 </v-row>
-            </div>
-                      
+            </div>         
             <div v-else>
                 <small >
-                    Sem resultado
+                    Nenhum resultado encontrado 
                 </small>
-            </div>
-			
-        </v-card-text>
-
-        
-		
+            </div>	
+        </v-card-text>	
     </div>
 </template>
 

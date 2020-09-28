@@ -18,7 +18,7 @@
 		</v-card-text>
         <v-row>
 			<v-col>
-				<h3>Usuário</h3>
+				<h3>Cartela</h3>
 			</v-col>
 			<v-col>
 				<h3>Lance</h3>
@@ -34,8 +34,15 @@
 			v-for="lance in lances" 
 			:key="lance.length"
 			>
-				<v-col>
-					<small v-text="lance.user"/>
+				<v-col >	
+					<v-btn 
+					v-if="admView"
+					@click="view(lance.idUser)"
+					
+					>
+						view
+					</v-btn>
+					<small v-text="lance.idUser"/>
 				</v-col>
 				<v-col>
 					<small>{{"R$"+lance.lance+",00"}}</small>
@@ -53,9 +60,15 @@ import {mapState} from 'vuex'
 export default {
     computed: {
         ...mapState({
-			lances: state => state.itemApp.lances
+			lances: state => state.itemApp.lances,
+			admView: state => state.admView
 		})
-    },
+	},
+	methods: {
+		view(id){
+			this.$router.push({path:'/gestor', query:{q:id}})
+		}
+	},
 }
 </script>
 
