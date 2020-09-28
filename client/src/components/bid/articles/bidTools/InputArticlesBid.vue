@@ -115,8 +115,8 @@ export default {
 						this.$store.commit('MENSAGEM_ERRO',  ` valor abaixo do atual, R$ ${this.lanceNow},00`)
 					}
 			}else{
-
 				this.$store.commit('MENSAGEM_LOGUE')
+				this.$router.push('/login')
 			}
 		},
 		// Teste
