@@ -44,9 +44,11 @@
                                     <!--senha-->
                                     <h4 class="brown--text">Senha:</h4>
                                     <v-text-field
+                                    :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+                                    :type="show ? 'text' : 'password'"
                                     :rules="rules.senha"
+                                    @click:append="show = !show"
                                     v-model="accountData.senha"
-                                    type="password"
                                     autocomplete="true"
                                     placeholder="**********"
                                     color="brown"
@@ -58,7 +60,9 @@
                                     <v-text-field
                                     v-model="accountData.confirmacao"
                                     :rules="rules.confirmarSenha && [(accountData.senha === accountData.confirmacao) || 'Senha deve ser igual']"
-                                    type="password"
+                                    :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+                                    :type="show ? 'text' : 'password'"
+                                    @click:append="show = !show"
                                     autocomplete="true"
                                     placeholder="**********"
                                     color="brown"
@@ -66,14 +70,17 @@
                                     outlined
                                     />
                                     <!--Termos e condição-->
-                                    <h4 ></h4>
-                                    <v-checkbox
-                                    color="brown"
-                                    v-model="checkbox"
-                                    :rules="[v => !!v || 'Você, Deve Concordar para Continuar!']"
-                                    label="Você concorda com os termos?"
-                                    required
-                                    />
+                                    <v-card
+                                    flat
+                                    max-width="400px">
+                                        <v-checkbox
+                                        color="brown"
+                                        v-model="checkbox"
+                                        :rules="[v => !!v]"
+                                        label="Eu concordo com o Termos de Serviços e política de privacidade e cookies?"
+                                        required
+                                        />
+                                    </v-card>
                                 </v-form>
                                 <v-row dense>
                                     <!--Botão Voltar-->
@@ -191,18 +198,25 @@
                             v-model="validador3"
                             >
                                 <!--CEP-->
-                                <h4 class="brown--text">CEP:</h4>
-                                <v-text-field
-                                :rules="rules.cep"
-                                v-model="endereco.cep"
-                                maxlength="9"
-                                v-mask="['#####-###']"
-                                placeholder="12345-678"
-                                color="brown"
-                                required
-                                outlined
-                                @change="getCep(endereco.cep)"
-                                />
+                                    <v-tooltip v-model="mostra" bottom transition="scroll-y-transition">
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <h4 class="brown--text">CEP:</h4>
+                                            <v-text-field
+                                            @change="getCep(endereco.cep)"
+                                            :rules="rules.cep"
+                                            v-model="endereco.cep"
+                                            v-bind="attrs"
+                                            v-on="on"
+                                            maxlength="9"
+                                            v-mask="['#####-###']"
+                                            placeholder="12345-678"
+                                            color="brown"
+                                            required
+                                            outlined
+                                            />
+                                        </template>
+                                    <span color="brown">Depois de anotar o Cep, basta apertar Enter</span>
+                                    </v-tooltip>
                                 <!--uf-->
                                 <h4 class="brown--text">UF:</h4>
                                 <v-select
@@ -300,6 +314,7 @@ export default {
     directives: {mask},
     data(){
         return{
+            show:true,
             step:1,
             validador:true,
             validador2:true,
@@ -331,11 +346,11 @@ export default {
                 ],
                 senha:[
                     value => !!value || 'Senha é necessária',
-                    value => value.length >=  5 || 'Mínimo  de 5 caracteres'
+                    value => value.length >=  6 || 'Mínimo  de 6 caracteres'
                 ],
                 confirmarSenha:[
                     value => !!value || 'É Necessário Confirmar Senha ',
-                    value => value.length >=  5 || 'Mínimo  de 5 Caracteres',
+                    value => value.length >=  6 || 'Mínimo  de 6 Caracteres',
                 ],
                 nome:[
                     value => !!value || 'Nome, Necessário',
@@ -416,7 +431,6 @@ export default {
                     nome: this.personaldata.nome,
                 })
                 .then(() => {
-                    this.$store.commit('CADASTRADO_SUCESSO');
                     this.addStep()
                 })
                 .catch(err => console.log(err))
