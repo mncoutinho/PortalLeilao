@@ -10,6 +10,17 @@
                          :elevation="10"
                          min-width="500px"
                         >
+                            <!--Titulo-->
+                            <v-row justify="center" class="pa-8">
+                            <h1 class="brown--text">Entre Com:</h1>
+                            </v-row>
+                            <!--Email's Validação-->
+                            <formulario/>
+                            <v-row align="center">
+                            <v-divider class="mx-10"/>
+                            <h4 class="brown--text">ou</h4>
+                            <v-divider class="mx-10" />
+                            </v-row>
                             <v-row justify="center" class="pa-8">
                                 <h1 class="brown--text">Cadastre-se</h1>
                             </v-row>
@@ -277,11 +288,15 @@
     </v-main>
 </template>
 <script>
+import formulario from '../components/formularios/loginProvide'
 import {mask} from 'vue-the-mask'
 import axios from 'axios'
 import { mapState } from 'vuex'
 const firebase = require('firebase/app');
 export default {
+    components:{
+        formulario
+    },
     directives: {mask},
     data(){
         return{

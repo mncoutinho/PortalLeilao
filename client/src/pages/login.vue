@@ -68,18 +68,67 @@
               large
               >Entrar</v-btn>
             </v-row>
+            <v-row justify="center" dense>
+              <v-dialog
+              v-model="dialog"
+              width="500"
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    text
+                    v-bind="attrs"
+                    v-on="on"
+                    color="#562B28"
+                    class="mt-6" 
+                    v-text="'Não sei minha Senha'"
+                  />
+                </template>
+                <v-card
+                :elevation="0"
+                dense
+                class="pa-6"
+                >
+                  <v-row justify="center" dense>
+                    <h2 class="brown--text">Digite seu e-mail:</h2>
+                  </v-row>
+                  <!--Email-->
+                  <h4 class="brown--text">E-mail:</h4>
+                  <v-text-field
+                  v-model="accountData.email"
+                  autocomplete="true"
+                  type="email"
+                  placeholder="exemplo@email.com"
+                  color="brown"
+                  required
+                  outlined
+                  />
+                  <!--reset, de senha-->
+                  <v-row justify="center" dense>
+                    <v-btn
+                      rigth
+                      color="#562B28"
+                      class="mt-6 white--text" 
+                      v-text="'Enviar'"
+                      v-on:click="resetPassword"
+                      @click="dialog = false"
+                    />
+                  </v-row>
+                </v-card>
+              </v-dialog>
+            </v-row> 
           </v-card>
       </v-row>
     </v-main>
 </template>
 <script>
-import formulario from '../components/formularios/emailValidaçao'
+import formulario from '../components/formularios/loginProvide'
 export default {
   components:{
     formulario
   },
   data(){
     return{
+      dialog:false,
       validador:true,
       show1: false,
       accountData:{
@@ -108,6 +157,9 @@ export default {
     async clique(){
         await this.$store.dispatch('signUserIn',this.accountData).then(
         )
+    },
+    resetPassword(){
+      this.$store.dispatch('resetPassword',this.accountData)
     },
   },
   computed:{
