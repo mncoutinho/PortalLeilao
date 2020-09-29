@@ -2,9 +2,10 @@
     <v-main>
         <v-row justify="center">
             <v-window
-            v-model="step">
+            v-model="step"
+            >
                 <!--Primeira fase-->
-                <v-window-item :value="1">
+                <v-window-item :value="0">
                         <v-card
                          class="mb-12 pa-8"  
                          :elevation="10"
@@ -27,11 +28,11 @@
                         </v-card>
                 </v-window-item>
                 <!--Segunda fase-->
-                <v-window-item :value="2">
+                <v-window-item :value="1">
                     <segundoStep/>
                 </v-window-item>
                 <!--Terceira fase-->
-                <v-window-item :value="3">
+                <v-window-item :value="2">
                     <terceiroStep/>
                 </v-window-item>
             </v-window>
@@ -52,16 +53,16 @@ export default {
     },
     data(){
         return{
-            step:1,
+            step: 0,
         }
     },
     methods: {
         //metodos para botao
-        addStep(){
-            this.step++
-        },
         belowStep(){
             this.step--
+        },
+        addStep(){
+            this.step++
         },
         homeStep(){
             if(this.step === 3){

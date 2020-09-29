@@ -64,7 +64,6 @@
                 class="white--text"
                 depressed
                 large
-                @click="homeStep() && comeBack()"
                 >Voltar</v-btn>
                     <v-spacer/>
                 <!--Botão Seguir-->
@@ -112,7 +111,7 @@ export default {
     methods:{
         //cria o usuario
         async signUp () {
-            await this.$store.dispatch('signUserUp', this.accountData).then(this.addStep());
+            await this.$store.dispatch('signUserUp', this.accountData);
         },
         getAccountData(accountData){
             this.accountData = accountData
