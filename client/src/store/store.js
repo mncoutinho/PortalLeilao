@@ -7,6 +7,8 @@ import item from "./modules/item";
 import bid from "./modules/bid";
 import mensagens from "./modules/mensagens"
 
+import step from "./modules/laylout/steps"
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -15,7 +17,8 @@ export default new Vuex.Store({
     itemApp: item,
     bidApp: bid,
     alerts,
-    mensagens
+    mensagens,
+    stepApp: step
   },
   state: {
     category: [],

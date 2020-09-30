@@ -9,5 +9,8 @@ export default{
         addStep(state){
             state.step++
         },
+        resetStep(state){
+            state.step = 0
+        }
     }
 }

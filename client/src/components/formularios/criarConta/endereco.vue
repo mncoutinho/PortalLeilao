@@ -182,9 +182,17 @@ export default {
                 uf:this.endereco.uf,
                 complemento:this.endereco.complemento?this.endereco.complemento:"",
             })
-            .then(this.$store.commit('CADASTRADO_SUCESSO'))
+            .then(
+                this.$store.commit('CADASTRADO_SUCESSO'),
+            )
             .catch(err => console.log(err))
         },
+        homeStep(){
+            this.setEndereco()
+            this.$store.commit('resetStep').then(()=>{
+                this.route.push('/')
+            })
+        }
     },
     computed:{
       ...mapState({

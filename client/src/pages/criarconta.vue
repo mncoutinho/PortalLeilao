@@ -45,6 +45,7 @@ import formulario from '../components/formularios/loginProvide'
 import primeiroStep from '../components/formularios/criarConta/login&senha'
 import segundoStep from '../components/formularios/criarConta/dadosPessoais'
 import terceiroStep from '../components/formularios/criarConta/endereco'
+import {mapState} from 'vuex'
 export default {
     components:{
         formulario,
@@ -52,28 +53,10 @@ export default {
         segundoStep,
         terceiroStep
     },
-    data(){
-        return{
-            step: 0,
-        }
-    },
-    methods: {
-        //metodos para botao
-        belowStep(){
-            this.step--
-        },
-        addStep(){
-            this.step++
-        },
-        homeStep(){
-            if(this.step === 3){
-                this.setEndereco().then(
-                    this.$router.push('/') && this.$store.commit('CADASTRADO_SUCESSO')
-                )
-            }else{
-                this.$router.push('/')
-            }
-        },
+    computed: {
+        ...mapState({
+            step: state => state.stepApp.step
+        })
     },
     
     watch:{

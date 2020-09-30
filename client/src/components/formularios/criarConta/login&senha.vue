@@ -111,8 +111,8 @@ export default {
     methods:{
         //cria o usuario
         async signUp () {
-            //await this.$store.dispatch('signUserUp', this.accountData)
-            this.addStep()
+            await this.$store.dispatch('signUserUp', this.accountData)
+            this.$store.commit('addStep')
         },
         getAccountData(accountData){
             this.accountData = accountData

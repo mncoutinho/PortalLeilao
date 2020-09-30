@@ -117,7 +117,7 @@ export default {
                     nome: this.personaldata.nome,
                 })
                 .then(() => {
-                    this.addStep()
+                    this.$store.commit('addStep')
                 })
                 .catch(err => console.log(err))
         },
