@@ -4,6 +4,7 @@
             <v-window
             v-model="step"
             >
+            {{step}}
                 <!--Primeira fase-->
                 <v-window-item :value="0">
                         <v-card
