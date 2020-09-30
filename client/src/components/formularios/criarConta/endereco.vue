@@ -189,8 +189,8 @@ export default {
         },
         homeStep(){
             this.setEndereco()
-            this.$store.commit('resetStep').then(()=>{
-                this.route.push('/')
+            this.$store.commit('homeStep').then(()=>{
+                this.$router.push('/')
             })
         }
     },
