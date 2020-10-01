@@ -64,6 +64,7 @@
                 class="white--text"
                 depressed
                 large
+                @click="voltar()"
                 >Voltar</v-btn>
                     <v-spacer/>
                 <!--Botão Seguir-->
@@ -84,7 +85,7 @@ export default {
     
     data(){
         return{
-            show:true,
+            show:false,
             validador: true,
             checkbox:false,
             accountData:{
@@ -112,13 +113,16 @@ export default {
         //cria o usuario
         async signUp () {
             await this.$store.dispatch('signUserUp', this.accountData).then(()=>{
-                    this.$store.commit('addStep')    
+                this.$store.commit('addStep')    
             })
-            
         },
         getAccountData(accountData){
             this.accountData = accountData
         },
+        voltar(){
+            this.$router.push('/'),
+            this.$store.commit('VISIBLE')  
+        }
     },
 }
 </script>

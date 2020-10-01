@@ -11,7 +11,7 @@
                         <v-col cols="12">
                             <v-form
                             ref="form"
-                            v-model="validador3"
+                            v-model="validador"
                             >
                                 <!--CEP-->
                                     <v-tooltip v-model="mostra" bottom transition="scroll-y-transition">
@@ -38,6 +38,7 @@
                                 <v-select
                                 :items="uf" 
                                 v-model="endereco.uf"
+                                placeholder="RJ"
                                 color="brown"
                                 required
                                 outlined
@@ -74,7 +75,7 @@
                                 <h4 class="brown--text">Numero:</h4>
                                 <v-text-field
                                 v-model="endereco.numero"
-                                placeholder="454"
+                                placeholder="45"
                                 color="brown"
                                 required
                                 outlined
@@ -106,8 +107,8 @@
                                         depressed
                                         large
                                         @click="homeStep()"
-                                        :disabled="!validador3"
-                                        >Proximo</v-btn>
+                                        :disabled="!validador"
+                                        >Finalizar</v-btn>
                                     </v-row>
                             </v-form>
                         </v-col>
@@ -124,7 +125,7 @@ export default {
     directives: {mask},
     data(){
         return{
-            validador3:true,
+            validador:true,
             mostra:false,
             endereco:{
                 cidade:'',
@@ -187,11 +188,12 @@ export default {
             )
             .catch(err => console.log(err))
         },
+        belowStep(){
+            this.$store.commit('belowStep')
+        },
         homeStep(){
-            this.setEndereco()
-            this.$store.commit('homeStep').then(()=>{
-                this.$router.push('/')
-            })
+                this.$router.push('/'),
+                this.$store.commit('VISIBLE')
         }
     },
     computed:{

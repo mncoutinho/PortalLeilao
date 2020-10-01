@@ -12,7 +12,7 @@
                         <v-col cols="12">
                             <v-form
                             ref="form"
-                            v-model="validador2"
+                            v-model="validador"
                             >
                                 <!--name-->
                                 <h4 class="brown--text">Nome:</h4>
@@ -68,7 +68,7 @@
                                         depressed
                                         large
                                         @click="setPersonalData()"
-                                        :disabled="!validador2"
+                                        :disabled="!validador"
                                         >Proximo</v-btn>
                                     </v-row>
                             </v-form>
@@ -84,7 +84,7 @@ export default {
     directives: {mask},
     data(){
         return{
-            validador2:true,
+            validador:true,
             personaldata:{
                 nome:'',
                 cpf:'',
@@ -120,6 +120,9 @@ export default {
                     this.$store.commit('addStep')
                 })
                 .catch(err => console.log(err))
+        },
+        belowStep(){
+            this.$store.commit('belowStep')
         },
     },
 }
