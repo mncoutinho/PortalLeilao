@@ -6,6 +6,9 @@ export default{
         belowStep(state){
             state.step--
         },
+        setStep(state, payload){
+            state.step = payload
+        },
         addStep(state){
             state.step++
         },
