@@ -1,42 +1,44 @@
 <template>
     <v-main>
-        <v-row justify="center">
-            <v-window
-            v-model="step"
-            >
-                <!--Primeira fase-->
-                <v-window-item :value="0">
-                        <v-card
-                         class="mb-12 pa-8"  
-                         :elevation="10"
-                         min-width="500px"
-                        >
-                            <!--Titulo-->
-                            <v-row justify="center" class="pa-8">
-                                <h1 class="brown--text">Cadastre-se</h1>
-                            </v-row>
-                            <!--Email's Validação-->
-                            <formulario/>
-                            <v-row align="center">
-                            <v-divider class="mx-10"/>
-                            <h4 class="brown--text">ou</h4>
-                            <v-divider class="mx-10" />
-                            </v-row>
-                            <v-col cols="12">
-                                <primeiroStep/>
-                            </v-col>   
-                        </v-card>
-                </v-window-item>
-                <!--Segunda fase-->
-                <v-window-item :value="1">
-                    <segundoStep/>
-                </v-window-item>
-                <!--Terceira fase-->
-                <v-window-item :value="2">
-                    <terceiroStep/>
-                </v-window-item>
-            </v-window>
-        </v-row>
+        <v-card flat min-height="700px" class="mt-12">
+            <v-row justify="center">
+                <v-window
+                v-model="step"
+                >
+                    <!--Primeira fase-->
+                    <v-window-item :value="0">
+                            <v-card
+                            class="mb-12 pa-8"  
+                            :elevation="10"
+                            min-width="500px"
+                            >
+                                <!--Titulo-->
+                                <v-row justify="center" class="pa-8">
+                                    <h1 class="brown--text">Cadastre-se</h1>
+                                </v-row>
+                                <!--Email's Validação-->
+                                <formulario/>
+                                <v-row align="center">
+                                <v-divider class="mx-10"/>
+                                <h4 class="brown--text">ou</h4>
+                                <v-divider class="mx-10" />
+                                </v-row>
+                                <v-col cols="12">
+                                    <primeiroStep/>
+                                </v-col>   
+                            </v-card>
+                    </v-window-item>
+                    <!--Segunda fase-->
+                    <v-window-item :value="1">
+                        <segundoStep/>
+                    </v-window-item>
+                    <!--Terceira fase-->
+                    <v-window-item :value="2">
+                        <terceiroStep/>
+                    </v-window-item>
+                </v-window>
+            </v-row>
+        </v-card>
     </v-main>
 </template>
 <script>
