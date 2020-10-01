@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-    <NavBar/>
+    <NavBar v-if="visivel.visible"/>
     <v-main>
         <router-view/>
     </v-main>
@@ -18,7 +18,7 @@
             <h3 style="text-weight:0">{{msg.text}}</h3>
           </v-row>
         </v-snackbar>
-    <Footer/>
+    <Footer v-if="visivel.visible"/>
   </v-app>
 </template>
 <script>
@@ -28,7 +28,7 @@ export default {
   name: 'App',
   components:{
     NavBar,
-    Footer
+    Footer,
   },
     data:()=>({
     mensagem: true,
@@ -36,6 +36,9 @@ export default {
   computed:{
     msg(){
       return this.$store.state.alerts
+    },
+    visivel(){
+      return this.$store.state.navEfoter
     }
   },
 }
