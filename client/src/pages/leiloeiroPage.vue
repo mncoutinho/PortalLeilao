@@ -74,6 +74,7 @@ export default {
   },
   created() {
     this.$store.commit('clearData');
+    this.$store.commit('VISIBLE');
   },
 }
 </script>

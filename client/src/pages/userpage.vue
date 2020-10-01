@@ -57,6 +57,9 @@ export default {
     mudarPagina(page){
       this.page = page
     }
+  },
+  created(){
+    this.$store.commit('VISIBLE');
   }
 }
 </script>  

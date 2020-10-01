@@ -18,7 +18,10 @@ export default {
 components:{
         pesquisa,
         result
-    }
+    },
+    created() {
+        this.$store.commit('VISIBLE');
+    },
 }
 </script>
 <style>

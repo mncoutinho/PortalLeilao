@@ -28,7 +28,10 @@ export default {
         livesDesabilitadas,
         registroEmail,
         anuncioPagamento
-    }
+    },
+    created() {
+        this.$store.commit('VISIBLE');
+    },
 }
 </script>
 
