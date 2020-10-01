@@ -12,13 +12,5 @@ export default{
         resetStep(state){
             state.step = 0
         },
-        homeStep(state){
-            if(state.step === 2){
-                alert('CADASTRADO_SUCESSO')
-                state.step = 0
-            }else{
-                alert('ERROR')
-            }
-        },
     }
 }
