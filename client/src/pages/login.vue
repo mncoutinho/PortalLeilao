@@ -1,6 +1,6 @@
 <template >
-    <v-main >
-      <v-row justify="center">
+    <v-main>
+      <v-row justify="center" >
         <v-card
           class="mb-12 pa-8"  
           :elevation="10"
@@ -12,7 +12,7 @@
             </v-row>
             <!--Email's Validação-->
             <formulario/>
-            <v-row align="center">
+            <v-row align="center" class="mb-3">
               <v-divider class="mx-10"/>
                <h4 class="brown--text">ou</h4>
               <v-divider class="mx-10" />
@@ -149,13 +149,15 @@ export default {
   },
   methods:{
     voltar(){
-      this.$router.push('/')
+      this.$router.push('/'),
+      this.$store.commit('VISIBLE') 
     },
     getAccountData(accountData){
       this.accountData = accountData
     },
     async clique(){
         await this.$store.dispatch('signUserIn',this.accountData).then(
+          this.$store.commit('VISIBLE')
         )
     },
     resetPassword(){
