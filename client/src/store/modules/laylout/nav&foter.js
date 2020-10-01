@@ -1,6 +1,6 @@
 export default {
     state: {
-        visible: true,
+        visible: null
     },
     mutations: {
         NOT_VISIBLE(state) {

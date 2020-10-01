@@ -164,6 +164,9 @@ export default {
       this.$store.dispatch('resetPassword',this.accountData)
     },
   },
+  created() {
+    this.$store.commit('NOT_VISIBLE');
+  },
   computed:{
     user(){
       return this.$store.getters.user

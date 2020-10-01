@@ -45,6 +45,7 @@ new Vue({
     store,
     render: h => h(App),
     created() {
+      this.$store.commit('VISIBLE');
       // Instancia do Firebase
       firebase.initializeApp(config);
       firebase.auth().onAuthStateChanged((user) =>{

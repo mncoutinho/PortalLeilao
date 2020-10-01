@@ -57,7 +57,9 @@ export default {
             step: state => state.stepApp.step
         })
     },
-    
+    created() {
+        this.$store.commit('NOT_VISIBLE');
+    },
     watch:{
       user(value){
           if(value !== null && value !== undefined){
