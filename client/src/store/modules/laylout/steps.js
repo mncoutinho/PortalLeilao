@@ -14,10 +14,10 @@ export default{
         },
         homeStep(state){
             if(state.step === 2){
-                alert('CADASTRADO_SUCESSO')
+                this.$store.commit('CADASTRADO_SUCESSO')
                 state.step = 0
             }else{
-                alert('ERROR')
+                this.$store.commit('ERRO')
             }
         }
     }

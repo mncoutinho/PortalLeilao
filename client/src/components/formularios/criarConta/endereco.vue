@@ -192,8 +192,9 @@ export default {
             this.$store.commit('belowStep')
         },
         homeStep(){
-                this.$router.push('/'),
-                this.$store.commit('VISIBLE')
+            this.$router.push('/'),
+            this.$store.commit('VISIBLE')
+            this.$store.commit('homeStep')
         }
     },
     computed:{
