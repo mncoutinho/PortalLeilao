@@ -5,9 +5,10 @@ import alerts from "./modules/alerts";
 import user from "./modules/user";
 import item from "./modules/item";
 import bid from "./modules/bid";
-import mensagens from "./modules/mensagens"
+import mensagens from "./modules/mensagens";
 
-import step from "./modules/laylout/steps"
+import step from "./modules/laylout/steps";
+import navEfoter from "./modules/laylout/nav&foter"
 
 Vue.use(Vuex);
 
@@ -18,7 +19,8 @@ export default new Vuex.Store({
     bidApp: bid,
     alerts,
     mensagens,
-    stepApp: step
+    stepApp: step,
+    navEfoter 
   },
   state: {
     category: [],
