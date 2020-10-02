@@ -18,11 +18,11 @@
                                 </v-row>
                                 <!--Email's Validação-->
                                 <formulario/>
-                                <v-row align="center">
-                                <v-divider class="mx-10"/>
-                                <h4 class="brown--text">ou</h4>
-                                <v-divider class="mx-10" />
-                                </v-row>
+                                    <v-row align="center">
+                                        <v-divider class="mx-10"/>
+                                            <h4 class="brown--text">ou</h4>
+                                        <v-divider class="mx-10" />
+                                    </v-row>
                                 <v-col cols="12">
                                     <primeiroStep/>
                                 </v-col>   
@@ -32,8 +32,11 @@
                     <v-window-item :value="1">
                         <segundoStep/>
                     </v-window-item>
-                    <!--Terceira fase-->
                     <v-window-item :value="2">
+                        <quartoStep/>
+                    </v-window-item>
+                    <!--Terceira fase-->
+                    <v-window-item :value="3">
                         <terceiroStep/>
                     </v-window-item>
                 </v-window>
@@ -46,13 +49,15 @@ import formulario from '../components/formularios/loginProvide'
 import primeiroStep from '../components/formularios/criarConta/login&senha'
 import segundoStep from '../components/formularios/criarConta/dadosPessoais'
 import terceiroStep from '../components/formularios/criarConta/endereco'
+import quartoStep from '../components/formularios/criarConta/confirmacaoCelular'
 import {mapState} from 'vuex'
 export default {
     components:{
         formulario,
         primeiroStep,
         segundoStep,
-        terceiroStep
+        terceiroStep,
+        quartoStep
     },
     computed: {
         ...mapState({
