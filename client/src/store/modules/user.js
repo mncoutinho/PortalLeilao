@@ -73,10 +73,11 @@ export default{
               .get()
               .then((doc) => {
                 if(doc.data() != undefined){
-                  console.log('foi')
+                  console.log('tem dados')
                   return commit("setUserData", doc.data());
                 }else{
                   commit('MENSAGEM_ERRO', 'Você, não completou o seu cadastro')
+                  return this.$routes.push('/criar')
                 } 
               })
               .catch((err) => {
