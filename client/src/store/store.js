@@ -8,7 +8,8 @@ import bid from "./modules/bid";
 import mensagens from "./modules/mensagens";
 
 import step from "./modules/laylout/steps";
-import navEfoter from "./modules/laylout/nav&foter"
+import navEfoter from "./modules/laylout/nav&foter";
+import autCel from "./modules/autCel"
 
 Vue.use(Vuex);
 
@@ -20,7 +21,8 @@ export default new Vuex.Store({
     alerts,
     mensagens,
     stepApp: step,
-    navEfoter 
+    navEfoter,
+    autCel 
   },
   state: {
     category: [],

@@ -39,6 +39,7 @@
                 class="white--text"
                 depressed
                 large
+                :rules="rules.code"
                 @click="addStep()"
                 :disabled="!validador"
                 >Proximo</v-btn>
@@ -49,7 +50,13 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 export default {
+    computed:{
+        ...mapActions({
+            //'autenticarCelular', ['']
+        }),
+    },
     data(){
         return{
             code:null,

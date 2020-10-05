@@ -40,7 +40,7 @@
                   v-model="userData.numero"
                   label="Número:"
                   readonly
-                />   
+                />
             </v-col>
           </v-row>
   </v-app>
@@ -51,7 +51,7 @@ import {mapState} from 'vuex'
 export default {
     computed: {
         ...mapState({
-          userData: state => state.userApp.userData
+          userData: state => state.userApp.userData,
         })
     },
 }

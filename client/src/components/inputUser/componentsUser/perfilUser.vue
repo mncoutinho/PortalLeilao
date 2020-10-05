@@ -81,6 +81,7 @@
               Alterar senha
             </v-btn>
           </v-row>
+          {{mostrar.tel}}
         </div>          
       </v-col>
     </v-row>
