@@ -5,13 +5,13 @@ export default{
     },
     mutation:{
         confirmarNumero(state, payload) {
-            state.user = payload;
+            state.autenticarC = payload;
         },
     },
     action:{
-        autenticarCelular(){
-            const phoneNumber = this.state.userApp.userData.tel;
-            const appVerifier = window.recaptchaVerifier;
+        autenticarCelular(state, payload){
+            const phoneNumber = state;
+            const appVerifier = payload;
             firebase
             .auth()
             .signInWithPhoneNumber(phoneNumber, appVerifier)

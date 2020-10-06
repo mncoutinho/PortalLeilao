@@ -50,13 +50,7 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
 export default {
-    computed:{
-        ...mapActions({
-            //'autenticarCelular', ['']
-        }),
-    },
     data(){
         return{
             code:null,

@@ -74,13 +74,18 @@
                     </v-form>
                 </v-col>
         </v-card>
+        <div id="recaptchaVerifier"></div>
   </v-container>
 </template>
 
 <script>
 import {mask} from 'vue-the-mask'
 const firebase = require('firebase/app');
+import {mapActions} from 'vuex'
 export default {
+    computed:{
+        ...mapActions(['autenticarCelular']), 
+    },
     directives: {mask},
     data(){
         return{
@@ -105,7 +110,13 @@ export default {
             }
         }
     },
+    created(){
+           window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptchaVerifier',{
+               'size':'invisible'
+           })
+    },
     methods:{
+        
         async setPersonalData(){
             let uid = this.$store.getters.uid
             await firebase.firestore()
