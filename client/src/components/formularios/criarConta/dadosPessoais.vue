@@ -57,6 +57,7 @@
                             class="white--text"
                             depressed
                             large
+                            :disabled="true"
                             @click="belowStep()"
                             >Voltar</v-btn>
                             <v-spacer/>
@@ -67,14 +68,13 @@
                             class="white--text"
                             depressed
                             large
-                            @click="setPersonalData()"
+                            @click="setPersonalData() && addStep()"
                             :disabled="!validador"
                             >Proximo</v-btn>
                         </v-row>
                     </v-form>
                 </v-col>
         </v-card>
-        <div id="recaptchaVerifier"></div>
   </v-container>
 </template>
 
@@ -110,13 +110,7 @@ export default {
             }
         }
     },
-    created(){
-           window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptchaVerifier',{
-               'size':'invisible'
-           })
-    },
     methods:{
-        
         async setPersonalData(){
             let uid = this.$store.getters.uid
             await firebase.firestore()
@@ -127,10 +121,10 @@ export default {
                     tel: this.personaldata.tel,
                     nome: this.personaldata.nome,
                 })
-                .then(() => {
-                    this.$store.commit('addStep')
-                })
                 .catch(err => console.log(err))
+        },
+        addStep(){
+            this.$store.commit('addStep')
         },
         belowStep(){
             this.$store.commit('belowStep')

@@ -13,7 +13,7 @@ export default{
             state.step++
         },
         homeStep(state){
-            if(state.step === 2){
+            if(state.step === 3){
                 this.$store.commit('CADASTRADO_SUCESSO')
                 state.step = 0
             }else{

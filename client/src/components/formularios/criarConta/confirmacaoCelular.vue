@@ -14,7 +14,7 @@
                 <h4 class="brown--text">Digite código verificador:</h4>
                 <v-text-field
                 v-model="code"
-                :rules="rules.code"
+                :rules="rules.codes"
                 color="brown"
                 placeholder="000000"
                 required
@@ -39,7 +39,6 @@
                 class="white--text"
                 depressed
                 large
-                :rules="rules.code"
                 @click="addStep()"
                 :disabled="!validador"
                 >Proximo</v-btn>
@@ -56,7 +55,7 @@ export default {
             code:null,
             validador:true,
             rules:{
-                code:[
+                codes:[
                     value => !!value || 'Código de Verificação necessário',
                     value => value.length ===  6 || 'Número, Invalido'
                 ]
