@@ -9,17 +9,21 @@ export default{
         },
     },
     action:{
-        autenticarCelular(state, payload){
-            const phoneNumber = state;
-            const appVerifier = payload;
-            firebase
-            .auth()
-            .signInWithPhoneNumber(phoneNumber, appVerifier)
-                .then(function (confirmationResult) {
-                    this.$store.commit('confirmarNumero', confirmationResult)
-                }).catch(function (error) {
-                    this.$store.commit('ALGO_INESPERADO', error)
-                });
+        autenticarCelular({commit}, payload){
+            firebase.auth.PhoneAuthProvider.PROVIDER_ID
+        
+            var applicationVerifier = new firebase.auth.RecaptchaVerifier(
+                'recaptcha-container');
+
+                var provider = new firebase.auth.PhoneAuthProvider();
+                provider.verifyPhoneNumber(payload, applicationVerifier).then(function(verificationId) {
+                    var verificationCode = window.prompt('Please enter the verification ' + 'code that was sent to your mobile device.');
+                    return firebase.auth.PhoneAuthProvider.credential(verificationId,verificationCode);
+    })
+    .then(function(phoneCredential) {
+      const log = firebase.auth().signInWithCredential(phoneCredential);
+      commit('confirmarNumero', log)
+    });
         }
     },
 }

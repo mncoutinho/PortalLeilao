@@ -5,6 +5,7 @@
     :elevation="10"
     min-width="500px"
     >
+    
         <v-row justify="center" class="pa-8">
             <h1 class="brown--text">Verifique seu número de Celular</h1>
         </v-row>
@@ -66,7 +67,8 @@ export default {
         belowStep(){
             this.$store.commit('belowStep')
         },
-        addStep(){
+        addStep(phone){
+            this.$store.dispatch('autenticarCelular', phone)
             this.$store.commit('addStep')
         }
     }
