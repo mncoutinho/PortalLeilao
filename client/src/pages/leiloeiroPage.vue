@@ -2,8 +2,8 @@
   <v-app id="inspire">
     <v-row no-gutters>
       <navegacao
-      @pagina='mudaPage'
       />
+      {{page}}
       <v-col> 
         <v-window v-model="page" >
           <v-window-item :value="1" >
@@ -19,6 +19,13 @@
           <v-window-item :value="4">           
             <meusProdutos/>
           </v-window-item>
+          <v-window-item :value="9">           
+            <updateItem/>
+          </v-window-item>
+          <v-window-item :value="10">           
+            <terminal/>
+          </v-window-item>
+          
           <!-- leilao -->
           <v-window-item :value="5">           
             <listBid/>
@@ -29,6 +36,10 @@
           <v-window-item :value="7">           
             <listMyBid/>
           </v-window-item>
+          <v-window-item :value="11">           
+            <updateLeilao/>
+          </v-window-item>
+
           <!-- mala direta -->
           <v-window-item :value="8">           
             <gestor/>
@@ -50,6 +61,12 @@ import addBid from "../pages/addLeilao"
 import addItem from  "../pages/adicionarItem"
 import meusProdutos from "../pages/meusProdutos"
 import gestor from "../pages/gestor"
+
+import updateItem from "../pages/updateItem"
+import updateLeilao from "../pages/updateLeilao"
+import terminal from "../pages/terminal"
+import { mapState } from 'vuex'
+
 export default {
   components:{
     navegacao,
@@ -60,20 +77,24 @@ export default {
     addItem,
     addBid,
     principalPage,
-    gestor
+    gestor,
+    updateItem,
+    updateLeilao,
+    terminal
   },
-  data(){
-    return{
-      page: 0,
-    }
+  computed: {
+    ...mapState({
+      page: state => state.stepApp.step
+    })
   },
   methods:{
     mudaPage(page){
-      this.page = page;
+      this.$store.commit('setStep', page)
     }
   },
   created() {
     this.$store.commit('clearData');
-  },
+    this.$store.commit('VISIBLE');
+  }
 }
 </script>

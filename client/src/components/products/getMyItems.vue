@@ -98,7 +98,8 @@ export default {
             console.log("ativo "+ this.target)
             this.$store.dispatch('getItemByID', this.target)
             this.$store.dispatch('getLances',this.target)
-            this.$router.push({path:'/terminal', query:{id:this.target}})
+            this.$store.commit('setStep', 10)
+            //this.$router.push({path:'/terminal', query:{id:this.target}})
         },
         deletar(item){
             if(item.idOrganizer === this.user.uid){
@@ -113,7 +114,8 @@ export default {
             if(item.idOrganizer === this.user.uid){
                 this.target = item.id
                 this.$store.commit('setItem', item);
-                this.$router.push("/updateItem")
+                this.$store.commit('setStep', 9)
+                //this.$router.push("/updateItem")
                 
             }else{
                 this.$store.commit('MENSAGEM_FEED',"Voce n pode editar um item q n e seu")

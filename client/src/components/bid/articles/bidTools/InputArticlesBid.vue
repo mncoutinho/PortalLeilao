@@ -22,6 +22,7 @@
 						</span>
 				</v-card-text>
 				<v-card-text v-else>
+						{{"Minha cartela "+user.uid}}
 						<v-text-field 
 							v-model="lance" 
 							v-on:keyup.enter="AddLance()" 
@@ -51,11 +52,13 @@
 			class="py-auto"
 			v-if="autolance.modal"
 		>
+			{{"Limite dado " + autolance.limit}}
+			{{"status "+ autolance.active}}
 			<v-text-field
 				class="mx-3 mt-5"
 				v-model="autolance.limit"
 				label="De limite ao seu lance :"
-				v-on:keyup.enter="autolancelimit(autolance.limit,user)"
+				v-on:keyup.enter="autolancelimit(autolance.limit)"
 			/>
 				<v-row align="start" justify="center">
 					<v-btn 
@@ -66,7 +69,7 @@
 					</v-btn>
 					<v-btn
 					color="white"
-					v-on:click="autolancelimit(autolance.limit,user)"
+					v-on:click="autolancelimit(autolance.limit)"
 					>Confirmar
 					</v-btn>
 				</v-row>
@@ -84,6 +87,7 @@ export default {
 			// teste auto lance
 			autolance: {
 				modal: false,
+				active: false,
 				limit: 0
 			}
 		};
@@ -115,25 +119,23 @@ export default {
 						this.$store.commit('MENSAGEM_ERRO',  ` valor abaixo do atual, R$ ${this.lanceNow},00`)
 					}
 			}else{
-
 				this.$store.commit('MENSAGEM_LOGUE')
+				this.$router.push('/login')
 			}
 		},
 		// Teste
 		autoLanceModal(){
 			this.autolance.modal = !this.autolance.modal;	
 		},
-		autolancelimit(limit,user){
+		autolancelimit(limit){
 			limit = parseInt(limit);
-			console.log(limit);
-			if(limit > this.lanceMinimo){
-				this.lanceMinimo = this.lanceMinimo + 20;
-				const lance = this.lanceMinimo;
-				const time = new Date();
-				const lanceConfirmado = {lance,time,user};
-				console.log("autolance say: ",lance);
-				this.lances.push(lanceConfirmado);
-			}
+			if(limit <= this.lanceNow){
+				alert("valor invalido")
+			}else{
+				alert(limit)
+				this.autolance.active = true
+				this.automaticolance(limit)
+			}	
 		}	
 	},
 	created() {
@@ -160,7 +162,20 @@ export default {
 				}	
 				return  now;
 			}		
+		},
+		automaticolance(lance){
+			if(this.autolance.active == true){
+				console.log("ativo")
+				let i = this.lances.length -1
+				console.log(this.lances[i].idUser)
+				if(this.user.uid == this.lances[i].idUser){
+					lance = lance + lance*0.10
+				}
+			}
+			alert(lance)
+			return lance
 		}
+
 	}
 }
 </script>

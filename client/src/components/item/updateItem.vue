@@ -81,7 +81,6 @@
               <v-btn class="col-12" color="primary" @click="updateArtigo">Confirmar</v-btn>
             </v-flex>
           </v-layout>
-          {{artigo}}
         </form>
       </v-flex>
     </v-layout>
@@ -107,7 +106,6 @@ export default {
     }),
   },
   created() {
-    this.$store.dispatch('getcategories', this.categories);
     if(!this.user.refreshToken){
       this.$store.commit('MENSAGEM_LOGUE')
       this.$router.push('/')
@@ -137,9 +135,11 @@ export default {
     updateArtigo() {
       this.$store.dispatch('updateItem', this.artigo).then(()=>{
         this.$store.commit('MSG_AVISO', `confirmado a atualização do lote de ${this.user.uid}`)
-        this.$router.push('/leiloeiro');
+        this.$store.commit('setStep', 4)
+        //this.$router.push('/leiloeiro');
       })    
     }
   }
 };
 </script>
+

@@ -17,6 +17,9 @@ export default {
     components:{
         Produtos,
         Menu
+    },
+    created(){
+        this.$store.commit('VISIBLE');
     }
 }
 </script>    

@@ -2,13 +2,13 @@
   <v-app>
       <v-card flat width="100%">
         <v-row  xs12 sm6 offset-sm3>
-            <v-flex class="mt-10">
-                <h1 class="brown--text text-center">Bem-vindo leiloeiro</h1>
+            <v-flex :class="layout.flex">
+                <h1 :class="layout.title">Bem-vindo leiloeiro</h1>
                 
-                    <v-form class="mx-0">
+                    <v-form :class="layout.form">
                         <v-col 
-                        class="mx-auto mt-8" 
-                        cols="6">
+                        :class="layout.col" 
+                        :cols="layout.cols">
                             <!--nome do leilão-->
                             <v-text-field
                             v-model="leilao.name" 
@@ -61,7 +61,7 @@
                                 </v-col>
                             </v-flex>
                             <!--Leiloeiro-->
-                            <h3 class="brown--text text-center">Leiloeiro</h3>
+                            <h3 :class="layout.title">Leiloeiro</h3>
                             <!--nome-->
                             <v-text-field
                                 v-model="leilao.organizer"
@@ -80,7 +80,7 @@
                                 label="Telefone*"
                             />
                             <!--Termos-->
-                            <h3 class="brown--text text-center">Leiloeiro</h3>
+                            <h3 :class="layout.title">Leiloeiro</h3>
                             <!--frete-->
                             <v-textarea
                                 name="title"
@@ -100,8 +100,8 @@
                             />
                             <!--botão para confirmar-->
                             <v-btn
-                                class="col-12 white--text"
-                                color="brown"
+                                :class="layout.btn.type"
+                                :color="layout.btn.color"
                                 v-on:click="putLeilao(leilao);"
                             >
                                 Confirmar
@@ -131,7 +131,8 @@ export default {
     computed: {
         ...mapState({
                 id: state => state.userApp.user.uid,
-                leilao: state => state.bidApp.bid
+                leilao: state => state.bidApp.bid,
+                layout: state => state.form
             })
     },
     methods:{

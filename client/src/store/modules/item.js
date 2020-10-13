@@ -22,7 +22,10 @@ export default{
       state.lances = []
       state.item = {
         name: null,
-        imgUrl: []
+        imgUrl: [],
+        description: null,
+        category: null
+
       }
       state.msg = null
     },

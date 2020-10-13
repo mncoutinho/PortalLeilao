@@ -2,15 +2,15 @@
   <v-app>
     <v-card flat width="100%">
       <v-row xs12 sm6 offset-sm3>
-        <v-flex class="mt-10">
-            <h1 class="brown--text text-center">Bem-vindo leiloeiro</h1>
-                <p class="text-center">
+        <v-flex class="layout.flex">
+            <h1 :class="layout.title">Bem-vindo leiloeiro</h1>
+                <p :class="layout.description">
                 Cadastrar seu leilão ficou ainda mais fácil, basta apenas preencher o formulário e em breve estará no ar.
                 </p>
-            <v-form class="mx-0">
+            <v-form :class="layout.form">
               <v-col 
-                class="mx-auto mt-8" 
-                cols="6">
+                :class="layout.col" 
+                :cols="layout.cols">
                   <!--nome do produto-->
                   <v-text-field
                   name="title"
@@ -66,8 +66,8 @@
                   />
                   <!--Botão-->
                   <v-btn 
-                    class="col-12 white--text" 
-                    color="brown"
+                    :class="layout.btn.type" 
+                    :color="layout.btn.color"
                     @click="addartigo"
                   >
                     Confirmar
@@ -76,6 +76,7 @@
             </v-form>
         </v-flex>
       </v-row>
+      {{artigo}}
     </v-card>
   </v-app>
 
@@ -96,11 +97,12 @@ export default {
     ...mapState({
       artigo: state => state.itemApp.item,
       user: state => state.userApp.user,
-      categories: state => state.category
+      categories: state => state.category,
+      layout: state => state.form
     }),
   },
   created() {
-    this.$store.commit('clearData');
+    //this.$store.commit('clearData');
     this.$store.dispatch('getcategories', this.categories);
     if(!this.user.refreshToken){
       this.$store.commit('MENSAGEM_LOGUE')
@@ -129,10 +131,14 @@ export default {
       }
     },
     addartigo() {
-      this.artigo.IdOrganizer = this.user.uid;     
+      this.artigo.IdOrganizer = this.user.uid;    
+      this.artigo.active = false 
       this.$store.dispatch('createItem', this.artigo).then(()=>{
         this.$store.commit('MSG_COMFIRMACAO', `confirmado criação do lote de ${this.user.uid}`)
-        this.$router.push("/")
+        this.$store.commit('setStep',4)
+        this.$store.commit('clearData');
+        this.image = []
+        //this.$router.push("/")
       })  
     }
   }

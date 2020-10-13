@@ -105,7 +105,8 @@ export default {
     },
     editar(bid){
       this.$store.dispatch("getBidById", bid.id);
-      this.$router.push({path:"/updateLeilao", query:{id:bid.id}})
+      this.$store.commit('setStep', 11)
+      //this.$router.push({path:"/updateLeilao", query:{id:bid.id}})
     }
   },
   async created(){

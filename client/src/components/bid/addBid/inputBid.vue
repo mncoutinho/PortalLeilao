@@ -2,16 +2,16 @@
   <v-app>
       <v-card flat width="100%">
         <v-row  xs12 sm6 offset-sm3>
-            <v-flex class="mt-10">
-                <h1 class="brown--text text-center">Bem-vindo leiloeiro</h1>
-                <p class="text-center">
+            <v-flex :class="layout.flex">
+                <h1 :class="layout.title">Bem-vindo leiloeiro</h1>
+                <p :class="layout.description">
                 Cadastrar seu leilão ficou ainda mais fácil, basta apenas preencher o formulário
                 e em breve estará no ar.
                 </p>
-                    <v-form class="mx-0">
+                    <v-form :class="layout.form">
                         <v-col 
-                        class="mx-auto mt-8" 
-                        cols="6">
+                        :class="layout.col" 
+                        :cols="layout.cols">
                             <!--nome do leilão-->
                             <v-text-field
                             v-model="leilao.name" 
@@ -64,7 +64,7 @@
                                 </v-col>
                             </v-flex>
                             <!--Leiloeiro-->
-                            <h3 class="brown--text text-center">Leiloeiro</h3>
+                            <h3 :class="layout.title">Leiloeiro</h3>
                             <!--nome-->
                             <v-text-field
                                 v-model="user.nome"
@@ -85,7 +85,7 @@
                                 label="Telefone*"
                             />
                             <!--Termos-->
-                            <h3 class="brown--text text-center">Leiloeiro</h3>
+                            <h3 :class="layout.title">Leiloeiro</h3>
                             <!--frete-->
                             <v-textarea
                                 name="title"
@@ -105,8 +105,8 @@
                             />
                             <!--botão para confirmar-->
                             <v-btn
-                                class="col-12 white--text"
-                                color="brown"
+                                :class="layout.btn.type"
+                                :color="layout.btn.color"
                                 v-on:click="addLeilao(leilao);"
                             >Confirmar</v-btn>
                         </v-col>
@@ -143,7 +143,8 @@ export default {
         ...mapState({
                 id: state => state.userApp.user.uid,
                 email: state => state.userApp.user.email,
-                user: state => state.userApp.userData
+                user: state => state.userApp.userData,
+                layout: state => state.form
             })
     },
     methods:{

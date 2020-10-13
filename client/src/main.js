@@ -45,6 +45,7 @@ new Vue({
     store,
     render: h => h(App),
     created() {
+      this.$store.commit('VISIBLE');
       // Instancia do Firebase
       firebase.initializeApp(config);
       firebase.auth().onAuthStateChanged((user) =>{
@@ -56,7 +57,22 @@ new Vue({
                 this.$store.commit('VERIFICAR_EMAIL');
               });
           }
-          this.$store.dispatch('getData', user.uid)
+          firebase
+              .firestore()
+              .collection("user")
+              .doc(user.uid)
+              .get()
+              .then((doc) => {
+                if(doc.data() != undefined){
+                  console.log('tem dados')
+                  return this.$store.commit("setUserData", doc.data());
+                }else{
+                  this.$store.commit('MENSAGEM_ERRO', 'Você, não completou o seu cadastro')
+                  return this.$router.push('/criar').then(()=>{
+                    this.$store.commit('setStep', 1)
+                  })
+                } 
+              })
         }else{
           console.log("sem usuario logado");
         }

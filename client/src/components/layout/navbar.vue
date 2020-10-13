@@ -31,17 +31,17 @@
         <router-link class="white--text" tag="span" to="/" style="cursor:pointer">Portal Leilão</router-link>
       </v-toolbar-title>
       <v-spacer />
-      <v-toolbar-items class="hidden-xs-only">
+      <v-toolbar-items>
         <v-btn
           color="#EEB147"
           text
           center
-          style="text-decoration:none;"
-          v-for="item in (menuItens)"
+          v-for="item in menuItens"
           :key="item.title"
           :to="item.link"
+          @click="esconder"
           >
-          {{item.title}}
+            {{item.title}}
           <v-icon class="ml-2" size="15">{{ item.i }}</v-icon>
         </v-btn>
       </v-toolbar-items>
@@ -67,25 +67,31 @@ export default {
     usuarioL(){
       return this.user.email
     },
+    esconder(){
+      if(this.menuItens[0].title === 'cadastre-se' && this.menuItens[1].title === 'Login'){
+        this.$store.commit('NOT_VISIBLE')  
+      }
+    }
   },
   computed: {
     ...mapState({
       user: (state) => state.userApp.user
     }),
     menuItens() {
-      let menuItens
+      let menuItem
       if (this.user.email) {
-        menuItens = [
+        menuItem = [
           { i: null, title: this.user.email, link: "/userpage" },
           { i: null, title: "Sair", link: "/sair" }, 
         ];
       } else {
-        menuItens = [
-          { i: null, title: "cadastre-se", link: "/criar" },
+        menuItem = [
+          { i: null, title: "cadastre-se", link: "/criar"},
           { i: "fas fa-arrow-right", title: "Login", link: "/login" },
         ];
       }
-      return menuItens;
+
+      return menuItem;
     }
   }
 };

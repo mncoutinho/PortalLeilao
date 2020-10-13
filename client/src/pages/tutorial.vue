@@ -1,9 +1,7 @@
 <template>
     <v-content>
         <v-row class="fill-height ">
-            
             <v-text class="col-md-11" >
-                
                 <v-card-text class="col-mb-9 justify-center">   
             <h3 class="title">
             Veja como é fácil participar de nossos leilões.</h3>
@@ -43,12 +41,16 @@
             <br>
             <br>
             <br>
-
-       
       </v-card-text>
-       
        </v-text>
        </V-row>
-      
     </v-content>
 </template>
+
+<script>
+export default{
+  created(){
+    this.$store.commit('VISIBLE');
+  }
+}
+</script>

@@ -59,7 +59,7 @@ import { mapState } from 'vuex'
 export default { 
   methods:{
     meunMudaPagina(page){
-      this.$emit('pagina', page)
+      this.$store.commit('setStep', page)
     }
   },
   computed: {
