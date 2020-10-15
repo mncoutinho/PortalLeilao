@@ -1,4 +1,4 @@
-  <template>
+<template>
   <v-app>
     <v-card flat width="100%">
       <v-row xs12 sm6 offset-sm3>
@@ -89,18 +89,20 @@ export default {
   data() {
     return {
       image: [],
+      artigo:{
+        imgUrl:[]
+      }
     };
   },
   computed: {
     ...mapState({
-      artigo: state => state.itemApp.item,
+      //artigo: state => state.itemApp.item,
       user: state => state.userApp.user,
       categories: state => state.category,
       layout: state => state.form
     }),
   },
   created() {
-    //this.$store.commit('clearData');
     this.$store.dispatch('getcategories');
     if(!this.user.refreshToken){
       this.$store.commit('MENSAGEM_LOGUE')
@@ -134,11 +136,14 @@ export default {
       this.$store.dispatch('createItem', this.artigo).then(()=>{
         this.$store.commit('MSG_COMFIRMACAO', `confirmado criação do lote de ${this.user.uid}`)
         this.$store.commit('setStep',4)
-        this.$store.commit('clearData');
-        this.image = []
-        //this.$router.push("/")
+        this.clear();
       })  
+    },
+    clear(){
+        this.artigo = {imgUrl:[]}
+        this.image = []
     }
   }
 };
 </script>
+

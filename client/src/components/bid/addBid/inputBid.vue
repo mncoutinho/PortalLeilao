@@ -130,12 +130,7 @@ export default {
                 condicoes:'',
             },
             leilao:{
-                name:null,
-                description: null,
                 imgUrl: "",
-                local: null,
-                closedAt: null,
-                startsOn: null,
             }
         }
     },
@@ -181,10 +176,16 @@ export default {
                 bid.items = []
                 console.log(bid)
                 this.$store.dispatch('createBid', bid).then(()=>{
-                    this.$store.commit('clearData')
+                    this.clear();
                     this.$store.commit('setStep',7)
                 })
             }   
+        },
+        clear(){
+            this.image =[],
+            this.leilao = {
+                imgUrl: "",  
+            }
         },
         commit(){
             this.$store.commit('setCache', this.user);

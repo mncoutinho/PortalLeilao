@@ -96,7 +96,7 @@ export default {
 			}else{
 				lance = true
 			}
-			this.$store.dispatch('finishLance',{id: this.$route.query.id, status: lance})
+			this.$store.dispatch('finishLance',{id: this.item.id, status: lance})
 			
 		},
 		button(item) {
@@ -124,7 +124,7 @@ export default {
 					msg.text = "error"
 					break;
 			}
-			this.$store.dispatch('addInfo',{info: msg, id: this.$route.query.id})
+			this.$store.dispatch('addInfo',{info: msg, id: this.item.id})
 		}
     }
 }
