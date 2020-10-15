@@ -5,7 +5,10 @@
       />
       {{page}}
       <v-col> 
-        <v-window v-model="page" >
+        <v-window 
+        v-model="page" 
+        :touchless="true"
+        >
           <v-window-item :value="1" >
             <principalPage/>
           </v-window-item>

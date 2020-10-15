@@ -181,7 +181,8 @@ export default {
                 bid.items = []
                 console.log(bid)
                 this.$store.dispatch('createBid', bid).then(()=>{
-                    this.$router.push("/")
+                    this.$store.commit('clearData')
+                    this.$store.commit('setStep',7)
                 })
             }   
         },

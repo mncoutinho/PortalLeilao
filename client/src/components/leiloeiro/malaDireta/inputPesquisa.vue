@@ -26,7 +26,7 @@ export default {
         }
     },
     created() {
-        this.search(this.$route.query.q)
+        //this.search(this.$route.query.q)
     },
 
 }

@@ -7,20 +7,39 @@
             <h1>Perfil</h1>
           </v-row>
         <!--FOTO DO USUARIO-->
-          <v-row justify="center"> 
-            <v-avatar color="#422321" size="280">
-              <v-img :src="mostrar.photoUrl"/>
-            </v-avatar>
+          <v-row justify="center" >
+            
+            <div v-if="mostrar.photoUrl">
+              <v-avatar size="300">
+                <v-img
+                  :src="mostrar.photoUrl" 
+                  circle
+                />
+              </v-avatar>
+            </div>
+
+            <div v-else>
+              <v-icon
+                dark 
+                size="200"
+                color="#000"
+              >
+                mdi-camera
+              </v-icon> 
+            </div> 
+            
+            <v-btn 
+                v-if="modal == false"
+                @click="modalPhoto"
+                absolute
+                height="300"
+                width="300"
+                fab
+                style="opacity: 0.2"
+            />
+            
           </v-row>
           <v-row justify="center">
-
-          <v-btn 
-            v-if="modal == false"
-            outlined color="#422321" 
-            @click="modalPhoto"
-          >
-            Alterar foto de perfil
-          </v-btn>
           <v-row v-if="modal">
               <!--updando a imagem-->
             <v-file-input

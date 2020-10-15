@@ -134,6 +134,8 @@ export default {
         etapa(){
             if(this.user != null){
                 return this.$store.commit('addStep')
+            }else{
+                return this.$store.commit('MSG_ERROR',"Aconteceu algo inesperado")
             }
         }
     },

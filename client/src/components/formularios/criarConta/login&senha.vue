@@ -1,6 +1,5 @@
 <template>
   <v-container>
-  {{user}}
             <v-form
             ref="form"
             v-model="validador"

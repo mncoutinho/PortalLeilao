@@ -160,12 +160,9 @@ export default {
         putLeilao(bid){
             console.log(bid)
             this.$store.dispatch('updateBid', bid).then(()=>{
-                this.$route.push('/leiloeiro')
+                this.$store.commit('setStep',7)
             })
         }
-    },
-    created() {
-        this.$store.dispatch('getBidById', this.$route.query.id)
-    },
+    }
 }
 </script>

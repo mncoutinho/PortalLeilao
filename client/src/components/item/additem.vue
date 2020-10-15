@@ -76,10 +76,8 @@
             </v-form>
         </v-flex>
       </v-row>
-      {{artigo}}
     </v-card>
   </v-app>
-
 </template>
 
 <script>
@@ -103,7 +101,7 @@ export default {
   },
   created() {
     //this.$store.commit('clearData');
-    this.$store.dispatch('getcategories', this.categories);
+    this.$store.dispatch('getcategories');
     if(!this.user.refreshToken){
       this.$store.commit('MENSAGEM_LOGUE')
       this.$router.push('/')
