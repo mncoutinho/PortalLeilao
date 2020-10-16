@@ -8,62 +8,29 @@
           </v-row>
         <!--FOTO DO USUARIO-->
           <v-row justify="center" >
-            
-            <div v-if="mostrar.photoUrl">
-              <v-avatar size="300">
-                <v-img
-                  :src="mostrar.photoUrl" 
-                  circle
-                />
-              </v-avatar>
-            </div>
-
-            <div v-else>
-              <v-icon
-                dark 
-                size="200"
-                color="#000"
-              >
-                mdi-camera
-              </v-icon> 
-            </div> 
-            
-            <v-btn 
-                v-if="modal == false"
-                @click="modalPhoto"
-                absolute
-                height="300"
-                width="300"
-                fab
-                style="opacity: 0.2"
-            />
-            
-          </v-row>
-          <v-row justify="center">
-          <v-row v-if="modal">
-              <!--updando a imagem-->
+            <v-avatar size="300">
+              <v-img :src="mostrar.photoUrl" circle/>
+            </v-avatar>
+                <v-icon
+                  class="icone mt-12"
+                  dark 
+                  size="200"
+                  color="#fff"
+                  >
+                    mdi-camera
+                </v-icon> 
+            <!--updando a imagem-->
             <v-file-input
-              multiple
-                show-size
-                counter
-                @change="onUpload"
-                prepend-icon="mdi-camera"
-                v-model="image"
-                label="Insira a Imagem"
-              outlined color="#422321" 
-            >
-            Alterar foto de perfil
-            </v-file-input>
-            <v-btn 
-            v-if="modal == true"
-            outlined color="#422321" 
-            @click="modalPhoto"
-          >
-            cancelar
-          </v-btn>
-          </v-row>
-        
-
+              clear-icon
+              x-large
+              height="300"
+              @change="onUpload"
+              :prepend-icon="null"
+              v-model="image"
+              outlined 
+              color="#422321"
+              class="input"
+            />
           </v-row>
         <!--dados do usuario-->
           <div class="mt-12">  
@@ -120,41 +87,47 @@ export default {
   },
   data(){
     return{
-      modal: false,
-      image:""
+      image:[],
+      input:'mdi-camera',
     }
   },
   created(){
-      this.$store.dispatch('getData', this.user.uid);
-      if(this.mostrar.nome === undefined){
-        return "permanecer"
-      }
+    this.$store.dispatch('getData', this.user.uid);
+    if(this.mostrar.nome === undefined){
+      return "permanecer"
+    }
   },
   methods: {
-    modalPhoto(){
-      if(this.modal){
-        this.modal = false;
-      }else{
-        this.modal = true;
-      }   
-    },
     alterarSenha(){
       this.$store.dispatch('resetPassword', this.user)
     },
     async onUpload() {
-      let images = this.image;
-      images.forEach(image => {
-        firebase.storage().ref("PerfilImage/" + this.user.uid +"/perfilImagem").put(image).then(snapshot => {
-            snapshot.ref.getDownloadURL().then(url => {
-                this.$store.dispatch('uploadProfileImg', { user:this.user.uid ,photo:url}).then(()=>{
-                  this.mostrar.photoUrl = url;
-                  this.modal = false
-                })
-            });
-          });
+      let img = this.image;
+      firebase
+      .storage()
+      .ref("PerfilImage/" + this.user.uid +"/perfilImagem")
+      .put(img)
+      .then(snapshot => {
+        snapshot.ref.getDownloadURL().then(url => {
+            this.$store.dispatch('uploadProfileImg', { user:this.user.uid ,photo:url}).then(()=>{
+                this.mostrar.photoUrl = url;  
+            })
+        });
       });
-    },
-    
+    }, 
   }
 }
 </script>
+<style scoped>
+.input{
+  border-radius: 50%;
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  cursor: pointer;
+}
+.icone{
+  position: absolute;
+  opacity: 0.3;
+}
+</style>

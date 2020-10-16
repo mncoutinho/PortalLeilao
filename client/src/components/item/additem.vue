@@ -96,7 +96,6 @@ export default {
   },
   computed: {
     ...mapState({
-      //artigo: state => state.itemApp.item,
       user: state => state.userApp.user,
       categories: state => state.category,
       layout: state => state.form
@@ -146,4 +145,3 @@ export default {
   }
 };
 </script>
-

@@ -11,8 +11,8 @@
             />
                     <v-btn
                         @click="postMSG(text)"
-                        color="brown"
-                        class="white--text ml-12"
+                        :color="layout.btn.color"
+                        :class="layout.btn.type"
                         x-large
                     >
                         publicar
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import {mapState} from 'vuex';
 export default {
     data() {
         return {
@@ -40,5 +41,10 @@ export default {
             this.$store.dispatch('addInfo', {info:msg, id: this.$route.query.id})
         }
     },
+    computed:{
+        ...mapState({
+            layout: state => state.form
+        })
+    }
 }
 </script>

@@ -9,7 +9,7 @@
         v-model="page" 
         :touchless="true"
         >
-          <v-window-item :value="1" >
+          <v-window-item :value="0" >
             <principalPage/>
           </v-window-item>
           <!-- item -->
@@ -89,11 +89,6 @@ export default {
     ...mapState({
       page: state => state.stepApp.step
     })
-  },
-  methods:{
-    mudaPage(page){
-      this.$store.commit('setStep', page)
-    }
   },
   created() {
     this.$store.commit('clearData');

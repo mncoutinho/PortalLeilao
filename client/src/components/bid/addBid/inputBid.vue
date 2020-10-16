@@ -182,7 +182,7 @@ export default {
             }   
         },
         clear(){
-            this.image =[],
+            this.image =[]
             this.leilao = {
                 imgUrl: "",  
             }

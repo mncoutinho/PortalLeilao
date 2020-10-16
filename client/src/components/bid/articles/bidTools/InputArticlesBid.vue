@@ -24,15 +24,18 @@
 				<v-card-text v-else>
 						{{"Minha cartela "+user.uid}}
 						<v-text-field 
+							v-mask="['########']"
 							v-model="lance" 
 							v-on:keyup.enter="AddLance()" 
 							label="Faça seu lance" 
 							placeholder="R$ 999,99"
+							required
+							outlined
 						/>
 						<v-btn 
-							class="ma-4"
+							:class="layout.btn.type"
+                            :color="layout.btn.color"
 							v-on:click="AddLance()"
-							color="success" 
 						>
 							Faça seu Lance
 						</v-btn>
@@ -68,7 +71,8 @@
 						Cancelar
 					</v-btn>
 					<v-btn
-					color="white"
+					:class="layout.btn.type"
+                    :color="layout.btn.color"
 					v-on:click="autolancelimit(autolance.limit)"
 					>Confirmar
 					</v-btn>
@@ -79,8 +83,10 @@
 
 <script>
 import {mapState} from 'vuex';
+import {mask} from 'vue-the-mask'
 //import firebase from 'firebase';
 export default {
+	directives: {mask},
 	data(){
 		return{
 			lance: null,
@@ -143,6 +149,7 @@ export default {
 	},
 	computed:{
 		...mapState({
+			layout: state => state.form,
 			user: state => state.userApp.user,
 			lances: state => state.itemApp.lances,
 			item: state => state.itemApp.item,

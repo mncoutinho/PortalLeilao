@@ -36,7 +36,7 @@
                     color="brown"
                     required
                     outlined
-                    ></v-text-field>
+                    />
                     <!--telephone-->
                     <h4 class="brown--text">Telefone:</h4>
                     <v-text-field
