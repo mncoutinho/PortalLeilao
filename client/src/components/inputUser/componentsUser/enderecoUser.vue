@@ -7,52 +7,85 @@
           <v-row justify="center">
             <v-col cols="12" sm="6">
                 <v-text-field
-                  v-model="userData.endereco"
-                  label="ENDEREÇO :"
-                  readonly
-                />
-                <v-text-field
-                  v-model="userData.complemento"
-                  label="COMPLETEMENTO :"
-                  readonly
-                />
-                 <v-text-field
                   v-model="userData.cep"
                   label="CEP :"
-                  readonly
-                />  
-                <v-text-field
-                  v-model="userData.bairro"
-                  label="Bairro:"
-                  readonly
+                  @change="getCep()"
+                  maxlength="9"
+                  v-mask="['#####-###']"
+                /> 
+
+                <v-select
+                  :items="uf" 
+                  v-model="userData.uf"
+                  placeholder="RJ"
+                  color="brown"                              
                 />
+
                 <v-text-field
                   v-model="userData.cidade"
                   label="Cidade:"
-                  readonly
-                /> 
+                />
+
                 <v-text-field
-                  v-model="userData.uf"
-                  label="UF:"
-                  readonly
-                /> 
+                  v-model="userData.bairro"
+                  label="Bairro:"
+                />
+                
+                <v-text-field
+                  v-model="userData.endereco"
+                  label="RUA :"
+                />
+
                 <v-text-field
                   v-model="userData.numero"
-                  label="Número:"
-                  readonly
-                />   
+                  label="Número:"  
+                /> 
+
+                <v-text-field
+                  v-model="userData.complemento"
+                  label="COMPLETEMENTO :"  
+                />    
             </v-col>
+          </v-row>
+          <v-row justify="center">
+            <v-btn outlined color="#422321" @click="update()">
+              Atualizar
+            </v-btn>
           </v-row>
   </v-app>
 </template>
 
 <script>
 import {mapState} from 'vuex'
+import {mask} from 'vue-the-mask'
 export default {
+    directives: {mask},
+    data(){
+      return{
+        
+      }
+    },
     computed: {
         ...mapState({
-          userData: state => state.userApp.userData
+          user: (state) => state.userApp.user,
+          userData: state => state.userApp.userData,
+          uf: state => state.uf
         })
     },
+    methods: {
+      update(){
+        console.log(this.userData)
+        if(this.userData.numero == undefined && this.userData.Complemento == undefined ){
+          alert("Por favor preencha o formulario todo!")
+        }else{
+          this.$store.dispatch("updateData",{id:this.user.uid, data: this.userData })
+        }  
+      },
+      getCep(){
+      console.log(this.userData.cep)
+      this.$store.dispatch('getCep', this.userData.cep)
+      }
+    }
+    
 }
 </script>

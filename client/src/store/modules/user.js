@@ -25,6 +25,15 @@ export default{
           clearError(state) {
             state.error = null;
           },
+          setCEP(state, payload){
+            state.userData.cep = payload.cep
+            state.userData.bairro = payload.bairro
+            state.userData.cidade = payload.cidade
+            state.userData.uf = payload.uf
+            state.userData.endereco = payload.endereco
+            state.userData.numero = payload.numero
+            state.userData.complemento = payload.complemento
+          },
           setUserData(state, payload) {
             state.userData = payload;
           },
@@ -86,14 +95,14 @@ export default{
                 console.log(err);
               });
           },
-          updateData({commit}, id,data){
+          updateData({commit}, { data, id }){
+              console.log(data)
               firebase
-              .firestore
+              .firestore()
               .collection("user")
               .doc(id)
               .update(data)
-              .then((doc)=>{
-                commit("setUserData", doc.data());
+              .then( () =>{
                 commit('ALTERADO_SUCESSO');
               })
               .catch((err)=>{

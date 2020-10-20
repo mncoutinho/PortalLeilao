@@ -117,7 +117,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import {mask} from 'vue-the-mask'
 import { mapState } from 'vuex'
 const firebase = require('firebase/app');
@@ -127,15 +126,7 @@ export default {
         return{
             validador:true,
             mostra:false,
-            endereco:{
-                cidade:'',
-                bairro:'',
-                cep:'',
-                complemento:'',
-                endereco:'',
-                numero:'',
-                uf:''
-            },
+            
             rules: {
                 cep:[
                     value => !!value || 'CEP, Necessário',
@@ -155,19 +146,11 @@ export default {
     methods:{
         //pegar cep
         getCep(cep){
-            console.log(cep);
-            axios({
-                method: 'get',
-                url:'https://viacep.com.br/ws/'+cep+'/json/'  
-            }).then(doc =>{
-                this.endereco = {
-                    cep: doc.data.cep,
-                    cidade: doc.data.localidade,
-                    bairro: doc.data.bairro,
-                    endereco: doc.data.logradouro,
-                    uf: doc.data.uf
-                }
-            })
+            if(cep != undefined){
+                console.log(cep);
+                this.$store.dispatch('getCep',cep)
+            }
+            
         },
         async setEndereco(){
             let uid = this.$store.getters.uid
@@ -199,7 +182,8 @@ export default {
     },
     computed:{
       ...mapState({
-            uf: state => state.uf
+            uf: state => state.uf,
+            endereco: state => state.userApp.userData
         })
     },
 }

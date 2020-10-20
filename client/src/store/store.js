@@ -11,6 +11,8 @@ import step from "./modules/laylout/steps";
 import navEfoter from "./modules/laylout/nav&foter"
 import form from  "./modules/laylout/forms"
 
+import viaCep from "./modules/API/cep"
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -22,7 +24,8 @@ export default new Vuex.Store({
     mensagens,
     stepApp: step,
     form,
-    navEfoter 
+    navEfoter,
+    viaCep
   },
   state: {
     category: [],
