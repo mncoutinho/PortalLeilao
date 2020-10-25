@@ -11,9 +11,6 @@
           <v-avatar size="300">
             <v-img :src="mostrar.photoUrl" circle />
           </v-avatar>
-          <v-icon class="icone mt-12" dark size="200" color="#fff">
-            mdi-camera
-          </v-icon>
           <!--updando a imagem-->
           <v-file-input
             clear-icon
