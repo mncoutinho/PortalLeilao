@@ -79,7 +79,6 @@
 
 <script>
 import {mask} from 'vue-the-mask'
-const firebase = require('firebase/app');
 import {mapState} from 'vuex'
 export default {
     directives: {mask},
@@ -107,20 +106,14 @@ export default {
         }
     },
     methods:{
-        async setPersonalData(){
-            let uid = this.$store.getters.uid
-            await firebase.firestore()
-                .collection("user")
-                .doc(uid)
-                .set({
-                    cpf: this.personaldata.cpf,
-                    tel: this.personaldata.tel,
-                    nome: this.personaldata.nome,
-                })
+        setPersonalData(){
+            let uid = this.user.uid
+            let data = this.personaldata
+            this.$store.dispatch('setData',{id: uid, data: data})
                 .then(() => {
                     this.etapa;
                 })
-                .catch(err => console.log(err))
+                
         },
         belowStep(){
             //this.$store.commit('belowStep')

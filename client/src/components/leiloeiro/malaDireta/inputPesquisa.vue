@@ -22,6 +22,7 @@ export default {
     },
     methods: {
         search(text){
+            console.log(text)
             this.$store.dispatch('searchlance', text)
         }
     },

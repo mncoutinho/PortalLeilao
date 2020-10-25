@@ -1,24 +1,43 @@
+//depedencias
 import Vue from "vue";
 import Vuex from "vuex";
 import firebase from "firebase/app";
-import alerts from "./modules/alerts";
-import user from "./modules/user";
-import item from "./modules/item";
-import bid from "./modules/bid";
-import mensagens from "./modules/mensagens";
 
+//usuarios 
+import user from "./modules/users/user";
+import perfil from "./modules/users/perfil";
+import login from "./modules/users/login";
+
+//item
+import item from "./modules/items/item";
+import lances from "./modules/items/lances";
+import info from "./modules/items/info";
+
+//leilao
+import bid from "./modules/bids/bid";
+
+//notificacoes 
+import mensagens from "./modules/mensagens";
+import alerts from "./modules/alerts";
+
+//layout
 import step from "./modules/laylout/steps";
 import navEfoter from "./modules/laylout/nav&foter"
 import form from  "./modules/laylout/forms"
 
-import viaCep from "./modules/API/cep"
+//API
+import viaCep from "./modules/API/viaCep"
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
     userApp: user,
+    perfil,
+    login,
     itemApp: item,
+    lances,
+    info,
     bidApp: bid,
     alerts,
     mensagens,

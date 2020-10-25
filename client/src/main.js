@@ -48,6 +48,7 @@ new Vue({
       this.$store.commit('VISIBLE');
       // Instancia do Firebase
       firebase.initializeApp(config);
+      //verificador do login
       firebase.auth().onAuthStateChanged((user) =>{
         if(user){
           this.$store.commit('setUser',user);

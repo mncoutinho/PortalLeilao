@@ -75,17 +75,18 @@ export default {
     methods: {
       update(){
         console.log(this.userData)
-        if(this.userData.numero == undefined && this.userData.Complemento == undefined ){
-          alert("Por favor preencha o formulario todo!")
+        if(this.userData.numero == "" || this.userData.numero == undefined 
+        || this.userData.complemento == undefined || this.userData.complemento == ""){
+          const msg = " Por favor preencha o formulario todo!"
+          //alert(msg)
+          return this.$store.commit('ALGO_INESPERADO', msg)
         }else{
           this.$store.dispatch("updateData",{id:this.user.uid, data: this.userData })
         }  
       },
       getCep(){
-      console.log(this.userData.cep)
       this.$store.dispatch('getCep', this.userData.cep)
       }
-    }
-    
+    } 
 }
 </script>

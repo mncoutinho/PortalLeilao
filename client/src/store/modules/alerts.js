@@ -72,7 +72,7 @@ export default {
         },
         ALGO_INESPERADO(state, payload) {
             state.text = 'Algo inesperado aconteceu:' + payload,
-            state.cor = 'red',
+            state.cor = 'pizza',
             state.tempo = 5000,
             state.mostra = true,
             state.top = true,

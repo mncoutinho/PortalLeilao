@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    {{endereco}}
       <v-card
                     class="mb-12 pa-10"  
                     :elevation="10"
@@ -19,7 +20,6 @@
                                             <h4 class="brown--text">CEP:</h4>
                                             <v-text-field
                                             @change="getCep(endereco.cep)"
-                                            :rules="rules.cep"
                                             v-model="endereco.cep"
                                             v-bind="attrs"
                                             v-on="on"
@@ -119,71 +119,59 @@
 <script>
 import {mask} from 'vue-the-mask'
 import { mapState } from 'vuex'
-const firebase = require('firebase/app');
+import axios from 'axios';
 export default {
     directives: {mask},
     data(){
         return{
             validador:true,
             mostra:false,
-            
-            rules: {
-                cep:[
-                    value => !!value || 'CEP, Necessário',
-                    value => value.length >=  9 || 'CEP, Invalido',
-                ],
-                Complemento:[
-                    value => !!value || 'Complemento, Necessário',
-                    value => value.length >=  1 || 'Complemento, Necessário',
-                ],
-                numero:[
-                    value => !!value || 'Numero, Necessário',
-                    value => value.length >=  1 || 'Numero, Necessário',
-                ],
-            }
+            endereco:{}
         }
     },
     methods:{
         //pegar cep
         getCep(cep){
-            if(cep != undefined){
-                console.log(cep);
-                this.$store.dispatch('getCep',cep)
-            }
-            
-        },
-        async setEndereco(){
-            let uid = this.$store.getters.uid
-            await firebase.firestore()
-            .collection("user")
-            .doc(uid)
-            .update({
-                cidade:this.endereco.cidade,
-                bairro:this.endereco.bairro,
-                cep:this.endereco.cep,
-                endereco:this.endereco.endereco,
-                numero:this.endereco.numero,
-                uf:this.endereco.uf,
-                complemento:this.endereco.complemento?this.endereco.complemento:"",
+            cep = this.endereco.cep
+      axios({
+                method: 'get',
+                url:'https://viacep.com.br/ws/'+cep+'/json/'  
+            }).then(doc =>{
+                this.endereco = {
+                    cep: doc.data.cep,
+                    cidade: doc.data.localidade,
+                    bairro: doc.data.bairro,
+                    endereco: doc.data.logradouro,
+                    uf: doc.data.uf
+                }  
             })
-            .then(
-                this.$store.commit('CADASTRADO_SUCESSO'),
-            )
-            .catch(err => console.log(err))
+        },
+        setEndereco(){
+            this.$store.dispatch("updateData",{id:this.user.uid, data: this.endereco })
         },
         belowStep(){
             this.$store.commit('belowStep')
         },
         homeStep(){
             this.$store.commit('VISIBLE')
-            this.$store.commit('homeStep')
-            this.$router.push('/')
+            if(this.endereco.numero == undefined || this.endereco.complemento == undefined 
+               || this.endereco.numero == "" || this.endereco.complemento == "" 
+            ){
+                let msg = "Complete todos os campos"
+                //alert(msg)
+                return this.$store.commit('ALGO_INESPERADO', msg)
+            }else{
+                this.setEndereco()
+                this.$store.commit('homeStep')
+                this.$router.push('/')
+            }
         }
     },
     computed:{
       ...mapState({
             uf: state => state.uf,
-            endereco: state => state.userApp.userData
+            //endereco: state => state.userApp.userData,
+            user: state => state.userApp.user
         })
     },
 }
