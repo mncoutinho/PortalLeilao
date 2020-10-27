@@ -1,0 +1,8 @@
+{
+  "firebase": {
+    "projectId": "portalleilao-26290",
+    "databaseURL": "https://portalleilao-26290.firebaseio.com",
+    "storageBucket": "portalleilao-26290.appspot.com",
+    "locationId": "us-central"
+  }
+}
