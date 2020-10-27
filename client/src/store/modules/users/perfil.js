@@ -10,11 +10,10 @@ export default{
                     tel: data.tel,
                     nome: data.nome,
                 }).then(()=>{
-                  commit('MENSAGEM_ERRO', 'salvo com sucesso')
-                }).catch(err => console.log(err))
+                  commit('SAVED')
+                }).catch(err => commit('ERRO', err))
           },
           setData2({commit}, {id, endereco}){
-            console.log(endereco)
             firebase.firestore()
             .collection("user")
             .doc(id)
@@ -28,9 +27,11 @@ export default{
                 complemento: endereco.complemento?endereco.complemento:"",
             })
             .then(()=>{
-                commit('CADASTRADO_SUCESSO')
+                commit('CREATED')
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+              commit('ERRO', err);
+            })
           },
           getData({ commit }, payload) {
             firebase
@@ -40,49 +41,47 @@ export default{
               .get()
               .then((doc) => {
                 if(doc.data() != undefined){
-                  console.log('tem dados')
                   return commit("setUserData", doc.data());
                 }else{
-                  commit('MENSAGEM_ERRO', 'Você, não completou o seu cadastro')
+                  commit('ALERT', 'Você, não completou o seu cadastro')
                   return this.$routes.push('/criar')
                 } 
               })
               .catch((err) => {
                 commit("setLoading", false);
                 commit("setError", err);
-                console.log(err);
+                commit('ERRO', err);
               });
           },
           updateData({commit}, { data, id }){
-              console.log(data)
               firebase
               .firestore()
               .collection("user")
               .doc(id)
               .update(data)
               .then( () =>{
-                commit('ALTERADO_SUCESSO');
+                commit('UPDATED');
               })
               .catch((err)=>{
                 commit("setLoading", false);
                 commit("setError", err);
-                console.log(err);
+                commit('ERRO', err);
               })
           },
           cleanError({ commit }) {
             commit("clearError");
           },
           uploadProfileImg({ commit }, { user, photo }) {
-            console.log(user);
             firebase
               .firestore()
               .collection("user")
               .doc(user)
               .update({ photoUrl: photo })
               .then(() => {
-                commit;
-                commit('ALTERADO_SUCESSO');
-              });
+                commit('UPDATED');
+              }).catch(err =>{
+                commit('ERRO', err);
+              })
           }
         }
   }

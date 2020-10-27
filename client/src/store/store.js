@@ -17,13 +17,12 @@ import info from "./modules/items/info";
 import bid from "./modules/bids/bid";
 
 //notificacoes 
-import mensagens from "./modules/mensagens";
-import alerts from "./modules/alerts";
+import alerts from "./modules/layout/snap_bar";
 
 //layout
-import step from "./modules/laylout/steps";
-import navEfoter from "./modules/laylout/nav&foter"
-import form from  "./modules/laylout/forms"
+import step from "./modules/layout/steps";
+import navEfoter from "./modules/layout/nav&foter"
+import form from  "./modules/layout/forms"
 
 //API
 import viaCep from "./modules/API/viaCep"
@@ -40,7 +39,6 @@ export default new Vuex.Store({
     info,
     bidApp: bid,
     alerts,
-    mensagens,
     stepApp: step,
     form,
     navEfoter,

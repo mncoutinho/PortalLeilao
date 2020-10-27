@@ -107,6 +107,7 @@ export default {
     async onUpload() {
       if(this.artigo.name){
       let images = this.image;
+      this.$store.commit('MSG_FEED','Carregando...')
       images.forEach(image => {
         firebase
           .storage()
@@ -121,7 +122,8 @@ export default {
           });
       });
       }else{
-        this.$store.commit('MENSAGEM_FEED', 'Porfavor defina o nome do artigo antes')
+        this.$store.commit('ALERT', 'Porfavor defina o nome do artigo antes')
+        this.image = []
       }
     },
     updateArtigo() {

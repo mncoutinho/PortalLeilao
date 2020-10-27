@@ -55,7 +55,7 @@ new Vue({
           firebase.auth().languageCode = 'pt';
           if(!user.emailVerified){
               user.sendEmailVerification().then(() => {
-                this.$store.commit('VERIFICAR_EMAIL');
+                this.$store.commit('MSG_FEED',"Por favor verifique sua caixa de e-mail para validar sua conta");
               });
           }
           firebase
@@ -65,17 +65,14 @@ new Vue({
               .get()
               .then((doc) => {
                 if(doc.data() != undefined){
-                  console.log('tem dados')
                   return this.$store.commit("setUserData", doc.data());
                 }else{
-                  this.$store.commit('MENSAGEM_ERRO', 'Você, não completou o seu cadastro')
+                  this.$store.commit('ALERT', 'Você, não completou o seu cadastro')
                   return this.$router.push('/criar').then(()=>{
                     this.$store.commit('setStep', 1)
                   })
                 } 
               })
-        }else{
-          console.log("sem usuario logado");
         }
       })
       this.$store.dispatch('getAllItems');

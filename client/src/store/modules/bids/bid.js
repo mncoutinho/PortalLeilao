@@ -40,7 +40,7 @@ export default{
             
           })
           .catch((err) => {
-            commit('ALGO_INESPERADO', err.message)
+            commit('ERRO', err.message)
           });
       },
       getMyBids({commit},filter){
@@ -51,7 +51,6 @@ export default{
         .onSnapshot(snapshot =>{
           let bid = []
           snapshot.forEach(doc =>{
-           console.log(doc.data())
               bid.push({
                 id:doc.id,
                 name:doc.data().name,
@@ -74,7 +73,7 @@ export default{
           .add(payload)
           .then((doc) => {
             commit("setBid", doc);
-            return commit('ATUALIZADO_SUCESSO', payload.name + " criado com sucesso");
+            return commit('SAVED');
           })
           .catch((err) => {
             commit('ALGO_INESPERADO', err.message);
@@ -88,29 +87,26 @@ export default{
           .doc(payload)
           .delete()
           .then(() => {
-            commit('DELETADO');
+            commit('DELETED');
           })
           .catch((err) => {
             commit('ALGO_INESPERADO', err.message)
           });
       },
       updateBid( {commit} ,payload) {
-        console.log(payload.id)
-        console.log(payload.name)
         firebase
           .firestore()
           .collection("leilao")
           .doc(payload.id)
           .update(payload)
           .then(() => {
-            return commit('MOSTRAR_CONTEUDO', payload.name + " atualizado com sucesso");
+            return commit('UPDATED');
           })
           .catch((err) => {
             commit('ALGO_INESPERADO', err.message);
           });
       },
       getBidById({ commit }, payload) {
-        console.log(payload)
         firebase
         .firestore()
         .collection("leilao")

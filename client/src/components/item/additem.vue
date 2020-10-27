@@ -112,6 +112,7 @@ export default {
     async onUpload() {
       if(this.artigo.name){
       let images = this.image;
+      this.$store.commit('MSG_FEED','Carregando...')
       images.forEach(image => {
         firebase
           .storage()
@@ -126,14 +127,14 @@ export default {
           });
       });
       }else{
-        this.$store.commit('MENSAGEM_FEED','Porfavor defina o nome do artigo antes')
+        this.$store.commit('ALERT','Porfavor defina o nome do artigo antes')
+        this.image = []
       }
     },
     addartigo() {
       this.artigo.IdOrganizer = this.user.uid;    
       this.artigo.active = false 
       this.$store.dispatch('createItem', this.artigo).then(()=>{
-        this.$store.commit('MSG_COMFIRMACAO', `confirmado criação do lote de ${this.user.uid}`)
         this.$store.commit('setStep',4)
         this.clear();
       })  

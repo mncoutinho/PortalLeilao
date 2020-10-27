@@ -3,60 +3,69 @@
     <v-row justify="center">
       <!--INFORMAÇOES-->
       <v-col cols="12" sm="6">
-        <v-row justify="center" class="mb-12">
-          <h1>Perfil</h1>
-        </v-row>
         <!--FOTO DO USUARIO-->
         <v-row justify="center">
           <v-avatar size="300">
             <v-img :src="mostrar.photoUrl" circle />
           </v-avatar>
           <!--updando a imagem-->
-          <v-file-input
-            clear-icon
-            x-large
-            height="300"
-            @change="onUpload"
-            :prepend-icon="null"
-            v-model="image"
-            outlined
-            color="#422321"
-            class="input"
-          />
+            <v-file-input
+              clear-icon
+              x-large
+              height="270"
+              @change="onUpload"
+              :prepend-icon="null"
+              v-model="image"
+              outlined
+              color="#422321"
+              class="input"
+            />
+            <div class="div-icon">
+              <v-icon
+              class="icone" 
+              size="40">
+                mdi-camera
+              </v-icon>
+            </div>
         </v-row>
         <!--dados do usuario-->
         <div class="mt-12">
+          <h3 style="color:#5B2D2A">Nome Completo:</h3>
           <v-text-field 
           v-model="mostrar.nome"
           outlined 
-          label="Nome Completo" 
           />
+          <h3 style="color:#5B2D2A">CPF :</h3>
           <v-text-field
             v-model="mostrar.cpf"
             v-mask="['###.###.###-##']"
-            label="CPF :"
             outlined
           />
+          <h3 style="color:#5B2D2A">E-mail :</h3>
           <v-text-field
             outlined
             :value="user.email"
-            label="EMAIL :"
             type="email"
           />
+          <h3 style="color:#5B2D2A">Telefone :</h3>
           <v-text-field
             v-model="mostrar.tel"
             v-mask="['(##)#########']"
-            label="Telefone :"
             type="tel"
             outlined
           />
-          <v-row justify="center">
-            <v-btn outlined color="#422321" @click="updatePerfil()">
+          <v-row justify="center" class="pa-3">
+            <v-btn 
+              x-large 
+              color="#422321" 
+              class="white--text" 
+              @click="updatePerfil()"
+            >
               Atualizar
             </v-btn>
           </v-row>
           <v-row justify="center">
-            <v-btn outlined color="#422321" @click="alterarSenha">
+            <v-btn large text color="#422321" @click="alterarSenha">
               Alterar senha
             </v-btn>
           </v-row>
@@ -96,6 +105,7 @@ export default {
     },
     async onUpload() {
       let img = this.image;
+      this.$store.commit('MSG_FEED','Carregando...')
       firebase
         .storage()
         .ref("PerfilImage/" + this.user.uid + "/perfilImagem")
@@ -122,10 +132,19 @@ export default {
   position: absolute;
   width: 300px;
   height: 300px;
-  cursor: pointer;
+  box-sizing: border-box;
+  border: 1em solid rgb(231, 231, 231);
 }
-.icone {
+.div-icon{
+  position: relative;
+}
+div .icone{
   position: absolute;
-  opacity: 0.3;
+  top: 230px;
+  left: -80px;
+  z-index: 1;
+  background-color:  rgb(231, 231, 231);
+  border:  5px solid rgb(231, 231, 231);
+  border-radius: 50%;
 }
 </style>

@@ -8,7 +8,7 @@ export default {
         .push(payload)
         .then(doc => {
           commit;
-          return commit('MOSTRAR_CONTEUDO', doc.key + " lance computado");
+          return commit('MSG_FEED', doc.key + " lance computado");
         })
         .catch((err) => {
           commit('ALGO_INESPERADO', err.message)
@@ -21,7 +21,7 @@ export default {
         .ref("artigo/" + payload + "/lances")
         .on('child_added', doc => {
           console.log("foi adicionado lance")
-          commit('MOSTRAR_CONTEUDO', 'novo lance feito pelo ' + doc.exportVal().user);
+          commit('MSG_FEED', 'novo lance feito pelo ' + doc.exportVal().user);
           lances.push({
             idUser: doc.exportVal().idUser,
             lance: doc.val().lance,
@@ -65,8 +65,8 @@ export default {
       firebase.firestore()
         .collection("artigo/")
         .doc(id)
-        .update({ active: status }).then(doc => {
-          commit("setItem", doc);
+        .update({ active: status }).then(() => {
+          commit('MSG_FEED', "lote fechado")
         })
     },
   }

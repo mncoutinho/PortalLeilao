@@ -139,6 +139,7 @@ export default {
          async onUpload() {
             if(this.leilao.name){
             let file = this.image[0];
+            this.$store.commit('MSG_FEED','Carregando...')
             firebase
             .storage()
             .ref(
@@ -146,15 +147,13 @@ export default {
             )
             .put(file)
             .then(snapshot => {
-                this.$store.commit('MENSAGEM_FEED','Carregando...')
                 snapshot.ref.getDownloadURL().then(url => {
                 this.leilao.imgUrl = url
-                alert(url)
-                this.$store.commit('MENSAGEM_FEED','carregada com sucesso')
                 });
             });      
             }else{
-                this.$store.commit('MENSAGEM_FEED','Porfavor defina o nome do leilao antes')
+                this.$store.commit('ALERT','Porfavor defina o nome do leilao antes')
+                this.image = []
             }
         },
         putLeilao(bid){

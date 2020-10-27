@@ -50,7 +50,6 @@ export default{
         },
         getters: {
           user(state) {
-            console.log(state);
             return state.user;
           },
           uid(state){

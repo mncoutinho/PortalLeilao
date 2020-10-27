@@ -120,12 +120,12 @@ export default {
 
 				
 				}else if(this.lance === this.lanceNow){
-						this.$store.commit('MENSAGEM_ERRO',  ` valor igual ao lance atual, R$ ${this.lanceNow},00`)
+						this.$store.commit('ERRO',  ` valor igual ao lance atual, R$ ${this.lanceNow},00`)
 					}else{
-						this.$store.commit('MENSAGEM_ERRO',  ` valor abaixo do atual, R$ ${this.lanceNow},00`)
+						this.$store.commit('ERRO',  ` valor abaixo do atual, R$ ${this.lanceNow},00`)
 					}
 			}else{
-				this.$store.commit('MENSAGEM_LOGUE')
+				this.$store.commit('MSG_FEED', "Logue Por favor")
 				this.$router.push('/login')
 			}
 		},

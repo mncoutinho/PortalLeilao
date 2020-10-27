@@ -61,7 +61,6 @@ export default {
   },
   computed:{
     pages(){
-      console.log(this.cards)
       return  Math.ceil(this.cards.length / this.porPagina)  
     },
     paginacao () {

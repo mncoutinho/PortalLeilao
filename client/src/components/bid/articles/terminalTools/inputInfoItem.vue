@@ -37,13 +37,13 @@ export default {
                 text: text,
                 time: `${time.getDate()}/${time.getMonth()+1}/${time.getFullYear()}-${time.getHours()}:${time.getMinutes()}`
             }
-            console.log(msg)
-            this.$store.dispatch('addInfo', {info:msg, id: this.$route.query.id})
+            this.$store.dispatch('addInfo', {info:msg, id: this.item.id})
         }
     },
     computed:{
         ...mapState({
-            layout: state => state.form
+            layout: state => state.form,
+            item: state => state.itemApp.item
         })
     }
 }

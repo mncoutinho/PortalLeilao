@@ -159,7 +159,7 @@ export default {
             ){
                 let msg = "Complete todos os campos"
                 //alert(msg)
-                return this.$store.commit('ALGO_INESPERADO', msg)
+                return this.$store.commit('ALERT', msg)
             }else{
                 this.setEndereco()
                 this.$store.commit('homeStep')

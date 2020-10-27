@@ -98,8 +98,8 @@ export default {
             console.log("ativo "+ this.target)
             this.$store.dispatch('getItemByID', this.target)
             this.$store.dispatch('getLances',this.target)
+            this.$store.dispatch('getInfo', this.target)
             this.$store.commit('setStep', 10)
-            //this.$router.push({path:'/terminal', query:{id:this.target}})
         },
         deletar(item){
             if(item.idOrganizer === this.user.uid){

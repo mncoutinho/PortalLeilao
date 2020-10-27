@@ -1,5 +1,9 @@
 <template>	
     <div>
+	<H1>
+		{{this.item.name}}
+	</H1>
+	
         <v-card-title>
 			<strong>
                 Informaçes sobre o Lote
@@ -33,12 +37,10 @@ import {mapState} from "vuex"
 export default {
     computed: {
         ...mapState({
-            text: state => state.itemApp.msg
+			text: state => state.itemApp.msg,
+			item: state => state.itemApp.item
         })
-    },
-    created() {
-        this.$store.dispatch('getInfo', this.$route.query.id)
-    },
+	}
 }
 </script>
 

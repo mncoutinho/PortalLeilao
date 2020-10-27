@@ -70,7 +70,6 @@ export default {
         });
     },
     getMyItems({ commit }, filter) {
-      console.log(filter)
       firebase
         .firestore()
         .collection("artigo")
@@ -78,7 +77,6 @@ export default {
         .onSnapshot(snapshot => {
           let items = []
           snapshot.forEach((doc) => {
-            console.log('achei')
             items.push({
               id: doc.id,
               active: doc.data().active,
@@ -94,7 +92,6 @@ export default {
         })
     },
     getItemByID({ commit }, payload) {
-      console.log(payload)
       firebase
         .firestore()
         .collection("artigo")
@@ -120,7 +117,7 @@ export default {
         .add(payload)
         .then((doc) => {
           commit("setItem", doc);
-          return commit('MOSTRAR_CONTEUDO', doc.id);
+          return commit('CREATED');
         })
         .catch((err) => {
           commit('ALGO_INESPERADO', err.message);
@@ -135,22 +132,20 @@ export default {
         .update(payload)
         .then((doc) => {
           commit("setItem", doc);
-          commit('ALTERADO_SUCESSO');
+          commit('UPDATED');
         })
         .catch((err) => {
           commit('ALGO_INESPERADO', err.message);
         });
     },
     deleteItem({ commit }, payload) {
-      console.log(payload);
-      commit;
       firebase
         .firestore()
         .collection("artigo")
         .doc(payload)
         .delete()
         .then(() => {
-          commit('DELETADO');
+          commit('DELETED');
         })
         .catch((err) => {
           commit('ALGO_INESPERADO', err.message);

@@ -7,7 +7,7 @@ export default{
               .auth()
               .sendPasswordResetEmail(payload.email)
               .then(() => {
-                commit('VERIFICAR_CAIXA')
+                commit('MSG_FEED',"Verifique sua caixa de e-mail")
               });
           },
           //isso cria um usuario lucas
@@ -37,10 +37,10 @@ export default{
               .auth()
               .signInWithEmailAndPassword(payload.email, payload.senha)
               .then((data) => {
-                console.log(data.user.uid);
                 commit("setLoading", false);
                 let userProfile = data.user;
                 commit("setUser", userProfile);
+                commit("MSG_FEED", "Bem vindo");
               })
               .catch((err) => {
                 commit("setLoading", false);
@@ -58,6 +58,7 @@ export default{
               .then((doc) => {
                 let userProfile = doc.user;
                 commit("setUser", userProfile);
+                commit("MSG_FEED", "Bem vindo");
               });
           },
           loginFacebook({ commit }) {
@@ -69,6 +70,7 @@ export default{
               .then(function (result) {
                 let userProfile2 = result.credential.accessToken;
                 commit("setUser", userProfile2);
+                commit("MSG_FEED", "Bem vindo");
               });
           },
           singOut({ commit }) {
@@ -77,7 +79,7 @@ export default{
               .signOut()
               .then(() => {
                 commit("resetUser");
-                commit('USUARIO_DESLOGAR');
+                commit("MSG_FEED", "Usuario deslogou");
               });
           }
         }
