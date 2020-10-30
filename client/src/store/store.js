@@ -15,6 +15,9 @@ import info from "./modules/items/info";
 
 //leilao
 import bid from "./modules/bids/bid";
+import bidManager from "./modules/bids/bidManager";
+import registro from "./modules/bids/registroLotes";
+
 
 //notificacoes 
 import alerts from "./modules/layout/snap_bar";
@@ -38,6 +41,8 @@ export default new Vuex.Store({
     lances,
     info,
     bidApp: bid,
+    bidManager,
+    registro,
     alerts,
     stepApp: step,
     form,

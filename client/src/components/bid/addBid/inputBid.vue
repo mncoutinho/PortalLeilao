@@ -159,14 +159,14 @@ export default {
                 });
             });      
             }else{
-                this.$store.commit('ALERT','Porfavor defina o nome do leilao antes')
+                this.$store.commit('ALERT','Por favor, defina o nome do leilao antes.')
                 this.image = []
             }
         },
         addLeilao(bid){
 
             if(this.user.tel == undefined || this.user.nome == undefined ){
-                alert('Voce precisa completar o cadastro para ter o direito de solicitar a criacao de um leilao ')
+                this.$store.commit('ALERT','Você precisa completar o cadastro para ter o direito de solicitar a criação de um leilao.')
             }else{
                 bid.email = this.email
                 bid.tel = this.user.tel

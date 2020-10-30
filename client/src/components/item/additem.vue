@@ -102,17 +102,13 @@ export default {
     }),
   },
   created() {
-    this.$store.dispatch('getcategories');
-    if(!this.user.refreshToken){
-      this.$store.commit('MENSAGEM_LOGUE')
-      this.$router.push('/')
-    }  
+    this.$store.dispatch('getcategories'); 
   },
   methods: {
     async onUpload() {
       if(this.artigo.name){
       let images = this.image;
-      this.$store.commit('MSG_FEED','Carregando...')
+      this.$store.commit('LOADING')
       images.forEach(image => {
         firebase
           .storage()
@@ -127,7 +123,7 @@ export default {
           });
       });
       }else{
-        this.$store.commit('ALERT','Porfavor defina o nome do artigo antes')
+        this.$store.commit('ALERT','Por Favor, defina o nome do artigo antes.')
         this.image = []
       }
     },

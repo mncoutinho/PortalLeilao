@@ -152,7 +152,7 @@ export default {
                 });
             });      
             }else{
-                this.$store.commit('ALERT','Porfavor defina o nome do leilao antes')
+                this.$store.commit('ALERT','Por Favor, defina o nome do leilao antes.')
                 this.image = []
             }
         },

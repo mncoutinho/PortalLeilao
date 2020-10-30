@@ -125,7 +125,8 @@ export default {
 					break;
 			}
 			this.$store.dispatch('addInfo',{info: msg, id: this.item.id})
-		}
+		},
+		
     }
 }
 </script>

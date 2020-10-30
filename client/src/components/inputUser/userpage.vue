@@ -60,7 +60,7 @@ export default {
   },
   created(){
     if(!this.user.refreshToken){
-      this.$store.commit('MENSAGEM_LOGUE')
+      this.$store.commit('ALERT', 'Logue, por favor.')
       this.$router.push('/')    
     }  
   },

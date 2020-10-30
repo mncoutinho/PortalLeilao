@@ -15,6 +15,7 @@
           class="pa-2"
         >
           <v-row justify="center">
+            <v-icon size="20" class="mr-4">{{msg.icon}}</v-icon>
             <h3 style="text-weight:0">{{msg.text}}</h3>
           </v-row>
         </v-snackbar>

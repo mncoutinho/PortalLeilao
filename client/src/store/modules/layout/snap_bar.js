@@ -90,6 +90,7 @@ export default {
         ALERT(state,payload) {
             state.text = payload,
             state.cor = 'red',
+            state.tempo = 5000,
             state.mostra = true,
             state.top = true,
             state.left = false,

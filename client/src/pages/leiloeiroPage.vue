@@ -42,6 +42,9 @@
           <v-window-item :value="11">           
             <updateLeilao/>
           </v-window-item>
+          <v-window-item :value="12">           
+            <mostrarLotes/>
+          </v-window-item>
 
           <!-- mala direta -->
           <v-window-item :value="8">           
@@ -68,6 +71,7 @@ import gestor from "../pages/gestor"
 import updateItem from "../pages/updateItem"
 import updateLeilao from "../pages/updateLeilao"
 import terminal from "../pages/terminal"
+import mostrarLotes from "../pages/mostrarLotes"
 import { mapState } from 'vuex'
 
 export default {
@@ -83,7 +87,8 @@ export default {
     gestor,
     updateItem,
     updateLeilao,
-    terminal
+    terminal,
+    mostrarLotes
   },
   computed: {
     ...mapState({

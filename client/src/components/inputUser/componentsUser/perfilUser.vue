@@ -134,6 +134,7 @@ export default {
   height: 300px;
   box-sizing: border-box;
   border: 1em solid rgb(231, 231, 231);
+  min-width: 1em;
 }
 .div-icon{
   position: relative;
@@ -146,5 +147,19 @@ div .icone{
   background-color:  rgb(231, 231, 231);
   border:  5px solid rgb(231, 231, 231);
   border-radius: 50%;
+}
+@media screen and (max-width: 1000px) {
+  div .icone{
+    position: absolute;
+    top: -60px;
+    left: 50px;
+  }
+}
+@media screen and (max-width: 595px) {
+  div .icone{
+    position: absolute;
+    top: 230px;
+    left: -80px;
+  }
 }
 </style>

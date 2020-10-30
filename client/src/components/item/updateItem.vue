@@ -122,15 +122,13 @@ export default {
           });
       });
       }else{
-        this.$store.commit('ALERT', 'Porfavor defina o nome do artigo antes')
+        this.$store.commit('ALERT', 'Por Favor, defina o nome do artigo antes.')
         this.image = []
       }
     },
     updateArtigo() {
       this.$store.dispatch('updateItem', this.artigo).then(()=>{
-        this.$store.commit('MSG_AVISO', `confirmado a atualização do lote de ${this.user.uid}`)
         this.$store.commit('setStep', 4)
-        //this.$router.push('/leiloeiro');
       })    
     }
   }

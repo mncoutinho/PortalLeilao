@@ -43,15 +43,19 @@
                     </v-btn>
                 <v-row no-gutters>
                     <v-divider/>
-                    <v-btn class="pr-12 pl-12 mt-6" color="blue" text rounded>
-                        Informar sobre o Lote
+                    <v-btn 
+                    class="pr-12 pl-12 mt-6" 
+                    color="blue" 
+                    text rounded
+                    @click="registra(card)"
+                    >
+                        Registra em leilao
                     </v-btn>
                 </v-row>
                 </v-list-item-content>                            
                 </v-card>
             </v-row>    
         </v-col>
-        {{user.uid}}
     </v-card>            
 </template>
 
@@ -74,9 +78,6 @@ export default {
         card: state => state.itemApp.myItems,
         user: state => state.userApp.user,
         })
-    },
-    created(){
-        this.$store.dispatch('getMyItems', this.user.uid)    
     },
     methods:{
         status(status){
@@ -107,7 +108,7 @@ export default {
                 this.$store.dispatch('deleteItem',this.target);
                 this.$store.dispatch('getAllItems', this.card);
             }else{
-                this.$store.commit('MENSAGEM_FEED',"Voce n pode deletar um item q n e seu")
+                this.$store.commit('MSG_FEED',"Você não pode deletar um item que não e seu.")
             }
         },
         editar(item){
@@ -118,9 +119,9 @@ export default {
                 //this.$router.push("/updateItem")
                 
             }else{
-                this.$store.commit('MENSAGEM_FEED',"Voce n pode editar um item q n e seu")
+                this.$store.commit('MSG_FEED',"Você não pode editar um item que não e seu.")
             }
         }
-    },
+    }
 }
 </script>

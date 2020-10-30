@@ -12,7 +12,6 @@
             :key="items.title"
             :to="items.routerLinks"
             class="mb-2"
-            v-show="items.usuarioLogado"
           >
             <v-col>
               <v-icon left>{{ items.i }} </v-icon>
@@ -41,8 +40,8 @@
           :to="item.link"
           @click="esconder"
           >
-            {{item.title}}
-          <v-icon class="ml-2" size="15">{{ item.i }}</v-icon>
+          <h4 class="hidden-sm-only hidden-xs-only">{{item.title}}</h4>
+            <v-icon class="ml-2" size="20">{{ item.i }}</v-icon>
         </v-btn>
       </v-toolbar-items>
     </v-app-bar>
@@ -56,10 +55,10 @@ export default {
     return {
       drawer: false,
       navItens: [  
-        { i: "fas fa-gavel ", title: "produtos", routerLinks: "/produtos", usuarioLogado:true},
-        { i: "fas fa-gavel ", title: "perfil", routerLinks: "/userpage", usuarioLogado:true},
-        { i: "fas fa-gavel ", title: "leiloeiro", routerLinks: "/leiloeiro", usuarioLogado:true},
-        { i: "fas fa-gavel ", title: "tutorial", routerLinks: "/tutorial", usuarioLogado:true},
+        { i: "fas fa-gavel ", title: "produtos", routerLinks: "/produtos"},
+        { i: "fas fa-gavel ", title: "perfil", routerLinks: "/userpage"},
+        { i: "fas fa-gavel ", title: "leiloeiro", routerLinks: "/leiloeiro"},
+        { i: "fas fa-gavel ", title: "tutorial", routerLinks: "/tutorial"},
       ],
     };
   },
@@ -81,16 +80,15 @@ export default {
       let menuItem
       if (this.user.email) {
         menuItem = [
-          { i: null, title: this.user.email, link: "/userpage" },
-          { i: null, title: "Sair", link: "/sair" }, 
+          { i: 'mdi-email', title: this.user.email, link: "/userpage" },
+          { i: 'mdi-exit-to-app', title: null, link: "/sair" },  
         ];
       } else {
         menuItem = [
-          { i: null, title: "cadastre-se", link: "/criar"},
+          { i: 'mdi-account-multiple-plus-outline', title: "cadastre-se", link: "/criar"},
           { i: "fas fa-arrow-right", title: "Login", link: "/login" },
         ];
       }
-
       return menuItem;
     }
   }

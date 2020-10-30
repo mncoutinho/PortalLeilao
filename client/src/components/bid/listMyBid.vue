@@ -6,7 +6,7 @@
       </v-row>
       <v-row justify="center">
         <v-col cols="6">
-          <v-text-field outlined label="Procure aqui" append-icon="mdi-map-marker"></v-text-field>
+          <v-text-field outlined label="Procure aqui" append-icon="mdi-map-marker"/>
         </v-col>
       </v-row>
       <v-divider class="mx-12" />
@@ -27,7 +27,7 @@
               <v-card-title class="subtitle-2">{{card.description}}</v-card-title>
               <v-card-subtitle>{{card.startsOn}} - {{card.closedAt}}</v-card-subtitle>
               <v-divider />
-              <v-card-subtitle class="title">Lotes: {{pegar}}</v-card-subtitle>
+              <v-card-subtitle class="title">Lotes: {{filter(card.items)}}</v-card-subtitle>
             </v-col>
           </v-row>
           <v-row  justify="center"> 
@@ -36,6 +36,7 @@
                 large
                 color="#422321"
                 class="white--text"
+                @click="mostrar(card)"
               >
                 Ver Lotes
               </v-btn>
@@ -93,6 +94,13 @@ export default {
     })
   },
   methods: {
+    filter(items){
+      if(!items){
+        return "error"
+      }else{
+        return items.length
+      } 
+    },
     deletar(bid){
       if(bid.idOrganizer === this.user.uid){
         this.target = bid.id
@@ -100,17 +108,20 @@ export default {
         this.$store.dispatch('getAllBids');
         })
         }else{
-          this.$store.commit('SEM_PERMICAO', 'Voce n pode deletar um leilao q n e seu')
+          this.$store.commit('RESTRICT', 'Você não pode deletar um leilao que não e seu.')
         }
     },
     editar(bid){
       this.$store.dispatch("getBidById", bid.id);
       this.$store.commit('setStep', 11)
-      //this.$router.push({path:"/updateLeilao", query:{id:bid.id}})
+    },
+    mostrar(bid){
+      this.$store.commit('setBid', bid)
+      this.$store.commit('setStep', 12)
     }
   },
   async created(){
        await this.$store.dispatch('getMyBids', this.user.uid)
-    },
+    }
 };
 </script>

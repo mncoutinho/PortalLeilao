@@ -21,7 +21,7 @@
               dark 
               depressed 
               width='100%'
-              @click="meunMudaPagina(1)"
+              @click="meunMudaPagina(0)"
               >
                 <v-icon>mdi-home</v-icon>
                 <v-spacer/>
@@ -70,7 +70,7 @@ export default {
   },
   created(){
     if(!this.user.refreshToken){
-      this.$store.commit('MENSAGEM_LOGUE')
+      this.$store.commit('ALERT', 'Logue, por favor.')
       this.$router.push('/')
     }  
   },

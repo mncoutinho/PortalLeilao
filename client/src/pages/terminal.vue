@@ -29,7 +29,7 @@ export default {
         inputInfoLote
     },
     created() {
-        this.$store.commit('clearData')
+        this.$store.commit('clearData');
         this.$store.commit('setAdmView', true);
         this.$store.commit('VISIBLE');
     },
@@ -42,7 +42,7 @@ export default {
     methods: {
         verificador(){
             if(!this.user.refreshToken){
-            this.$store.commit('MENSAGEM_LOGUE')
+            this.$store.commit('ALERT', 'Logue, por favor.')
             this.$router.push('/')
             }
             if(this.user.uid != this.organizer){
