@@ -20,13 +20,7 @@
               color="#422321"
               class="input"
             />
-            <div class="div-icon">
-              <v-icon
-              class="icone" 
-              size="40">
-                mdi-camera
-              </v-icon>
-            </div>
+            
         </v-row>
         <!--dados do usuario-->
         <div class="mt-12">
@@ -136,30 +130,21 @@ export default {
   border: 1em solid rgb(231, 231, 231);
   min-width: 1em;
 }
-.div-icon{
-  position: relative;
-}
-div .icone{
+.input::after{
+  content: "\f030";
+  font-family: "Font Awesome 5 Free"; 
+  font-weight: 600;
+  color:#422321; 
+  font-size:30px;
   position: absolute;
-  top: 230px;
-  left: -80px;
-  z-index: 1;
-  background-color:  rgb(231, 231, 231);
-  border:  5px solid rgb(231, 231, 231);
+  top:200px;
+  left: 220px;
+  background-color:rgb(231, 231, 231);
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-}
-@media screen and (max-width: 1000px) {
-  div .icone{
-    position: absolute;
-    top: -60px;
-    left: 50px;
-  }
-}
-@media screen and (max-width: 595px) {
-  div .icone{
-    position: absolute;
-    top: 230px;
-    left: -80px;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
