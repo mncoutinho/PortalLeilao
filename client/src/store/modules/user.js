@@ -55,25 +55,6 @@ export default{
                 commit('VERIFICAR_CAIXA')
               });
           },
-          //isso cria um usuario lucas
-          signUserUp({ commit }, payload) {
-            commit("setLoading", true);
-            commit("clearError");
-            firebase
-              .auth()
-              .createUserWithEmailAndPassword(payload.email, payload.senha)
-              .then((user) => {
-                commit("setLoading", false);
-                const newUser = user.user;
-                commit("setUid", newUser.uid);
-                commit("setUser", newUser);
-              })
-              .catch((err) => {
-                commit("setLoading", false);
-                commit("setError", err);
-                console.log(err);
-              });
-          },
           getData({ commit }, payload) {
             firebase
               .firestore()

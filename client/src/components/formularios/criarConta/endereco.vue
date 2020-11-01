@@ -1,118 +1,117 @@
 <template>
   <v-container>
-    {{endereco}}
       <v-card
-                    class="mb-12 pa-10"  
-                    :elevation="10"
-                    min-width="500px"
-                    >
-                        <v-row justify="center" class="pa-8">
-                            <h1 class="brown--text">Endereço</h1>
-                        </v-row>
-                        <v-col cols="12">
-                            <v-form
-                            ref="form"
-                            v-model="validador"
-                            >
-                                <!--CEP-->
-                                    <v-tooltip v-model="mostra" bottom transition="scroll-y-transition">
-                                        <template v-slot:activator="{ on, attrs }">
-                                            <h4 class="brown--text">CEP:</h4>
-                                            <v-text-field
-                                            @change="getCep(endereco.cep)"
-                                            v-model="endereco.cep"
-                                            v-bind="attrs"
-                                            v-on="on"
-                                            maxlength="9"
-                                            v-mask="['#####-###']"
-                                            placeholder="12345-678"
-                                            color="brown"
-                                            required
-                                            outlined
-                                            />
-                                        </template>
-                                    <span color="brown">Depois de anotar o Cep, basta apertar Enter</span>
-                                    </v-tooltip>
-                                <!--uf-->
-                                <h4 class="brown--text">UF:</h4>
-                                <v-select
-                                :items="uf" 
-                                v-model="endereco.uf"
-                                placeholder="RJ"
-                                color="brown"
-                                required
-                                outlined
-                                />
-                                <!--Cidade-->
-                                <h4 class="brown--text">Cidade:</h4>
+        class="mb-12 pa-10"  
+        :elevation="10"
+        min-width="500px"
+        >
+            <v-row justify="center" class="pa-8">
+                <h1 class="brown--text">Endereço</h1>
+            </v-row>
+            <v-col cols="12">
+                <v-form
+                ref="form"
+                v-model="validador"
+                >
+                <!--CEP-->
+                    <v-tooltip v-model="mostra" bottom transition="scroll-y-transition">
+                        <template v-slot:activator="{ on, attrs }">
+                            <h4 class="brown--text">CEP:</h4>
                                 <v-text-field
-                                v-model="endereco.cidade"
-                                placeholder="Rio de Janeiro"
+                                @change="getCep(endereco.cep)"
+                                v-model="endereco.cep"
+                                v-bind="attrs"
+                                v-on="on"
+                                maxlength="9"
+                                v-mask="['#####-###']"
+                                placeholder="12345-678"
                                 color="brown"
                                 required
                                 outlined
                                 />
-                                <!--Bairro-->
-                                <h4 class="brown--text">Bairro:</h4>
-                                <v-text-field
-                                v-model="endereco.bairro"
-                                placeholder="Leblon"
-                                color="brown"
-                                required
-                                outlined
-                                />
-                                <!--rua-->
-                                <h4 class="brown--text">Rua:</h4>
-                                <v-text-field
-                                v-model="endereco.endereco"
-                                placeholder="Rua. 20 "
-                                color="brown"
-                                required
-                                outlined
-                                />
+                        </template>
+                        <span color="brown">Depois de anotar o Cep, basta apertar Enter</span>
+                    </v-tooltip>
+                <!--uf-->
+                    <h4 class="brown--text">UF:</h4>
+                        <v-select
+                        :items="uf" 
+                        v-model="endereco.uf"
+                        placeholder="RJ"
+                        color="brown"
+                        required
+                        outlined
+                        />
+                <!--Cidade-->
+                    <h4 class="brown--text">Cidade:</h4>
+                        <v-text-field
+                        v-model="endereco.cidade"
+                        placeholder="Rio de Janeiro"
+                        color="brown"
+                        required
+                        outlined
+                        />
+                <!--Bairro-->
+                    <h4 class="brown--text">Bairro:</h4>
+                        <v-text-field
+                        v-model="endereco.bairro"
+                        placeholder="Leblon"
+                        color="brown"
+                        required
+                        outlined
+                        />
+                <!--rua-->
+                    <h4 class="brown--text">Rua:</h4>
+                        <v-text-field
+                        v-model="endereco.endereco"
+                        placeholder="Rua. 20 "
+                        color="brown"
+                        required
+                        outlined
+                        />
                                 
-                                <!--numero-->
-                                <h4 class="brown--text">Numero:</h4>
-                                <v-text-field
-                                v-model="endereco.numero"
-                                placeholder="45"
-                                color="brown"
-                                required
-                                outlined
-                                />
-                                <!--Complemento-->
-                                <h4 class="brown--text">Complemento:</h4>
-                                <v-text-field
-                                v-model="endereco.complemento"
-                                placeholder="Apartamento 123"
-                                color="brown"
-                                outlined
-                                required/>
-                                <v-row dense>
-                                        <!--Botão Voltar-->
-                                        <v-btn
-                                        color=#562B28
-                                        center
-                                        class="white--text"
-                                        depressed
-                                        large
-                                        @click="belowStep()"
-                                        >Voltar</v-btn>
-                                        <v-spacer/>
-                                        <!--Botão Seguir-->
-                                        <v-btn
-                                        color=#562B28
-                                        center
-                                        class="white--text"
-                                        depressed
-                                        large
-                                        @click="homeStep()"
-                                        :disabled="!validador"
-                                        >Finalizar</v-btn>
-                                    </v-row>
-                            </v-form>
-                        </v-col>
-                    </v-card>
+                <!--numero-->
+                    <h4 class="brown--text">Numero:</h4>
+                        <v-text-field
+                        v-model="endereco.numero"
+                        placeholder="45"
+                        color="brown"
+                        required
+                        outlined
+                        />
+                <!--Complemento-->
+                    <h4 class="brown--text">Complemento:</h4>
+                        <v-text-field
+                        v-model="endereco.complemento"
+                        placeholder="Apartamento 123"
+                        color="brown"
+                        outlined
+                        required/>
+                            <v-row dense>
+                                <!--Botão Voltar-->
+                                <v-btn
+                                color=#562B28
+                                center
+                                class="white--text"
+                                depressed
+                                large
+                                @click="belowStep()"
+                                >Voltar</v-btn>
+                                    <v-spacer/>
+                                <!--Botão Seguir-->
+                                <v-btn
+                                color=#562B28
+                                center
+                                class="white--text"
+                                depressed
+                                large
+                                @click="homeStep()"
+                                :disabled="!validador"
+                                >Finalizar</v-btn>
+                            </v-row>
+                    </v-form>
+            </v-col>
+        </v-card>
   </v-container>
 </template>
 
@@ -133,7 +132,7 @@ export default {
         //pegar cep
         getCep(cep){
             cep = this.endereco.cep
-      axios({
+        axios({
                 method: 'get',
                 url:'https://viacep.com.br/ws/'+cep+'/json/'  
             }).then(doc =>{
