@@ -5,9 +5,9 @@
       <v-col cols="12" sm="6">
         <!--FOTO DO USUARIO-->
         <v-row justify="center">
-          <v-avatar size="300">
-            <v-img :src="mostrar.photoUrl" circle />
-          </v-avatar>
+            <v-avatar size="300">
+              <v-img :src="mostrar.photoUrl" circle />
+            </v-avatar>
           <!--updando a imagem-->
             <v-file-input
               clear-icon
@@ -26,12 +26,15 @@
           <h3 style="color:#5B2D2A">Nome Completo:</h3>
           <v-text-field 
           v-model="mostrar.nome"
+          color="#5B2D2A"
           outlined 
           />
           <h3 style="color:#5B2D2A">CPF :</h3>
           <v-text-field
             v-model="mostrar.cpf"
-            v-mask="['###.###.###-##']"
+            v-mask="['###.***.***-##']"
+            color="#5B2D2A"
+            maxlength="15"
             outlined
           />
           <h3 style="color:#5B2D2A">E-mail :</h3>
@@ -39,11 +42,14 @@
             outlined
             :value="user.email"
             type="email"
+            color="#5B2D2A"
           />
           <h3 style="color:#5B2D2A">Telefone :</h3>
           <v-text-field
             v-model="mostrar.tel"
-            v-mask="['(##)#########']"
+            v-mask="['(##) #####-####' || '(##) #####-####']"
+            maxlength="15"
+            color="#5B2D2A"
             type="tel"
             outlined
           />

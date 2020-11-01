@@ -13,6 +13,7 @@
                   maxlength="9"
                   v-mask="['#####-###']"
                   placeholder="00000-00"
+                  color="#5B2D2A"
                   outlined
                 />
 
@@ -21,7 +22,7 @@
                   :items="uf" 
                   v-model="userData.uf"
                   placeholder="RJ"
-                  color="brown"
+                  color="#5B2D2A"
                   outlined                              
                 />
 
@@ -30,30 +31,35 @@
                   v-model="userData.cidade"
                   outlined
                   placeholder="Rio de Janeiro"
+                  color="#5B2D2A"
                 />
                 <h3 style="color:#5B2D2A">Bairro:</h3>
                 <v-text-field
                   v-model="userData.bairro"
                   outlined
                   placeholder="Rio de Janeiro"
+                  color="#5B2D2A"
                 />
                 <h3 style="color:#5B2D2A">Rua:</h3>                
                 <v-text-field
                   v-model="userData.endereco"
                   outlined
                   placeholder="Rio de Janeiro"
+                  color="#5B2D2A"
                 />
                 <h3 style="color:#5B2D2A">Número:</h3>
                 <v-text-field
                   v-model="userData.numero"
                   outlined
-                  placeholder="457"  
+                  placeholder="457"
+                  color="#5B2D2A"  
                 />
                 <h3 style="color:#5B2D2A">Complemento:</h3>
                 <v-text-field
                   v-model="userData.complemento"
                   outlined
                   placeholder="em frente ao Rio de Janeiro" 
+                  color="#5B2D2A"
                 />
                   
             </v-col>
