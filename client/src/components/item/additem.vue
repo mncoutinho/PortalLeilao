@@ -129,7 +129,7 @@ export default {
     },
     addartigo() {
       this.artigo.IdOrganizer = this.user.uid;    
-      this.artigo.active = false 
+      this.artigo.active = null
       this.$store.dispatch('createItem', this.artigo).then(()=>{
         this.$store.commit('setStep',3)
         this.clear();

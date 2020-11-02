@@ -125,6 +125,12 @@ export default {
     },
     //a testar
     updateItem({ commit }, payload) {
+      console.log(payload)
+      
+      if(!payload.active){
+        payload.active = null
+      }
+
       firebase
         .firestore()
         .collection("artigo")

@@ -43,14 +43,17 @@
                     </v-btn>
                 <v-row no-gutters>
                     <v-divider/>
-                    <v-btn 
-                    class="pr-12 pl-12 mt-6" 
-                    color="blue" 
-                    text rounded
-                    @click="registra(card)"
-                    >
-                        Registra em leilao
-                    </v-btn>
+                    <div v-if="test(card.active)">
+                        <v-btn 
+                            class="pr-12 pl-12 mt-6" 
+                            color="blue" 
+                            text rounded
+                            @click="registra(card)"
+                        >
+                            Registra em leilao
+                        </v-btn>
+                    </div>
+                    
                 </v-row>
                 </v-list-item-content>                            
                 </v-card>
@@ -80,12 +83,24 @@ export default {
         })
     },
     methods:{
-        status(status){
-            if(status){
-              return "Aberto"
+        test(status){
+            if(!status){
+                return true
             }else{
-               return "Fechado" 
+                return false
             }
+        },
+        status(status){
+            if(!status){
+                return "Sem registro em Leilao"
+            }else{
+                if(status){
+                    return "Aberto"
+                }else{
+                    return "Fechado" 
+                }
+            }
+            
         },
         color(status){
             if(status){
@@ -120,6 +135,9 @@ export default {
             }else{
                 this.$store.commit('MSG_FEED',"Você não pode editar um item que não e seu.")
             }
+        },
+        registra(card){
+            alert(card.name)
         }
     }
 }
