@@ -114,7 +114,9 @@ export default {
         //cria o usuario
         async signUp () {
             await this.$store.dispatch('signUserUp', this.accountData)
-            this.etapa;   
+            if(this.user != null){
+                return this.$store.commit('addStep')
+            }   
         },
         getAccountData(accountData){
             this.accountData = accountData
@@ -128,11 +130,6 @@ export default {
         ...mapState({
         user: (state) => state.userApp.user
         }),
-        etapa(){
-            if(this.user != null){
-                return this.$store.commit('addStep')
-            }
-        }
     }
 }
 </script>
