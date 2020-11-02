@@ -91,7 +91,7 @@ export default {
             }
         },
         status(status){
-            if(!status){
+            if(status == undefined){
                 return "Sem registro em Leilao"
             }else{
                 if(status){

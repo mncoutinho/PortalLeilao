@@ -136,8 +136,7 @@ export default {
         .collection("artigo")
         .doc(payload.id)
         .update(payload)
-        .then((doc) => {
-          commit("setItem", doc);
+        .then(() => {
           commit('UPDATED');
         })
         .catch((err) => {
