@@ -131,7 +131,7 @@ export default {
       this.artigo.IdOrganizer = this.user.uid;    
       this.artigo.active = false 
       this.$store.dispatch('createItem', this.artigo).then(()=>{
-        this.$store.commit('setStep',4)
+        this.$store.commit('setStep',3)
         this.clear();
       })  
     },
