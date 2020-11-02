@@ -7,13 +7,19 @@
             <v-col cols="5" class="mr-2" align='center'>
                 <infoLote/>
                 <getLances/>
-                <lances/>         
+                <div v-if="cartela">
+                    <lances/>
+                </div>
+                <div v-else>
+                    <pedido/>
+                </div>        
             </v-col>
         </v-row>
     </v-app>
 </template>
 <script>
 import lances from "../components/bid/articles/bidTools/InputArticlesBid";
+import pedido from "../components/bid/articles/bidTools/addCartela"
 import artigo from "../components/bid/articles/getArticles"
 import infoLote from "../components/bid/articles/getInfoItem"
 import getLances from "../components/bid/articles/getLances"
@@ -22,7 +28,13 @@ export default {
         artigo,
         lances,
         getLances,
-        infoLote
+        infoLote,
+        pedido
+    },
+     data() {
+        return {
+            cartela: true
+        }
     },
     created() {
         this.$store.commit('clearData')
