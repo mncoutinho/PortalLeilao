@@ -11,7 +11,7 @@ export default{
                 cartela: "teste"
             }
 
-            //se tiver o items no banco
+            //se n tiver cartela no banco
             if(bid.cartelas == undefined){
                 bid.cartelas = []
             }
@@ -25,7 +25,6 @@ export default{
             .then(()=>{
                 commit('MSG_FEED', "Solicitacao em avaliacao")
             })
-
         }
     }
 }
