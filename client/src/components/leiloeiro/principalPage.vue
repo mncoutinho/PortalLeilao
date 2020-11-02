@@ -4,13 +4,15 @@
       <v-row justify="center">
         <h1>Leilões</h1>
       </v-row>
-      <v-row justify="center">
-        <v-col cols="10">
-          <div>
+      <v-row justify="center" >
+          <v-card
+          flat
+          max-width="1500px"
+          class="d-flex flex-wrap ma-12">
             <v-card
-            width="450px"
+            width="45%"
             height="350px"
-            class="pa-4 mx-0"
+            class="pa-4 ma-6"
             v-for="leilao in quantidade"
             :key="leilao.length">
               <v-row align="center">
@@ -21,28 +23,32 @@
                   height="150px" 
                   :src="leilao.img"/>
                     <v-row dalign="center">
-                      <h3>Quantidade de Produtos:</h3>
-                        <v-text-field
-                          placeholder="24"
-                          type="number"
-                          autocomplete="true"
-                          color="brown"
-                          required
-                          outlined
-                        />
-                        <v-btn
-                          x-large
-                          color="#562B28"
-                          class="white--text" 
-                          v-text="'Enviar'"
-                          >
-                        </v-btn>
+                      <v-card-title>Quantidade de Produtos:</v-card-title>
+                        <v-row
+                        class="ml-4" 
+                        no-gutters 
+                        dense >
+                          <v-text-field
+                            placeholder="24"
+                            type="number"
+                            autocomplete="true"
+                            color="#562B28"
+                            required
+                            outlined
+                          />
+                          <v-btn
+                            x-large
+                            color="#562B28"
+                            class="white--text" 
+                            v-text="'Enviar'"
+                            >
+                          </v-btn>
+                        </v-row>
                     </v-row>
                 </v-col>
               </v-row>
             </v-card>
-          </div>
-        </v-col>
+          </v-card>
       </v-row>
     </div>
     <!--Teste das funcoes criadas-->
@@ -128,7 +134,6 @@ export default {
     registroPeca(){
       let peca = this.add.peca
       console.log(peca)
-
       console.log(this.bid)
       
       this.$store.dispatch('registroPeca',{bid: this.bid, item: peca})
@@ -142,7 +147,6 @@ export default {
       this.$store.dispatch('deletarRegistro', {bid: bid, point: point})
       console.log(point)
       console.log(bid.items)
-
     } 
   }
 }
