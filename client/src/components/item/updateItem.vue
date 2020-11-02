@@ -128,7 +128,7 @@ export default {
     },
     updateArtigo() {
       this.$store.dispatch('updateItem', this.artigo).then(()=>{
-        this.$store.commit('setStep', 4)
+        this.$store.commit('setStep', 3)
       })    
     }
   }
