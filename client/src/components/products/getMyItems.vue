@@ -33,7 +33,7 @@
                     </v-list-item>
                 <v-divider class="mx-5" color="#EDE7E2"/>
                     <v-btn outlined rounded @click="leilao(card.id)" color="green">
-                        Ver Mais
+                        Pregoar Lote
                     </v-btn>
                     <v-btn outlined rounded class="pr-12 pl-12" color="red" @click="deletar(card)">
                         deletar
@@ -95,6 +95,7 @@ export default {
             }
         },
         leilao(id){
+            alert("Leiloeiro Apos entra na preogacao voce nao podera editar mais esse lote")
             this.target = id
             console.log("ativo "+ this.target)
             this.$store.dispatch('getItemByID', this.target)
@@ -115,9 +116,7 @@ export default {
             if(item.idOrganizer === this.user.uid){
                 this.target = item.id
                 this.$store.commit('setItem', item);
-                this.$store.commit('setStep', 9)
-                //this.$router.push("/updateItem")
-                
+                this.$store.commit('setStep', 4)                
             }else{
                 this.$store.commit('MSG_FEED',"Você não pode editar um item que não e seu.")
             }

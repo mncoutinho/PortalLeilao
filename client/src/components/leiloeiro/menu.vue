@@ -81,9 +81,9 @@ export default {
       {icon:"fas fa-wine-glass",
         title:"Artigos",
         conteudo:[
-          {title:"Todas as Peças", page:2},
-          {title:"adicionar", page:3},
-          {title:"Minhas peças", page:4}
+          {title:"Todas as Peças", page:1},
+          {title:"adicionar", page:2},
+          {title:"Minhas peças", page:3}
         ]
       },
       //numero 2

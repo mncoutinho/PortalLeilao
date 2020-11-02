@@ -13,16 +13,16 @@
             <principalPage/>
           </v-window-item>
           <!-- item -->
-          <v-window-item :value="2" >
+          <v-window-item :value="1" >
             <produtos/>
           </v-window-item>
-          <v-window-item :value="3">          
+          <v-window-item :value="2">          
             <addItem/>           
           </v-window-item>
-          <v-window-item :value="4">           
+          <v-window-item :value="3">           
             <meusProdutos/>
           </v-window-item>
-          <v-window-item :value="9">           
+          <v-window-item :value="4">           
             <updateItem/>
           </v-window-item>
           <v-window-item :value="10">           
@@ -39,15 +39,15 @@
           <v-window-item :value="7">           
             <listMyBid/>
           </v-window-item>
-          <v-window-item :value="11">           
+          <v-window-item :value="8">           
             <updateLeilao/>
           </v-window-item>
-          <v-window-item :value="12">           
+          <v-window-item :value="9">           
             <mostrarLotes/>
           </v-window-item>
 
           <!-- mala direta -->
-          <v-window-item :value="8">           
+          <v-window-item :value="20">           
             <gestor/>
           </v-window-item>
         </v-window>
