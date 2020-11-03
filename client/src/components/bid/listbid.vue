@@ -1,19 +1,25 @@
 <template>
   <v-app>
-    <v-card flat width="67vw" class="mx-auto">
-
-      <v-row justify="center" class="mt-8">
-        <p class="display-2">Leiloes</p>
-      </v-row>
-      <v-row justify="center">
-        <v-col cols="6">
-          <v-text-field outlined label="Procure aqui" append-icon="mdi-map-marker"></v-text-field>
-        </v-col>
-      </v-row>
-      <v-divider class="mx-12" />
-      <v-row justify="space-around" >
+    <v-card flat width="100%"> 
+      <v-col cols='12' class="mx-auto">
+          <!--nome do produto-->
+                    <h1 :class="layout.title">
+                        Todos os leiloes
+                    </h1>
+                    <p :class="layout.description">
+                        Leiloeiro aqui se encontra todos os leiloes registrados no nosso sistema. 
+                    </p>
+                    <v-spacer/>
+    
         <!--CARTOES-->
-        <v-card width="24%" :key="card.length" v-for="card in paginacao" class="mt-9 mb-3">
+        <v-row justify="space-around" no-gutters>
+          <v-card 
+            class="mt-6 mb-6 "
+            width="24%"
+            max-width="300"
+            :key="card.length" 
+            v-for="card in paginacao"  
+          >
           <v-img
             height="200px"
             width="100%"
@@ -39,6 +45,7 @@
           </v-row>
         </v-card>
       </v-row>
+      </v-col>
     </v-card>
       <v-pagination
         v-model="page"
@@ -67,7 +74,8 @@ export default {
       return this.cards.slice((this.page - 1) * this.porPagina, this.page * this.porPagina)
     },
     ...mapState({
-      cards: state => state.bidApp.bids
+      cards: state => state.bidApp.bids,
+      layout: state => state.cards.bid,
     })
   }
 };

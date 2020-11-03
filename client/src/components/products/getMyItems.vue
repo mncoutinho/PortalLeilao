@@ -1,23 +1,15 @@
 <template>
-    <v-card flat max-width="1500">    
+    <v-card flat width="100%">   
         <v-col cols='12' class="mx-auto">
-        <!--nome do produto-->
-            <v-row>
-                <h3 class="ml-8">NOME DO PRODUTO</h3>
+        <!--titulo-->
+                <h1 :class="layout.title">
+                    Meus Produtos
+                </h1>
+                <p :class="layout.description">
+                    Leiloeiro aqui se encontra todas suas peças registradas no nosso sistema. 
+                </p>
                 <v-spacer/>
-            </v-row>
-        <!--links-->
-            <v-breadcrumbs :items="items" >
-                <template v-slot:divider>
-                    <v-icon>mdi-chevron-right</v-icon>
-                    </template>
-                </v-breadcrumbs>
-        <!--BARRA HORIZONTAL-->
-            <div class="hidden-md-only hidden-lg-only hidden-xl-only">
-                <h3>Categorias</h3>
-                <Resp/>
-            </div>
-                <v-divider class="mx-8"/>
+         
         <!--cards-->
             <v-row justify="space-around" no-gutters>
                 <v-card :elevation='1' class="mt-6 mb-6 " width="24%" max-width="300" v-for="card in card" :key="card.length">
@@ -63,23 +55,22 @@
 </template>
 
 <script>
-import Resp from './responsivo/ProdutoResponsivo';
+
 import {mapState} from "vuex";
 export default {
-    components:{
-        Resp,
-    },
+    
     data(){
         return{
             pesquisar:null, 
             items:[],
-            target:{} 
+            target:{}
         }
     },
     computed: {
         ...mapState({
         card: state => state.itemApp.myItems,
         user: state => state.userApp.user,
+        layout: state => state.cards.item,
         })
     },
     methods:{
@@ -99,10 +90,12 @@ export default {
                 }else{
                     return "Fechado" 
                 }
-            }
-            
+            }  
         },
         color(status){
+            if(status == undefined){
+                return "color:black"
+            }
             if(status){
               return "color:green"
             }else{

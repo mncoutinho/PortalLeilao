@@ -1,23 +1,15 @@
 <template>
-    <v-card flat max-width="1500">    
+    <v-card flat width="100%">    
         <v-col cols='12' class="mx-auto">
                     <!--nome do produto-->
-                    <v-row>
-                        <h3 class="ml-8">NOME DO PRODUTO</h3>
-                        <v-spacer/>
-                    </v-row>
-                    <!--links-->
-                        <v-breadcrumbs :items="items" >
-                            <template v-slot:divider>
-                                <v-icon>mdi-chevron-right</v-icon>
-                            </template>
-                        </v-breadcrumbs>
-                    <!--BARRA HORIZONTAL-->
-                    <div class="hidden-md-only hidden-lg-only hidden-xl-only">
-                        <h3>Categorias</h3>
-                        <Resp/>
-                    </div>
-                        <v-divider class="mx-8"/>
+                    <h1 :class="layout.title">
+                        Todos os Produtos
+                    </h1>
+                    <p :class="layout.description">
+                        Leiloeiro aqui se encontra todas peças registradas no nosso sistema. 
+                    </p>
+                    <v-spacer/>
+
                     <!--cards-->
                     <v-row justify="space-around" no-gutters>
                         <v-card
@@ -61,17 +53,13 @@
                     circle
                     color="#422321"
                 />   
-            </v-col>
+        </v-col>
     </v-card>            
 </template>
 
 <script>
-import Resp from './responsivo/ProdutoResponsivo';
 import {mapState} from "vuex";
 export default {
-    components:{
-        Resp,
-    },
     data(){
         return{
             pesquisar:null,
@@ -85,6 +73,7 @@ export default {
     ...mapState({
       card: state => state.itemApp.items,
       user: state => state.userApp.user,
+      layout: state => state.cards.item,
     }),
         paginacao () {
                 return this.card.slice((this.page - 1) * this.porPagina, this.page * this.porPagina)
