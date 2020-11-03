@@ -1,6 +1,7 @@
 export default{
     state: {
-        step: 0
+        step: 0,
+        add: 0
     },
     mutations:{
         belowStep(state){
@@ -11,6 +12,9 @@ export default{
         },
         addStep(state){
             state.step++
+        },
+        ADD(state){
+            state.add++
         },
         homeStep(state){
             if(state.step == 2){

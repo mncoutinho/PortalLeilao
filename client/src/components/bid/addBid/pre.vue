@@ -1,0 +1,31 @@
+<template>
+  <v-app>
+      <v-card
+      flat>
+        <v-row
+        justify="center">
+          <v-card>
+            <v-btn
+              color=#562B28
+              center
+              class="white--text"
+              depressed
+              large
+              v-text="'Prosseguir'"
+              @click="next()"
+              ></v-btn>
+          </v-card>
+        </v-row>
+      </v-card>
+  </v-app>
+</template>
+
+<script>
+export default {
+  methods:{
+    next(){
+      this.$store.commit('ADD')
+    }
+  }
+}
+</script>
