@@ -2,7 +2,7 @@
   <v-app>
     <v-card flat width="100%">
       <v-row xs12 sm6 offset-sm3>
-        <v-flex class="layout.flex">
+        <v-flex :class="layout.flex">
             <h1 :class="layout.title">Bem-vindo leiloeiro</h1>
                 <p :class="layout.description">
                 Cadastrar seu leilão ficou ainda mais fácil, basta apenas preencher o formulário e em breve estará no ar.
@@ -46,9 +46,12 @@
                   <!--Carrossel -->
                   <v-carousel>
                     <v-carousel-item
-                    v-for="img in artigo.imgUrl"
-                    :key="img"
-                    :src="img"/>
+                      v-for="img in artigo.imgUrl"
+                      :key="img"
+                      :src="img"
+                      :max-width="layout.img.width"
+                      :heigth="layout.img.height"
+                    />
                   </v-carousel>
                   <v-text-field 
                     class="col-md 2" 

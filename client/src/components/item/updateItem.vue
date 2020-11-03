@@ -46,9 +46,12 @@
                   <!--Carrossel -->
                   <v-carousel>
                     <v-carousel-item
-                    v-for="img in artigo.imgUrl"
-                    :key="img"
-                    :src="img"/>
+                      v-for="img in artigo.imgUrl"
+                      :key="img"
+                      :src="img"
+                      :max-width="layout.img.width"
+                      :heigth="layout.img.height"
+                    />
                   </v-carousel>
                   <v-text-field 
                     class="col-md 2" 
