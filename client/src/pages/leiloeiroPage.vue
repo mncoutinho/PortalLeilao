@@ -30,11 +30,27 @@
           </v-window-item>
           
           <!-- leilao -->
-          <v-window-item :value="5">           
+          <v-window-item :value="5">
+                    
             <listBid/>
           </v-window-item>
-          <v-window-item :value="6">           
-            <addBid/>
+          <v-window-item :value="5">
+            <listBid/>
+          </v-window-item>
+          <v-window-item :value="6">
+             <v-window 
+              v-model="pageInterna"
+              :touchless="true"
+              >
+                <v-window-item :value="0">
+                  {{pageInterna}}
+                  <escolha/>
+                </v-window-item>
+                  {{pageInterna}}
+                <v-window-item :value="1">
+                  <addBid/>
+                </v-window-item>
+              </v-window>
           </v-window-item>
           <v-window-item :value="7">           
             <listMyBid/>
@@ -63,6 +79,7 @@ import listBid from "../components/bid/listbid"
 import listMyBid from "../components/bid/listMyBid"
 import principalPage from "../components/leiloeiro/principalPage"
 
+import escolha from "../components/bid/addBid/pre"
 import addBid from "../pages/addLeilao"
 import addItem from  "../pages/adicionarItem"
 import meusProdutos from "../pages/meusProdutos"
@@ -88,16 +105,24 @@ export default {
     updateItem,
     updateLeilao,
     terminal,
-    mostrarLotes
+    mostrarLotes,
+    escolha
+  },
+  data(){
+    return{
+      
+    }
   },
   computed: {
     ...mapState({
-      page: state => state.stepApp.step
-    })
+      page: state => state.stepApp.step,
+      pageInterna: state => state.stepApp.add
+    }),
   },
   created() {
     this.$store.commit('clearData');
     this.$store.commit('VISIBLE');
-  }
+  },
+  
 }
 </script>
