@@ -21,7 +21,7 @@
               dark 
               depressed 
               width='100%'
-              @click="meunMudaPagina(0)"
+              @click="menuMudaPagina(0)"
               >
                 <v-icon>mdi-home</v-icon>
                 <v-spacer/>
@@ -45,7 +45,7 @@
                     dense 
                     :key="lista.conteudo" 
                     v-for="lista in listas.conteudo">
-                        <v-btn text v-text="lista.title" @click="meunMudaPagina(lista.page)"/>
+                        <v-btn text v-text="lista.title" @click="menuMudaPagina(lista.page)"/>
                   </v-list-item-content>
               </v-list-group>
               <v-divider class="mt-2"/>
@@ -58,7 +58,7 @@
 import { mapState } from 'vuex'
 export default { 
   methods:{
-    meunMudaPagina(page){
+    menuMudaPagina(page){
       this.$store.commit('setStep', page)
     }
   },
