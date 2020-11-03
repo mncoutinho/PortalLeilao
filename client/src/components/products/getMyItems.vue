@@ -84,7 +84,7 @@ export default {
     },
     methods:{
         test(status){
-            if(!status){
+            if(status == undefined){
                 return true
             }else{
                 return false
