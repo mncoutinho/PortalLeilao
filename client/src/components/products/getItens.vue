@@ -14,12 +14,17 @@
                     <v-row justify="space-around" no-gutters>
                         <v-card
                         :elevation='1'
-                        class="mt-6 mb-6 "
-                        width="24%"
-                        max-width="300"                        
+                        :class="layout.card.type"
+                        :width="layout.card.width"
+                        :heigth="layout.card.height"                        
                         v-for="card in paginacao"
-                        :key="card.length ">
-                            <v-img width="100%" height="300" :src="card.imgUrl[0]" 
+                        :key="card.length "
+                        >
+                            <v-img 
+                                :class="layout.img.type"
+                                :width="layout.img.width" 
+                                :height="layout.img.height" 
+                                :src="card.imgUrl[0]" 
                             />
                              <v-list-item-content class="ml-5">   
                                 <span :style="color(card.active)">{{status(card.active)}}</span>
@@ -33,6 +38,8 @@
                                     >
                                         {{card.description}}
                                     </v-list-item>
+
+                                    <!-- botoes -->
                                 <v-divider class="mx-5" color="#EDE7E2"/>
                                     <v-btn 
                                     outlined 

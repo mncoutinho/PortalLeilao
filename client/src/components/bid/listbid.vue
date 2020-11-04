@@ -78,8 +78,7 @@ export default {
   data() {
     return {
       target:null,
-      page:1,
-
+      page:1
     }
   },
   computed:{
@@ -91,7 +90,7 @@ export default {
     },
     ...mapState({
       cards: state => state.bidApp.bids,
-      layout: state => state.cards.bid,
+      layout: state => state.cards.bid
     })
   },
   methods: {

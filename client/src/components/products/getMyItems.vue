@@ -12,9 +12,20 @@
          
         <!--cards-->
             <v-row justify="space-around" no-gutters>
-                <v-card :elevation='1' class="mt-6 mb-6 " width="24%" max-width="300" v-for="card in card" :key="card.length">
-                    <v-img width="100%" height="300" :src="card.imgUrl[0]" 
-                />
+                <v-card
+                        :elevation='1'
+                        :class="layout.card.type"
+                        :width="layout.card.width"
+                        :heigth="layout.card.height"                        
+                        v-for="card in paginacao"
+                        :key="card.length "
+                        >
+                    <v-img 
+                        :class="layout.img.type"
+                        :width="layout.img.width" 
+                        :height="layout.img.height" 
+                        :src="card.imgUrl[0]" 
+                    />
             <v-list-item-content class="ml-5">   
                 <span :style="color(card.active)">{{status(card.active)}}</span>
                     <v-list-item-title style="color:#63432D" class="bold headline mb-1">
@@ -23,6 +34,8 @@
                     <v-list-item style="color:#1B120C">
                         {{card.description}}
                     </v-list-item>
+
+                    <!-- botoes -->
                 <v-divider class="mx-5" color="#EDE7E2"/>
                     <v-btn outlined rounded @click="leilao(card.id)" color="green">
                         Pregoar Lote
@@ -49,7 +62,13 @@
                 </v-row>
                 </v-list-item-content>                            
                 </v-card>
-            </v-row>    
+            </v-row> 
+            <v-pagination
+                    v-model="page"
+                    :length="pages"
+                    circle
+                    color="#422321"
+                />    
         </v-col>
     </v-card>            
 </template>
@@ -63,7 +82,9 @@ export default {
         return{
             pesquisar:null, 
             items:[],
-            target:{}
+            target:{},
+            porPagina: 3, 
+            page: 1,
         }
     },
     computed: {
@@ -71,7 +92,13 @@ export default {
         card: state => state.itemApp.myItems,
         user: state => state.userApp.user,
         layout: state => state.cards.item,
-        })
+        }),
+        paginacao () {
+                return this.card.slice((this.page - 1) * this.porPagina, this.page * this.porPagina)
+            },
+        pages(){
+            return  Math.ceil(this.card.length / this.porPagina)  
+        }
     },
     methods:{
         test(status){
