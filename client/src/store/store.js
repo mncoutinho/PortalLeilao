@@ -26,6 +26,7 @@ import alerts from "./modules/layout/snap_bar";
 import step from "./modules/layout/steps";
 import navEfoter from "./modules/layout/nav&foter"
 import form from  "./modules/layout/forms"
+import value from "./modules/layout/valor"
 
 //API
 import viaCep from "./modules/API/viaCep"
@@ -47,7 +48,8 @@ export default new Vuex.Store({
     stepApp: step,
     form,
     navEfoter,
-    viaCep
+    viaCep,
+    value
   },
   state: {
     category: [],
