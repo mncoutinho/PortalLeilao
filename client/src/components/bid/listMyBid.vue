@@ -12,31 +12,47 @@
                     <v-spacer/>
     
         <!--CARTOES-->
-        <v-row justify="space-around" no-gutters>
+        <v-row 
+          justify="space-around" 
+          no-gutters
+        >
           <v-card 
-            class="mt-6 mb-6 "
-            width="24%"
-            max-width="300"
+            :class="layout.card.type"
+            :width="layout.card.width"
             :key="card.length" 
             v-for="card in paginacao"  
           >
           <v-img
-            height="200px"
-            width="100%"
+            :height="layout.img.height"
+            :width="layout.img.width"
             :src="card.imgUrl"
-            class="white--text align-end bold"
-            gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+            :class="layout.img.type"
+            :gradient="layout.img.gradient"
           >
             <v-card-title>{{card.name}}</v-card-title>
           </v-img>
           <v-row align="end" dense>
             <v-col>
-              <v-card-title class="subtitle-2">{{card.description}}</v-card-title>
-              <v-card-subtitle>{{card.startsOn}} - {{card.closedAt}}</v-card-subtitle>
+              <v-card-title 
+                :class="layout.card.title"
+              >
+                {{card.description}}
+              </v-card-title>
+              <v-card-subtitle
+                :class="layout.card.subtitle"
+              >
+                {{card.startsOn}} - {{card.closedAt}}
+              </v-card-subtitle>
               <v-divider />
-              <v-card-subtitle class="title">Lotes: {{filter(card.items)}}</v-card-subtitle>
+              <v-card-subtitle 
+                :class="layout.card.content"
+              >
+                Lotes: {{filter(card.items)}}
+              </v-card-subtitle>
             </v-col>
           </v-row>
+
+          <!-- BOTOES -->
           <v-row  justify="center"> 
             <v-col cols="6" align="center">
               <v-btn
@@ -65,10 +81,10 @@
               </v-btn>
             </v-col>
           </v-row>
-        </v-card>
-
+          </v-card>
         </v-row>
-    <v-pagination
+
+        <v-pagination
           v-model="page"
           :length="pages"
           circle
@@ -86,16 +102,15 @@ export default {
   data() {
     return {
       target:null,
-      page:1,
-      porPagina: 8,
+      page:1
     }
   },
   computed:{
     paginacao () {
-      return this.card.slice((this.page - 1) * this.porPagina, this.page * this.porPagina)
+      return this.card.slice((this.page - 1) * this.layout.pagesLimit, this.page * this.layout.pagesLimit)
     },
     pages(){
-        return  Math.ceil(this.card.length / this.porPagina)  
+        return  Math.ceil(this.card.length / this.layout.pagesLimit)  
       },
     ...mapGetters(['pegar']),
     ...mapState({
