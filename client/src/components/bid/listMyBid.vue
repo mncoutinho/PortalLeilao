@@ -144,6 +144,7 @@ export default {
     mostrar(bid){
       this.$store.commit('setBid', bid)
       this.$store.commit('setStep', 9)
+      
     }
   },
   async created(){

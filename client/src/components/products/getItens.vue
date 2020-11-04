@@ -72,7 +72,7 @@ export default {
             pesquisar:null,
             items:[],
             target:{},
-            porPagina: 8, 
+            porPagina: 6, 
             page: 1,
         }
     },

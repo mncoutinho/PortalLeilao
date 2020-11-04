@@ -64,6 +64,7 @@
                     name="title"
                     label="Valor inicial para lance*"
                     id="title"
+                    v-mask="['########']"
                     v-model="artigo.initialBid"
                     required
                   />
@@ -87,8 +88,9 @@
 import firebase from "firebase";
 import "firebase/storage";
 import { mapState} from "vuex";
+import {mask} from 'vue-the-mask'
 export default {
-  name: "app",
+  directives: {mask},
   data() {
     return {
       image: [],
