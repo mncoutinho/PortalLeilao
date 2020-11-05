@@ -1,8 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-app-bar>
-      <NavBar  v-if="visivel.visible"/>
-    </v-app-bar>
+    <NavBar v-if="visivel.visible"/>
     <v-main>
         <router-view/>
     </v-main>

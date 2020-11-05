@@ -1,30 +1,7 @@
 <template>
-  <div class="NavBar">
-    <!-- Menu Lateral -->
-    <v-navigation-drawer app temporary v-model="drawer" height="100%">
-      <v-list>
-        <v-list-item-content>
-          <v-btn
-            color="#562B28"
-            text
-            style="text-decoration:none;"
-            v-for="items in navItens"
-            :key="items.title"
-            :to="items.routerLinks"
-            class="mb-2"
-          >
-            <v-col cols="1">
-              <v-icon left>{{ items.i }} </v-icon>
-            </v-col>
-            <v-col>
-              <v-list-item-title class="ml-12" v-text="items.title" />
-            </v-col>
-          </v-btn>
-        </v-list-item-content>
-      </v-list>
-    </v-navigation-drawer>
+  <div>
     <!-- NavBar -->
-    <v-app-bar fixed color="#422321" :elevation="24" dark width="100%">
+    <v-app-bar fixed color="#422321" :elevation="24" dark width="100vw" >
       <v-app-bar-nav-icon @click="drawer = !drawer" />
       <v-toolbar-title>
         <router-link class="white--text" tag="span" to="/" style="cursor:pointer">Portal Leilão</router-link>
@@ -44,6 +21,29 @@
           </v-btn>
         </v-toolbar-items>
     </v-app-bar>
+    <!-- Menu Lateral -->
+      <v-navigation-drawer app temporary v-model="drawer" absolute >
+        <v-list>
+          <v-list-item-content>
+            <v-btn
+              color="#562B28"
+              text
+              style="text-decoration:none;"
+              v-for="items in navItens"
+              :key="items.title"
+              :to="items.routerLinks"
+              class="mb-2"
+            >
+              <v-col cols="1">
+                <v-icon left>{{ items.i }} </v-icon>
+              </v-col>
+              <v-col>
+                <v-list-item-title class="ml-12" v-text="items.title" />
+              </v-col>
+            </v-btn>
+          </v-list-item-content>
+        </v-list>
+      </v-navigation-drawer>
   </div>
 </template>
 
