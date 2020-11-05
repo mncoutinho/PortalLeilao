@@ -2,7 +2,7 @@
    <!--IMAGEM-->
         <v-parallax
         dark
-        srcset="https://i.imgur.com/V5FBLN3.jpg"
+        src="https://i.imgur.com/V5FBLN3.jpg"
         width="100%"
         >
         <!--BOTOES-->
