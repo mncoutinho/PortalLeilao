@@ -1,6 +1,8 @@
 <template>
   <v-app id="inspire">
-    <NavBar v-if="visivel.visible"/>
+    <v-app-bar>
+      <NavBar  v-if="visivel.visible"/>
+    </v-app-bar>
     <v-main>
         <router-view/>
     </v-main>
@@ -19,7 +21,7 @@
             <h3 style="text-weight:0">{{msg.text}}</h3>
           </v-row>
         </v-snackbar>
-    <Footer v-if="visivel.visible"/>
+          <Footer v-if="visivel.visible"/>
   </v-app>
 </template>
 <script>
