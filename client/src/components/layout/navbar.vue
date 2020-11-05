@@ -1,7 +1,7 @@
 <template>
   <div class="NavBar">
     <!-- Menu Lateral -->
-    <v-navigation-drawer app temporary v-model="drawer">
+    <v-navigation-drawer app temporary v-model="drawer" height="100%">
       <v-list>
         <v-list-item-content>
           <v-btn
@@ -13,7 +13,7 @@
             :to="items.routerLinks"
             class="mb-2"
           >
-            <v-col>
+            <v-col cols="1">
               <v-icon left>{{ items.i }} </v-icon>
             </v-col>
             <v-col>
@@ -24,26 +24,25 @@
       </v-list>
     </v-navigation-drawer>
     <!-- NavBar -->
-    <v-app-bar app fixed color="#422321" :elevation="0" clipped-left dark>
+    <v-app-bar fixed color="#422321" :elevation="24" dark width="100%">
       <v-app-bar-nav-icon @click="drawer = !drawer" />
       <v-toolbar-title>
         <router-link class="white--text" tag="span" to="/" style="cursor:pointer">Portal Leilão</router-link>
       </v-toolbar-title>
-      <v-spacer />
-      <v-toolbar-items>
-        <v-btn
-          color="#EEB147"
-          text
-          center
-          v-for="item in menuItens"
-          :key="item.title"
-          :to="item.link"
-          @click="esconder"
-          >
-          <h4 class="hidden-sm-only hidden-xs-only">{{item.title}}</h4>
-            <v-icon class="ml-2" size="20">{{ item.i }}</v-icon>
-        </v-btn>
-      </v-toolbar-items>
+      <v-spacer/>
+        <v-toolbar-items>
+          <v-btn
+            color="#EEB147"
+            text
+            v-for="item in menuItens"
+            :key="item.title"
+            :to="item.link"
+            @click="esconder"
+            >
+              <h4 class="hidden-sm-only hidden-xs-only">{{item.title}}</h4>
+              <v-icon class="ml-2" size="30">{{ item.i }}</v-icon>
+          </v-btn>
+        </v-toolbar-items>
     </v-app-bar>
   </div>
 </template>
@@ -81,7 +80,7 @@ export default {
       if (this.user.email) {
         menuItem = [
           { i: 'mdi-email', title: this.user.email, link: "/userpage" },
-          { i: 'mdi-exit-to-app', title: null, link: "/sair" },  
+          { i: 'mdi-exit-to-app', title: 'sair', link: "/sair" },  
         ];
       } else {
         menuItem = [
