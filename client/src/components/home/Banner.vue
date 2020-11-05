@@ -3,7 +3,7 @@
         <v-parallax
         dark
         src="https://i.imgur.com/V5FBLN3.jpg"
-        width="100%"
+        width="100vw"
         >
         <!--BOTOES-->
             <v-row
