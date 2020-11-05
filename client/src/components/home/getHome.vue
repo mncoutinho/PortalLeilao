@@ -10,7 +10,6 @@
         margin-top:2%;
         padding-right: 100px;
         padding-left: 100px;
-         
     }
     .pagamentos:last-child{
         border-right: none; 
@@ -26,7 +25,6 @@
         }
     }
 </style>
-
 <!--scripts-->
 <script>
 import firebase from 'firebase';
