@@ -64,15 +64,18 @@
                     </v-col>
                   </v-row>
                 </v-container>
-                <v-btn
-                  color=#562B28
-                  center
-                  class="white--text"
-                  depressed
-                  large
-                  v-text="'Prosseguir'"
-                  @click="next()"
-                  ></v-btn>
+                <v-row class="d-flex justify-center">
+                  <v-btn
+                    color=#562B28
+                    center
+                    class="white--text"
+                    depressed
+                    large
+                    v-text="'Prosseguir'"
+                    :disabled="!radioGroup || !radioLimite"
+                    @click="next()"
+                    ></v-btn>
+                  </v-row>
                 </v-col>
           </v-card>
         </v-row>
@@ -84,8 +87,9 @@
 export default {
   data(){
     return{
-      radioGroup: 'banco',
-      radioLimite: '50',
+      radioGroup: null,
+      radioLimite: null,
+      validador:true,
       valor:0,
       radios:{
         pagamento:[
