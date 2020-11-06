@@ -52,13 +52,6 @@ export default {
                 })
                 .catch(err => console.log(err))
             },
-            getHomeOpenSale(){
-
-            },
-            getHomeLiveSale(){
-
-            }
         }
     }    
 </script>
-<!-- Vue Component -->
