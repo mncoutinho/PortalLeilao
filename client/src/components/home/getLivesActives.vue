@@ -1,7 +1,9 @@
 <template>
+    <v-row width="100%" style="background-color:rgba(166,78,75,0.08)" class="mt-10">
       <!-- BOX-->
         <v-flex class="mt-auto">
-            <v-card 
+            <v-card
+            color="transparent"
             max-width="1550"
             class="mx-auto"
             flat>
@@ -12,9 +14,7 @@
                     align="center"
                     class="mt-12"
                     >
-                        <p 
-                        class="display-1"
-                        style="color:#A64E4B;">
+                        <p class="display-1" style="color:#A64E4B;">
                             Veja quem está ao vivo, agora
                             <v-divider class="mx-8" color="white"/>
                         </p>
@@ -32,7 +32,7 @@
                         v-for="stream in limitador"
                         :key="stream.nome"
                         >
-                            <v-img width="100%" height="300" :src="stream.imgUrl[0]"/> 
+                            <v-img width="100%" height="300px" :src="stream.imgUrl[0]"/> 
                             <v-list-item-content class="ml-5">  
                                 <span :style="color(stream.active)" >{{status(stream.active)}}</span>
                                 <v-list-item-title style="color:#63432D" class="bold headline mb-1">{{stream.name}}</v-list-item-title>
@@ -47,6 +47,7 @@
                 </v-col>
             </v-card>
         </v-flex>
+    </v-row>
 </template>
 
 <script>

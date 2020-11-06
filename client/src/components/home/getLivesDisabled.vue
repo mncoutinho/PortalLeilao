@@ -1,8 +1,10 @@
-<template>
-      <!-- BOX-->
+<template >
+    <v-row width="100%" style="background-color:rgba(166,78,75,0.08)" class="mt-10">
         <v-flex class="mt-auto">
-            <v-card 
-            max-width="1550"
+            <!-- BOX-->
+            <v-card
+            color="transparent"
+            max-width="1550px"
             class="mx-auto"
             flat>
                 <v-row justify="center">
@@ -19,42 +21,35 @@
                     </v-col>
                 </v-row >
                 <!--TRANSMISSOES-->
-                    <v-hover 
-                    v-slot:default="{ hover }"
-                    open-delay="100">  
-                        <v-row 
-                        align="center" 
-                        justify="space-around" 
-                        class="mt-12"
+                <v-col>
+                    <v-row class="d-flex flex-wrap justify-center justify-sm-center justify-md-space-around" >
+                        <v-card
+                        raised
+                        v-ripple
+                        class="elevacão ma-6"
+                        style="cursor:pointer"
+                        width="330px"
+                        v-for="stream in limitador"
+                        :key="stream.nome"
                         >
-                            <v-card
-                            class="mt-6 mb-6"
-                            style="cursor:pointer"
-                            width="330"
-                            :elevation="hover ? 16 : 2"
-                            v-for="stream in limitador"
-                            :key="stream.nome"
-                            >
-                                <v-img width="100%" height="300" :src="stream.imgUrl[0]" 
-                                /> 
+                            <v-img width="100%" height="300px" :src="stream.imgUrl[0]"/> 
                                 <v-list-item-content class="ml-5">
                                     <div>     
                                         <span :style="color(stream.active)" >{{status(stream.active)}}</span>
                                         <v-list-item-title style="color:#63432D" class="bold headline mb-1">{{stream.name}}</v-list-item-title>
                                         <v-list-item-subtitle style="color:#1B120C" class="mb-2">{{stream.description}}</v-list-item-subtitle>
                                             <v-divider class="mx-5" color="#EDE7E2"/>
-                                </div>            
-                                <v-row class="mr-5" justify="center">
-                                    <v-btn outlined rounded class="pr-12 pl-12 mt-4 mb-2" :style="color(stream.active)" @click="logado(stream.id)">{{status(stream.active)}}</v-btn>
-                                </v-row>
+                                    </div>            
+                                    <v-row class="mr-5" justify="center">
+                                        <v-btn outlined rounded class="pr-12 pl-12 mt-4 mb-2" :style="color(stream.active)" @click="logado(stream.id)">{{status(stream.active)}}</v-btn>
+                                    </v-row>
                                 </v-list-item-content>   
-                            </v-card>
-                        </v-row>
-                    </v-hover>
-                <v-row align="center" justify="space-around" class="mt-12">
-                </v-row>
+                        </v-card>
+                    </v-row>
+                </v-col>
             </v-card>
         </v-flex>
+    </v-row>
 </template>
 
 <script>
@@ -96,3 +91,8 @@ export default {
     },
 }
 </script>
+<style scoped>
+.elevacão:hover{
+    box-shadow: -18px 21px 9px 0px rgba(0,0,0,0.37);
+}
+</style>
