@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- NavBar -->
-    <v-app-bar fixed color="#422321" :elevation="24" dark width="100vw" >
+    <v-app-bar app fixed color="#422321" :elevation="24" dark width="100vw" flat>
       <v-app-bar-nav-icon @click="drawer = !drawer" />
       <v-toolbar-title>
         <router-link class="white--text" tag="span" to="/" style="cursor:pointer">Portal Leilão</router-link>
@@ -17,12 +17,12 @@
             @click="esconder"
             >
               <h4 class="hidden-sm-only hidden-xs-only">{{item.title}}</h4>
-              <v-icon class="ml-2" size="30">{{ item.i }}</v-icon>
+              <v-icon class="ml-2" size="25">{{ item.i }}</v-icon>
           </v-btn>
         </v-toolbar-items>
     </v-app-bar>
     <!-- Menu Lateral -->
-      <v-navigation-drawer app temporary v-model="drawer" absolute >
+      <v-navigation-drawer app temporary absolute v-model="drawer">
         <v-list>
           <v-list-item-content>
             <v-btn
