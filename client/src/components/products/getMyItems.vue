@@ -41,17 +41,20 @@
                     <v-btn outlined rounded class="pr-12 pl-12" color="black" @click="editar(card)">
                         Editar
                     </v-btn>
-                <v-row no-gutters>
-                    <v-divider/>
-                    <v-btn 
-                    class="pr-12 pl-12 mt-6" 
-                    color="blue" 
-                    text rounded
-                    @click="registra(card)"
-                    >
-                        Registra em leilao
-                    </v-btn>
-                </v-row>
+                    <v-row no-gutters>
+                        <v-divider/>
+                        <div v-if="test(card.active)">
+                            <v-btn 
+                            class="pr-12 pl-12 mt-6" 
+                            color="blue" 
+                            text 
+                            rounded
+                            @click="registra(card)"
+                            >
+                                Registra em leilao
+                            </v-btn>
+                        </div>
+                    </v-row>
                 </v-list-item-content>                            
                 </v-card>
             </v-row>    
@@ -81,14 +84,14 @@ export default {
     },
     methods:{
         status(status){
-            if(status){
+            if(status == undefined){
               return "Aberto"
             }else{
                return "Fechado" 
             }
         },
         color(status){
-            if(status){
+            if(status == undefined){
               return "color:green"
             }else{
                return "color:red" 
