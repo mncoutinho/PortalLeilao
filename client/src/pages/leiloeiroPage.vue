@@ -31,7 +31,6 @@
           
           <!-- leilao -->
           <v-window-item :value="5">
-                    
             <listBid/>
           </v-window-item>
           <v-window-item :value="5">
