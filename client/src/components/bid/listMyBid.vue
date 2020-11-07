@@ -10,7 +10,6 @@
           Leiloeiro aqui se encontra todos os seus leiloes registrados no nosso sistema. 
         </p>
       <v-spacer/>
-      <v-row justify="space-around">
         <!--CARTOES-->
         <v-row 
         justify="space-around" 
@@ -31,53 +30,54 @@
           >
             <v-card-title>{{card.name}}</v-card-title>
           </v-img>
-          <v-row align="end" dense>
-            <v-col>
-              <v-card-title 
-              :class="layout.card.title">
-                {{card.description}}  
-              </v-card-title>
-              <v-card-subtitle>
-                {{card.startsOn}} - {{card.closedAt}}
-              </v-card-subtitle>
-              <v-divider />
-              <v-card-subtitle 
-              :class="layout.card.subtitle">
-                Lotes: {{filter(card.items)}} 
-              </v-card-subtitle>
-            </v-col>
-          </v-row>
+            <v-row align="end" dense>
+              <v-col>
+                <v-card-title 
+                :class="layout.card.title">
+                  {{card.description}}  
+                </v-card-title>
+                <v-card-subtitle>
+                  {{card.startsOn}} - {{card.closedAt}}
+                </v-card-subtitle>
+                <v-divider />
+                <v-card-subtitle 
+                :class="layout.card.subtitle">
+                  Lotes: {{filter(card.items)}} 
+                </v-card-subtitle>
+              </v-col>
+            </v-row>
           <!-- BOTOES -->
-          <v-row  justify="center"> 
-            <v-col cols="6" align="center">
-              <v-btn
+            <v-row  justify="center"> 
+              <v-col cols="6" align="center">
+                <v-btn
+                  large
+                  color="#422321"
+                  class="white--text"
+                  @click="mostrar(card)"
+                >
+                  Ver Lotes
+                </v-btn>
+                <v-btn
+                  large
+                  color="#422321"
+                  class="white--text mt-2"
+                  @click="editar(card)"
+                >
+                  Editar
+                </v-btn>
+                <v-btn
                 large
-                color="#422321"
-                class="white--text"
-                @click="mostrar(card)"
-              >
-                Ver Lotes
-              </v-btn>
-              <v-btn
-                large
-                color="#422321"
-                class="white--text mt-2"
-                @click="editar(card)"
-              >
-                Editar
-              </v-btn>
-              <v-btn
-              large
-                color="#422321"
-                class="white--text mt-2"
-                @click="deletar(card)"
-              >
-                Deletar
-              </v-btn>
-            </v-col>
-          </v-row>
-        </v-card>
-      </v-row>
+                  color="#422321"
+                  class="white--text mt-2"
+                  @click="deletar(card)"
+                >
+                  Deletar
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-card>
+        </v-row>
+      </v-col>
     </v-card>
     <v-pagination
           v-model="page"

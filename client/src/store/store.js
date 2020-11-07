@@ -23,11 +23,12 @@ import registro from "./modules/bids/registroLotes";
 import alerts from "./modules/layout/snap_bar";
 
 //layout
-import step from "./modules/layout/steps";
-import navEfoter from "./modules/layout/nav&foter"
-import form from  "./modules/layout/forms"
 import value from "./modules/layout/valor"
 import cards from "./modules/layout/cards"
+import showBar from "./modules/layout/showBar"
+import steps from "./modules/layout/steps"
+import form from  "./modules/layout/forms"
+
 
 //API
 import viaCep from "./modules/API/viaCep"
@@ -43,14 +44,14 @@ export default new Vuex.Store({
     lances,
     info,
     bidApp: bid,
+    showBar,
+    steps,
     bidManager,
     registro,
     alerts,
-    stepApp: step,
-    form,
-    navEfoter,
     viaCep,
     cards,
+    form,
     value
   },
   state: {
