@@ -39,7 +39,7 @@ export default {
       return this.$store.state.alerts
     },
     visivel(){
-      return this.$store.state.navEfoter
+      return this.$store.state.showBar
     }
   },
 }

@@ -2,10 +2,10 @@
     <v-card flat width="100%">      
         <v-col cols='12' class="mx-auto">
                     <!--nome do produto-->
-                    <h1 :class="layout.title">
+                    <h1 :class="cardLayout.bid.title">
                         Todos os Produtos
                     </h1>
-                    <p :class="layout.description">
+                    <p :class="cardLayout.bid.title">
                         Leiloeiro aqui se encontra todas peças registradas no nosso sistema. 
                     </p>
                     <v-spacer/>
@@ -13,15 +13,15 @@
                     <v-row justify="space-around" no-gutters>
                         <v-card
                         :elevation='1'
-                        :class="layout.card.type"
-                        :width="layout.card.width"
-                        :heigth="layout.card.height"                         
+                        :class="cardLayout.bid.title"
+                        :width="cardLayout.bid.card.width"
+                        :heigth="cardLayout.bid.card.heigth"                         
                         v-for="card in paginacao"
                         :key="card.length">
                             <v-img 
-                            :class="layout.img.type"
-                            :width="layout.img.width" 
-                            :height="layout.img.height" 
+                            :class="cardLayout.bid.img.type"
+                            :width="cardLayout.bid.img.width" 
+                            :height="cardLayout.bid.height" 
                             :src="card.imgUrl[0]" 
                             />
                              <v-list-item-content class="ml-5">   
@@ -77,13 +77,15 @@ export default {
     ...mapState({
         card: state => state.itemApp.items,
         user: state => state.userApp.user,
-        layout: state => state.cards.item,
     }),
         paginacao () {
             return this.card.slice((this.page - 1) * this.porPagina, this.page * this.porPagina)
         },
         pages(){
             return  Math.ceil(this.card.length / this.porPagina)  
+        },
+        cardLayout(){
+            return this.$store.state.cards
         }
     },
     methods:{
@@ -108,7 +110,6 @@ export default {
             this.$store.dispatch('getLances',this.target)
             this.$router.push({path:'/leilao', query:{id:this.target}})
         },
-        
     },
 }
 </script>

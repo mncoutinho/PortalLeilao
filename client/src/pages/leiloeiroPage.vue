@@ -114,8 +114,8 @@ export default {
   },
   computed: {
     ...mapState({
-      page: state => state.stepApp.step,
-      pageInterna: state => state.stepApp.add
+      page: state => state.steps.step,
+      pageInterna: state => state.steps.add
     }),
   },
   created() {

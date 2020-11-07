@@ -27,10 +27,10 @@
                             <!--imagem-->
                             <v-row justify="center">
                                 <v-img
-                                    :src="leilao.imgUrl"
-                                    :max-width="layout.img.width"
-                                    :heigth="layout.img.height"
-                                    />
+                                :src="leilao.imgUrl"
+                                :max-width="cardImg.img.width"
+                                :heigth="cardImg.img.height"
+                                />
                             </v-row>  
                             <!--imagem- mostrar-->
                             <v-text-field 
@@ -131,8 +131,13 @@ export default {
         ...mapState({
                 id: state => state.userApp.user.uid,
                 leilao: state => state.bidApp.bid,
-                layout: state => state.form
-            })
+            }),
+        layout(){
+            return this.$store.state.form
+        },
+        cardImg(){
+            return this.$store.state.cards.bid
+        }
     },
     methods:{
          async onUpload() {

@@ -54,11 +54,10 @@ export default {
         primeiroStep,
         segundoStep,
         terceiroStep,
-        
     },
     computed: {
         ...mapState({
-            step: state => state.stepApp.step
+            step: state => state.steps.step
         })
     },
     created() {
