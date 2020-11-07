@@ -1,35 +1,53 @@
 <template>
   <v-app>
-    <v-card flat width="67vw" class="mx-auto">
-      <v-row justify="center" class="mt-8">
-        <p class="display-2">Meus Leiloes</p>
-      </v-row>
-      <v-row justify="center">
-        <v-col cols="6">
-          <v-text-field outlined label="Procure aqui" append-icon="mdi-map-marker"/>
-        </v-col>
-      </v-row>
-      <v-divider class="mx-12" />
+    <v-card flat width="100%"> 
+      <v-col cols='12' class="mx-auto">
+      <!--nome do produto-->
+        <h1 :class="layout.title">
+          Todos meus leiloes
+        </h1>
+        <p :class="layout.description">
+          Leiloeiro aqui se encontra todos os seus leiloes registrados no nosso sistema. 
+        </p>
+      <v-spacer/>
       <v-row justify="space-around">
         <!--CARTOES-->
-        <v-card width="24%" :key="card.length" v-for="card in paginacao" class="mt-9 mb-3">
+        <v-row 
+        justify="space-around" 
+        no-gutters>
+          <v-card 
+          :class="layout.card.type"
+          :width="layout.card.width"
+          max-width="300"
+          :key="card.length" 
+          v-for="card in paginacao"  
+          >
           <v-img
-            height="200px"
-            width="100%"
-            :src="card.imgUrl"
-            class="white--text align-end bold"
-            gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+          :height="layout.img.height"
+          :width="layout.img.width"
+          :src="card.imgUrl"
+          :class="layout.img.type"
+          :gradient="layout.img.gradient"
           >
             <v-card-title>{{card.name}}</v-card-title>
           </v-img>
           <v-row align="end" dense>
             <v-col>
-              <v-card-title class="subtitle-2">{{card.description}}</v-card-title>
-              <v-card-subtitle>{{card.startsOn}} - {{card.closedAt}}</v-card-subtitle>
+              <v-card-title 
+              :class="layout.card.title">
+                {{card.description}}  
+              </v-card-title>
+              <v-card-subtitle>
+                {{card.startsOn}} - {{card.closedAt}}
+              </v-card-subtitle>
               <v-divider />
-              <v-card-subtitle class="title">Lotes: {{filter(card.items)}}</v-card-subtitle>
+              <v-card-subtitle 
+              :class="layout.card.subtitle">
+                Lotes: {{filter(card.items)}} 
+              </v-card-subtitle>
             </v-col>
           </v-row>
+          <!-- BOTOES -->
           <v-row  justify="center"> 
             <v-col cols="6" align="center">
               <v-btn
@@ -77,20 +95,20 @@ export default {
     return {
       target:null,
       page:1,
-      porPagina: 8,
     }
   },
   computed:{
     paginacao () {
-      return this.card.slice((this.page - 1) * this.porPagina, this.page * this.porPagina)
+      return this.card.slice((this.page - 1) * this.layout.pagesLimit, this.page * this.layout.pagesLimit)
     },
     pages(){
-        return  Math.ceil(this.card.length / this.porPagina)  
-      },
+      return  Math.ceil(this.card.length / this.layout.pagesLimit)   
+    },
     ...mapGetters(['pegar']),
     ...mapState({
-      card: state => state.bidApp.myBids,
-      user: state => state.userApp.user
+        card: state => state.bidApp.myBids,
+        user: state => state.userApp.user,
+        layout: state => state.cards.bid,
     })
   },
   methods: {
@@ -121,7 +139,7 @@ export default {
     }
   },
   async created(){
-       await this.$store.dispatch('getMyBids', this.user.uid)
-    }
+    await this.$store.dispatch('getMyBids', this.user.uid)
+  }
 };
 </script>

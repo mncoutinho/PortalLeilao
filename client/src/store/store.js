@@ -27,6 +27,7 @@ import step from "./modules/layout/steps";
 import navEfoter from "./modules/layout/nav&foter"
 import form from  "./modules/layout/forms"
 import value from "./modules/layout/valor"
+import cards from "./modules/layout/cards"
 
 //API
 import viaCep from "./modules/API/viaCep"
@@ -49,6 +50,7 @@ export default new Vuex.Store({
     form,
     navEfoter,
     viaCep,
+    cards,
     value
   },
   state: {

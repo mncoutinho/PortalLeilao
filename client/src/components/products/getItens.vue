@@ -1,33 +1,28 @@
 <template>
-    <v-card flat max-width="1500">    
+    <v-card flat width="100%">      
         <v-col cols='12' class="mx-auto">
                     <!--nome do produto-->
-                    <v-row>
-                        <h3 class="ml-8">NOME DO PRODUTO</h3>
-                        <v-spacer/>
-                    </v-row>
-                    <!--links-->
-                        <v-breadcrumbs :items="items" >
-                            <template v-slot:divider>
-                                <v-icon>mdi-chevron-right</v-icon>
-                            </template>
-                        </v-breadcrumbs>
-                    <!--BARRA HORIZONTAL-->
-                    <div class="hidden-md-only hidden-lg-only hidden-xl-only">
-                        <h3>Categorias</h3>
-                        <Resp/>
-                    </div>
-                        <v-divider class="mx-8"/>
+                    <h1 :class="layout.title">
+                        Todos os Produtos
+                    </h1>
+                    <p :class="layout.description">
+                        Leiloeiro aqui se encontra todas peças registradas no nosso sistema. 
+                    </p>
+                    <v-spacer/>
                     <!--cards-->
                     <v-row justify="space-around" no-gutters>
                         <v-card
                         :elevation='1'
-                        class="mt-6 mb-6 "
-                        width="24%"
-                        max-width="300"                        
+                        :class="layout.card.type"
+                        :width="layout.card.width"
+                        :heigth="layout.card.height"                         
                         v-for="card in paginacao"
-                        :key="card.length ">
-                            <v-img width="100%" height="300" :src="card.imgUrl[0]" 
+                        :key="card.length">
+                            <v-img 
+                            :class="layout.img.type"
+                            :width="layout.img.width" 
+                            :height="layout.img.height" 
+                            :src="card.imgUrl[0]" 
                             />
                              <v-list-item-content class="ml-5">   
                                 <span :style="color(card.active)">{{status(card.active)}}</span>
@@ -42,6 +37,7 @@
                                         {{card.description}}
                                     </v-list-item>
                                 <v-divider class="mx-5" color="#EDE7E2"/>
+                                <!-- botoes -->
                                     <v-btn 
                                     outlined 
                                     rounded 
@@ -66,12 +62,8 @@
 </template>
 
 <script>
-import Resp from './responsivo/ProdutoResponsivo';
 import {mapState} from "vuex";
 export default {
-    components:{
-        Resp,
-    },
     data(){
         return{
             pesquisar:null,
@@ -83,12 +75,13 @@ export default {
     },
     computed: {
     ...mapState({
-      card: state => state.itemApp.items,
-      user: state => state.userApp.user,
+        card: state => state.itemApp.items,
+        user: state => state.userApp.user,
+        layout: state => state.cards.item,
     }),
         paginacao () {
-                return this.card.slice((this.page - 1) * this.porPagina, this.page * this.porPagina)
-            },
+            return this.card.slice((this.page - 1) * this.porPagina, this.page * this.porPagina)
+        },
         pages(){
             return  Math.ceil(this.card.length / this.porPagina)  
         }

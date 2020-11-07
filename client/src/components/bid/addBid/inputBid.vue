@@ -31,10 +31,10 @@
                             <!--imagem-->
                             <v-row justify="center">
                                 <v-img
-                                    :src="leilao.imgUrl"
-                                    max-width="600px"
-                                    heigth="400px"
-                                    />
+                                :src="leilao.imgUrl"
+                                :max-width="layout.img.width"
+                                :heigth="layout.img.height"
+                                />
                             </v-row>  
                             <!--imagem- mostrar-->
                             <v-text-field 
