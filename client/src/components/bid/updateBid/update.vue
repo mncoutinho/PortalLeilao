@@ -4,7 +4,6 @@
         <v-row  xs12 sm6 offset-sm3>
             <v-flex :class="layout.flex">
                 <h1 :class="layout.title">Bem-vindo leiloeiro</h1>
-                
                     <v-form :class="layout.form">
                         <v-col 
                         :class="layout.col" 
@@ -29,8 +28,8 @@
                             <v-row justify="center">
                                 <v-img
                                     :src="leilao.imgUrl"
-                                    max-width="600px"
-                                    heigth="400px"
+                                    :max-width="layout.img.width"
+                                    :heigth="layout.img.height"
                                     />
                             </v-row>  
                             <!--imagem- mostrar-->
