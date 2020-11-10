@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- NavBar -->
-    <v-app-bar app fixed color="#422321" :elevation="24" dark width="100vw" flat>
+    <v-app-bar fixed tile color="#422321" :elevation="20" dark width="100vw">
       <v-app-bar-nav-icon @click="drawer = !drawer" />
       <v-toolbar-title>
         <router-link class="white--text" tag="span" to="/" style="cursor:pointer">Portal Leilão</router-link>
@@ -22,7 +22,7 @@
         </v-toolbar-items>
     </v-app-bar>
     <!-- Menu Lateral -->
-      <v-navigation-drawer app temporary absolute v-model="drawer">
+      <v-navigation-drawer app temporary v-model="drawer">
         <v-list>
           <v-list-item-content>
             <v-btn

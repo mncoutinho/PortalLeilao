@@ -1,5 +1,5 @@
 <template>
-   <!--IMAGEM-->
+    <!--IMAGEM-->
         <v-parallax
         src="https://i.imgur.com/V5FBLN3.jpg"
         height="600"

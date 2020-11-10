@@ -2,10 +2,10 @@
     <v-card flat width="100%">      
         <v-col cols='12' class="mx-auto">
                     <!--nome do produto-->
-                    <h1 :class="cardLayout.bid.title">
+                    <h1 :class="cardLayout.title">
                         Todos os Produtos
                     </h1>
-                    <p :class="cardLayout.bid.title">
+                    <p :class="cardLayout.title">
                         Leiloeiro aqui se encontra todas peças registradas no nosso sistema. 
                     </p>
                     <v-spacer/>
@@ -13,15 +13,15 @@
                     <v-row justify="space-around" no-gutters>
                         <v-card
                         :elevation='1'
-                        :class="cardLayout.bid.title"
-                        :width="cardLayout.bid.card.width"
-                        :heigth="cardLayout.bid.card.heigth"                         
+                        :class="cardLayout.title"
+                        :width="cardLayout.card.width"
+                        :heigth="cardLayout.card.heigth"                         
                         v-for="card in paginacao"
                         :key="card.length">
                             <v-img 
-                            :class="cardLayout.bid.img.type"
-                            :width="cardLayout.bid.img.width" 
-                            :height="cardLayout.bid.height" 
+                            :class="cardLayout.img.type"
+                            :width="cardLayout.img.width" 
+                            :height="cardLayout.img.height" 
                             :src="card.imgUrl[0]" 
                             />
                              <v-list-item-content class="ml-5">   
@@ -77,6 +77,7 @@ export default {
     ...mapState({
         card: state => state.itemApp.items,
         user: state => state.userApp.user,
+        cardLayout: state => state.cards.bid
     }),
         paginacao () {
             return this.card.slice((this.page - 1) * this.porPagina, this.page * this.porPagina)
@@ -84,9 +85,6 @@ export default {
         pages(){
             return  Math.ceil(this.card.length / this.porPagina)  
         },
-        cardLayout(){
-            return this.$store.state.cards
-        }
     },
     methods:{
         status(status){

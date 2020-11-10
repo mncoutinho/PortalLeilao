@@ -12,7 +12,7 @@
           :right='msg.right'
           :botton='msg.botton'
           :timeout="msg.tempo"
-          class="pa-2"
+          class="pa-4 mx-auto"
         >
           <v-row justify="center">
             <v-icon size="20" class="mr-4">{{msg.icon}}</v-icon>

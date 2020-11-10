@@ -1,22 +1,21 @@
 <template>
-    <v-row width="100%" style="background-color:rgba(166,78,75,0.08)" class="mt-10">
+    <v-row width="100%" style="background-color:rgba(166,78,75,0.08)" class="mt-10" dense>
       <!-- BOX-->
-        <v-flex class="mt-auto">
             <v-card
             color="transparent"
-            max-width="1550"
             class="mx-auto"
             flat>
                 <v-row justify="center">
-                    <v-col 
-                    cols="12"
+                    <v-col
+                    cols="8"
+                    tag="div"
                     md="6"
                     align="center"
                     class="mt-12"
                     >
                         <p class="display-1" style="color:#A64E4B;">
                             Veja quem está ao vivo, agora
-                            <v-divider class="mx-8" color="white"/>
+                            <v-divider class="mt-8" color="white"/>
                         </p>
                     </v-col>
                 </v-row>
@@ -46,7 +45,6 @@
                     </v-row>
                 </v-col>
             </v-card>
-        </v-flex>
     </v-row>
 </template>
 

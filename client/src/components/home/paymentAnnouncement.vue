@@ -1,8 +1,6 @@
 <template>
   <!--PROPAGANDA-->
-    <v-card
-    color="#AC9594"
-    >
+    <v-card color="#AC9594">
             <v-row 
             justify="center"
             class="d-flex flex-column flex-sm-column flex-xl-row flex-md-row"
