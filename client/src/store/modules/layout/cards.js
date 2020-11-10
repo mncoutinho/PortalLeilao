@@ -5,7 +5,7 @@ export default{
             description: "text-center",
             card:{
                 type: "mt-6 mb-6 ",
-                width: "200px",
+                width: "400px",
                 heigth: "200px",
             },
             img:{

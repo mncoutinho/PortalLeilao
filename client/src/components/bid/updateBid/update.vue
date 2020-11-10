@@ -131,10 +131,8 @@ export default {
         ...mapState({
                 id: state => state.userApp.user.uid,
                 leilao: state => state.bidApp.bid,
+                layout: state => state.form 
             }),
-        layout(){
-            return this.$store.state.form
-        },
         cardImg(){
             return this.$store.state.cards.bid
         }

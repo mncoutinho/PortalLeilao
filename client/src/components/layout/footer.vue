@@ -4,7 +4,7 @@
         color="#422321"
         class="pt-8"
         >
-            <v-row justify="center" class="mx-5">
+            <v-row class="d-flex flex-wrap">
                     <v-card-text 
                     align="center"
                     class="pb-8 white--text ml-8"
@@ -20,9 +20,7 @@
                             <v-icon size="40px">{{ icon }}</v-icon>
                         </v-btn>
                     </v-card-text>
-        
                 <!--links-->
-            
                     <v-row 
                     justify="space-around"
                     >
@@ -32,16 +30,16 @@
                         :color="color"
                         >
                         <v-row
-                        v-for="conteudo in button"
-                        :key="conteudo.item"
-                        >
-                            <v-btn :href="conteudo.link"
-                             depressed 
-                             :color="color" 
-                             class="pt-0 mx-auto  white--text" 
-                             text 
-                             v-text="conteudo.item"/>
-                        </v-row>
+                            v-for="conteudo in button"
+                            :key="conteudo.item"
+                            >
+                                <v-btn :href="conteudo.link"
+                                depressed 
+                                :color="color" 
+                                class="pt-0 mx-auto  white--text" 
+                                text 
+                                v-text="conteudo.item"/>
+                            </v-row>
                         </v-col>
                     </v-row>
             </v-row>
