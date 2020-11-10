@@ -2,7 +2,7 @@ export default {
     state: {
         text: 'texto',
         cor: null,
-        tempo: '',
+        tempo: null,
         mostra: false,
         top: true,
         left: false,

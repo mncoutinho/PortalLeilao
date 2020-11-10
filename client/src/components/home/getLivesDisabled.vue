@@ -6,36 +6,47 @@
         width="100%"
         flat>
             <v-row class="d-flex justify-center">
-                <p class="mt-12 display-1" style="color:#A64E4B">
-                    Veja os próximos leiloes
+                <v-col
+                cols="8"
+                tag="div"
+                md="6"
+                align="center"
+                class="mt-12"
+                >
+                    <p class="mt-12 display-1" style="color:#A64E4B">
+                        Veja os próximos leiloes
                         <v-divider class="ma-8" color="white"/>
-                </p>  
+                    </p>
+                </v-col>  
             </v-row>
             <!--TRANSMISSOES-->
             <v-card width="100%" flat color="transparent">
-                <v-row class="d-flex justify-center flex-wrap justify-space-around">
-                    <v-card
-                    v-ripple
-                    class="elevacão ma-6"
-                    style="cursor:pointer"
-                    width="330px"
-                    v-for="stream in limitador"
-                    :key="stream.nome"
-                    >
-                        <v-img width="100%" height="300px" :src="stream.imgUrl[0]"/> 
-                            <v-list-item-content class="ml-5">
-                                <div>     
-                                    <span :style="color(stream.active)" >{{status(stream.active)}}</span>
-                                    <v-list-item-title style="color:#63432D" class="bold headline mb-1">{{stream.name}}</v-list-item-title>
-                                    <v-list-item-subtitle style="color:#1B120C" class="mb-2">{{stream.description}}</v-list-item-subtitle>
-                                        <v-divider class="mx-5" color="#EDE7E2"/>
-                                </div>            
-                                <v-row class="mr-5" justify="center">
-                                    <v-btn outlined rounded class="pr-12 pl-12 mt-4 mb-2" :style="color(stream.active)" @click="logado(stream.id)">{{status(stream.active)}}</v-btn>
-                                </v-row>
-                            </v-list-item-content>   
-                    </v-card>
-                </v-row>
+                <v-col cols="12" sm="12" md="12" align-self="center">
+                    <v-row class="d-flex flex-wrap" justify="center">
+                        <v-card
+                        v-ripple
+                        class="elevacão ma-6"
+                        style="cursor:pointer"
+                        max-width="380px"
+                        min-width="330px"
+                        v-for="stream in limitador"
+                        :key="stream.nome"
+                        >
+                            <v-img width="100%" height="300px" :src="stream.imgUrl[0]"></v-img>
+                                <v-list-item-content class="ml-5">
+                                    <div>     
+                                        <span :style="color(stream.active)" >{{status(stream.active)}}</span>
+                                        <v-list-item-title style="color:#63432D" class="bold headline mb-1">{{stream.name}}</v-list-item-title>
+                                        <v-list-item-subtitle style="color:#1B120C" class="mb-2">{{stream.description}}</v-list-item-subtitle>
+                                            <v-divider class="mx-5" color="#EDE7E2"/>
+                                    </div>            
+                                    <v-row class="mr-5" justify="center">
+                                        <v-btn outlined rounded class="pr-12 pl-12 mt-4 mb-2" :style="color(stream.active)" @click="logado(stream.id)">{{status(stream.active)}}</v-btn>
+                                    </v-row>
+                                </v-list-item-content>   
+                        </v-card>
+                    </v-row>
+                </v-col>
             </v-card>
         </v-card>
     </v-row>
