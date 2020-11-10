@@ -4,30 +4,43 @@
         color="#422321"
         class="pt-8"
         >
-            <v-row class="d-flex flex-wrap">
-                    <v-card-text 
-                    align="center"
-                    class="pb-8 white--text ml-8"
+            <v-row class="d-flex" dense>
+                <v-card-text 
+                align="center"
+                class="pb-8 white--text"
+                >
+                    <!--icons-->
+                    <v-btn
+                    v-for="icon in icons"
+                    :key="icon"
+                    class="white--text ma-4"
+                    icon
                     >
-                        <h3>Descubra</h3>
-                        <!--icons-->
-                        <v-btn
-                        v-for="icon in icons"
-                        :key="icon"
-                        class="mx-2 white--text mt-2"
-                        icon
-                        >
-                            <v-icon size="40px">{{ icon }}</v-icon>
-                        </v-btn>
-                    </v-card-text>
+                        <v-icon size="4em">{{ icon }}</v-icon>
+                    </v-btn>
+                </v-card-text>
                 <!--links-->
+                <v-card-text>
+                    <v-row class="d-flex justify-center">
+                        <v-col cols='2' class="white--text">
+                            <v-row class="d-flex justify-center mb-4">
+                                <h2>Descubra</h2>
+                            </v-row>
+                            <v-divider color="white"/>
+                        </v-col>
+                    </v-row>
+                </v-card-text>
                     <v-row 
                     justify="space-around"
+                    class="d-flex flex-wrap"
                     >
                         <v-col 
                         v-for="button in links"
                         :key="button.conteudo"
                         :color="color"
+                        cols="6"
+                        sm="6"
+                        md="2"
                         >
                         <v-row
                             v-for="conteudo in button"
