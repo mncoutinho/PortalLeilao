@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- NavBar -->
-    <v-app-bar fixed tile color="#422321" :elevation="20" dark width="100vw">
+    <v-app-bar fixed tile app color="#422321" :elevation="20" dark width="100vw">
       <v-app-bar-nav-icon @click="drawer = !drawer" />
       <v-toolbar-title>
         <router-link class="white--text" tag="span" to="/" style="cursor:pointer">Portal Leilão</router-link>

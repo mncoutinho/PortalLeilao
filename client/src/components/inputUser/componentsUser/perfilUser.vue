@@ -1,26 +1,27 @@
 <template>
   <v-app>
     <v-row justify="center">
-      <!--INFORMAÇOES-->
+    <!--INFORMAÇOES-->
       <v-col cols="12" sm="6">
-        <!--FOTO DO USUARIO-->
+      <!--FOTO DO USUARIO-->
         <v-row justify="center">
           <v-avatar size="300">
             <v-img :src="mostrar.photoUrl" circle />
           </v-avatar>
-          <!--updando a imagem-->
-            <v-file-input
-              clear-icon
-              x-large
-              height="270"
-              @change="onUpload"
-              :prepend-icon="null"
-              v-model="image"
-              outlined
-              color="#422321"
-              class="input"
-            />
-            
+        <!--updando a imagem-->
+          <v-file-input
+          clear-icon
+          x-large
+          height="270"
+          :prepend-icon="null"
+          outlined
+          color="#422321"
+          class="input"
+          ref="alho"
+          v-model="image"
+          @change="onUpload"
+          ></v-file-input>
+          <v-btn @click="evento"></v-btn>
         </v-row>
         <!--dados do usuario-->
         <div class="mt-12">
@@ -32,7 +33,7 @@
           <h3 style="color:#5B2D2A">CPF :</h3>
           <v-text-field
             v-model="mostrar.cpf"
-            v-mask="['###.###.###-##']"
+            v-mask="['###.***.***-##']"
             outlined
           />
           <h3 style="color:#5B2D2A">E-mail :</h3>
@@ -116,6 +117,9 @@ export default {
     },
     updatePerfil() {
       this.$store.dispatch("updateData",{id:this.user.uid, data: this.mostrar })
+    },
+    evento(){
+      this.$refs.alho.onClick()
     }
   },
 };
