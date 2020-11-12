@@ -135,7 +135,6 @@ export default {
       let peca = this.add.peca
       console.log(peca)
       console.log(this.bid)
-      
       this.$store.dispatch('registroPeca',{bid: this.bid, item: peca})
     },
     registroComprador(point, user){

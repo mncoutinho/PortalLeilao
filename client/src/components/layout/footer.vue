@@ -57,9 +57,9 @@
                     </v-row>
             </v-row>
                 <!--Portal-->
-                <v-card-text class="white--text text-center brown">
-                    <strong>{{ano}} — Portal Leilao</strong>
-                </v-card-text>        
+            <v-card-text class="white--text text-center brown">
+                <strong>{{ano}} — Portal Leilao</strong>
+            </v-card-text>        
     </v-footer> 
 </template>
 
@@ -70,19 +70,18 @@ export default {
             color:"#422321",
             ano: new Date().getFullYear(),
             icons: [
-             'fab fa-facebook',
-             'fab fa-twitter',
-             'fab fa-google-plus',
-            'fab fa-linkedin',
-            'fab fa-instagram',
+                'fab fa-facebook',
+                'fab fa-twitter',
+                'fab fa-google-plus',
+                'fab fa-linkedin',
+                'fab fa-instagram',
             ],
             links:[
-            [{item:'Conta ',link:"/"},{item:'Login',link:"/"},{item:'Cadastre-se',link:"/"}],
-            [{item:'Duvidas ',link:"/"}, {item:'Contatos',link:"/"},{item:'Fale-Conosco',link:"/"}],
-            [{item:'Informaçoes ',link:"/"}, {item:'Quem Somos?',link:"/"},{item:'Como leiloar',link:"/"}],
-            [{item:'Parcerias ',link:"/"}, {item:'Empresa 1',link:"/"},{item:'Empresa 2',link:"/"}]
+                [{item:'Conta ',link:"/"},{item:'Login',link:"/"},{item:'Cadastre-se',link:"/"}],
+                [{item:'Duvidas ',link:"/"}, {item:'Contatos',link:"/"},{item:'Fale-Conosco',link:"/"}],
+                [{item:'Informaçoes ',link:"/"}, {item:'Quem Somos?',link:"/"},{item:'Como leiloar',link:"/"}],
+                [{item:'Parcerias ',link:"/"}, {item:'Empresa 1',link:"/"},{item:'Empresa 2',link:"/"}]
             ]
-
         }
     } 
    
