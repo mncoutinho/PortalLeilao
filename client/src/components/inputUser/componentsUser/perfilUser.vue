@@ -5,23 +5,22 @@
       <v-col cols="12" sm="6">
       <!--FOTO DO USUARIO-->
         <v-row justify="center">
-          <v-avatar size="300">
-            <v-img :src="mostrar.photoUrl" circle />
-          </v-avatar>
+            <v-avatar size="300" class="borda">
+              <v-img :src="mostrar.photoUrl" circle />
+            </v-avatar>
         <!--updando a imagem-->
-          <v-file-input
-          clear-icon
-          x-large
-          height="270"
-          :prepend-icon="null"
-          outlined
-          color="#422321"
-          class="input"
-          ref="alho"
-          v-model="image"
-          @change="onUpload"
-          ></v-file-input>
-          <v-btn @click="evento"></v-btn>
+            <v-file-input
+            clear-icon
+            x-large
+            height="270"
+            :prepend-icon="null"
+            outlined
+            color="#422321"
+            class="input"
+            v-model="image"
+            @change="onUpload" 
+            >
+            </v-file-input> <div class="icone"></div>
         </v-row>
         <!--dados do usuario-->
         <div class="mt-12">
@@ -118,9 +117,6 @@ export default {
     updatePerfil() {
       this.$store.dispatch("updateData",{id:this.user.uid, data: this.mostrar })
     },
-    evento(){
-      this.$refs.alho.onClick()
-    }
   },
 };
 </script>
@@ -130,19 +126,22 @@ export default {
   position: absolute;
   width: 300px;
   height: 300px;
+  min-width: 1em;
+  opacity:0.01;
+}
+.borda{
   box-sizing: border-box;
   border: 1em solid rgb(231, 231, 231);
-  min-width: 1em;
 }
-.input::after{
+.icone::after{
   content: "\f030";
   font-family: "Font Awesome 5 Free"; 
   font-weight: 600;
   color:#422321; 
   font-size:30px;
-  position: absolute;
-  top:200px;
-  left: 220px;
+  position: relative;
+  top: 230px;
+  right: 85px;
   background-color:rgb(231, 231, 231);
   width: 50px;
   height: 50px;
