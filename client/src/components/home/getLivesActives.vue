@@ -1,5 +1,5 @@
 <template>
-    <v-row width="100%" style="background-color:rgba(166,78,75,0.08)" class="mt-10" dense>
+    <v-row width="100%" style="background-color:rgba(166,78,75,0.01)" class="mt-10" dense>
       <!-- BOX-->
             <v-card
             color="transparent"
@@ -28,21 +28,35 @@
                             v-ripple
                             class="elevacão ma-6"
                             style="cursor:pointer"
-                            max-width="350px"
-                            min-width="300px"
+                            max-width="20em"
+                            min-width="20em"
                             v-for="stream in limitador"
                             :key="stream.nome"
+                            @click="logado(stream.id)"
                             >
-                                <v-img width="100%" height="300px" :src="stream.imgUrl[0]"></v-img> 
-                                <v-list-item-content class="ml-5">  
-                                    <span :style="color(stream.active)" >{{status(stream.active)}}</span>
-                                    <v-list-item-title style="color:#63432D" class="bold headline mb-1">{{stream.name}}</v-list-item-title>
-                                    <v-list-item-subtitle style="color:#1B120C" class="mb-2">{{stream.description}}</v-list-item-subtitle>
-                                        <v-divider class="mx-5" color="#EDE7E2"/>        
-                                    <v-row class="mr-5" justify="center">
-                                        <v-btn outlined rounded class="pr-12 pl-12 mt-4 mb-2" :style="color(stream.active)" @click="logado(stream.id)">{{status(stream.active)}}</v-btn>
-                                    </v-row>
-                                </v-list-item-content>   
+                                <v-img
+                                class="white--text align-end" 
+                                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                                width="99,9%" 
+                                height="300px" 
+                                :src="stream.imgUrl[0]">
+                                    <v-card-title class="font-weight-bold headline mb-1">{{stream.name}}</v-card-title>
+                                    <span 
+                                    class="atividade" 
+                                    :style="color(stream.active)">
+                                        {{status(stream.active)}}
+                                    </span>
+                                </v-img>
+                                <v-card-subtitle style="font-size:18px" class="pa-4 bold">
+                                    Quantidade: <span style="color:#A64E4B">{{lotes}} Lotes</span>
+                                    <div style="color:#A64E4B" class="mt-1">{{data}}</div>
+                                </v-card-subtitle>
+                                <v-card-text>
+                                    <h3 style="color:#A64E4B">informações:</h3>
+                                    <p class="font-weight-light mb-2">{{stream.description}}</p>
+                                    <v-divider mx-8 class="mt-4 mb-4"></v-divider>
+                                    <p style="font-size:16px" class="font-weight-light">Rio de Janeiro</p>
+                                </v-card-text>
                             </v-card>
                         </v-row>
                     </v-col>
@@ -54,6 +68,12 @@
 <script>
 import { mapGetters, mapState } from 'vuex'
 export default {
+    data(){
+        return{
+            data: new Date().getDate()+'/'+new Date().getFullYear(),
+            lotes: 24,
+        }
+    },
     computed:{ 
         ...mapState({
             streams: (state) => state.itemApp.items,
@@ -67,9 +87,9 @@ export default {
     methods:{
         status(status){
             if(status){
-              return "Participar"
+              return "Aberto"
             }else{
-               return "Finalizado" 
+               return "Fechado" 
             }
         },
         color(status){
@@ -88,6 +108,15 @@ export default {
 </script>
 <style scoped>
 .elevacão:hover{
-    box-shadow: -18px 21px 9px 0px rgba(0,0,0,0.37);
+    box-shadow: -18px 21px 15px 0px rgb(224, 223, 223);
+}
+.atividade{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: white;
+    padding: 5px 20px 5px 20px;
+    border-radius: 1em;
+    font-weight: 600;
 }
 </style>
