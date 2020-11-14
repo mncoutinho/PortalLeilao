@@ -93,15 +93,15 @@ export default {
             rules:{
                 nome:[
                     value => !!value || 'Nome, Necessário',
-                    ],
+                ],
                 cpf:[
                     value => !!value || 'Cpf, Necessário',
                     value => value.length >=  14 || 'Cpf, invalido', 
-                    ],
+                ],
                 tel:[
                     value => !!value || 'Tel, Necessário',
                     value => value.length >=  14 || 'Número, Invalido',
-                    ],
+                ],
             }
         }
     },
