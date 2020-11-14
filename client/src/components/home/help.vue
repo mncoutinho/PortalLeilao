@@ -1,7 +1,6 @@
 <template>
       <!--ANUNCIO-->
-        <v-row
-        class="hidden-sm-only hidden-xs-only">
+        <v-row>
             <div
             style="width:100%">
                     <v-col 

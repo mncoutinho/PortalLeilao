@@ -1,5 +1,5 @@
 <template>
-    <v-row width="100%" style="background-color:rgba(166,78,75,0.01)" class="mt-10" dense>
+    <v-row width="100%" style="background-color:rgba(166,78,75,0.01)" dense>
       <!-- BOX-->
             <v-card
             color="transparent"
@@ -28,7 +28,7 @@
                             v-ripple
                             class="elevacão ma-6"
                             style="cursor:pointer"
-                            max-width="20em"
+                            width="23em"
                             min-width="20em"
                             v-for="stream in limitador"
                             :key="stream.nome"
@@ -94,7 +94,7 @@ export default {
         },
         color(status){
             if(status){
-              return "color:green"
+              return "color:#128994"
             }else{
                return "color:red" 
             }
