@@ -48,6 +48,7 @@
                     required
                     outlined
                     >
+                    <div id="recaptcha-container"></div>
                     </v-text-field>
                         <v-row dense>
                             <!--Botão Voltar-->
@@ -80,6 +81,7 @@
 <script>
 import {mask} from 'vue-the-mask'
 import {mapState} from 'vuex'
+import firebase from 'firebase'
 export default {
     directives: {mask},
     data(){
@@ -113,11 +115,13 @@ export default {
                 .then(() => {
                     this.etapa;
                 })
-                
         },
         belowStep(){
             //this.$store.commit('belowStep')
             this.$router.push('/')
+        },
+        getPhoneNumberFromUserInput(){
+            return 55 + this.personaldata.tel
         },
     },
     computed: {
@@ -137,6 +141,29 @@ export default {
         if(this.user == undefined){
             this.$router.push('/')
         }
+        setTimeout(function() {
+            this.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container',{
+                'size': 'normal',
+                'callback': function(response) {
+                    console.log("success", response);
+                },
+                'expired-callback': function() {
+                    console.log("expired-callback");
+                }
+            });
+            const phoneNumber = 55 + this.personaldata.tel;
+            const appVerifier = this.recaptchaVerifier;
+            firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
+                .then((confirmationResult) => {
+                    this.confirmationResult = confirmationResult;
+                }).catch((error)=>{
+                    console.log(error)
+            });
+
+            this.recaptchaVerifier.render().then(function(widgetId) {
+                window.recaptchaWidgetId = widgetId;
+            });
+        }, 2000)
     }
 }
 </script>
