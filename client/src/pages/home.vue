@@ -4,7 +4,6 @@
     <livesAtivas/>
     <anuncio/>
     <textoLeilao/>
-    <anuncio2/>
     <livesDesabilitadas/>
     <registroEmail/>
     <anuncioPagamento/>

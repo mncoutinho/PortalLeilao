@@ -49,7 +49,6 @@ import primeiroStep from '../components/formularios/criarConta/login&senha'
 import segundoStep from '../components/formularios/criarConta/dadosPessoais'
 import terceiroStep from '../components/formularios/criarConta/endereco'
 import {mapState} from 'vuex'
-import firebase from 'firebase/app'
 export default {
     components:{
         formulario,
@@ -63,19 +62,7 @@ export default {
         })
     },
     created() {
-        this.$store.commit('NOT_VISIBLE');
-        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
-        var phoneNumber = getPhoneNumberFromUserInput();
-        var appVerifier = window.recaptchaVerifier;
-        firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
-            .then(function (confirmationResult) {
-            // SMS sent. Prompt user to type the code from the message, then sign the
-            // user in with confirmationResult.confirm(code).
-            window.confirmationResult = confirmationResult;
-            }).catch(function (error) {
-            // Error; SMS not sent
-            // ...
-        });
+        this.$store.commit('NOT_VISIBLE')
     },
     watch:{
       user(value){
