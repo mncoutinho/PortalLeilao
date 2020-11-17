@@ -6,14 +6,14 @@
             </v-col>
             <v-col cols="5" class="mr-2" align='center'>
                 <v-card class="pa-12">
-                    <infoLote/>
-                    <getLances/>
                     <div v-if="cartela">
                         <lances/>
                     </div>
                     <div v-else>
                         <pedido/>
                     </div>
+                    <getLances/>
+                    <infoLote/>
                 </v-card>        
             </v-col>
         </v-row>
