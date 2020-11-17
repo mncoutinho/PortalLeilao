@@ -53,9 +53,9 @@
                                 </v-card-subtitle>
                                 <v-card-text>
                                     <h3 style="color:#A64E4B">informações:</h3>
-                                    <p class="font-weight-light mb-2">{{stream.description}}</p>
+                                        <p class="font-weight-light mb-2">{{stream.description}}</p>
                                     <v-divider mx-8 class="mt-4 mb-4"></v-divider>
-                                    <p style="font-size:16px" class="font-weight-light">Rio de Janeiro</p>
+                                        <p style="font-size:16px" class="font-weight-light">Rio de Janeiro</p>
                                 </v-card-text>
                             </v-card>
                         </v-row>

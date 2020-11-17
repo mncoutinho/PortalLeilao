@@ -1,59 +1,70 @@
 <template>	
 	<v-card 
-		width="100%"
-		flat
+	width="100%"
+	flat
 	>
 		<v-card-title>
-			<strong>
+			<h3 class="font-weight-light text--secondary d-flex align-start" v-if="this.user.uid">
+				{{"Minha cartela: "+user.uid}}
+			</h3>
+			<h1 class="font-weight-light mt-2" style="color:#562B28">
 				Lance Atual:{{" R$"+ lanceNow+",00"}}
-			</strong>
+			</h1>
 		</v-card-title>	
 		<v-card 
-			flat 
-			v-if="lances" 
+		flat 
+		v-if="lances" 
 		>
-			<v-row class="mt-5">
+			<v-row class="mt-5" dense>
 				<v-card-text 
-					v-if="item.active == false" 
-					class="red text-center"
+				v-if="item.active == false" 
+				class="red text-start"
 				>
-						<span class="white--text">
-							Lote Fechado Para Lances
-						</span>
+					<span class="white--text">
+						Lote Fechado Para Lances
+					</span>
 				</v-card-text>
 				<v-card-text v-else>
-						{{"Minha cartela "+user.uid}}
+					<v-btn
+					:class="layout.btn.type"
+					:color="layout.btn.color"
+					v-if="!this.user.uid"
+					v-text="'Participar'"
+					>
+					</v-btn>
+					<div v-else>
+						<h3 class="d-flex align-start" style="color:#562B28">Faça seu lance:</h3>
 						<v-text-field 
-							v-mask="['########']"
-							v-model="lance" 
-							v-on:keyup.enter="AddLance()" 
-							label="Faça seu lance" 
-							placeholder="R$ 999,99"
-							required
-							outlined
+						v-mask="['########']"
+						v-model="lance" 
+						v-on:keyup.enter="AddLance()"
+						placeholder="R$ 999,99"
+						required
+						outlined
 						/>
 						<v-btn 
-							:class="layout.btn.type"
-                            :color="layout.btn.color"
-							v-on:click="AddLance()"
+						:class="layout.btn.type"
+						:color="layout.btn.color"
+						v-on:click="AddLance()"
+						v-text="'Faça seu Lance'"
 						>
-							Faça seu Lance
 						</v-btn>
+					</div>
 				</v-card-text>	
 			</v-row>
 		</v-card>
 			<!-- Auto lance beta -->
 		<v-btn
-			class="ma-4"
-			v-if="autolance.modal != true"
-			v-on:click="autoLanceModal()"
+		class="ma-4"
+		v-if="autolance.modal != true"
+		v-on:click="autoLanceModal()"
 		>
 			auto lance
 		</v-btn>
 		<v-card
-			align="center" 
-			class="py-auto"
-			v-if="autolance.modal"
+		align="center" 
+		class="py-auto"
+		v-if="autolance.modal"
 		>
 			{{"Limite dado " + autolance.limit}}
 			{{"status "+ autolance.active}}
@@ -117,8 +128,6 @@ export default {
 						idUser: this.user.uid, 
 					};		
 					this.$store.dispatch('addLance',{id:this.item.id,payload:lanceConfirmado})
-
-				
 				}else if(this.lance === this.lanceNow){
 						this.$store.commit('ERRO',  ` valor igual ao lance atual, R$ ${this.lanceNow},00`)
 					}else{
@@ -182,7 +191,6 @@ export default {
 			alert(lance)
 			return lance
 		}
-
 	}
 }
 </script>
