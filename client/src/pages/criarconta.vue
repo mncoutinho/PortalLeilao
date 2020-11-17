@@ -1,17 +1,17 @@
 <template>
     <v-main>
-        <v-card flat min-height="700px" class="mt-12">
-            <v-row justify="center">
-                <v-window
-                v-model="step"
-                :touchless="true"
-                >
-                    <!--Primeira fase-->
-                    <v-window-item :value="0">
+        <v-card flat width="100%" height="110vh" class="d-flex align-center ">
+            <v-row class="d-flex justify-center">
+                <v-col md="4" xs="12" sm="10">
+                    <v-window
+                    v-model="step"
+                    :touchless="true"
+                    >
+                        <!--Primeira fase-->
+                        <v-window-item :value="0">
                             <v-card
-                            class="mb-12 pa-8"  
+                            class="pa-8 d-block"  
                             :elevation="10"
-                            min-width="500px"
                             >
                                 <!--Titulo-->
                                 <v-row justify="center" class="pa-8">
@@ -19,28 +19,28 @@
                                 </v-row>
                                 <!--Email's Validação-->
                                 <formulario/>
-                                    <v-row align="center">
-                                        <v-divider class="mx-10"/>
-                                            <h4 class="brown--text">ou</h4>
-                                        <v-divider class="mx-10" />
-                                    </v-row>
+                                <v-row align="center">
+                                    <v-divider class="mx-10"/>
+                                        <h4 class="brown--text">ou</h4>
+                                    <v-divider class="mx-10" />
+                                </v-row>
                                 <v-col cols="12">
                                     <primeiroStep/>
                                 </v-col>   
                             </v-card>
-                    </v-window-item>
-                    <!--Segunda fase-->
-                    <v-window-item :value="1">
-                        <segundoStep/>
-                    </v-window-item>
-                    <!--Terceira fase-->
-                    <v-window-item :value="2">
-                        <terceiroStep/>
-                    </v-window-item>
-                </v-window>
+                        </v-window-item>
+                        <!--Segunda fase-->
+                        <v-window-item :value="1">
+                            <segundoStep/>
+                        </v-window-item>
+                        <!--Terceira fase-->
+                        <v-window-item :value="2">
+                            <terceiroStep/>
+                        </v-window-item>
+                    </v-window>
+                </v-col>
             </v-row>
         </v-card>
-    
     </v-main>
 </template>
 <script>

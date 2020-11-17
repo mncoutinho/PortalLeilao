@@ -7,7 +7,7 @@
         >
             <v-row justify="center">
                 <v-btn
-                width="50%"
+                width="55%"
                 :color="i.cor"
                 class="white--text pa-6"
                 @click="i.where"
