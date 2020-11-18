@@ -2,14 +2,20 @@
 	<v-card 
 	width="100%"
 	flat
+	class="pa-6"
 	>
 		<v-card-title>
-			<h3 class="font-weight-light text--secondary d-flex align-start" v-if="this.user.uid">
-				{{"Minha cartela: "+user.uid}}
-			</h3>
-			<h1 class="font-weight-light mt-2" style="color:#562B28">
-				Lance Atual:{{" R$"+ lanceNow+",00"}}
-			</h1>
+			<v-row width="100%" class="d-flex flex-column align-start" dense>
+				<h1 class="font-weight-bold display-1 mb-2 " style="color:#562B28">
+					{{this.item.name}}
+				</h1>
+				<h3 class="font-weight-light text--secondary d-flex" v-if="this.user.uid">
+					{{"Minha cartela: "+user.uid}}
+				</h3>
+				<h1 class="font-weight-light mt-2 justify-start" style="color:#562B28">
+					Lance Atual:{{" R$"+ lanceNow+",00"}}
+				</h1>
+			</v-row>
 		</v-card-title>	
 		<v-card 
 		flat 
@@ -27,17 +33,20 @@
 				<v-card-text v-else>
 					<v-btn
 					:class="layout.btn.type"
-					:color="layout.btn.color"
+					class="pa-12 display-1 font-weight-regular"
+					color="green"
 					v-if="!this.user.uid"
 					v-text="'Participar'"
+					@click="AddLance()"
 					>
 					</v-btn>
 					<div v-else>
 						<h3 class="d-flex align-start" style="color:#562B28">Faça seu lance:</h3>
 						<v-text-field 
 						v-mask="['########']"
-						v-model="lance" 
-						v-on:keyup.enter="AddLance()"
+						v-model="lance"
+						@click="AddLance()"
+						color="green"
 						placeholder="R$ 999,99"
 						required
 						outlined
@@ -45,7 +54,7 @@
 						<v-btn 
 						:class="layout.btn.type"
 						:color="layout.btn.color"
-						v-on:click="AddLance()"
+						:click="AddLance()"
 						v-text="'Faça seu Lance'"
 						>
 						</v-btn>
@@ -53,13 +62,13 @@
 				</v-card-text>	
 			</v-row>
 		</v-card>
-			<!-- Auto lance beta -->
+	<!-- Auto lance beta -->
 		<v-btn
 		class="ma-4"
-		v-if="autolance.modal != true"
-		v-on:click="autoLanceModal()"
+		v-if="autolance.modal != true && this.user.uid"
+		@click="autoLanceModal()"
+		v-text="'Auto-Lance'"
 		>
-			auto lance
 		</v-btn>
 		<v-card
 		align="center" 
@@ -69,23 +78,24 @@
 			{{"Limite dado " + autolance.limit}}
 			{{"status "+ autolance.active}}
 			<v-text-field
-				class="mx-3 mt-5"
-				v-model="autolance.limit"
-				label="De limite ao seu lance :"
-				v-on:keyup.enter="autolancelimit(autolance.limit)"
+			class="mx-3 mt-5"
+			v-model="autolance.limit"
+			label="De limite ao seu lance :"
+			v-on:keyup.enter="autolancelimit(autolance.limit)"
 			/>
 				<v-row align="start" justify="center">
 					<v-btn 
 					color="gray" 
-					v-on:click="autoLanceModal()"
+					@click="autoLanceModal()"
+					v-text="'Cancelar'"
 					>
-						Cancelar
 					</v-btn>
 					<v-btn
 					:class="layout.btn.type"
                     :color="layout.btn.color"
 					v-on:click="autolancelimit(autolance.limit)"
-					>Confirmar
+					v-text="'Confirmar'"
+					>
 					</v-btn>
 				</v-row>
 		</v-card>

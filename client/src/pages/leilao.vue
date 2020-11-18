@@ -1,19 +1,20 @@
 <template>
     <v-app>
-        <v-row justify="center" align="center">
-            <v-col cols="5" class="ml-2">
+        <v-row class="d-flex justify-center">
+            <v-col md="5" sm="12" class="ml-2">
                 <artigo/>
+                <infoLote/>
             </v-col>
-            <v-col cols="5" class="mr-2" align='center'>
-                <v-card class="pa-12">
+            <v-col md="5"  class="mr-2" align='center'>
+                <v-card>
                     <div v-if="cartela">
                         <lances/>
                     </div>
                     <div v-else>
                         <pedido/>
                     </div>
+                        <v-divider/>
                     <getLances/>
-                    <infoLote/>
                 </v-card>        
             </v-col>
         </v-row>
