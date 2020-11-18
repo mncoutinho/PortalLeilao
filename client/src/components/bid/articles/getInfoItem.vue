@@ -1,16 +1,12 @@
 <template>	
     <div>
-	<H1>
-		{{this.item.name}}
-	</H1>
-	
-        <v-card-title>
-			<strong>
-                Informaçes sobre o Lote
-            </strong>
-		</v-card-title>
-        <v-card-text v-if="text">
-            <v-row>
+    <v-card-title>
+		<strong>
+            Informaçes sobre o Lote
+        </strong>
+	</v-card-title>
+    <v-card-text v-if="text">
+        <v-row>
 			<v-col>
 				<h4>Mensagem</h4>	
 			</v-col>

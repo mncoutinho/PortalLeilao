@@ -22,7 +22,6 @@ export default {
     methods: {
         pedido(){
             alert(this.user.uid)
-
         }
     },
 }
