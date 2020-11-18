@@ -3,7 +3,7 @@
 		<v-row 
 		class="d-flex justify-space-between ml-6 mr-6 pa-2" 
 		dense>
-			<h3 class="d-flex font-weight-medium text-uppercase" style="color:#562B28">Cartela</h3>
+			<h3 class="d-flex font-weight-medium text-uppercase" style="color:#562B28">Comprador</h3>
 			<h3 class="d-flex font-weight-medium text-uppercase mr-6" style="color:#562B28">Lance</h3>
 			<h3 class="d-flex font-weight-medium text-uppercase mr-12" style="color:#562B28">Hora</h3>
 		</v-row>

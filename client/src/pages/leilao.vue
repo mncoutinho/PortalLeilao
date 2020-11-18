@@ -1,11 +1,11 @@
 <template>
     <v-app>
-        <v-row class="d-flex justify-center">
-            <v-col md="5" sm="12" class="ml-2">
-                <artigo/>
+        <v-row class="d-flex justify-center mt-6">
+            <v-col md="5" sm="12" >
                 <infoLote/>
+                <artigo/>
             </v-col>
-            <v-col md="5"  class="mr-2" align='center'>
+            <v-col md="5" align='center'>
                 <v-card>
                     <div v-if="cartela">
                         <lances/>

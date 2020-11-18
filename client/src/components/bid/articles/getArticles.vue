@@ -1,80 +1,58 @@
 <template>	
-	<v-container>
-		<v-row>
-			<v-card
+	<v-container >
+		<v-row class="d-flex justify-center">
+			<v-carousel
+			cycle
 			width="100%"
-			justify="center"
-			align="center">
-				<v-card-actions justify="end">
-				</v-card-actions>
-				<v-carousel
-				cycle
+			height="400px"
+			delimiter-icon="mdi-circle"
+			>
+				<v-carousel-item
+				v-for="img in artigo.imgUrl"
+				:key="img.length"
+				max-height="400px"
 				width="100%"
-				hide-delimiter-background
-				>
-					<v-carousel-item
-					v-for="img in artigo.imgUrl"
-					max-height="500px"
-					width="100%"
-					:key="img">
-					<v-zoom :img="img" :width="width">
-							<v-card-title float="left" v-text="artigo.name"/>
-						</v-zoom>
-						
-					</v-carousel-item>
-				</v-carousel>           
-				<v-card-text
-				align="left"
-				class="mx-0">
-					<strong>
-						<v-rating
-						v-bind:value="vendedor.value"
-						color="amber"
-						dense
-						half-increments
-						readonly
-						size="14"
-						/>
-						{{vendedor.value}} (Nota do vendedor)
-					</strong>
+				class="d-flex align-center">
+					<v-zoom class="d-flex justify-center mt-10" :img="img" :width="width">
+					</v-zoom>	
+				</v-carousel-item>
+			</v-carousel>         
+			<v-card-text>
+				<p style="color:#562B28" class="title font-weight-bold">
+					Visitas:
+					<span class="font-weight-light subtitle-1">
+						25
+					</span>
+				</p>
 					<v-spacer/>
-					<strong>
-						visitas:
-						<small>
-							25
-						</small>
-					</strong>
+				<p style="color:#562B28" class="title font-weight-bold">
+					Descrição:
+					<span class="font-weight-light subtitle-1">
+						{{ artigo.description }}
+					</span>
+				</p>
 					<v-spacer/>
-					<strong>
-						Descrição:
-						<small>
-							{{ artigo.description }}
-						</small>
-					</strong>
+				<p style="color:#562B28" class="title font-weight-bold">
+					Local:
+					<span class="font-weight-light subtitle-1">
+						Rio de Janeiro
+					</span>
+				</p>
 					<v-spacer/>
-					<strong>
-						Local:
-						<small>
-							Rio de Janeiro
-						</small>
-					</strong>
+				<p style="color:#562B28" class="title font-weight-bold">
+					Dia dos Leilão:
+					<span class="font-weight-light subtitle-1">
+						{{ artigo.date }}
+					</span>
+				</p>
 					<v-spacer/>
-					<strong>
-						Dia dos Leilão:
-						<small>
-							{{ artigo.date }}
-						</small>
-					</strong>
-					<v-spacer/>
-					<strong>
-						Lance Inicial:
-						<small>
-							{{ formatacao(artigo.initialBid)}}
-						</small>
-					</strong>
-				</v-card-text>
-				<!-- abertura e fachamento de leilao beta -->
-			</v-card>
+				<p style="color:#562B28" class="title font-weight-bold">
+					Lance Inicial:
+					<span class="font-weight-light subtitle-1">
+						{{ formatacao(artigo.initialBid)}}
+					</span>
+				</p>
+			</v-card-text>
 		</v-row>
 	</v-container>	
 </template>
@@ -85,10 +63,7 @@ export default {
 	components: {vZoom},
 	data(){
 		return{
-			vendedor: {
-				value: 5
-			},
-			width: 500			
+			width: 400,	
 		};
 	},
 	computed: {
