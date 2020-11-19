@@ -12,9 +12,9 @@
 				v-for="msgs in text" 
 				:key="msgs.length"
 				>
-						<h3 class="font-weight-bold text--primary">{{msgs.text}}</h3>
-							<v-spacer/>
-						<p class="text--secondary">{{msgs.time}}</p>
+					<h3 class="font-weight-bold text--primary">{{msgs.text}}</h3>
+						<v-spacer/>
+					<p class="text--secondary">{{msgs.time}}</p>
 				</v-col>
 			</div>  
 		</v-card-text>

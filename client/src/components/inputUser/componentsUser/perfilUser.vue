@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <v-row justify="center">
+    <v-row class="d-flex justify-center">
     <!--INFORMAÇOES-->
-      <v-col cols="12" sm="6">
+      <v-col cols="10" sm="6">
       <!--FOTO DO USUARIO-->
         <v-row justify="center">
             <v-avatar size="300" class="borda">
@@ -20,7 +20,8 @@
             v-model="image"
             @change="onUpload" 
             >
-            </v-file-input> <div class="icone"></div>
+            </v-file-input> 
+            <div class="icone"></div>
         </v-row>
         <!--dados do usuario-->
         <div class="mt-12">
@@ -84,7 +85,6 @@ export default {
   data() {
     return {
       image: [],
-      input: "mdi-camera",
     };
   },
   created() {
