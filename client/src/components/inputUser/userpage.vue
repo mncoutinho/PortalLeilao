@@ -3,14 +3,16 @@
     height="100%"
     min-width="300px"
     width="320px"
-    style="background-color:rgba(166,78,75,0.1)"
+    class="pt-2 pb-2"
+    style="background-color:rgba(166,78,75,0.2)"
     flat
     tile
     >
       <v-navigation-drawer
       width="100%"
       height="100%"
-      color="rgba(166,78,75,0.1)"
+      color="transparent"
+      class="pt-2 pb-2"
       permanent
       left
       >
