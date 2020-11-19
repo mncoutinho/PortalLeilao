@@ -1,33 +1,50 @@
 <template>
-  <v-layout row >
-    <user @paginas="mudarPagina"/>
-    <v-row > 
-        <v-col fluid>
-          <v-window v-model="page">
-            <!--item 1-->
-            <v-window-item :value="1" >
-              <userPerfil/>
-            </v-window-item>
-            <!--item 2-->
-            <v-window-item :value="2">           
-              <userEnd/>
-            </v-window-item>
-            <!--item 3-->
-            <v-window-item :value="3">           
-              <userCard/>
-            </v-window-item>
-            <!--item 4-->
-            <v-window-item :value="4">           
-              <userHist/>
-            </v-window-item>
-            <!--item 5-->
-            <v-window-item :value="5">           
-              <userInfo/>
-            </v-window-item>
-          </v-window>  
+  <v-app>
+    <v-row dense>
+      <v-col cols="3" class="d-none d-md-flex">
+        <user class="d-flex" @paginas="mudarPagina"/>
+      </v-col> 
+      <v-col md="9" sm="12" class="float-left">
+            <v-window v-model="page">
+              <!--item 1-->
+              <v-window-item :value="0" >
+                <userPerfil/>
+              </v-window-item>
+              <!--item 2-->
+              <v-window-item :value="1">           
+                <userEnd/>
+              </v-window-item>
+              <!--item 3-->
+              <v-window-item :value="2">           
+                <userCard/>
+              </v-window-item>
+              <!--item 4-->
+              <v-window-item :value="3">           
+                <userHist/>
+              </v-window-item>
+              <!--item 5-->
+              <v-window-item :value="4">           
+                <userInfo/>
+              </v-window-item>
+            </v-window>
         </v-col>
       </v-row>
-  </v-layout>
+      <!--menu mobile-->
+      <v-bottom-navigation
+      fixed
+      color="#562B28"
+      class="d-md-none d-sm-flex"
+      v-model="page"
+      >
+        <v-btn
+        v-for="botao in botoes"
+        :key="botao.length"
+        @click="mudarPagina(botao.page)">
+          <span>{{botao.nome}}</span>
+          <v-icon>{{botao.icon}}</v-icon>
+        </v-btn>
+      </v-bottom-navigation>
+    </v-app>
 </template>
 
 <script>
@@ -50,7 +67,14 @@ export default {
   },
   data(){
     return{
-       page: 0,
+      page: 0,
+      botoes:[
+        {icon:'fas fa-user', nome:'Perfil', page: 0},
+        {icon:'fas fa-map-marked-alt', nome:'Endereço', page: 1},
+        {icon:'fas fa-id-card', nome:'Cartões', page: 2},
+        {icon:'fas fa-hourglass', nome:'Histórico', page: 3},
+        {icon:'fas fa-phone' ,nome:'Informações', page: 4},
+      ],
     }
   },
   methods:{
@@ -62,4 +86,4 @@ export default {
     this.$store.commit('VISIBLE');
   }
 }
-</script>  
+</script>
