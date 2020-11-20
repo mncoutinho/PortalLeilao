@@ -46,7 +46,7 @@
                                         Ver Mais
                                     </v-btn>
                                     <v-row no-gutters>
-                                    <v-divider/>
+                                         HB<v-divider/>
                                     </v-row>
                             </v-list-item-content>                            
                         </v-card>

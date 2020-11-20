@@ -100,7 +100,7 @@ export default {
         ...mapState({
             card: state => state.itemApp.myItems,
             user: state => state.userApp.user,
-            layout: state => state.card,
+            layout: state => state.cards.bid,
         }),
         paginacao () {
             return this.card.slice((this.page - 1) * this.porPagina, this.page * this.porPagina)

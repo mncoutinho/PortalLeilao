@@ -4,6 +4,9 @@ export default{
         add: 0
     },
     mutations:{
+        ADD(state){
+            state.step++
+        },
         belowStep(state){
             state.step--
         },
