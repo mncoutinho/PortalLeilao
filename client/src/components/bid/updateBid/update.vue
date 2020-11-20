@@ -2,12 +2,12 @@
   <v-app>
       <v-card flat width="100%">
         <v-row  xs12 sm6 offset-sm3>
-            <v-flex :class="layout.flex">
-                <h1 :class="layout.title">Bem-vindo leiloeiro</h1>
-                    <v-form :class="layout.form">
+            <v-flex :class="formulario.flex">
+                <h1 :class="formulario.title">Bem-vindo leiloeira</h1>
+                    <v-form :class="formulario.form">
                         <v-col 
-                        :class="layout.col" 
-                        :cols="layout.cols">
+                        :class="formulario.col" 
+                        :cols="formulario.cols">
                             <!--nome do leilão-->
                             <v-text-field
                             v-model="leilao.name" 
@@ -15,21 +15,21 @@
                             label="Nome do leilão*"/>
                             <!--carregar foto-->
                             <v-file-input
-                                v-model="image"
-                                :reverse="true"
-                                prepend-icon="mdi-camera"
-                                multiple
-                                show-size
-                                counter
-                                label="Banner do leilão*"
-                                @change="onUpload"
+                            v-model="image"
+                            :reverse="true"
+                            prepend-icon="mdi-camera"
+                            multiple
+                            show-size
+                            counter
+                            label="Banner do leilão*"
+                            @change="onUpload"
                             />
                             <!--imagem-->
                             <v-row justify="center">
                                 <v-img
                                 :src="leilao.imgUrl"
-                                :max-width="cardImg.img.width"
-                                :heigth="cardImg.img.height"
+                                :max-width="layout.img.width"
+                                :heigth="layout.img.height"
                                 />
                             </v-row>  
                             <!--imagem- mostrar-->
@@ -63,45 +63,45 @@
                             <h3 :class="layout.title">Leiloeiro</h3>
                             <!--nome-->
                             <v-text-field
-                                v-model="leilao.organizer"
-                                name="title"
-                                label="Nome"
+                            v-model="leilao.organizer"
+                            name="title"
+                            label="Nome"
                             />
                             <!--email-->
                             <v-text-field
-                                v-model="leilao.email"
-                                name="title"
-                                label="E-mail"
+                            v-model="leilao.email"
+                            name="title"
+                            label="E-mail"
                             />
                             <v-text-field
-                                v-model="leilao.tel"
-                                name="title"
-                                label="Telefone*"
+                            v-model="leilao.tel"
+                            name="title"
+                            label="Telefone*"
                             />
                             <!--Termos-->
                             <h3 :class="layout.title">Leiloeiro</h3>
                             <!--frete-->
                             <v-textarea
-                                name="title"
-                                label="Termos de Frete"
-                                v-model="termos.frete"
+                            name="title"
+                            label="Termos de Frete"
+                            v-model="termos.frete"
                             />
                             <!--pagamento-->
                             <v-textarea
-                                name="title"
-                                label="Termos de Pagamentos"
-                                v-model="termos.pagamento"
+                            name="title"
+                            label="Termos de Pagamentos"
+                            v-model="termos.pagamento"
                             />
                             <v-textarea
-                                name="title"
-                                label="Termos & Condições"
-                                v-model="termos.condicoes"   
+                            name="title"
+                            label="Termos & Condições"
+                            v-model="termos.condicoes"   
                             />
                             <!--botão para confirmar-->
                             <v-btn
-                                :class="layout.btn.type"
-                                :color="layout.btn.color"
-                                v-on:click="putLeilao(leilao);"
+                            :class="layout.btn.type"
+                            :color="layout.btn.color"
+                            v-on:click="putLeilao(leilao);"
                             >
                                 Confirmar
                             </v-btn>
@@ -131,11 +131,9 @@ export default {
         ...mapState({
                 id: state => state.userApp.user.uid,
                 leilao: state => state.bidApp.bid,
-                layout: state => state.form 
+                layout: state => state.cards.bid,
+                formulario : state => state.form
             }),
-        cardImg(){
-            return this.$store.state.cards.bid
-        }
     },
     methods:{
          async onUpload() {
