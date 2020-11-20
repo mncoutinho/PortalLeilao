@@ -2,7 +2,7 @@
 <v-app id="inspire">
     <banner/>
     <livesAtivas/>
-    <anuncio/>
+    <!--<anuncio/>-->
     <textoLeilao/>
     <livesDesabilitadas/>
     <registroEmail/>
@@ -12,7 +12,7 @@
 <script>
 
 import banner from "../components/home/Banner"
-import anuncio from "../components/home/getAnnouncement"
+//import anuncio from "../components/home/getAnnouncement"
 import livesAtivas from "../components/home/getLivesActives"
 import textoLeilao from "../components/home/help"
 import livesDesabilitadas from "../components/home/getLivesDisabled"
@@ -22,7 +22,7 @@ import anuncioPagamento from "../components/home/paymentAnnouncement"
 export default {
     components:{
         banner,
-        anuncio,
+        //anuncio,
         livesAtivas,
         textoLeilao,
         livesDesabilitadas,
