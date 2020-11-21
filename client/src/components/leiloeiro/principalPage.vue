@@ -32,14 +32,14 @@
                             placeholder="24"
                             type="number"
                             autocomplete="true"
-                            color="#562B28"
+                            :color="btn.color"
                             required
                             outlined
                           />
                           <v-btn
                             x-large
-                            color="#562B28"
-                            class="white--text" 
+                            :color="btn.color" 
+                            :class="btn.type"  
                             v-text="'Enviar'"
                             >
                           </v-btn>
@@ -124,6 +124,7 @@ export default {
   computed:{
     ...mapState({
       bid: state => state.bidApp.bid,
+      btn: state => state.button.buttonB
     })
   },
   methods: {

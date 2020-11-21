@@ -12,7 +12,7 @@
                 autocomplete="true"
                 type="email"
                 placeholder="exemplo@email.com"
-                color="brown"
+                :color='btn.color'
                 required
                 outlined
                 />
@@ -26,7 +26,7 @@
                 v-model="accountData.senha"
                 autocomplete="true"
                 placeholder="**********"
-                color="brown"
+                :color='btn.color'
                 required
                 outlined
                 />
@@ -40,7 +40,7 @@
                 @click:append="show = !show"
                 autocomplete="true"
                 placeholder="**********"
-                color="brown"
+                :color='btn.color'
                 required
                 outlined
                 />
@@ -49,7 +49,7 @@
                 flat
                 max-width="400px">
                     <v-checkbox
-                    color="brown"
+                    :color='btn.color'
                     v-model="checkbox"
                     :rules="[v => !!v]"
                     label="Eu concordo com o Termos de Serviços e política de privacidade e cookies?"
@@ -60,8 +60,8 @@
             <v-row dense>
                 <!--Botão Voltar-->
                 <v-btn
-                color=#562B28
-                class="white--text"
+                :color='btn.color'
+                :class="btn.type"
                 depressed
                 large
                 @click="voltar()"
@@ -69,8 +69,8 @@
                     <v-spacer/>
                 <!--Botão Seguir-->
                 <v-btn
-                color=#562B28
-                class="white--text"
+                :color='btn.color'
+                :class="btn.type"
                 depressed
                 large
                 @click="signUp()"
@@ -127,7 +127,8 @@ export default {
     },
     computed: {
         ...mapState({
-            user: (state) => state.userApp.user
+            user: (state) => state.userApp.user,
+            btn: state => state.button.buttonA
         }),
     }
 }

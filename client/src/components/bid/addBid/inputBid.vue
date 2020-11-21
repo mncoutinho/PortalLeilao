@@ -3,7 +3,7 @@
       <v-card flat width="100%">
         <v-row  xs12 sm6 offset-sm3>
             <v-flex :class="layout.flex">
-                <h1 :class="layout.title">Bem-vindo leiloeiro</h1>
+                <h1 :class="layout.title">Bem-vindo leiloeiro(a)</h1>
                 <p :class="layout.description">
                 Cadastrar seu leilão ficou ainda mais fácil, basta apenas preencher o formulário
                 e em breve estará no ar.
@@ -105,8 +105,8 @@
                             />
                             <!--botão para confirmar-->
                             <v-btn
-                                :class="layout.btn.type"
-                                :color="layout.btn.color"
+                                :class="btn.type"
+                                :color="btn.color"
                                 v-on:click="addLeilao(leilao);"
                             >Confirmar</v-btn>
                         </v-col>
@@ -139,7 +139,8 @@ export default {
                 id: state => state.userApp.user.uid,
                 email: state => state.userApp.user.email,
                 user: state => state.userApp.userData,
-                layout: state => state.form
+                layout: state => state.form,
+                btn: state => state.button.buttonC
             })
     },
     methods:{

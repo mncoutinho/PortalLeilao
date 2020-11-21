@@ -25,7 +25,7 @@
                             maxlength="9"
                             v-mask="['#####-###']"
                             placeholder="12345-678"
-                            color="brown"
+                            :color='btn.color'
                             required
                             outlined
                             />
@@ -38,7 +38,7 @@
                         :items="uf" 
                         v-model="endereco.uf"
                         placeholder="RJ"
-                        color="brown"
+                        :color='btn.color'
                         required
                         outlined
                         />
@@ -47,7 +47,7 @@
                         <v-text-field
                         v-model="endereco.cidade"
                         placeholder="Rio de Janeiro"
-                        color="brown"
+                        :color='btn.color'
                         required
                         outlined
                         />
@@ -56,7 +56,7 @@
                         <v-text-field
                         v-model="endereco.bairro"
                         placeholder="Leblon"
-                        color="brown"
+                        :color='btn.color'
                         required
                         outlined
                         />
@@ -65,7 +65,7 @@
                         <v-text-field
                         v-model="endereco.endereco"
                         placeholder="Rua. 20 "
-                        color="brown"
+                        :color='btn.color'
                         required
                         outlined
                         />
@@ -74,7 +74,7 @@
                         <v-text-field
                         v-model="endereco.numero"
                         placeholder="45"
-                        color="brown"
+                        :color='btn.color'
                         required
                         outlined
                         />
@@ -83,27 +83,27 @@
                         <v-text-field
                         v-model="endereco.complemento"
                         placeholder="Apartamento 123"
-                        color="brown"
+                        :color='btn.color'
                         outlined
                         required/>
                             <v-row dense>
                                 <!--Botão Voltar-->
                                 <v-btn
-                                color=#562B28
                                 center
                                 class="white--text"
                                 depressed
                                 large
+                                :color='btn.color'
                                 @click="belowStep()"
                                 >Voltar</v-btn>
                                 <v-spacer/>
                                 <!--Botão Seguir-->
                                 <v-btn
-                                color=#562B28
                                 center
                                 class="white--text"
                                 depressed
                                 large
+                                :color='btn.color'
                                 @click="homeStep()"
                                 :disabled="!validador"
                                 >Finalizar</v-btn>
@@ -169,7 +169,8 @@ export default {
       ...mapState({
             uf: state => state.uf,
             //endereco: state => state.userApp.userData,
-            user: state => state.userApp.user
+            user: state => state.userApp.user,
+            btn: state => state.button.buttonA
         })
     },
 }

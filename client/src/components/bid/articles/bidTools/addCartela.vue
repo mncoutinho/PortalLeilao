@@ -2,8 +2,8 @@
 	<v-card>
         {{user.uid}}
         <v-btn
-            :class="layout.btn.type"
-            :color="layout.btn.color"        
+            :class="btn.type"
+            :color="btn.color"        
             @click="pedido()"
         >
             Fazer pedido de cartela
@@ -16,7 +16,8 @@ export default {
     computed: {
         ...mapState({
             layout: state => state.form,
-            user: state => state.userApp.user
+            user: state => state.userApp.user,
+            btn: state => state.button.buttonC
         })
     },
     methods: {

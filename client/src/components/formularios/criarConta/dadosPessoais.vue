@@ -19,7 +19,7 @@
                     <v-text-field
                     v-model="personaldata.nome"
                     :rules="rules.nome"
-                    color="brown"
+                    :color='btn.color'
                     placeholder="Nome Sobrenome"
                     required
                     outlined
@@ -33,7 +33,7 @@
                     maxlength="14"
                     v-mask="['###.###.###-##']"
                     placeholder="123-456-789-10"
-                    color="brown"
+                    :color='btn.color'
                     required
                     outlined
                     />
@@ -44,7 +44,7 @@
                     v-model="personaldata.tel"
                     placeholder="(12)934567890"
                     v-mask="['(##) #####-####' || '(##) ####-####']"
-                    color="brown"
+                    :color='btn.color'
                     required
                     outlined
                     >
@@ -53,21 +53,21 @@
                         <v-row dense>
                             <!--Botão Voltar-->
                             <v-btn
-                            color=#562B28
                             center
-                            class="white--text"
                             depressed
                             large
+                            :class="btn.type"
+                            :color='btn.color'
                             @click="belowStep()"
                             >Voltar</v-btn>
                             <v-spacer/>
                             <!--Botão Seguir-->
                             <v-btn
-                            color=#562B28
                             center
-                            class="white--text"
                             depressed
                             large
+                            :class="btn.type"
+                            :color='btn.color'
                             @click="setPersonalData()"
                             :disabled="!validador"
                             >Proximo</v-btn>
@@ -126,7 +126,8 @@ export default {
     },
     computed: {
         ...mapState({
-            user: (state) => state.userApp.user
+            user: (state) => state.userApp.user,
+            btn: state => state.button.buttonA
         }),
         etapa(){
             if(this.user != null){

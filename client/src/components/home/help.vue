@@ -15,11 +15,21 @@
                         <v-btn
                         rounded
                         x-large
-                        color="#a64e4b"
-                        class="white--text"
+                        :color="btn.color"
+                        :class="btn.type"
                         v-text="'Leia Mais...'">
                         </v-btn>
                     </v-col>
             </div>
         </v-row>
 </template>
+<script>
+import { mapState } from 'vuex'
+export default {
+    computed:{
+        ...mapState({
+            btn: state => state.button.buttonD
+        })
+    }
+}
+</script>

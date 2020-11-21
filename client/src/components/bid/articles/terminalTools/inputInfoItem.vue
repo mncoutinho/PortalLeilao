@@ -11,8 +11,8 @@
             />
                     <v-btn
                         @click="postMSG(text)"
-                        :color="layout.btn.color"
-                        :class="layout.btn.type"
+                        :color="btn.color"
+                        :class="btn.type"
                         x-large
                     >
                         publicar
@@ -43,7 +43,8 @@ export default {
     computed:{
         ...mapState({
             layout: state => state.form,
-            item: state => state.itemApp.item
+            item: state => state.itemApp.item,
+            btn: state => state.button.buttonC
         })
     }
 }

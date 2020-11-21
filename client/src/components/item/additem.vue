@@ -68,8 +68,8 @@
                   />
                   <!--Botão-->
                   <v-btn 
-                    :class="layout.btn.type" 
-                    :color="layout.btn.color"
+                    :class="btn.type" 
+                    :color="btn.color"
                     @click="addartigo"
                   >
                     Confirmar
@@ -100,7 +100,8 @@ export default {
     ...mapState({
       user: state => state.userApp.user,
       categories: state => state.category,
-      layout: state => state.form
+      layout: state => state.form,
+      btn: state => state.button.buttonC
     }),
   },
   created() {
