@@ -99,8 +99,8 @@
                             />
                             <!--botão para confirmar-->
                             <v-btn
-                            :class="layout.btn.type"
-                            :color="layout.btn.color"
+                            :class="btn.type"
+                            :color="btn.color"
                             v-on:click="putLeilao(leilao);"
                             >
                                 Confirmar
@@ -132,7 +132,8 @@ export default {
                 id: state => state.userApp.user.uid,
                 leilao: state => state.bidApp.bid,
                 layout: state => state.cards.bid,
-                formulario : state => state.form
+                formulario : state => state.form,
+                btn: state => state.button.buttonC
             }),
     },
     methods:{

@@ -52,15 +52,19 @@
           <v-row justify="center" class="pa-3">
             <v-btn 
               x-large 
-              color="#422321" 
-              class="white--text" 
+              :color="btn.color" 
+              :class="btn.type" 
               @click="updatePerfil()"
             >
               Atualizar
             </v-btn>
           </v-row>
           <v-row justify="center">
-            <v-btn large text color="#422321" @click="alterarSenha">
+            <v-btn 
+            large 
+            text 
+            :color="btn.color" 
+            @click="alterarSenha">
               Alterar senha
             </v-btn>
           </v-row>
@@ -80,6 +84,7 @@ export default {
     ...mapState({
       user: (state) => state.userApp.user,
       mostrar: (state) => state.userApp.userData,
+      btn: state => state.button.buttonB
     }),
   },
   data() {

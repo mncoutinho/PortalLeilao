@@ -51,24 +51,26 @@
               <v-col cols="6" align="center">
                 <v-btn
                   large
-                  color="#422321"
-                  class="white--text"
+                  :color="btn.color"
+                  :class="btn.type"
                   @click="mostrar(card)"
                 >
                   Ver Lotes
                 </v-btn>
                 <v-btn
                   large
-                  color="#422321"
-                  class="white--text mt-2"
+                  :color="btn.color"
+                  :class="btn.type"
+                  class="mt-2"
                   @click="editar(card)"
                 >
                   Editar
                 </v-btn>
                 <v-btn
-                large
-                  color="#422321"
-                  class="white--text mt-2"
+                  large
+                  :color="btn.color"
+                  :class="btn.type"
+                  class="mt-2"
                   @click="deletar(card)"
                 >
                   Deletar
@@ -109,6 +111,7 @@ export default {
         card: state => state.bidApp.myBids,
         user: state => state.userApp.user,
         layout: state => state.cards.bid,
+        btn:state => state.button.buttonB
     })
   },
   methods: {

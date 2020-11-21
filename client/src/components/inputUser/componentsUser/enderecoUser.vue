@@ -60,8 +60,8 @@
           </v-row>
           <v-row justify="center">
             <v-btn x-large 
-              color="#422321" 
-              class="white--text"  
+              :color="btn.color" 
+              :class="btn.type"  
               @click="update()">
               Atualizar
             </v-btn>
@@ -83,7 +83,8 @@ export default {
         ...mapState({
           user: (state) => state.userApp.user,
           userData: state => state.userApp.userData,
-          uf: state => state.uf
+          uf: state => state.uf,
+          btn: state => state.button.buttonB
         })
     },
     methods: {

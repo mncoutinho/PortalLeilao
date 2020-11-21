@@ -54,8 +54,10 @@
             <v-row justify="center" class="mt-2 mb-2">
               <v-btn 
               large
-              color="#422321"
-              class="white--text">Ver Lotes</v-btn>
+              :color="btn.color"
+              :class="btn.type">
+                Ver Lotes
+              </v-btn>
             </v-row>
           </v-card>
         </v-row>
@@ -88,7 +90,8 @@ export default {
     },
     ...mapState({
       cards: state => state.bidApp.bids,
-      layout: state => state.cards.bid
+      layout: state => state.cards.bid,
+      btn:state => state.button.buttonB
     })
   },
     methods: {

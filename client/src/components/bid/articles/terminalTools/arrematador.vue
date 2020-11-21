@@ -12,7 +12,7 @@
 					<v-btn
 					width="50%"
 					color="blue"
-					class="white--text"
+					:class="btn.type"
 					v-on:click="alert('fechamento')"
 					large
 					>
@@ -22,7 +22,7 @@
 					<v-btn
 					width="50%"
 					color="red"
-					class="white--text"
+					:class="btn.type"
 					v-on:click="alert('martelo')"
 					large
 					>
@@ -35,7 +35,7 @@
 					<v-btn
 					width="50%"
 					color="yellow"
-					class="black--text"
+					:class="btn.type"
 					large
 					>
 						Martelo Automatico
@@ -44,7 +44,7 @@
 					<v-btn
 					width="50%"
 					:color="color"
-					class="white--text"
+					:class="btn.type"
 					large
 					v-on:click="arremate()"
 				>
@@ -61,7 +61,6 @@ import {mapState} from 'vuex';
 export default {
     data() {
         return {
-
 			status: null,
 			color:null,
         }
@@ -71,6 +70,7 @@ export default {
             lances: state => state.itemApp.lances,
 			item: state => state.itemApp.item,
 			lanceMinimo: state => state.itemApp.item.initialBid,
+			btn:state => state.button.buttonB
         }),
         lanceNow(now){
 			if(!this.lances[0]){

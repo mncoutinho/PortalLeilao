@@ -15,8 +15,8 @@
                         </v-text-field>
                     </v-row>
                         <v-btn
-                        class="white--text"
-                        color="#a64e4b"
+                        :color="btn.color"
+                        :class="btn.type"
                         large
                         rounded
                         v-text="'Enviar'"
@@ -29,7 +29,12 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
-
+    computed:{
+        ...mapState({
+            btn: state => state.button.buttonD
+        })
+    }
 }
 </script>

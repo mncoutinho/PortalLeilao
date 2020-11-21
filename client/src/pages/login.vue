@@ -6,6 +6,7 @@
             <v-card
               class="pa-8"  
               :elevation="10"
+              min-height="600px"
               >
                 <!--Titulo-->
                 <v-row justify="center" class="pa-8">
@@ -30,7 +31,7 @@
                   autocomplete="true"
                   type="email"
                   placeholder="exemplo@email.com"
-                  color="brown"
+                  :color='btn.color'
                   required
                   outlined
                   />
@@ -79,7 +80,7 @@
                         text
                         v-bind="attrs"
                         v-on="on"
-                        color="#562B28"
+                        :color='btn.color'
                         class="mt-6" 
                         v-text="'Não sei minha Senha'"
                       />
@@ -99,7 +100,7 @@
                       autocomplete="true"
                       type="email"
                       placeholder="exemplo@email.com"
-                      color="brown"
+                      :color='btn.color'
                       required
                       outlined
                       />
@@ -107,8 +108,9 @@
                       <v-row justify="center" dense>
                         <v-btn
                           rigth
-                          color="#562B28"
-                          class="mt-6 white--text" 
+                          :class="btn.type"
+                          :color='btn.color'
+                          class="mt-6" 
                           v-text="'Enviar'"
                           v-on:click="resetPassword"
                           @click="dialog = false"
@@ -124,6 +126,7 @@
     </v-main>
 </template>
 <script>
+import { mapState } from 'vuex'
 import formulario from '../components/formularios/loginProvide'
 export default {
   components:{
@@ -171,6 +174,9 @@ export default {
     this.$store.commit('NOT_VISIBLE');
   },
   computed:{
+    ...mapState({
+      btn: state => state.button.buttonB
+    }),
     user(){
       return this.$store.getters.user
       }, 

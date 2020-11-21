@@ -32,7 +32,7 @@
 				</v-card-text>
 				<v-card-text v-else>
 					<v-btn
-					:class="layout.btn.type"
+					:class="btn.type"
 					class="pa-12 display-1 font-weight-regular"
 					color="green"
 					v-if="!this.user.uid"
@@ -52,8 +52,8 @@
 						outlined
 						/>
 						<v-btn 
-						:class="layout.btn.type"
-						:color="layout.btn.color"
+						:class="btn.type"
+						:color="btn.color"
 						:click="AddLance()"
 						v-text="'Faça seu Lance'"
 						>
@@ -91,8 +91,8 @@
 					>
 					</v-btn>
 					<v-btn
-					:class="layout.btn.type"
-                    :color="layout.btn.color"
+					:class="btn.type"
+                    :color="btn.color"
 					v-on:click="autolancelimit(autolance.limit)"
 					v-text="'Confirmar'"
 					>
@@ -172,7 +172,8 @@ export default {
 			user: state => state.userApp.user,
 			lances: state => state.itemApp.lances,
 			item: state => state.itemApp.item,
-			lanceMinimo: state => state.itemApp.item.initialBid
+			lanceMinimo: state => state.itemApp.item.initialBid,
+			btn: state => state.button.buttonC
 		}),
 		// funcoes de leitura rapida na tela	
 		lanceNow(now){

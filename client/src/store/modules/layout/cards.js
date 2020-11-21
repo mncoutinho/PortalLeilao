@@ -14,10 +14,6 @@ export default{
                 width:"100%", 
             },
             pagesLimit:2,
-             btn:{
-                type: "col-12 white--text",
-                color: "brown"
-            }
         },
         item:{
             title: "brown--text text-center",
