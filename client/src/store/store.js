@@ -29,6 +29,9 @@ import showBar from "./modules/layout/showBar"
 import steps from "./modules/layout/steps"
 import form from  "./modules/layout/forms"
 
+//layout components
+import button from "./modules/layout/componentes/button"
+
 
 //API
 import viaCep from "./modules/API/viaCep"
@@ -52,7 +55,8 @@ export default new Vuex.Store({
     viaCep,
     cards,
     form,
-    value
+    value,
+    button
   },
   state: {
     category: [],
