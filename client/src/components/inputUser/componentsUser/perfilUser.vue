@@ -155,4 +155,11 @@ export default {
   justify-content: center;
   align-items: center;
 }
+@media screen and (max-width: 395px){
+  .icone::after{
+    position: relative;
+    top: -100px;
+    right: -120px;
+  }
+}
 </style>
