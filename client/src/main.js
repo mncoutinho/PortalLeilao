@@ -78,7 +78,6 @@ new Vue({
       this.$store.dispatch('getAllItems');
       this.$store.dispatch('getAllBids');
       this.$store.dispatch('getUF');
-    
     },
 }).$mount("#app");
 
