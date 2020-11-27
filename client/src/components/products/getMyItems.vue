@@ -59,7 +59,7 @@
                     </v-btn>
                     <v-row no-gutters>
                         <v-divider/>
-                        <div v-if="test(card.active)">
+                        <div>
                             <v-btn 
                             class="pr-12 pl-12 mt-6" 
                             color="blue" 
@@ -111,21 +111,18 @@ export default {
     },
     methods:{
         status(status){
-            if(status == undefined){
-              return "Aberto"
-            }else{
-               return "Fechado" 
-            }
+            if(status == undefined)
+                return "Sem Registro";
+            if(status == true)
+                return "Aberto"; 
+                return "Fecahdo"; 
         },
         color(status){
-            if(status == undefined){
+            if(status == undefined)
                 return "color:black"
-            }
-            if(status){
-              return "color:green"
-            }else{
-               return "color:red" 
-            }
+            if(status)
+                return "color:green";
+                return "color:red"; 
         },
         leilao(id){
             alert("Leiloeiro Apos entra na preogacao voce nao podera editar mais esse lote")
